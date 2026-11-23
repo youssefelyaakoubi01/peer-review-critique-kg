@@ -57,6 +57,11 @@ bit-for-bit reproducible.
 
 ## Data and licences
 
+The data (cleaned tables, typed critiques, answers of the language model, embeddings,
+graphs, saved models and predictions per paper) are archived on Zenodo under CC BY 4.0:
+<https://doi.org/10.5281/zenodo.24485276>. Each archive unpacks at the root of this
+repository; `scripts/12b_zenodo.py` is the script that built and deposited them.
+
 The reviews, scores and decisions come from the public pages of ICLR on OpenReview; the
 review notes carry the licence CC BY 4.0. Initial scores come from the archive of
 Kargaran et al. (arXiv:2511.15462, <https://github.com/papercopilot/iclr-insights>) and

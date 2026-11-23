@@ -49,7 +49,7 @@ bibliographic exports used for the related work, and the data ({data}).
 The tests that read the manuscript are skipped in this archive, and so are, without the data,
 the anti-leakage tests that run on the real tables and graphs (those on synthetic inputs run).
 """
-NO_DATA = "collected records, critiques, embeddings, graphs and saved models; `data/` holds the folder structure only"
+NO_DATA = "deposited separately, see README.md; `data/` holds the folder structure only"
 
 
 def git(*args: str) -> str:

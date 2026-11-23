@@ -539,3 +539,32 @@ consolidate:
   # this many explained papers hold such a critique (rule set in phase 10: an interval
   # computed on a handful of papers excludes zero for no reason).
   min_articles: 20
+
+# Public deposit of the data (scripts/12b_zenodo.py). Decisions of the author, 2026-11-23.
+release:
+  title: "Critique-level knowledge graph of ICLR peer review (2024-2026): typed critiques, graphs, embeddings, models and predictions"
+  description: >-
+    <p>Data of a study that asks what a knowledge graph of peer review, built at the level of the individual
+    critique, adds to the prediction of acceptance decisions. Reviews of ICLR 2024, 2025 and 2026 (OpenReview) are
+    split into critiques by an open-source language model; each critique has an aspect, a severity and a polarity;
+    papers, reviews, critiques, aspects and keyword concepts form a heterogeneous graph. The deposit holds the cleaned
+    tables, the typed critiques, the answers of the language model, the embeddings, the graphs (PyTorch Geometric and
+    RDF), the saved models and the predictions per paper. The code and the result files are at
+    https://github.com/youssefelyaakoubi01/peer-review-critique-kg.</p>
+    <p>The labels of the critiques were produced by a language model and have not been validated by human
+    annotators. README.md describes each file, the sources and their licences, and what is left out.</p>
+  creators:
+    - {name: "El Yaakoubi, Youssef", affiliation: "Intelligent Automation and BioMedGenomics Laboratory, FST of Tangier, Abdelmalek Essaâdi University, Tetouan, Morocco"}
+    - {name: "Jami, Oumaima-Ezzahraa", affiliation: "Intelligent Automation and BioMedGenomics Laboratory, FST of Tangier, Abdelmalek Essaâdi University, Tetouan, Morocco"}
+    - {name: "Azmani, Abdellah", affiliation: "Intelligent Automation and BioMedGenomics Laboratory, FST of Tangier, Abdelmalek Essaâdi University, Tetouan, Morocco"}
+    - {name: "Azmani, Monir", affiliation: "Intelligent Automation and BioMedGenomics Laboratory, FST of Tangier, Abdelmalek Essaâdi University, Tetouan, Morocco"}
+    - {name: "El Haji, Essaid", affiliation: "Intelligent Automation and BioMedGenomics Laboratory, FST of Tangier, Abdelmalek Essaâdi University, Tetouan, Morocco"}
+  keywords: [peer review, OpenReview, ICLR, knowledge graph, graph neural networks, review critiques]
+  # Published on 2026-11-24 (Zenodo record 24485276; a published record cannot be changed, only versioned).
+  doi: "10.5281/zenodo.24485276"
+  licence: "CC BY 4.0"
+  code_url: https://github.com/youssefelyaakoubi01/peer-review-critique-kg
+  # The submission notes of these years carry no licence field on OpenReview (the reviews do: CC BY 4.0):
+  # the titles, abstracts and one-line summaries of their papers are emptied in the deposit.
+  text_removed_years: [2024]
+  text_columns: [title, abstract, tldr]
