@@ -1,0 +1,14 @@
+# Separate environment for the vLLM inference server (phase 3).
+# vLLM pins torch, transformers and many other packages exactly, so it cannot share
+# the main environment. The main code only talks to the server over HTTP.
+[project]
+name = "peer-review-kg-vllm"
+version = "0.1.0"
+description = "vLLM server environment for critique extraction"
+requires-python = "==3.11.*"
+dependencies = [
+    "vllm==0.33.0",
+]
+
+[tool.uv]
+package = false

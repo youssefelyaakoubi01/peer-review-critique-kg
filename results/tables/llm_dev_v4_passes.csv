@@ -1,0 +1,4 @@
+step,items,seconds,calls,cache_hits,retries,failures,prompt_tokens,completion_tokens,seconds_per_item,output_tokens_per_second,corpus_items,estimated_corpus_hours
+segment,200,104.67,200,0,0,0,462196,37611,0.523,359.3,73129,10.6
+type,200,47.63,79,121,0,0,156092,19880,0.603,417.4,73129,12.2
+align,164,103.91,75,96,7,2,382615,8451,1.528,81.3,55192,23.4

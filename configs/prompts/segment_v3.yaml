@@ -1,0 +1,104 @@
+# Prompt of step 'segment' (phase 3), version 3. Never edit a released version: copy it to a
+# new file with the next version number, so that cached answers stay attributable.
+# Changes from segment_v2 (5 % of its answers were rejected: units listed twice or nowhere;
+# whole ends of reviews listed as ignored before being read):
+# - format `labels`: one label per unit, given in the order of the review;
+# - a promise about the score made before the rebuttal is not post-rebuttal;
+# - what follows a heading is not ignored.
+# Same three examples and same expected segmentations as segment_v2 (real ICLR 2024 reviews
+# of the training split, outputs written by hand). These reviews are in no pilot sample.
+version: segment_v3
+step: segment
+format: labels
+system: |-
+  You split a peer review of a scientific paper into atomic critiques.
+
+  The review is given as numbered units (sentences), grouped by the field of the review form they come from: [strengths], [weaknesses], [questions]. Units that come from the same line of the review (one paragraph or one bullet point) are listed together; a blank line separates two lines of the review.
+
+  A critique is one independent point made by the reviewer about the paper: a strength, a weakness, a question or a request.
+
+  Go through the units in order and give each unit one label.
+
+  "post_rebuttal": the unit was written after the author response. Reviews are sometimes edited after the authors replied: updates after the rebuttal, comments on the authors' reply, statements that the score was raised, lowered or kept after the discussion. A marker such as "After rebuttal" is post-rebuttal too, like everything that follows it in the field. A sentence written before the rebuttal is never post-rebuttal, even when it mentions the score ("I am willing to raise my score if the authors address my concerns" is "ignored").
+
+  "ignored": the unit carries no point about the paper:
+  - a heading or a label alone in its unit ("## Weaknesses", "**Minor**", "Strengths:")
+  - a pointer to another part of the review ("See weaknesses.", "Please refer to the questions above.")
+  - a bibliography entry, or a link given as a reference ("[1] Author et al. Title. Venue, 2021")
+  - greetings, thanks, apologies, remarks about the reviewer or about the review process ("Thanks!", "I am not an expert in this area.")
+  - a sentence that only announces a list ("I have the following concerns:")
+  Only these units are ignored. What follows a heading is not ignored: minor remarks, typos and suggestions are critiques.
+
+  "c1", "c2", "c3", ...: the unit belongs to that critique. Number the critiques in the order in which they first appear.
+  - Units of the same line that develop one point (a claim with its justification, its example, the question or the suggestion that goes with it) get the same critique.
+  - A line that makes several independent points gives several critiques.
+  - A unit that repeats a point made earlier (for example a weakness repeated as a question) gets the label of the earlier critique.
+
+  Answer with JSON only: {"units": [{"unit": 1, "label": ...}, {"unit": 2, "label": ...}, ...]} with exactly one entry per unit, in order.
+examples:
+- review_id: CyAehMYbAW
+  input: |-
+    [strengths]
+    1: 1. The research on differential equations using machine learning methods is of significant research interests.
+
+    2: 2. A multi-modal approach using transformer architecture is technically sound, and the novelty and technical contribution is reasonable.
+
+    3: 3. Experiments results are impressive with high precision.
+    [weaknesses]
+    4: 1. There is no comparison with existing methods, so it is hard to assess how the proposed approach comparing with SOTA.
+
+    5: 2. The paper claims that high performance partially comes from multimodal learning, an ablation study will be interesting to verify this claim.
+    [questions]
+    6: 1. Can you compare with existing methods to verify that the high performance is not because the differential equations used are too simple?
+
+    7: 2. An ablation study with single inputs will be interesting to show the effectiveness of multimodal input.
+  output: |-
+    {"units":[{"unit":1,"label":"c1"},{"unit":2,"label":"c2"},{"unit":3,"label":"c3"},{"unit":4,"label":"c4"},{"unit":5,"label":"c5"},{"unit":6,"label":"c4"},{"unit":7,"label":"c5"}]}
+- review_id: 2wnSzHBblp
+  input: |-
+    [strengths]
+    1: S1. The design of region masked attention is simple and effective, which can process rain-affected and unaffected regions of images separately.
+
+    2: S2. The experimental evaluation and discussion are adequate, and the results convincingly support the main claims.
+
+    3: S3. The paper is well-organized and clearly written.
+    [weaknesses]
+    4: W1. The author should delve into the importance of the rain-affected and unaffected regions of rainy images.
+    5: I am curious if utilizing the features of he unaffected regions can better guide image restoration?
+
+    6: W2. How to determine whether high-quality region masks can be generated?
+    7: If some visual examples of intermediate feature maps that illustrate this property are added, the proposed method can become compelling.
+
+    8: -----------------------After Rebuttal---------------------------
+
+    9: Thank you for your feedback.
+    10: The rebuttal addressed my concerns well.
+    11: Considering other reviews, I decide to keep my score as Accept.
+    [questions]
+    12: See the above Weaknesses part.
+  output: |-
+    {"units":[{"unit":1,"label":"c1"},{"unit":2,"label":"c2"},{"unit":3,"label":"c3"},{"unit":4,"label":"c4"},{"unit":5,"label":"c4"},{"unit":6,"label":"c5"},{"unit":7,"label":"c5"},{"unit":8,"label":"post_rebuttal"},{"unit":9,"label":"post_rebuttal"},{"unit":10,"label":"post_rebuttal"},{"unit":11,"label":"post_rebuttal"},{"unit":12,"label":"ignored"}]}
+- review_id: QptoIHh4kS
+  input: |-
+    [strengths]
+    1: 1. Leveraging open-world or public dataset for ZSQ is interesting and reasonable.
+
+    2: 2. Comparing to ZSQ relying on synthetic data, ZeroP is more efficient and easier to implement.
+    [weaknesses]
+    3: 1. The core contribution is somewhat limited.
+    4: In my opinion, ZSQ is just a sub-area of data-free KD, and any data-free KD methods can be extend to ZSQ.
+    5: [1][2] are two data-free KD methods that utilize proxy data for distillation.
+    6: They can also be applied on ZSQ.
+
+    7: 2. There is lack of more details. e.g. image number, of the proxy datasets.
+    8: And there is not ablation on the numbers of proxy data.
+
+    9: ## ref
+
+    10: [1] Sampling to Distill: Knowledge Transfer from Open-World Data, 2307.16601
+
+    11: [2] Learning Student Networks in the Wild, CVPR 2021
+    [questions]
+    12: Please refer to Weaknesses.
+  output: |-
+    {"units":[{"unit":1,"label":"c1"},{"unit":2,"label":"c2"},{"unit":3,"label":"c3"},{"unit":4,"label":"c3"},{"unit":5,"label":"c3"},{"unit":6,"label":"c3"},{"unit":7,"label":"c4"},{"unit":8,"label":"c5"},{"unit":9,"label":"ignored"},{"unit":10,"label":"ignored"},{"unit":11,"label":"ignored"},{"unit":12,"label":"ignored"}]}

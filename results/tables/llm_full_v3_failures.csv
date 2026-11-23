@@ -1,0 +1,7 @@
+step,error,failures
+segment,"ReadTimeout: HTTPConnectionPool(host='N.N.N.N', port=N): Read timed out. (read timeout=N)",1
+type,"ValueError: expected the critique ids N to N in order, got [...]",1
+align,"ValueError: block N: starts at N, the previous block ends at N",1087
+align,ValueError: block N: span N-N outside N-N,44
+align,"ReadTimeout: HTTPConnectionPool(host='N.N.N.N', port=N): Read timed out. (read timeout=N)",24
+align,ValueError: block N: a critique number is repeated,1

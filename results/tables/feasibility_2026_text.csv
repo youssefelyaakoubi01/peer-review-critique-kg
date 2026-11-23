@@ -1,0 +1,4 @@
+status,papers,found_in_archive,current_abstracts_with_link,archive_abstracts_with_link,title_differs_from_current,abstract_differs_from_current,archive_without_keywords
+accepted,5351,1.0,0.2304,0.0725,0.0848,0.504,0.0
+rejected,8345,1.0,0.0635,0.062,0.0,0.1566,0.0
+withdrawn,5210,0.9998,0.0735,0.0733,0.0,0.0447,0.0

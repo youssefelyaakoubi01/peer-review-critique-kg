@@ -1,0 +1,30 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{AUC of a model minus AUC of its control on the test year (2025) and on the holdout year (2026, models frozen after the test year). Paired bootstrap over the papers.}
+\label{tab:holdout-paired}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+ & & \multicolumn{2}{c}{ICLR 2025} & \multicolumn{2}{c}{ICLR 2026} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+Model & Control & $\Delta$AUC & 95\,\% CI & $\Delta$AUC & 95\,\% CI \\
+\midrule
+\multicolumn{6}{l}{\emph{All papers}} \\
+Scores + critique counts (LR) & All initial scores (LR) & $-0.0014$ & $[-0.0033,\,+0.0005]$ & $-0.0052$ & $[-0.0072,\,-0.0033]$ \\
+Scores + critique counts (GBT) & All initial scores (GBT) & $+0.0006$ & $[-0.0014,\,+0.0028]$ & $-0.0030$ & $[-0.0050,\,-0.0013]$ \\
+Critique counts (LR) & Review text (MLP) & $+0.1507$ & $[+0.1366,\,+0.1654]$ & $+0.1485$ & $[+0.1374,\,+0.1599]$ \\
+HGT & GCN, untyped graph & $+0.0272$ & $[+0.0222,\,+0.0324]$ & $+0.0515$ & $[+0.0464,\,+0.0564]$ \\
+HAN & GCN, untyped graph & $+0.0247$ & $[+0.0202,\,+0.0295]$ & $+0.0468$ & $[+0.0422,\,+0.0512]$ \\
+R-GCN & GCN, untyped graph & $-0.0112$ & $[-0.0164,\,-0.0058]$ & $-0.0332$ & $[-0.0391,\,-0.0267]$ \\
+\addlinespace
+\multicolumn{6}{l}{\emph{Borderline papers}} \\
+Scores + critique counts (LR) & All initial scores (LR) & $-0.0040$ & $[-0.0107,\,+0.0027]$ & $-0.0135$ & $[-0.0180,\,-0.0085]$ \\
+Scores + critique counts (GBT) & All initial scores (GBT) & $+0.0024$ & $[-0.0045,\,+0.0093]$ & $-0.0092$ & $[-0.0139,\,-0.0045]$ \\
+Critique counts (LR) & Review text (MLP) & $+0.0822$ & $[+0.0588,\,+0.1061]$ & $+0.0690$ & $[+0.0513,\,+0.0868]$ \\
+HGT & GCN, untyped graph & $+0.0337$ & $[+0.0200,\,+0.0472]$ & $+0.0653$ & $[+0.0547,\,+0.0762]$ \\
+HAN & GCN, untyped graph & $+0.0222$ & $[+0.0099,\,+0.0348]$ & $+0.0494$ & $[+0.0393,\,+0.0581]$ \\
+R-GCN & GCN, untyped graph & $-0.0149$ & $[-0.0281,\,-0.0006]$ & $-0.0152$ & $[-0.0260,\,-0.0041]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

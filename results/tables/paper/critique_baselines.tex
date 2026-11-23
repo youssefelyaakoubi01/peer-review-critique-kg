@@ -1,0 +1,27 @@
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Critique counts without the graph: AUC of a model minus AUC of its control, which reads the same inputs without the critique counts (first two rows) or the review text instead of them (last row). Paired bootstrap over the papers.}
+\label{tab:critique-baselines}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Model & Control & AUC & Control AUC & $\Delta$ & 95\,\% CI of $\Delta$ \\
+\midrule
+\multicolumn{6}{l}{\emph{Test year, all papers}} \\
+Scores + critique counts (LR) & All initial scores (LR) & $0.8726$ & $0.8740$ & $-0.0014$ & $[-0.0033,\,+0.0005]$ \\
+Scores + critique counts (GBT) & All initial scores (GBT) & $0.8735$ & $0.8729$ & $+0.0006$ & $[-0.0014,\,+0.0028]$ \\
+Critique counts (LR) & Review text (MLP) & $0.7600$ & $0.6093$ & $+0.1507$ & $[+0.1366,\,+0.1654]$ \\
+\addlinespace
+\multicolumn{6}{l}{\emph{Test year, borderline papers}} \\
+Scores + critique counts (LR) & All initial scores (LR) & $0.7150$ & $0.7190$ & $-0.0040$ & $[-0.0107,\,+0.0027]$ \\
+Scores + critique counts (GBT) & All initial scores (GBT) & $0.7162$ & $0.7138$ & $+0.0024$ & $[-0.0045,\,+0.0093]$ \\
+Critique counts (LR) & Review text (MLP) & $0.6167$ & $0.5345$ & $+0.0822$ & $[+0.0588,\,+0.1061]$ \\
+\addlinespace
+\multicolumn{6}{l}{\emph{Validation, all papers}} \\
+Scores + critique counts (LR) & All initial scores (LR) & $0.8894$ & $0.8839$ & $+0.0055$ & $[-0.0003,\,+0.0120]$ \\
+Scores + critique counts (GBT) & All initial scores (GBT) & $0.8890$ & $0.8816$ & $+0.0073$ & $[+0.0011,\,+0.0140]$ \\
+Critique counts (LR) & Review text (MLP) & $0.7915$ & $0.6317$ & $+0.1598$ & $[+0.1092,\,+0.2085]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

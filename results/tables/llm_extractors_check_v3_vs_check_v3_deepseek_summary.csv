@@ -1,0 +1,18 @@
+metric,value
+reviews in both runs,200.0
+reviews segmented and typed by both,198.0
+failures of check_v3 (segmentation or typing),0.0
+failures of check_v3_deepseek (segmentation or typing),2.0
+units compared,3944.0
+share of units with the same fate (critique / ignored / post-rebuttal),0.9698
+critiques of check_v3,1528.0
+critiques of check_v3_deepseek,1637.0
+critiques with exactly the same units in both runs,1144.0
+share of the critiques of check_v3 found in check_v3_deepseek,0.7487
+share of the critiques of check_v3_deepseek found in check_v3,0.6988
+check_v3_deepseek: model served,deepseek-flash bc19ba97cbe016479903222bb1578db6
+"check_v3_deepseek: reviews, seconds, concurrency","200, 24.7, 48"
+check_v3_deepseek: cost of the run (USD),0.1244
+check_v3_deepseek: share of the prompt tokens served from the provider's cache,0.524
+"check_v3_deepseek: time extrapolated to 73185 reviews (hours, same pace)",2.51
+"check_v3_deepseek: cost extrapolated to 73185 reviews (USD, same prices and cache share)",45.5

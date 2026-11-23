@@ -1,0 +1,10 @@
+year,status,reviews,with_initial_scores,share_with_initial_scores
+2024,accepted,8742,8407,0.9617
+2024,rejected,13269,12639,0.9525
+2024,withdrawn,5951,5766,0.9689
+2025,accepted,14936,14800,0.9909
+2025,rejected,19944,19768,0.9912
+2025,withdrawn,11832,11749,0.993
+2026,accepted,20903,20901,0.9999
+2026,rejected,32509,32506,0.9999
+2026,withdrawn,19801,19801,1.0

@@ -1,0 +1,23 @@
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Logit of a paper with an element of its computation graph minus logit without it, mean over the explained test papers (positive: the element pushes towards acceptance). Bold: the 95\,\% confidence interval excludes zero.}
+\label{tab:explain-relations}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Removed & All papers & 95\,\% CI & Accepted & Rejected & Borderline \\
+\midrule
+\multicolumn{6}{l}{\emph{One relation removed}} \\
+\texttt{has\_review} & $-1.77$ & $[-1.91,\,-1.64]$ & $\mathbf{+0.23}$ & $\mathbf{-3.24}$ & $\mathbf{-0.31}$ \\
+\texttt{contains} & $+3.92$ & $[+3.47,\,+4.39]$ & $\mathbf{+2.32}$ & $\mathbf{+5.10}$ & $\mathbf{+2.21}$ \\
+\texttt{about} & $-0.24$ & $[-0.27,\,-0.19]$ & $\mathbf{-0.66}$ & $\mathbf{+0.08}$ & $\mathbf{-0.43}$ \\
+\texttt{has\_concept} & $+0.32$ & $[+0.26,\,+0.39]$ & $\mathbf{-0.35}$ & $\mathbf{+0.82}$ & $\mathbf{-0.12}$ \\
+\texttt{shares\_concept} & $+0.25$ & $[+0.23,\,+0.28]$ & $\mathbf{+0.26}$ & $\mathbf{+0.25}$ & $\mathbf{+0.19}$ \\
+\addlinespace
+\multicolumn{6}{l}{\emph{Scale of the importances}} \\
+Initial scores set to the training mean & $+1.18$ & $[+1.05,\,+1.31]$ & $\mathbf{+3.05}$ & $\mathbf{-0.20}$ & $\mathbf{+2.56}$ \\
+All critiques of the paper removed & $+3.92$ & $[+3.47,\,+4.39]$ & $\mathbf{+2.31}$ & $\mathbf{+5.10}$ & $\mathbf{+2.21}$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

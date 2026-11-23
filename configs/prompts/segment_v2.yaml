@@ -1,0 +1,106 @@
+# Prompt of step 'segment' (phase 3), version 2. Never edit a released version: copy it to a
+# new file with the next version number, so that cached answers stay attributable.
+# Changes from segment_v1 (the first pilot kept headings, pointers and bibliography entries
+# as critiques, and sometimes split the sentences of one point):
+# - format `partition`: every unit is classified (post-rebuttal, ignored, or in a critique);
+# - the input shows which units come from the same line of the review;
+# - the units to ignore are listed explicitly;
+# - third example replaced by a review with a heading, bibliography entries and a pointer.
+# The three examples are real ICLR 2024 reviews of the training split; the expected
+# outputs were written by hand. These reviews are in no pilot sample.
+version: segment_v2
+step: segment
+format: partition
+system: |-
+  You split a peer review of a scientific paper into atomic critiques.
+
+  The review is given as numbered units (sentences), grouped by the field of the review form they come from: [strengths], [weaknesses], [questions]. Units that come from the same line of the review (one paragraph or one bullet point) are listed together; a blank line separates two lines of the review.
+
+  A critique is one independent point made by the reviewer about the paper: a strength, a weakness, a question or a request.
+
+  Classify every unit, in three steps.
+
+  1. "post_rebuttal_units": the units written after the author response. Reviews are sometimes edited after the authors replied: updates after the rebuttal, comments on the authors' reply, statements about raising, lowering or keeping the score. A marker such as "After rebuttal" is post-rebuttal too, like everything that follows it in the field.
+
+  2. "ignored_units": the units that carry no point about the paper:
+  - a heading or a label alone in its unit ("## Weaknesses", "**Minor**", "Strengths:")
+  - a pointer to another part of the review ("See weaknesses.", "Please refer to the questions above.")
+  - a bibliography entry, or a link given as a reference ("[1] Author et al. Title. Venue, 2021")
+  - greetings, thanks, apologies, remarks about the reviewer or about the review process ("Thanks!", "I am not an expert in this area.")
+  - a sentence that only announces a list ("I have the following concerns:")
+
+  3. "critiques": all the other units, grouped into critiques.
+  - Units of the same line that develop one point (a claim with its justification, its example, the question or the suggestion that goes with it) form one critique.
+  - A line that makes several independent points gives several critiques.
+  - Units that make the same point in different places (for example a weakness repeated as a question) form one critique.
+
+  Every unit number appears exactly once in the whole answer.
+
+  Answer with JSON only: {"post_rebuttal_units": [unit numbers], "ignored_units": [unit numbers], "critiques": [{"units": [unit numbers]}, ...]}
+examples:
+- review_id: CyAehMYbAW
+  input: |-
+    [strengths]
+    1: 1. The research on differential equations using machine learning methods is of significant research interests.
+
+    2: 2. A multi-modal approach using transformer architecture is technically sound, and the novelty and technical contribution is reasonable.
+
+    3: 3. Experiments results are impressive with high precision.
+    [weaknesses]
+    4: 1. There is no comparison with existing methods, so it is hard to assess how the proposed approach comparing with SOTA.
+
+    5: 2. The paper claims that high performance partially comes from multimodal learning, an ablation study will be interesting to verify this claim.
+    [questions]
+    6: 1. Can you compare with existing methods to verify that the high performance is not because the differential equations used are too simple?
+
+    7: 2. An ablation study with single inputs will be interesting to show the effectiveness of multimodal input.
+  output: |-
+    {"post_rebuttal_units":[],"ignored_units":[],"critiques":[{"units":[1]},{"units":[2]},{"units":[3]},{"units":[4,6]},{"units":[5,7]}]}
+- review_id: 2wnSzHBblp
+  input: |-
+    [strengths]
+    1: S1. The design of region masked attention is simple and effective, which can process rain-affected and unaffected regions of images separately.
+
+    2: S2. The experimental evaluation and discussion are adequate, and the results convincingly support the main claims.
+
+    3: S3. The paper is well-organized and clearly written.
+    [weaknesses]
+    4: W1. The author should delve into the importance of the rain-affected and unaffected regions of rainy images.
+    5: I am curious if utilizing the features of he unaffected regions can better guide image restoration?
+
+    6: W2. How to determine whether high-quality region masks can be generated?
+    7: If some visual examples of intermediate feature maps that illustrate this property are added, the proposed method can become compelling.
+
+    8: -----------------------After Rebuttal---------------------------
+
+    9: Thank you for your feedback.
+    10: The rebuttal addressed my concerns well.
+    11: Considering other reviews, I decide to keep my score as Accept.
+    [questions]
+    12: See the above Weaknesses part.
+  output: |-
+    {"post_rebuttal_units":[8,9,10,11],"ignored_units":[12],"critiques":[{"units":[1]},{"units":[2]},{"units":[3]},{"units":[4,5]},{"units":[6,7]}]}
+- review_id: QptoIHh4kS
+  input: |-
+    [strengths]
+    1: 1. Leveraging open-world or public dataset for ZSQ is interesting and reasonable.
+
+    2: 2. Comparing to ZSQ relying on synthetic data, ZeroP is more efficient and easier to implement.
+    [weaknesses]
+    3: 1. The core contribution is somewhat limited.
+    4: In my opinion, ZSQ is just a sub-area of data-free KD, and any data-free KD methods can be extend to ZSQ.
+    5: [1][2] are two data-free KD methods that utilize proxy data for distillation.
+    6: They can also be applied on ZSQ.
+
+    7: 2. There is lack of more details. e.g. image number, of the proxy datasets.
+    8: And there is not ablation on the numbers of proxy data.
+
+    9: ## ref
+
+    10: [1] Sampling to Distill: Knowledge Transfer from Open-World Data, 2307.16601
+
+    11: [2] Learning Student Networks in the Wild, CVPR 2021
+    [questions]
+    12: Please refer to Weaknesses.
+  output: |-
+    {"post_rebuttal_units":[],"ignored_units":[9,10,11,12],"critiques":[{"units":[1]},{"units":[2]},{"units":[3,4,5,6]},{"units":[7]},{"units":[8]}]}

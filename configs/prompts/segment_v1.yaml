@@ -1,0 +1,69 @@
+# Prompt of step 'segment' (phase 3). Never edit a released version: copy it to a new
+# file with the next version number, so that cached answers stay attributable.
+# The three examples are real ICLR 2024 reviews of the training split; the expected
+# outputs were written by hand. These reviews are excluded from the pilot sample.
+version: segment_v1
+step: segment
+system: |-
+  You split a peer review of a scientific paper into atomic critiques.
+
+  The review is given as numbered units (sentences), grouped by the field of the review form they come from: [strengths], [weaknesses], [questions].
+
+  A critique is one independent point made by the reviewer about the paper: a strength, a weakness, a question or a request. Rules:
+  - Group the units that make the same point into one critique, even when they are far apart or in different fields (for example a weakness repeated as a question).
+  - Split units that make different points into different critiques.
+  - Leave out units that carry no point about the paper: greetings, thanks, headings, references to another part of the review ("see weaknesses"), bibliography entries, general remarks about the review process.
+  - Reviews are sometimes edited after the authors replied. Do not put in any critique the units written after the author response: updates after the rebuttal, comments on the authors' reply, statements about raising, lowering or keeping the score. List these units in "post_rebuttal_units" instead.
+  - A unit number appears at most once in the whole answer.
+
+  Answer with JSON only: {"critiques": [{"units": [unit numbers]}, ...], "post_rebuttal_units": [unit numbers]}
+examples:
+  - review_id: CyAehMYbAW
+    input: |-
+      [strengths]
+      1: 1. The research on differential equations using machine learning methods is of significant research interests.
+      2: 2. A multi-modal approach using transformer architecture is technically sound, and the novelty and technical contribution is reasonable.
+      3: 3. Experiments results are impressive with high precision.
+      [weaknesses]
+      4: 1. There is no comparison with existing methods, so it is hard to assess how the proposed approach comparing with SOTA.
+      5: 2. The paper claims that high performance partially comes from multimodal learning, an ablation study will be interesting to verify this claim.
+      [questions]
+      6: 1. Can you compare with existing methods to verify that the high performance is not because the differential equations used are too simple?
+      7: 2. An ablation study with single inputs will be interesting to show the effectiveness of multimodal input.
+    output: |-
+      {"critiques":[{"units":[1]},{"units":[2]},{"units":[3]},{"units":[4,6]},{"units":[5,7]}],"post_rebuttal_units":[]}
+  - review_id: 2wnSzHBblp
+    input: |-
+      [strengths]
+      1: S1. The design of region masked attention is simple and effective, which can process rain-affected and unaffected regions of images separately.
+      2: S2. The experimental evaluation and discussion are adequate, and the results convincingly support the main claims.
+      3: S3. The paper is well-organized and clearly written.
+      [weaknesses]
+      4: W1. The author should delve into the importance of the rain-affected and unaffected regions of rainy images.
+      5: I am curious if utilizing the features of he unaffected regions can better guide image restoration?
+      6: W2. How to determine whether high-quality region masks can be generated?
+      7: If some visual examples of intermediate feature maps that illustrate this property are added, the proposed method can become compelling.
+      8: -----------------------After Rebuttal---------------------------
+      9: Thank you for your feedback.
+      10: The rebuttal addressed my concerns well.
+      11: Considering other reviews, I decide to keep my score as Accept.
+      [questions]
+      12: See the above Weaknesses part.
+    output: |-
+      {"critiques":[{"units":[1]},{"units":[2]},{"units":[3]},{"units":[4,5]},{"units":[6,7]}],"post_rebuttal_units":[8,9,10,11]}
+  - review_id: yRmZ3PtrOU
+    input: |-
+      [strengths]
+      1: This paper targets at an interesting and valuable question.
+      2: Both empirical and theoretical results seem solid and convincing.
+      3: By learning decomposition of the reward in the terminal stage using potential functions, it can improve both detail-balance based or sub-trajectory balance based GFlownet training.
+      [weaknesses]
+      4: See questions.
+      [questions]
+      5: The author(s) use two energy-based decomposition schemes as a base-line, namely, the model-based GFlowNet (Jain et al.) and LSTM-based decomposition (Arjona-Medina et al.).
+      6: Why not test other base-lines?
+      7: It seems like a small comparison, and I’m not entirely sure if the LSTM is comparable to a GFlowNet based model given its simplicity.
+      8: Another question would be the paper discussed both DB-based and subTB based objectives.
+      9: What about other objectives?
+    output: |-
+      {"critiques":[{"units":[1]},{"units":[2]},{"units":[3]},{"units":[5,6,7]},{"units":[8,9]}],"post_rebuttal_units":[]}

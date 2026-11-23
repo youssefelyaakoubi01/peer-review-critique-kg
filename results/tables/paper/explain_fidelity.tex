@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Fidelity of the explanations: mean absolute change of the predicted probability when the $k$ most important critiques of a paper are removed (fidelity$^{+}$, higher is better) or kept alone (fidelity$^{-}$, lower is better), against $k$ critiques drawn at random.}
+\label{tab:explain-fidelity}
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+ & & \multicolumn{3}{c}{Fidelity$^{+}$ (critiques removed)} & \multicolumn{3}{c}{Fidelity$^{-}$ (critiques kept alone)} \\
+\cmidrule(lr){3-5} \cmidrule(lr){6-8}
+Method & $k$ & Top $k$ & Random & 95\,\% CI, top $-$ random & Top $k$ & Random & 95\,\% CI, top $-$ random \\
+\midrule
+Occlusion & 1 & $0.0092$ & $0.0022$ & $[+0.0065,\,+0.0075]$ & $0.1798$ & $0.1934$ & $[-0.0174,\,-0.0095]$ \\
+Occlusion & 3 & $0.0239$ & $0.0053$ & $[+0.0167,\,+0.0206]$ & $0.1372$ & $0.1498$ & $[-0.0177,\,-0.0075]$ \\
+Occlusion & 5 & $0.0372$ & $0.0094$ & $[+0.0251,\,+0.0306]$ & $0.1034$ & $0.1191$ & $[-0.0217,\,-0.0098]$ \\
+Input $\times$ gradient & 1 & $0.0048$ & $0.0022$ & $[+0.0023,\,+0.0030]$ & $0.2028$ & $0.1934$ & $[+0.0058,\,+0.0130]$ \\
+Input $\times$ gradient & 3 & $0.0116$ & $0.0053$ & $[+0.0055,\,+0.0072]$ & $0.1722$ & $0.1498$ & $[+0.0173,\,+0.0271]$ \\
+Input $\times$ gradient & 5 & $0.0167$ & $0.0094$ & $[+0.0061,\,+0.0085]$ & $0.1483$ & $0.1191$ & $[+0.0245,\,+0.0342]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

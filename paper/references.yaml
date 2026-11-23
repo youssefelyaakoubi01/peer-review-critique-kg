@@ -1,0 +1,88 @@
+# References of the paper. One entry per citation key:
+#   doi: <DOI>   or   arxiv: <number>     the identifier asked to Crossref or to arXiv
+#   title: <fragment>                     what the title of the fetched record must hold
+# scripts/11c_references.py fetches each record and refuses it when the title differs;
+# title, authors, venue, year and pages of the reference list are those of the record.
+# Where a paper has no DOI (ICLR, NeurIPS, PMLR), its arXiv record is cited.
+
+# --- prediction of decisions and of scores (Scopus export, phase 11)
+kang2018peerread: {doi: 10.18653/v1/n18-1149, title: "A Dataset of Peer Reviews (PeerRead)"}
+wang2018sentiment: {doi: 10.1145/3209978.3210056, title: "Sentiment Analysis of Peer Review Texts"}
+ghosal2019deepsentipeer: {doi: 10.18653/v1/p19-1106, title: "DeepSentiPeer"}
+deng2020habnet: {doi: 10.18653/v1/2020.coling-main.555, title: "Hierarchical Bi-Directional Self-Attention Networks"}
+bharti2021peerassist: {doi: 10.1007/978-3-030-91669-5_33, title: "PEERAssist"}
+pradhan2021mrgen: {doi: 10.1016/j.neucom.2020.11.004, title: "meta-review generation and final decision prediction"}
+ribeiro2021acceptance: {doi: 10.1007/978-3-030-86230-5_60, title: "Acceptance Decision Prediction in Peer-Review"}
+bao2021decisionsets: {doi: 10.1145/3442442.3451370, title: "Predicting Paper Acceptance via Interpretable Decision Sets"}
+rimkus2024reviewer: {doi: 10.1007/978-3-031-63616-5_19, title: "Transformer-Based Approaches for Predicting Paper Acceptance"}
+prama2024classification: {doi: 10.1007/978-3-031-64776-5_7, title: "Classification of Conference Paper Reviews"}
+kumar2026reviews: {doi: 10.1007/s11192-025-05529-2, title: "From reviews to decisions"}
+# The DOI of the Scopus record of the next entry (…findings-emnlp.422) is the one of another paper; this one was
+# found by a title search in Crossref.
+muangkammuen2022semi: {doi: 10.18653/v1/2022.findings-emnlp.164, title: "Peer-Review Score Prediction"}
+muangkammuen2023transfer: {doi: 10.18653/v1/2023.ijcnlp-srw.6, title: "Intermediate-Task Transfer Learning for Peer Review Score Prediction"}
+lin2023moprd: {doi: 10.1007/s00521-023-08891-5, title: "MOPRD"}
+wang2023openreview: {doi: 10.1007/s11280-022-01109-z, title: "What have we learned from OpenReview"}
+
+# --- analysis of review text
+hua2019argument: {doi: 10.18653/v1/n19-1219, title: "Argument Mining for Understanding Peer Reviews"}
+fromm2021argument: {doi: 10.1609/aaai.v35i6.16607, title: "Argument Mining Driven Analysis of Peer-Reviews"}
+yuan2022automate: {doi: 10.1613/jair.1.12862, title: "Can We Automate Scientific Reviewing"}
+guo2023substantiation: {doi: 10.18653/v1/2023.findings-emnlp.684, title: "Automatic Analysis of Substantiation"}
+bharti2025multipeer: {doi: 10.1177/01655515251353189, title: "MultiPEER"}
+kuznetsov2022revise: {doi: 10.1162/coli_a_00455, title: "Revise and Resubmit"}
+thelwall2020praise: {doi: 10.1108/oir-11-2019-0347, title: "Automatically detecting open academic review praise and criticism"}
+li2022capsule: {doi: 10.1145/3466640, title: "Aspect-Aware Capsule Network for Peer Review Based Citation Count Prediction"}
+sun2024textual: {doi: 10.1016/j.joi.2024.101501, title: "Textual features of peer review predict top-cited papers"}
+
+# --- author responses and discussion
+gao2019rebuttal: {doi: 10.18653/v1/n19-1129, title: "Does My Rebuttal Matter"}
+cheng2020ape: {doi: 10.18653/v1/2020.emnlp-main.569, title: "Argument Pair Extraction from Peer Review and Rebuttal"}
+kennard2022disapere: {doi: 10.18653/v1/2022.naacl-main.89, title: "DISAPERE"}
+huang2023rebuttal: {doi: 10.1016/j.joi.2023.101427, title: "What makes a successful rebuttal"}
+cai2026score: {doi: 10.1016/j.joi.2026.101878, title: "Score increases, author"}
+kargaran2025insights: {arxiv: "2511.15462", title: "Insights from the ICLR Peer Review and Rebuttal Process"}
+
+# --- large language models and peer review
+zhou2024reliable: {doi: 10.63317/48d359hjdvog, title: "Is LLM a Reliable Reviewer"}
+liang2024monitoring: {arxiv: "2403.07183", title: "Monitoring AI-Modified Content at Scale"}
+zhuang2025survey: {doi: 10.1016/j.inffus.2025.103332, title: "Large language models for automated scholarly paper review"}
+thelwall2025chatgpt: {doi: 10.1007/s11192-025-05287-1, title: "predictive capacity of ChatGPT for academic peer review outcomes"}
+russo2025lottery: {doi: 10.1145/3757667, title: "The AI Review Lottery"}
+thakkar2026feedback: {doi: 10.1038/s42256-026-01188-x, title: "randomized study of large language model feedback in peer review"}
+yang2026alignment: {doi: 10.3390/publications14030055, title: "Large Language Models in Peer Review"}
+jin2024agentreview: {doi: 10.18653/v1/2024.emnlp-main.70, title: "AgentReview"}
+
+# --- graphs (the second one was found by a title search in Crossref, not in the Scopus export)
+bharti2026consistentpeer: {doi: 10.1007/s41060-026-01047-3, title: "ConsistentPeer"}
+li2026reviewgraph: {doi: 10.1609/aaai.v40i37.40439, title: "Heterogeneous Graph Reasoning over LLM-Simulated Reviewer-Author Debates"}
+
+# --- reliability of peer review, leakage
+shah2022challenges: {doi: 10.1145/3528086, title: "Challenges, experiments, and computational solutions in peer review"}
+cortes2021inconsistency: {arxiv: "2109.09774", title: "Inconsistency in Conference Peer Review"}
+beygelzimer2023consistency: {arxiv: "2306.03262", title: "NeurIPS 2021 Consistency Experiment"}
+lu2023calibrating: {arxiv: "2312.07269", title: "Cheap Signals"}
+kapoor2023leakage: {doi: 10.1016/j.patter.2023.100804, title: "Leakage and the reproducibility crisis"}
+
+# --- methods and software used in this study
+kipf2017gcn: {arxiv: "1609.02907", title: "Semi-Supervised Classification with Graph Convolutional Networks"}
+schlichtkrull2018rgcn: {doi: 10.1007/978-3-319-93417-4_38, title: "Modeling Relational Data with Graph Convolutional Networks"}
+wang2019han: {doi: 10.1145/3308558.3313562, title: "Heterogeneous Graph Attention Network"}
+hu2020hgt: {doi: 10.1145/3366423.3380027, title: "Heterogeneous Graph Transformer"}
+fey2019pyg: {arxiv: "1903.02428", title: "Fast Graph Representation Learning with PyTorch Geometric"}
+cohan2020specter: {doi: 10.18653/v1/2020.acl-main.207, title: "SPECTER"}
+singh2023scirepeval: {doi: 10.18653/v1/2023.emnlp-main.338, title: "SciRepEval"}
+reimers2019sbert: {doi: 10.18653/v1/d19-1410, title: "Sentence-BERT"}
+song2020mpnet: {arxiv: "2004.09297", title: "MPNet"}
+yang2025qwen3: {arxiv: "2505.09388", title: "Qwen3 Technical Report"}
+kwon2023vllm: {doi: 10.1145/3600006.3613165, title: "Efficient Memory Management for Large Language Model Serving"}
+gonzalez2024iclr: {arxiv: "2404.08403", title: "Learning representations of learning representations"}
+kokhlikyan2020captum: {arxiv: "2009.07896", title: "Captum"}
+sundararajan2017ig: {arxiv: "1703.01365", title: "Axiomatic Attribution for Deep Networks"}
+ying2019gnnexplainer: {arxiv: "1903.03894", title: "GNNExplainer"}
+yuan2023explainability: {doi: 10.1109/tpami.2022.3204236, title: "Explainability in Graph Neural Networks"}
+agarwal2023evaluating: {doi: 10.1038/s41597-023-01974-x, title: "Evaluating explainability for graph neural networks"}
+cohen1960kappa: {doi: 10.1177/001316446002000104, title: "A Coefficient of Agreement for Nominal Scales"}
+guo2017calibration: {arxiv: "1706.04599", title: "On Calibration of Modern Neural Networks"}
+delong1988auc: {doi: 10.2307/2531595, title: "Comparing the Areas under Two or More Correlated Receiver Operating Characteristic Curves"}
+efron1994bootstrap: {doi: 10.1201/9780429246593, title: "An Introduction to the Bootstrap"}

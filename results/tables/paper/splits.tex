@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Temporal split. The validation papers are 15\,\% of the training year, drawn by a hash of the paper identifier. Second block: robustness check.}
+\label{tab:splits}
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+Split & Year & Papers & Accepted & Reviews \\
+\midrule
+\multicolumn{5}{l}{\emph{Papers with a decision}} \\
+Training & 2024 & $4\,695$ & $39.6\,\%$ & $18\,149$ \\
+Validation & 2024 & $839$ & $37.4\,\%$ & $3\,229$ \\
+Test & 2025 & $8\,655$ & $42.5\,\%$ & $35\,035$ \\
+\addlinespace
+\multicolumn{5}{l}{\emph{Withdrawn papers counted as rejected}} \\
+Training & 2024 & $5\,906$ & $31.5\,\%$ & $22\,779$ \\
+Validation & 2024 & $1\,048$ & $30.0\,\%$ & $4\,033$ \\
+Test & 2025 & $11\,422$ & $32.2\,\%$ & $46\,317$ \\
+\bottomrule
+\end{tabular}
+\end{table}

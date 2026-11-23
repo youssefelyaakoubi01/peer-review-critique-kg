@@ -1,0 +1,50 @@
+[project]
+name = "peer-review-kg"
+version = "0.1.0"
+description = "Predicting peer review decisions with explainable GNNs over a critique-level knowledge graph"
+requires-python = "==3.11.*"
+dependencies = [
+    # Deep learning (torch pinned to 2.14.0: latest release with pyg-lib wheels)
+    "torch==2.14.0",
+    "torch-geometric==2.8.1",
+    "pyg-lib",  # exact wheel pinned in [tool.uv.sources]
+    "sentence-transformers==6.3.0",
+    "captum==0.9.0",
+    # Data
+    "openreview-py==2.9.3",
+    "requests==2.34.2",
+    "pandas==3.1.1",
+    "pyarrow==26.0.1",
+    "rdflib==7.6.0",
+    "pyyaml==6.0.3",
+    "pydantic==2.14.3",
+    # Evaluation and figures
+    "scikit-learn==1.9.1",
+    "matplotlib==3.11.2",
+    "jsonschema>=4.26.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest==9.2.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[[tool.uv.index]]
+name = "pytorch-cu132"
+url = "https://download.pytorch.org/whl/cu132"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu132" }
+pyg-lib = { url = "https://data.pyg.org/whl/torch-2.14.0%2Bcu132/pyg_lib-0.9.0%2Bpt214cu132-cp310-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

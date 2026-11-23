@@ -1,0 +1,14 @@
+setting,kind,type,count,count_2024,count_2025,count_2026
+A,node,article,37161,6954,11422,18785
+A,node,review,146314,26812,46317,73185
+A,node,critique,1178101,207498,370317,600286
+A,node,aspect,8,,,
+A,node,concept,5073,,,
+A,edge,article -has_review-> review,146314,,,
+A,edge,review -contains-> critique,1178101,,,
+A,edge,critique -about-> aspect,1178070,,,
+A,edge,article -has_concept-> concept,88682,,,
+A,edge,article -shares_concept-> article,1848659,,,
+A,shares_concept pairs,both of the study,385514,,,
+A,shares_concept pairs,"one of the study, one added",847544,,,
+A,shares_concept pairs,both added,615601,,,

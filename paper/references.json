@@ -1,0 +1,2468 @@
+{
+ "kang2018peerread": {
+  "source": "crossref",
+  "doi": "10.18653/v1/n18-1149",
+  "type": "proceedings-article",
+  "title": "A Dataset of Peer Reviews (PeerRead): Collection, Insights and NLP Applications",
+  "authors": [
+   {
+    "family": "Kang",
+    "given": "Dongyeop"
+   },
+   {
+    "family": "Ammar",
+    "given": "Waleed"
+   },
+   {
+    "family": "Dalvi",
+    "given": "Bhavana"
+   },
+   {
+    "family": "Zuylen",
+    "given": "Madeleine"
+   },
+   {
+    "family": "Kohlmeier",
+    "given": "Sebastian"
+   },
+   {
+    "family": "Hovy",
+    "given": "Eduard"
+   },
+   {
+    "family": "Schwartz",
+    "given": "Roy"
+   }
+  ],
+  "year": 2018,
+  "venue": "Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long Papers)",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "1647-1661",
+  "publisher": "Association for Computational Linguistics",
+  "expected_title": "A Dataset of Peer Reviews (PeerRead)"
+ },
+ "wang2018sentiment": {
+  "source": "crossref",
+  "doi": "10.1145/3209978.3210056",
+  "type": "proceedings-article",
+  "title": "Sentiment Analysis of Peer Review Texts for Scholarly Papers",
+  "authors": [
+   {
+    "family": "Wang",
+    "given": "Ke"
+   },
+   {
+    "family": "Wan",
+    "given": "Xiaojun"
+   }
+  ],
+  "year": 2018,
+  "venue": "The 41st International ACM SIGIR Conference on Research & Development in Information Retrieval",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "175-184",
+  "publisher": "ACM",
+  "expected_title": "Sentiment Analysis of Peer Review Texts"
+ },
+ "ghosal2019deepsentipeer": {
+  "source": "crossref",
+  "doi": "10.18653/v1/p19-1106",
+  "type": "proceedings-article",
+  "title": "DeepSentiPeer: Harnessing Sentiment in Review Texts to Recommend Peer Review Decisions",
+  "authors": [
+   {
+    "family": "Ghosal",
+    "given": "Tirthankar"
+   },
+   {
+    "family": "Verma",
+    "given": "Rajeev"
+   },
+   {
+    "family": "Ekbal",
+    "given": "Asif"
+   },
+   {
+    "family": "Bhattacharyya",
+    "given": "Pushpak"
+   }
+  ],
+  "year": 2019,
+  "venue": "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "1120-1130",
+  "publisher": "Association for Computational Linguistics",
+  "expected_title": "DeepSentiPeer"
+ },
+ "deng2020habnet": {
+  "source": "crossref",
+  "doi": "10.18653/v1/2020.coling-main.555",
+  "type": "proceedings-article",
+  "title": "Hierarchical Bi-Directional Self-Attention Networks for Paper Review Rating Recommendation",
+  "authors": [
+   {
+    "family": "Deng",
+    "given": "Zhongfen"
+   },
+   {
+    "family": "Peng",
+    "given": "Hao"
+   },
+   {
+    "family": "Xia",
+    "given": "Congying"
+   },
+   {
+    "family": "Li",
+    "given": "Jianxin"
+   },
+   {
+    "family": "He",
+    "given": "Lifang"
+   },
+   {
+    "family": "Yu",
+    "given": "Philip"
+   }
+  ],
+  "year": 2020,
+  "venue": "Proceedings of the 28th International Conference on Computational Linguistics",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "6302-6314",
+  "publisher": "International Committee on Computational Linguistics",
+  "expected_title": "Hierarchical Bi-Directional Self-Attention Networks"
+ },
+ "bharti2021peerassist": {
+  "source": "crossref",
+  "doi": "10.1007/978-3-030-91669-5_33",
+  "type": "book-chapter",
+  "title": "PEERAssist: Leveraging on Paper-Review Interactions to Predict Peer Review Decisions",
+  "authors": [
+   {
+    "family": "Bharti",
+    "given": "Prabhat Kumar"
+   },
+   {
+    "family": "Ranjan",
+    "given": "Shashi"
+   },
+   {
+    "family": "Ghosal",
+    "given": "Tirthankar"
+   },
+   {
+    "family": "Agrawal",
+    "given": "Mayank"
+   },
+   {
+    "family": "Ekbal",
+    "given": "Asif"
+   }
+  ],
+  "year": 2021,
+  "venue": "Towards Open and Trustworthy Digital Societies",
+  "series": "Lecture Notes in Computer Science",
+  "volume": "",
+  "issue": "",
+  "pages": "421-435",
+  "publisher": "Springer International Publishing",
+  "expected_title": "PEERAssist"
+ },
+ "pradhan2021mrgen": {
+  "source": "crossref",
+  "doi": "10.1016/j.neucom.2020.11.004",
+  "type": "journal-article",
+  "title": "A deep neural architecture based meta-review generation and final decision prediction of a scholarly article",
+  "authors": [
+   {
+    "family": "Pradhan",
+    "given": "Tribikram"
+   },
+   {
+    "family": "Bhatia",
+    "given": "Chaitanya"
+   },
+   {
+    "family": "Kumar",
+    "given": "Prashant"
+   },
+   {
+    "family": "Pal",
+    "given": "Sukomal"
+   }
+  ],
+  "year": 2021,
+  "venue": "Neurocomputing",
+  "series": "",
+  "volume": "428",
+  "issue": "",
+  "pages": "218-238",
+  "publisher": "Elsevier BV",
+  "expected_title": "meta-review generation and final decision prediction"
+ },
+ "ribeiro2021acceptance": {
+  "source": "crossref",
+  "doi": "10.1007/978-3-030-86230-5_60",
+  "type": "book-chapter",
+  "title": "Acceptance Decision Prediction in Peer-Review Through Sentiment Analysis",
+  "authors": [
+   {
+    "family": "Ribeiro",
+    "given": "Ana Carolina"
+   },
+   {
+    "family": "Sizo",
+    "given": "Amanda"
+   },
+   {
+    "family": "Lopes Cardoso",
+    "given": "Henrique"
+   },
+   {
+    "family": "Reis",
+    "given": "Luís Paulo"
+   }
+  ],
+  "year": 2021,
+  "venue": "Progress in Artificial Intelligence",
+  "series": "Lecture Notes in Computer Science",
+  "volume": "",
+  "issue": "",
+  "pages": "766-777",
+  "publisher": "Springer International Publishing",
+  "expected_title": "Acceptance Decision Prediction in Peer-Review"
+ },
+ "bao2021decisionsets": {
+  "source": "crossref",
+  "doi": "10.1145/3442442.3451370",
+  "type": "proceedings-article",
+  "title": "Predicting Paper Acceptance via Interpretable Decision Sets",
+  "authors": [
+   {
+    "family": "Bao",
+    "given": "Peng"
+   },
+   {
+    "family": "Hong",
+    "given": "Weihui"
+   },
+   {
+    "family": "Li",
+    "given": "Xuanya"
+   }
+  ],
+  "year": 2021,
+  "venue": "Companion Proceedings of the Web Conference 2021",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "461-467",
+  "publisher": "ACM",
+  "expected_title": "Predicting Paper Acceptance via Interpretable Decision Sets"
+ },
+ "rimkus2024reviewer": {
+  "source": "crossref",
+  "doi": "10.1007/978-3-031-63616-5_19",
+  "type": "book-chapter",
+  "title": "Reviewer 2 Must Be Stopped: Transformer-Based Approaches for Predicting Paper Acceptance",
+  "authors": [
+   {
+    "family": "Rimkus",
+    "given": "Lukas"
+   },
+   {
+    "family": "Verbickas",
+    "given": "Jonas"
+   },
+   {
+    "family": "Batista-Navarro",
+    "given": "Riza"
+   }
+  ],
+  "year": 2024,
+  "venue": "Information Management and Big Data",
+  "series": "Communications in Computer and Information Science",
+  "volume": "",
+  "issue": "",
+  "pages": "249-260",
+  "publisher": "Springer Nature Switzerland",
+  "expected_title": "Transformer-Based Approaches for Predicting Paper Acceptance"
+ },
+ "prama2024classification": {
+  "source": "crossref",
+  "doi": "10.1007/978-3-031-64776-5_7",
+  "type": "book-chapter",
+  "title": "Deep Learning-Based Classification of Conference Paper Reviews: Accept or Reject?",
+  "authors": [
+   {
+    "family": "Prama",
+    "given": "Tabia Tanzin"
+   },
+   {
+    "family": "Biswas",
+    "given": "Al Amin"
+   },
+   {
+    "family": "Anwar",
+    "given": "Md Musfique"
+   }
+  ],
+  "year": 2024,
+  "venue": "Intelligent Systems Design and Applications",
+  "series": "Lecture Notes in Networks and Systems",
+  "volume": "",
+  "issue": "",
+  "pages": "64-74",
+  "publisher": "Springer Nature Switzerland",
+  "expected_title": "Classification of Conference Paper Reviews"
+ },
+ "kumar2026reviews": {
+  "source": "crossref",
+  "doi": "10.1007/s11192-025-05529-2",
+  "type": "journal-article",
+  "title": "From reviews to decisions: A joint multitask aspect sentiment leveraged framework for assisting decision prediction from academic peer reviews",
+  "authors": [
+   {
+    "family": "Kumar",
+    "given": "Sandeep"
+   },
+   {
+    "family": "Arora",
+    "given": "Hardik"
+   },
+   {
+    "family": "Ghosal",
+    "given": "Tirthankar"
+   },
+   {
+    "family": "Ekbal",
+    "given": "Asif"
+   }
+  ],
+  "year": 2026,
+  "venue": "Scientometrics",
+  "series": "",
+  "volume": "131",
+  "issue": "1",
+  "pages": "583-608",
+  "publisher": "Springer Science and Business Media LLC",
+  "expected_title": "From reviews to decisions"
+ },
+ "muangkammuen2022semi": {
+  "source": "crossref",
+  "doi": "10.18653/v1/2022.findings-emnlp.164",
+  "type": "proceedings-article",
+  "title": "Exploiting Labeled and Unlabeled Data via Transformer Fine-tuning for Peer-Review Score Prediction",
+  "authors": [
+   {
+    "family": "Muangkammuen",
+    "given": "Panitan"
+   },
+   {
+    "family": "Fukumoto",
+    "given": "Fumiyo"
+   },
+   {
+    "family": "Li",
+    "given": "Jiyi"
+   },
+   {
+    "family": "Suzuki",
+    "given": "Yoshimi"
+   }
+  ],
+  "year": 2022,
+  "venue": "Findings of the Association for Computational Linguistics: EMNLP 2022",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "2233-2240",
+  "publisher": "Association for Computational Linguistics",
+  "expected_title": "Peer-Review Score Prediction"
+ },
+ "muangkammuen2023transfer": {
+  "source": "crossref",
+  "doi": "10.18653/v1/2023.ijcnlp-srw.6",
+  "type": "proceedings-article",
+  "title": "Intermediate-Task Transfer Learning for Peer Review Score Prediction",
+  "authors": [
+   {
+    "family": "Muangkammuen",
+    "given": "Panitan"
+   },
+   {
+    "family": "Fukumoto",
+    "given": "Fumiyo"
+   },
+   {
+    "family": "Li",
+    "given": "Jiyi"
+   },
+   {
+    "family": "Suzuki",
+    "given": "Yoshimi"
+   }
+  ],
+  "year": 2023,
+  "venue": "Proceedings of the 13th International Joint Conference on Natural Language Processing and the 3rd Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics: Student Research Workshop",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "40-47",
+  "publisher": "Association for Computational Linguistics",
+  "expected_title": "Intermediate-Task Transfer Learning for Peer Review Score Prediction"
+ },
+ "lin2023moprd": {
+  "source": "crossref",
+  "doi": "10.1007/s00521-023-08891-5",
+  "type": "journal-article",
+  "title": "MOPRD: A multidisciplinary open peer review dataset",
+  "authors": [
+   {
+    "family": "Lin",
+    "given": "Jialiang"
+   },
+   {
+    "family": "Song",
+    "given": "Jiaxin"
+   },
+   {
+    "family": "Zhou",
+    "given": "Zhangping"
+   },
+   {
+    "family": "Chen",
+    "given": "Yidong"
+   },
+   {
+    "family": "Shi",
+    "given": "Xiaodong"
+   }
+  ],
+  "year": 2023,
+  "venue": "Neural Computing and Applications",
+  "series": "",
+  "volume": "35",
+  "issue": "34",
+  "pages": "24191-24206",
+  "publisher": "Springer Science and Business Media LLC",
+  "expected_title": "MOPRD"
+ },
+ "wang2023openreview": {
+  "source": "crossref",
+  "doi": "10.1007/s11280-022-01109-z",
+  "type": "journal-article",
+  "title": "What have we learned from OpenReview?",
+  "authors": [
+   {
+    "family": "Wang",
+    "given": "Gang"
+   },
+   {
+    "family": "Peng",
+    "given": "Qi"
+   },
+   {
+    "family": "Zhang",
+    "given": "Yanfeng"
+   },
+   {
+    "family": "Zhang",
+    "given": "Mingyang"
+   }
+  ],
+  "year": 2023,
+  "venue": "World Wide Web",
+  "series": "",
+  "volume": "26",
+  "issue": "2",
+  "pages": "683-708",
+  "publisher": "Springer Science and Business Media LLC",
+  "expected_title": "What have we learned from OpenReview"
+ },
+ "hua2019argument": {
+  "source": "crossref",
+  "doi": "10.18653/v1/n19-1219",
+  "type": "proceedings-article",
+  "title": "Argument Mining for Understanding Peer Reviews",
+  "authors": [
+   {
+    "family": "Hua",
+    "given": "Xinyu"
+   },
+   {
+    "family": "Nikolov",
+    "given": "Mitko"
+   },
+   {
+    "family": "Badugu",
+    "given": "Nikhil"
+   },
+   {
+    "family": "Wang",
+    "given": "Lu"
+   }
+  ],
+  "year": 2019,
+  "venue": "Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "2131-2137",
+  "publisher": "Association for Computational Linguistics",
+  "expected_title": "Argument Mining for Understanding Peer Reviews"
+ },
+ "fromm2021argument": {
+  "source": "crossref",
+  "doi": "10.1609/aaai.v35i6.16607",
+  "type": "journal-article",
+  "title": "Argument Mining Driven Analysis of Peer-Reviews",
+  "authors": [
+   {
+    "family": "Fromm",
+    "given": "Michael"
+   },
+   {
+    "family": "Faerman",
+    "given": "Evgeniy"
+   },
+   {
+    "family": "Berrendorf",
+    "given": "Max"
+   },
+   {
+    "family": "Bhargava",
+    "given": "Siddharth"
+   },
+   {
+    "family": "Qi",
+    "given": "Ruoxia"
+   },
+   {
+    "family": "Zhang",
+    "given": "Yao"
+   },
+   {
+    "family": "Dennert",
+    "given": "Lukas"
+   },
+   {
+    "family": "Selle",
+    "given": "Sophia"
+   },
+   {
+    "family": "Mao",
+    "given": "Yang"
+   },
+   {
+    "family": "Seidl",
+    "given": "Thomas"
+   }
+  ],
+  "year": 2021,
+  "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+  "series": "",
+  "volume": "35",
+  "issue": "6",
+  "pages": "4758-4766",
+  "publisher": "Association for the Advancement of Artificial Intelligence (AAAI)",
+  "expected_title": "Argument Mining Driven Analysis of Peer-Reviews"
+ },
+ "yuan2022automate": {
+  "source": "crossref",
+  "doi": "10.1613/jair.1.12862",
+  "type": "journal-article",
+  "title": "Can We Automate Scientific Reviewing?",
+  "authors": [
+   {
+    "family": "Yuan",
+    "given": "Weizhe"
+   },
+   {
+    "family": "Liu",
+    "given": "Pengfei"
+   },
+   {
+    "family": "Neubig",
+    "given": "Graham"
+   }
+  ],
+  "year": 2022,
+  "venue": "Journal of Artificial Intelligence Research",
+  "series": "",
+  "volume": "75",
+  "issue": "",
+  "pages": "171-212",
+  "publisher": "AI Access Foundation",
+  "expected_title": "Can We Automate Scientific Reviewing"
+ },
+ "guo2023substantiation": {
+  "source": "crossref",
+  "doi": "10.18653/v1/2023.findings-emnlp.684",
+  "type": "proceedings-article",
+  "title": "Automatic Analysis of Substantiation in Scientific Peer Reviews",
+  "authors": [
+   {
+    "family": "Guo",
+    "given": "Yanzhu"
+   },
+   {
+    "family": "Shang",
+    "given": "Guokan"
+   },
+   {
+    "family": "Rennard",
+    "given": "Virgile"
+   },
+   {
+    "family": "Vazirgiannis",
+    "given": "Michalis"
+   },
+   {
+    "family": "Clavel",
+    "given": "Chloé"
+   }
+  ],
+  "year": 2023,
+  "venue": "Findings of the Association for Computational Linguistics: EMNLP 2023",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "10198-10216",
+  "publisher": "Association for Computational Linguistics",
+  "expected_title": "Automatic Analysis of Substantiation"
+ },
+ "bharti2025multipeer": {
+  "source": "crossref",
+  "doi": "10.1177/01655515251353189",
+  "type": "journal-article",
+  "title": "MultiPEER: A deep, multi-task framework for identifying aspect categories and their sentiments in scientific peer reviews",
+  "authors": [
+   {
+    "family": "Bharti",
+    "given": "Prabhat Kumar"
+   },
+   {
+    "family": "Agarwal",
+    "given": "Mayank"
+   },
+   {
+    "family": "Ekbal",
+    "given": "Asif"
+   }
+  ],
+  "year": 2025,
+  "venue": "Journal of Information Science",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "01655515251353189",
+  "publisher": "SAGE Publications",
+  "expected_title": "MultiPEER"
+ },
+ "kuznetsov2022revise": {
+  "source": "crossref",
+  "doi": "10.1162/coli_a_00455",
+  "type": "journal-article",
+  "title": "Revise and Resubmit: An Intertextual Model of Text-based Collaboration in Peer Review",
+  "authors": [
+   {
+    "family": "Kuznetsov",
+    "given": "Ilia"
+   },
+   {
+    "family": "Buchmann",
+    "given": "Jan"
+   },
+   {
+    "family": "Eichler",
+    "given": "Max"
+   },
+   {
+    "family": "Gurevych",
+    "given": "Iryna"
+   }
+  ],
+  "year": 2022,
+  "venue": "Computational Linguistics",
+  "series": "",
+  "volume": "48",
+  "issue": "4",
+  "pages": "949-986",
+  "publisher": "MIT Press",
+  "expected_title": "Revise and Resubmit"
+ },
+ "thelwall2020praise": {
+  "source": "crossref",
+  "doi": "10.1108/oir-11-2019-0347",
+  "type": "journal-article",
+  "title": "Automatically detecting open academic review praise and criticism",
+  "authors": [
+   {
+    "family": "Thelwall",
+    "given": "Mike"
+   },
+   {
+    "family": "Papas",
+    "given": "Eleanor-Rose"
+   },
+   {
+    "family": "Nyakoojo",
+    "given": "Zena"
+   },
+   {
+    "family": "Allen",
+    "given": "Liz"
+   },
+   {
+    "family": "Weigert",
+    "given": "Verena"
+   }
+  ],
+  "year": 2020,
+  "venue": "Online Information Review",
+  "series": "",
+  "volume": "44",
+  "issue": "5",
+  "pages": "1057-1076",
+  "publisher": "Emerald",
+  "expected_title": "Automatically detecting open academic review praise and criticism"
+ },
+ "li2022capsule": {
+  "source": "crossref",
+  "doi": "10.1145/3466640",
+  "type": "journal-article",
+  "title": "Interpretable Aspect-Aware Capsule Network for Peer Review Based Citation Count Prediction",
+  "authors": [
+   {
+    "family": "Li",
+    "given": "Siqing"
+   },
+   {
+    "family": "Li",
+    "given": "Yaliang"
+   },
+   {
+    "family": "Zhao",
+    "given": "Wayne Xin"
+   },
+   {
+    "family": "Ding",
+    "given": "Bolin"
+   },
+   {
+    "family": "Wen",
+    "given": "Ji-Rong"
+   }
+  ],
+  "year": 2022,
+  "venue": "ACM Transactions on Information Systems",
+  "series": "",
+  "volume": "40",
+  "issue": "1",
+  "pages": "1-29",
+  "publisher": "Association for Computing Machinery (ACM)",
+  "expected_title": "Aspect-Aware Capsule Network for Peer Review Based Citation Count Prediction"
+ },
+ "sun2024textual": {
+  "source": "crossref",
+  "doi": "10.1016/j.joi.2024.101501",
+  "type": "journal-article",
+  "title": "Textual features of peer review predict top-cited papers: An interpretable machine learning perspective",
+  "authors": [
+   {
+    "family": "Sun",
+    "given": "Zhuanlan"
+   }
+  ],
+  "year": 2024,
+  "venue": "Journal of Informetrics",
+  "series": "",
+  "volume": "18",
+  "issue": "2",
+  "pages": "101501",
+  "publisher": "Elsevier BV",
+  "expected_title": "Textual features of peer review predict top-cited papers"
+ },
+ "gao2019rebuttal": {
+  "source": "crossref",
+  "doi": "10.18653/v1/n19-1129",
+  "type": "proceedings-article",
+  "title": "Does My Rebuttal Matter? Insights from a Major NLP Conference",
+  "authors": [
+   {
+    "family": "Gao",
+    "given": "Yang"
+   },
+   {
+    "family": "Eger",
+    "given": "Steffen"
+   },
+   {
+    "family": "Kuznetsov",
+    "given": "Ilia"
+   },
+   {
+    "family": "Gurevych",
+    "given": "Iryna"
+   },
+   {
+    "family": "Miyao",
+    "given": "Yusuke"
+   }
+  ],
+  "year": 2019,
+  "venue": "Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "1274-1290",
+  "publisher": "Association for Computational Linguistics",
+  "expected_title": "Does My Rebuttal Matter"
+ },
+ "cheng2020ape": {
+  "source": "crossref",
+  "doi": "10.18653/v1/2020.emnlp-main.569",
+  "type": "proceedings-article",
+  "title": "APE: Argument Pair Extraction from Peer Review and Rebuttal via Multi-task Learning",
+  "authors": [
+   {
+    "family": "Cheng",
+    "given": "Liying"
+   },
+   {
+    "family": "Bing",
+    "given": "Lidong"
+   },
+   {
+    "family": "Yu",
+    "given": "Qian"
+   },
+   {
+    "family": "Lu",
+    "given": "Wei"
+   },
+   {
+    "family": "Si",
+    "given": "Luo"
+   }
+  ],
+  "year": 2020,
+  "venue": "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "7000-7011",
+  "publisher": "Association for Computational Linguistics",
+  "expected_title": "Argument Pair Extraction from Peer Review and Rebuttal"
+ },
+ "kennard2022disapere": {
+  "source": "crossref",
+  "doi": "10.18653/v1/2022.naacl-main.89",
+  "type": "proceedings-article",
+  "title": "DISAPERE: A Dataset for Discourse Structure in Peer Review Discussions",
+  "authors": [
+   {
+    "family": "Kennard",
+    "given": "Neha"
+   },
+   {
+    "family": "O’Gorman",
+    "given": "Tim"
+   },
+   {
+    "family": "Das",
+    "given": "Rajarshi"
+   },
+   {
+    "family": "Sharma",
+    "given": "Akshay"
+   },
+   {
+    "family": "Bagchi",
+    "given": "Chhandak"
+   },
+   {
+    "family": "Clinton",
+    "given": "Matthew"
+   },
+   {
+    "family": "Yelugam",
+    "given": "Pranay Kumar"
+   },
+   {
+    "family": "Zamani",
+    "given": "Hamed"
+   },
+   {
+    "family": "McCallum",
+    "given": "Andrew"
+   }
+  ],
+  "year": 2022,
+  "venue": "Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "1234-1249",
+  "publisher": "Association for Computational Linguistics",
+  "expected_title": "DISAPERE"
+ },
+ "huang2023rebuttal": {
+  "source": "crossref",
+  "doi": "10.1016/j.joi.2023.101427",
+  "type": "journal-article",
+  "title": "What makes a successful rebuttal in computer science conferences?: A perspective on social interaction",
+  "authors": [
+   {
+    "family": "Huang",
+    "given": "Junjie"
+   },
+   {
+    "family": "Huang",
+    "given": "Win-bin"
+   },
+   {
+    "family": "Bu",
+    "given": "Yi"
+   },
+   {
+    "family": "Cao",
+    "given": "Qi"
+   },
+   {
+    "family": "Shen",
+    "given": "Huawei"
+   },
+   {
+    "family": "Cheng",
+    "given": "Xueqi"
+   }
+  ],
+  "year": 2023,
+  "venue": "Journal of Informetrics",
+  "series": "",
+  "volume": "17",
+  "issue": "3",
+  "pages": "101427",
+  "publisher": "Elsevier BV",
+  "expected_title": "What makes a successful rebuttal"
+ },
+ "cai2026score": {
+  "source": "crossref",
+  "doi": "10.1016/j.joi.2026.101878",
+  "type": "journal-article",
+  "title": "Score increases, author–reviewer communication, and subsequent citations in open peer review: Evidence from ICLR",
+  "authors": [
+   {
+    "family": "Cai",
+    "given": "Songlin"
+   },
+   {
+    "family": "Wang",
+    "given": "Xianwen"
+   }
+  ],
+  "year": 2026,
+  "venue": "Journal of Informetrics",
+  "series": "",
+  "volume": "20",
+  "issue": "4",
+  "pages": "101878",
+  "publisher": "Elsevier BV",
+  "expected_title": "Score increases, author"
+ },
+ "kargaran2025insights": {
+  "source": "arxiv",
+  "arxiv": "2511.15462",
+  "doi": "10.48550/arxiv.2511.15462",
+  "type": "preprint",
+  "title": "Insights from the ICLR Peer Review and Rebuttal Process",
+  "authors": [
+   {
+    "family": "Kargaran",
+    "given": "Amir Hossein"
+   },
+   {
+    "family": "Nikeghbal",
+    "given": "Nafiseh"
+   },
+   {
+    "family": "Yang",
+    "given": "Jing"
+   },
+   {
+    "family": "Ousidhoum",
+    "given": "Nedjma"
+   }
+  ],
+  "year": 2025,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "Insights from the ICLR Peer Review and Rebuttal Process"
+ },
+ "zhou2024reliable": {
+  "source": "crossref",
+  "doi": "10.63317/48d359hjdvog",
+  "type": "proceedings-article",
+  "title": "Is LLM a Reliable Reviewer? A Comprehensive Evaluation of LLM on Automatic Paper Reviewing Tasks",
+  "authors": [
+   {
+    "family": "Zhou",
+    "given": "Ruiyang"
+   },
+   {
+    "family": "Chen",
+    "given": "Lu"
+   },
+   {
+    "family": "Yu",
+    "given": "Kai"
+   }
+  ],
+  "year": 2024,
+  "venue": "Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)",
+  "series": "Proceedings of the Language Resources and Evaluation Conference",
+  "volume": "",
+  "issue": "",
+  "pages": "9340-9351",
+  "publisher": "European Language Resources Association (ELRA) and ICCL",
+  "expected_title": "Is LLM a Reliable Reviewer"
+ },
+ "liang2024monitoring": {
+  "source": "arxiv",
+  "arxiv": "2403.07183",
+  "doi": "10.48550/arxiv.2403.07183",
+  "type": "preprint",
+  "title": "Monitoring AI-Modified Content at Scale: A Case Study on the Impact of ChatGPT on AI Conference Peer Reviews",
+  "authors": [
+   {
+    "family": "Liang",
+    "given": "Weixin"
+   },
+   {
+    "family": "Izzo",
+    "given": "Zachary"
+   },
+   {
+    "family": "Zhang",
+    "given": "Yaohui"
+   },
+   {
+    "family": "Lepp",
+    "given": "Haley"
+   },
+   {
+    "family": "Cao",
+    "given": "Hancheng"
+   },
+   {
+    "family": "Zhao",
+    "given": "Xuandong"
+   },
+   {
+    "family": "Chen",
+    "given": "Lingjiao"
+   },
+   {
+    "family": "Ye",
+    "given": "Haotian"
+   },
+   {
+    "family": "Liu",
+    "given": "Sheng"
+   },
+   {
+    "family": "Huang",
+    "given": "Zhi"
+   },
+   {
+    "family": "McFarland",
+    "given": "Daniel A."
+   },
+   {
+    "family": "Zou",
+    "given": "James Y."
+   }
+  ],
+  "year": 2024,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "Monitoring AI-Modified Content at Scale"
+ },
+ "zhuang2025survey": {
+  "source": "crossref",
+  "doi": "10.1016/j.inffus.2025.103332",
+  "type": "journal-article",
+  "title": "Large language models for automated scholarly paper review: A survey",
+  "authors": [
+   {
+    "family": "Zhuang",
+    "given": "Zhenzhen"
+   },
+   {
+    "family": "Chen",
+    "given": "Jiandong"
+   },
+   {
+    "family": "Xu",
+    "given": "Hongfeng"
+   },
+   {
+    "family": "Jiang",
+    "given": "Yuwen"
+   },
+   {
+    "family": "Lin",
+    "given": "Jialiang"
+   }
+  ],
+  "year": 2025,
+  "venue": "Information Fusion",
+  "series": "",
+  "volume": "124",
+  "issue": "",
+  "pages": "103332",
+  "publisher": "Elsevier BV",
+  "expected_title": "Large language models for automated scholarly paper review"
+ },
+ "thelwall2025chatgpt": {
+  "source": "crossref",
+  "doi": "10.1007/s11192-025-05287-1",
+  "type": "journal-article",
+  "title": "Evaluating the predictive capacity of ChatGPT for academic peer review outcomes across multiple platforms",
+  "authors": [
+   {
+    "family": "Thelwall",
+    "given": "Mike"
+   },
+   {
+    "family": "Yaghi",
+    "given": "Abdallah"
+   }
+  ],
+  "year": 2025,
+  "venue": "Scientometrics",
+  "series": "",
+  "volume": "130",
+  "issue": "10",
+  "pages": "5285-5307",
+  "publisher": "Springer Science and Business Media LLC",
+  "expected_title": "predictive capacity of ChatGPT for academic peer review outcomes"
+ },
+ "russo2025lottery": {
+  "source": "crossref",
+  "doi": "10.1145/3757667",
+  "type": "journal-article",
+  "title": "The AI Review Lottery: Widespread AI-Assisted Peer Reviews Boost Paper Scores and Acceptance Rates",
+  "authors": [
+   {
+    "family": "Russo",
+    "given": "Giuseppe"
+   },
+   {
+    "family": "Horta Ribeiro",
+    "given": "Manoel"
+   },
+   {
+    "family": "Davidson",
+    "given": "Tim Ruben"
+   },
+   {
+    "family": "Veselovsky",
+    "given": "Veniamin"
+   },
+   {
+    "family": "West",
+    "given": "Robert"
+   }
+  ],
+  "year": 2025,
+  "venue": "Proceedings of the ACM on Human-Computer Interaction",
+  "series": "",
+  "volume": "9",
+  "issue": "7",
+  "pages": "1-28",
+  "publisher": "Association for Computing Machinery (ACM)",
+  "expected_title": "The AI Review Lottery"
+ },
+ "thakkar2026feedback": {
+  "source": "crossref",
+  "doi": "10.1038/s42256-026-01188-x",
+  "type": "journal-article",
+  "title": "A large-scale randomized study of large language model feedback in peer review",
+  "authors": [
+   {
+    "family": "Thakkar",
+    "given": "Nitya"
+   },
+   {
+    "family": "Yuksekgonul",
+    "given": "Mert"
+   },
+   {
+    "family": "Silberg",
+    "given": "Jake"
+   },
+   {
+    "family": "Garg",
+    "given": "Animesh"
+   },
+   {
+    "family": "Peng",
+    "given": "Nanyun"
+   },
+   {
+    "family": "Sha",
+    "given": "Fei"
+   },
+   {
+    "family": "Yu",
+    "given": "Rose"
+   },
+   {
+    "family": "Vondrick",
+    "given": "Carl"
+   },
+   {
+    "family": "Zou",
+    "given": "James"
+   }
+  ],
+  "year": 2026,
+  "venue": "Nature Machine Intelligence",
+  "series": "",
+  "volume": "8",
+  "issue": "3",
+  "pages": "326-336",
+  "publisher": "Springer Science and Business Media LLC",
+  "expected_title": "randomized study of large language model feedback in peer review"
+ },
+ "yang2026alignment": {
+  "source": "crossref",
+  "doi": "10.3390/publications14030055",
+  "type": "journal-article",
+  "title": "Large Language Models in Peer Review: Decision Alignment, Review-Text Characteristics, and Human–AI Aggregation at ICLR 2025",
+  "authors": [
+   {
+    "family": "Yang",
+    "given": "Zhihe"
+   },
+   {
+    "family": "Zhou",
+    "given": "Xiaoyu"
+   },
+   {
+    "family": "Wang",
+    "given": "Hongsa"
+   },
+   {
+    "family": "Jiang",
+    "given": "Yuxin"
+   },
+   {
+    "family": "Zhang",
+    "given": "Xinjie"
+   }
+  ],
+  "year": 2026,
+  "venue": "Publications",
+  "series": "",
+  "volume": "14",
+  "issue": "3",
+  "pages": "55",
+  "publisher": "MDPI AG",
+  "expected_title": "Large Language Models in Peer Review"
+ },
+ "jin2024agentreview": {
+  "source": "crossref",
+  "doi": "10.18653/v1/2024.emnlp-main.70",
+  "type": "proceedings-article",
+  "title": "AgentReview: Exploring Peer Review Dynamics with LLM Agents",
+  "authors": [
+   {
+    "family": "Jin",
+    "given": "Yiqiao"
+   },
+   {
+    "family": "Zhao",
+    "given": "Qinlin"
+   },
+   {
+    "family": "Wang",
+    "given": "Yiyang"
+   },
+   {
+    "family": "Chen",
+    "given": "Hao"
+   },
+   {
+    "family": "Zhu",
+    "given": "Kaijie"
+   },
+   {
+    "family": "Xiao",
+    "given": "Yijia"
+   },
+   {
+    "family": "Wang",
+    "given": "Jindong"
+   }
+  ],
+  "year": 2024,
+  "venue": "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "1208-1226",
+  "publisher": "Association for Computational Linguistics",
+  "expected_title": "AgentReview"
+ },
+ "bharti2026consistentpeer": {
+  "source": "crossref",
+  "doi": "10.1007/s41060-026-01047-3",
+  "type": "journal-article",
+  "title": "ConsistentPeer: reviewers through GraphRAG-driven counterfactuals to measure consistency in peer review",
+  "authors": [
+   {
+    "family": "Bharti",
+    "given": "Prabhat Kumar"
+   },
+   {
+    "family": "Panchal",
+    "given": "Mihir"
+   },
+   {
+    "family": "Dalal",
+    "given": "Viral"
+   }
+  ],
+  "year": 2026,
+  "venue": "International Journal of Data Science and Analytics",
+  "series": "",
+  "volume": "22",
+  "issue": "1",
+  "pages": "64",
+  "publisher": "Springer Science and Business Media LLC",
+  "expected_title": "ConsistentPeer"
+ },
+ "li2026reviewgraph": {
+  "source": "crossref",
+  "doi": "10.1609/aaai.v40i37.40439",
+  "type": "journal-article",
+  "title": "Automatic Paper Reviewing with Heterogeneous Graph Reasoning over LLM-Simulated Reviewer-Author Debates",
+  "authors": [
+   {
+    "family": "Li",
+    "given": "Shuaimin"
+   },
+   {
+    "family": "Fan",
+    "given": "Liyang"
+   },
+   {
+    "family": "Lin",
+    "given": "Yufang"
+   },
+   {
+    "family": "Li",
+    "given": "Zeyang"
+   },
+   {
+    "family": "Wei",
+    "given": "Xian"
+   },
+   {
+    "family": "Ni",
+    "given": "Shiwen"
+   },
+   {
+    "family": "Alinejad-Rokny",
+    "given": "Hamid"
+   },
+   {
+    "family": "Yang",
+    "given": "Min"
+   }
+  ],
+  "year": 2026,
+  "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+  "series": "",
+  "volume": "40",
+  "issue": "37",
+  "pages": "31717-31725",
+  "publisher": "Association for the Advancement of Artificial Intelligence (AAAI)",
+  "expected_title": "Heterogeneous Graph Reasoning over LLM-Simulated Reviewer-Author Debates"
+ },
+ "shah2022challenges": {
+  "source": "crossref",
+  "doi": "10.1145/3528086",
+  "type": "journal-article",
+  "title": "Challenges, experiments, and computational solutions in peer review",
+  "authors": [
+   {
+    "family": "Shah",
+    "given": "Nihar B."
+   }
+  ],
+  "year": 2022,
+  "venue": "Communications of the ACM",
+  "series": "",
+  "volume": "65",
+  "issue": "6",
+  "pages": "76-87",
+  "publisher": "Association for Computing Machinery (ACM)",
+  "expected_title": "Challenges, experiments, and computational solutions in peer review"
+ },
+ "cortes2021inconsistency": {
+  "source": "arxiv",
+  "arxiv": "2109.09774",
+  "doi": "10.48550/arxiv.2109.09774",
+  "type": "preprint",
+  "title": "Inconsistency in Conference Peer Review: Revisiting the 2014 NeurIPS Experiment",
+  "authors": [
+   {
+    "family": "Cortes",
+    "given": "Corinna"
+   },
+   {
+    "family": "Lawrence",
+    "given": "Neil D."
+   }
+  ],
+  "year": 2021,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "Inconsistency in Conference Peer Review"
+ },
+ "beygelzimer2023consistency": {
+  "source": "arxiv",
+  "arxiv": "2306.03262",
+  "doi": "10.48550/arxiv.2306.03262",
+  "type": "preprint",
+  "title": "Has the Machine Learning Review Process Become More Arbitrary as the Field Has Grown? The NeurIPS 2021 Consistency Experiment",
+  "authors": [
+   {
+    "family": "Beygelzimer",
+    "given": "Alina"
+   },
+   {
+    "family": "Dauphin",
+    "given": "Yann N."
+   },
+   {
+    "family": "Liang",
+    "given": "Percy"
+   },
+   {
+    "family": "Vaughan",
+    "given": "Jennifer Wortman"
+   }
+  ],
+  "year": 2023,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "NeurIPS 2021 Consistency Experiment"
+ },
+ "lu2023calibrating": {
+  "source": "arxiv",
+  "arxiv": "2312.07269",
+  "doi": "10.48550/arxiv.2312.07269",
+  "type": "preprint",
+  "title": "Calibrating \"Cheap Signals\" in Peer Review without a Prior",
+  "authors": [
+   {
+    "family": "Lu",
+    "given": "Yuxuan"
+   },
+   {
+    "family": "Kong",
+    "given": "Yuqing"
+   }
+  ],
+  "year": 2023,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "Cheap Signals"
+ },
+ "kapoor2023leakage": {
+  "source": "crossref",
+  "doi": "10.1016/j.patter.2023.100804",
+  "type": "journal-article",
+  "title": "Leakage and the reproducibility crisis in machine-learning-based science",
+  "authors": [
+   {
+    "family": "Kapoor",
+    "given": "Sayash"
+   },
+   {
+    "family": "Narayanan",
+    "given": "Arvind"
+   }
+  ],
+  "year": 2023,
+  "venue": "Patterns",
+  "series": "",
+  "volume": "4",
+  "issue": "9",
+  "pages": "100804",
+  "publisher": "Elsevier BV",
+  "expected_title": "Leakage and the reproducibility crisis"
+ },
+ "kipf2017gcn": {
+  "source": "arxiv",
+  "arxiv": "1609.02907",
+  "doi": "10.48550/arxiv.1609.02907",
+  "type": "preprint",
+  "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+  "authors": [
+   {
+    "family": "Kipf",
+    "given": "Thomas N."
+   },
+   {
+    "family": "Welling",
+    "given": "Max"
+   }
+  ],
+  "year": 2016,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "Semi-Supervised Classification with Graph Convolutional Networks"
+ },
+ "schlichtkrull2018rgcn": {
+  "source": "crossref",
+  "doi": "10.1007/978-3-319-93417-4_38",
+  "type": "book-chapter",
+  "title": "Modeling Relational Data with Graph Convolutional Networks",
+  "authors": [
+   {
+    "family": "Schlichtkrull",
+    "given": "Michael"
+   },
+   {
+    "family": "Kipf",
+    "given": "Thomas N."
+   },
+   {
+    "family": "Bloem",
+    "given": "Peter"
+   },
+   {
+    "family": "van den Berg",
+    "given": "Rianne"
+   },
+   {
+    "family": "Titov",
+    "given": "Ivan"
+   },
+   {
+    "family": "Welling",
+    "given": "Max"
+   }
+  ],
+  "year": 2018,
+  "venue": "The Semantic Web",
+  "series": "Lecture Notes in Computer Science",
+  "volume": "",
+  "issue": "",
+  "pages": "593-607",
+  "publisher": "Springer International Publishing",
+  "expected_title": "Modeling Relational Data with Graph Convolutional Networks"
+ },
+ "wang2019han": {
+  "source": "crossref",
+  "doi": "10.1145/3308558.3313562",
+  "type": "proceedings-article",
+  "title": "Heterogeneous Graph Attention Network",
+  "authors": [
+   {
+    "family": "Wang",
+    "given": "Xiao"
+   },
+   {
+    "family": "Ji",
+    "given": "Houye"
+   },
+   {
+    "family": "Shi",
+    "given": "Chuan"
+   },
+   {
+    "family": "Wang",
+    "given": "Bai"
+   },
+   {
+    "family": "Ye",
+    "given": "Yanfang"
+   },
+   {
+    "family": "Cui",
+    "given": "Peng"
+   },
+   {
+    "family": "Yu",
+    "given": "Philip S"
+   }
+  ],
+  "year": 2019,
+  "venue": "The World Wide Web Conference",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "2022-2032",
+  "publisher": "ACM",
+  "expected_title": "Heterogeneous Graph Attention Network"
+ },
+ "hu2020hgt": {
+  "source": "crossref",
+  "doi": "10.1145/3366423.3380027",
+  "type": "proceedings-article",
+  "title": "Heterogeneous Graph Transformer",
+  "authors": [
+   {
+    "family": "Hu",
+    "given": "Ziniu"
+   },
+   {
+    "family": "Dong",
+    "given": "Yuxiao"
+   },
+   {
+    "family": "Wang",
+    "given": "Kuansan"
+   },
+   {
+    "family": "Sun",
+    "given": "Yizhou"
+   }
+  ],
+  "year": 2020,
+  "venue": "Proceedings of The Web Conference 2020",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "2704-2710",
+  "publisher": "ACM",
+  "expected_title": "Heterogeneous Graph Transformer"
+ },
+ "fey2019pyg": {
+  "source": "arxiv",
+  "arxiv": "1903.02428",
+  "doi": "10.48550/arxiv.1903.02428",
+  "type": "preprint",
+  "title": "Fast Graph Representation Learning with PyTorch Geometric",
+  "authors": [
+   {
+    "family": "Fey",
+    "given": "Matthias"
+   },
+   {
+    "family": "Lenssen",
+    "given": "Jan Eric"
+   }
+  ],
+  "year": 2019,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "Fast Graph Representation Learning with PyTorch Geometric"
+ },
+ "cohan2020specter": {
+  "source": "crossref",
+  "doi": "10.18653/v1/2020.acl-main.207",
+  "type": "proceedings-article",
+  "title": "SPECTER: Document-level Representation Learning using Citation-informed Transformers",
+  "authors": [
+   {
+    "family": "Cohan",
+    "given": "Arman"
+   },
+   {
+    "family": "Feldman",
+    "given": "Sergey"
+   },
+   {
+    "family": "Beltagy",
+    "given": "Iz"
+   },
+   {
+    "family": "Downey",
+    "given": "Doug"
+   },
+   {
+    "family": "Weld",
+    "given": "Daniel"
+   }
+  ],
+  "year": 2020,
+  "venue": "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "2270-2282",
+  "publisher": "Association for Computational Linguistics",
+  "expected_title": "SPECTER"
+ },
+ "singh2023scirepeval": {
+  "source": "crossref",
+  "doi": "10.18653/v1/2023.emnlp-main.338",
+  "type": "proceedings-article",
+  "title": "SciRepEval: A Multi-Format Benchmark for Scientific Document Representations",
+  "authors": [
+   {
+    "family": "Singh",
+    "given": "Amanpreet"
+   },
+   {
+    "family": "D’Arcy",
+    "given": "Mike"
+   },
+   {
+    "family": "Cohan",
+    "given": "Arman"
+   },
+   {
+    "family": "Downey",
+    "given": "Doug"
+   },
+   {
+    "family": "Feldman",
+    "given": "Sergey"
+   }
+  ],
+  "year": 2023,
+  "venue": "Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "5548-5566",
+  "publisher": "Association for Computational Linguistics",
+  "expected_title": "SciRepEval"
+ },
+ "reimers2019sbert": {
+  "source": "crossref",
+  "doi": "10.18653/v1/d19-1410",
+  "type": "proceedings-article",
+  "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+  "authors": [
+   {
+    "family": "Reimers",
+    "given": "Nils"
+   },
+   {
+    "family": "Gurevych",
+    "given": "Iryna"
+   }
+  ],
+  "year": 2019,
+  "venue": "Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "3980-3990",
+  "publisher": "Association for Computational Linguistics",
+  "expected_title": "Sentence-BERT"
+ },
+ "song2020mpnet": {
+  "source": "arxiv",
+  "arxiv": "2004.09297",
+  "doi": "10.48550/arxiv.2004.09297",
+  "type": "preprint",
+  "title": "MPNet: Masked and Permuted Pre-training for Language Understanding",
+  "authors": [
+   {
+    "family": "Song",
+    "given": "Kaitao"
+   },
+   {
+    "family": "Tan",
+    "given": "Xu"
+   },
+   {
+    "family": "Qin",
+    "given": "Tao"
+   },
+   {
+    "family": "Lu",
+    "given": "Jianfeng"
+   },
+   {
+    "family": "Liu",
+    "given": "Tie-Yan"
+   }
+  ],
+  "year": 2020,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "MPNet"
+ },
+ "yang2025qwen3": {
+  "source": "arxiv",
+  "arxiv": "2505.09388",
+  "doi": "10.48550/arxiv.2505.09388",
+  "type": "preprint",
+  "title": "Qwen3 Technical Report",
+  "authors": [
+   {
+    "family": "Yang",
+    "given": "An"
+   },
+   {
+    "family": "Li",
+    "given": "Anfeng"
+   },
+   {
+    "family": "Yang",
+    "given": "Baosong"
+   },
+   {
+    "family": "Zhang",
+    "given": "Beichen"
+   },
+   {
+    "family": "Hui",
+    "given": "Binyuan"
+   },
+   {
+    "family": "Zheng",
+    "given": "Bo"
+   },
+   {
+    "family": "Yu",
+    "given": "Bowen"
+   },
+   {
+    "family": "Gao",
+    "given": "Chang"
+   },
+   {
+    "family": "Huang",
+    "given": "Chengen"
+   },
+   {
+    "family": "Lv",
+    "given": "Chenxu"
+   },
+   {
+    "family": "Zheng",
+    "given": "Chujie"
+   },
+   {
+    "family": "Liu",
+    "given": "Dayiheng"
+   },
+   {
+    "family": "Zhou",
+    "given": "Fan"
+   },
+   {
+    "family": "Huang",
+    "given": "Fei"
+   },
+   {
+    "family": "Hu",
+    "given": "Feng"
+   },
+   {
+    "family": "Ge",
+    "given": "Hao"
+   },
+   {
+    "family": "Wei",
+    "given": "Haoran"
+   },
+   {
+    "family": "Lin",
+    "given": "Huan"
+   },
+   {
+    "family": "Tang",
+    "given": "Jialong"
+   },
+   {
+    "family": "Yang",
+    "given": "Jian"
+   },
+   {
+    "family": "Tu",
+    "given": "Jianhong"
+   },
+   {
+    "family": "Zhang",
+    "given": "Jianwei"
+   },
+   {
+    "family": "Yang",
+    "given": "Jianxin"
+   },
+   {
+    "family": "Yang",
+    "given": "Jiaxi"
+   },
+   {
+    "family": "Zhou",
+    "given": "Jing"
+   },
+   {
+    "family": "Zhou",
+    "given": "Jingren"
+   },
+   {
+    "family": "Lin",
+    "given": "Junyang"
+   },
+   {
+    "family": "Dang",
+    "given": "Kai"
+   },
+   {
+    "family": "Bao",
+    "given": "Keqin"
+   },
+   {
+    "family": "Yang",
+    "given": "Kexin"
+   },
+   {
+    "family": "Yu",
+    "given": "Le"
+   },
+   {
+    "family": "Deng",
+    "given": "Lianghao"
+   },
+   {
+    "family": "Li",
+    "given": "Mei"
+   },
+   {
+    "family": "Xue",
+    "given": "Mingfeng"
+   },
+   {
+    "family": "Li",
+    "given": "Mingze"
+   },
+   {
+    "family": "Zhang",
+    "given": "Pei"
+   },
+   {
+    "family": "Wang",
+    "given": "Peng"
+   },
+   {
+    "family": "Zhu",
+    "given": "Qin"
+   },
+   {
+    "family": "Men",
+    "given": "Rui"
+   },
+   {
+    "family": "Gao",
+    "given": "Ruize"
+   },
+   {
+    "family": "Liu",
+    "given": "Shixuan"
+   },
+   {
+    "family": "Luo",
+    "given": "Shuang"
+   },
+   {
+    "family": "Li",
+    "given": "Tianhao"
+   },
+   {
+    "family": "Tang",
+    "given": "Tianyi"
+   },
+   {
+    "family": "Yin",
+    "given": "Wenbiao"
+   },
+   {
+    "family": "Ren",
+    "given": "Xingzhang"
+   },
+   {
+    "family": "Wang",
+    "given": "Xinyu"
+   },
+   {
+    "family": "Zhang",
+    "given": "Xinyu"
+   },
+   {
+    "family": "Ren",
+    "given": "Xuancheng"
+   },
+   {
+    "family": "Fan",
+    "given": "Yang"
+   },
+   {
+    "family": "Su",
+    "given": "Yang"
+   },
+   {
+    "family": "Zhang",
+    "given": "Yichang"
+   },
+   {
+    "family": "Zhang",
+    "given": "Yinger"
+   },
+   {
+    "family": "Wan",
+    "given": "Yu"
+   },
+   {
+    "family": "Liu",
+    "given": "Yuqiong"
+   },
+   {
+    "family": "Wang",
+    "given": "Zekun"
+   },
+   {
+    "family": "Cui",
+    "given": "Zeyu"
+   },
+   {
+    "family": "Zhang",
+    "given": "Zhenru"
+   },
+   {
+    "family": "Zhou",
+    "given": "Zhipeng"
+   },
+   {
+    "family": "Qiu",
+    "given": "Zihan"
+   }
+  ],
+  "year": 2025,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "Qwen3 Technical Report"
+ },
+ "kwon2023vllm": {
+  "source": "crossref",
+  "doi": "10.1145/3600006.3613165",
+  "type": "proceedings-article",
+  "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
+  "authors": [
+   {
+    "family": "Kwon",
+    "given": "Woosuk"
+   },
+   {
+    "family": "Li",
+    "given": "Zhuohan"
+   },
+   {
+    "family": "Zhuang",
+    "given": "Siyuan"
+   },
+   {
+    "family": "Sheng",
+    "given": "Ying"
+   },
+   {
+    "family": "Zheng",
+    "given": "Lianmin"
+   },
+   {
+    "family": "Yu",
+    "given": "Cody Hao"
+   },
+   {
+    "family": "Gonzalez",
+    "given": "Joseph"
+   },
+   {
+    "family": "Zhang",
+    "given": "Hao"
+   },
+   {
+    "family": "Stoica",
+    "given": "Ion"
+   }
+  ],
+  "year": 2023,
+  "venue": "Proceedings of the 29th Symposium on Operating Systems Principles",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "611-626",
+  "publisher": "ACM",
+  "expected_title": "Efficient Memory Management for Large Language Model Serving"
+ },
+ "gonzalez2024iclr": {
+  "source": "arxiv",
+  "arxiv": "2404.08403",
+  "doi": "10.48550/arxiv.2404.08403",
+  "type": "preprint",
+  "title": "Learning representations of learning representations",
+  "authors": [
+   {
+    "family": "González-Márquez",
+    "given": "Rita"
+   },
+   {
+    "family": "Kobak",
+    "given": "Dmitry"
+   }
+  ],
+  "year": 2024,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "Learning representations of learning representations"
+ },
+ "kokhlikyan2020captum": {
+  "source": "arxiv",
+  "arxiv": "2009.07896",
+  "doi": "10.48550/arxiv.2009.07896",
+  "type": "preprint",
+  "title": "Captum: A unified and generic model interpretability library for PyTorch",
+  "authors": [
+   {
+    "family": "Kokhlikyan",
+    "given": "Narine"
+   },
+   {
+    "family": "Miglani",
+    "given": "Vivek"
+   },
+   {
+    "family": "Martin",
+    "given": "Miguel"
+   },
+   {
+    "family": "Wang",
+    "given": "Edward"
+   },
+   {
+    "family": "Alsallakh",
+    "given": "Bilal"
+   },
+   {
+    "family": "Reynolds",
+    "given": "Jonathan"
+   },
+   {
+    "family": "Melnikov",
+    "given": "Alexander"
+   },
+   {
+    "family": "Kliushkina",
+    "given": "Natalia"
+   },
+   {
+    "family": "Araya",
+    "given": "Carlos"
+   },
+   {
+    "family": "Yan",
+    "given": "Siqi"
+   },
+   {
+    "family": "Reblitz-Richardson",
+    "given": "Orion"
+   }
+  ],
+  "year": 2020,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "Captum"
+ },
+ "sundararajan2017ig": {
+  "source": "arxiv",
+  "arxiv": "1703.01365",
+  "doi": "10.48550/arxiv.1703.01365",
+  "type": "preprint",
+  "title": "Axiomatic Attribution for Deep Networks",
+  "authors": [
+   {
+    "family": "Sundararajan",
+    "given": "Mukund"
+   },
+   {
+    "family": "Taly",
+    "given": "Ankur"
+   },
+   {
+    "family": "Yan",
+    "given": "Qiqi"
+   }
+  ],
+  "year": 2017,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "Axiomatic Attribution for Deep Networks"
+ },
+ "ying2019gnnexplainer": {
+  "source": "arxiv",
+  "arxiv": "1903.03894",
+  "doi": "10.48550/arxiv.1903.03894",
+  "type": "preprint",
+  "title": "GNNExplainer: Generating Explanations for Graph Neural Networks",
+  "authors": [
+   {
+    "family": "Ying",
+    "given": "Rex"
+   },
+   {
+    "family": "Bourgeois",
+    "given": "Dylan"
+   },
+   {
+    "family": "You",
+    "given": "Jiaxuan"
+   },
+   {
+    "family": "Zitnik",
+    "given": "Marinka"
+   },
+   {
+    "family": "Leskovec",
+    "given": "Jure"
+   }
+  ],
+  "year": 2019,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "GNNExplainer"
+ },
+ "yuan2023explainability": {
+  "source": "crossref",
+  "doi": "10.1109/tpami.2022.3204236",
+  "type": "journal-article",
+  "title": "Explainability in Graph Neural Networks: A Taxonomic Survey",
+  "authors": [
+   {
+    "family": "Yuan",
+    "given": "Hao"
+   },
+   {
+    "family": "Yu",
+    "given": "Haiyang"
+   },
+   {
+    "family": "Gui",
+    "given": "Shurui"
+   },
+   {
+    "family": "Ji",
+    "given": "Shuiwang"
+   }
+  ],
+  "year": 2022,
+  "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "1-19",
+  "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+  "expected_title": "Explainability in Graph Neural Networks"
+ },
+ "agarwal2023evaluating": {
+  "source": "crossref",
+  "doi": "10.1038/s41597-023-01974-x",
+  "type": "journal-article",
+  "title": "Evaluating explainability for graph neural networks",
+  "authors": [
+   {
+    "family": "Agarwal",
+    "given": "Chirag"
+   },
+   {
+    "family": "Queen",
+    "given": "Owen"
+   },
+   {
+    "family": "Lakkaraju",
+    "given": "Himabindu"
+   },
+   {
+    "family": "Zitnik",
+    "given": "Marinka"
+   }
+  ],
+  "year": 2023,
+  "venue": "Scientific Data",
+  "series": "",
+  "volume": "10",
+  "issue": "1",
+  "pages": "144",
+  "publisher": "Springer Science and Business Media LLC",
+  "expected_title": "Evaluating explainability for graph neural networks"
+ },
+ "cohen1960kappa": {
+  "source": "crossref",
+  "doi": "10.1177/001316446002000104",
+  "type": "journal-article",
+  "title": "A Coefficient of Agreement for Nominal Scales",
+  "authors": [
+   {
+    "family": "Cohen",
+    "given": "Jacob"
+   }
+  ],
+  "year": 1960,
+  "venue": "Educational and Psychological Measurement",
+  "series": "",
+  "volume": "20",
+  "issue": "1",
+  "pages": "37-46",
+  "publisher": "SAGE Publications",
+  "expected_title": "A Coefficient of Agreement for Nominal Scales"
+ },
+ "guo2017calibration": {
+  "source": "arxiv",
+  "arxiv": "1706.04599",
+  "doi": "10.48550/arxiv.1706.04599",
+  "type": "preprint",
+  "title": "On Calibration of Modern Neural Networks",
+  "authors": [
+   {
+    "family": "Guo",
+    "given": "Chuan"
+   },
+   {
+    "family": "Pleiss",
+    "given": "Geoff"
+   },
+   {
+    "family": "Sun",
+    "given": "Yu"
+   },
+   {
+    "family": "Weinberger",
+    "given": "Kilian Q."
+   }
+  ],
+  "year": 2017,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "On Calibration of Modern Neural Networks"
+ },
+ "delong1988auc": {
+  "source": "crossref",
+  "doi": "10.2307/2531595",
+  "type": "journal-article",
+  "title": "Comparing the Areas under Two or More Correlated Receiver Operating Characteristic Curves: A Nonparametric Approach",
+  "authors": [
+   {
+    "family": "DeLong",
+    "given": "Elizabeth R."
+   },
+   {
+    "family": "DeLong",
+    "given": "David M."
+   },
+   {
+    "family": "Clarke-Pearson",
+    "given": "Daniel L."
+   }
+  ],
+  "year": 1988,
+  "venue": "Biometrics",
+  "series": "",
+  "volume": "44",
+  "issue": "3",
+  "pages": "837",
+  "publisher": "JSTOR",
+  "expected_title": "Comparing the Areas under Two or More Correlated Receiver Operating Characteristic Curves"
+ },
+ "efron1994bootstrap": {
+  "source": "crossref",
+  "doi": "10.1201/9780429246593",
+  "type": "book",
+  "title": "An Introduction to the Bootstrap",
+  "authors": [
+   {
+    "family": "Efron",
+    "given": "Bradley"
+   },
+   {
+    "family": "Tibshirani",
+    "given": "R.J."
+   }
+  ],
+  "year": 1994,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "Chapman and Hall/CRC",
+  "expected_title": "An Introduction to the Bootstrap"
+ }
+}

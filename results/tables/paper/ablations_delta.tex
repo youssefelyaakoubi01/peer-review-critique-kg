@@ -1,0 +1,23 @@
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Ablations of the HGT model (setting A) on the test year (2025): one element removed at a time, same hyper-parameters, 5 seeds. $\Delta$: AUC minus the AUC of the full graph, paired bootstrap over the papers.}
+\label{tab:ablations-delta}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+ & \multicolumn{3}{c}{All papers ($n = 8\,655$)} & \multicolumn{3}{c}{Borderline papers ($n = 4\,049$)} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+Variant & AUC & $\Delta$ & 95\,\% CI & AUC & $\Delta$ & 95\,\% CI \\
+\midrule
+Full graph & $0.858$ & -- & -- & $0.695$ & -- & -- \\
+No shares\_concept edges & $0.856$ & $-0.003$ & $[-0.004,\,-0.001]$ & $0.691$ & $-0.004$ & $[-0.009,\,+0.000]$ \\
+No critique labels (text only) & $0.856$ & $-0.002$ & $[-0.003,\,-0.001]$ & $0.691$ & $-0.004$ & $[-0.007,\,-0.001]$ \\
+No critique text (labels only) & $0.858$ & $0.000$ & $[-0.001,\,+0.001]$ & $0.694$ & $-0.001$ & $[-0.004,\,+0.002]$ \\
+No critique nodes & $0.833$ & $-0.025$ & $[-0.029,\,-0.021]$ & $0.659$ & $-0.036$ & $[-0.048,\,-0.026]$ \\
+No initial scores & $0.538$ & $-0.320$ & $[-0.332,\,-0.307]$ & $0.513$ & $-0.182$ & $[-0.203,\,-0.161]$ \\
+No scores, no critiques & $0.533$ & $-0.325$ & $[-0.335,\,-0.315]$ & $0.512$ & $-0.183$ & $[-0.202,\,-0.165]$ \\
+With author responses (setting B) & $0.855$ & $-0.003$ & $[-0.004,\,-0.001]$ & $0.689$ & $-0.007$ & $[-0.011,\,-0.002]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

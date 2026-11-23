@@ -1,0 +1,28 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Knowledge graph of ICLR 2024, 2025. Setting A holds what exists before the author response; setting B adds the author responses. Inverse relations are not counted.}
+\label{tab:graph}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+ & Setting A & Setting B \\
+\midrule
+\multicolumn{3}{l}{\emph{Nodes}} \\
+\texttt{article} & $18\,376$ & $18\,376$ \\
+\texttt{review} & $73\,129$ & $73\,129$ \\
+\texttt{critique} & $577\,815$ & $577\,815$ \\
+\texttt{aspect} & $8$ & $8$ \\
+\texttt{concept} & $5\,073$ & $5\,073$ \\
+\texttt{response} & -- & $293\,514$ \\
+\addlinespace
+\multicolumn{3}{l}{\emph{Edges (source $\to$ target)}} \\
+\texttt{has\_review} (article $\to$ review) & $73\,129$ & $73\,129$ \\
+\texttt{contains} (review $\to$ critique) & $577\,815$ & $577\,815$ \\
+\texttt{about} (critique $\to$ aspect) & $577\,804$ & $577\,804$ \\
+\texttt{has\_concept} (article $\to$ concept) & $44\,925$ & $44\,925$ \\
+\texttt{shares\_concept} (article $\to$ article) & $385\,514$ & $385\,514$ \\
+\texttt{responds\_to} (response $\to$ critique) & -- & $315\,997$ \\
+\bottomrule
+\end{tabular}
+\end{table}

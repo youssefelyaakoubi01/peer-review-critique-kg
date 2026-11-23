@@ -1,0 +1,86 @@
+model,kind,seed,check,required,max_gap_on_test_year,passed
+rgcn,gnn,0,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+rgcn,gnn,1,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+rgcn,gnn,2,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+rgcn,gnn,3,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+rgcn,gnn,4,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+rgcn+scores,gnn,0,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+rgcn+scores,gnn,1,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+rgcn+scores,gnn,2,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+rgcn+scores,gnn,3,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+rgcn+scores,gnn,4,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+han,gnn,0,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+han,gnn,1,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+han,gnn,2,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+han,gnn,3,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+han,gnn,4,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+han+scores,gnn,0,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+han+scores,gnn,1,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+han+scores,gnn,2,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+han+scores,gnn,3,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+han+scores,gnn,4,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+hgt,gnn,0,saved weights on the graph of the study,True,2.980232238769531e-07,True
+hgt,gnn,1,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+hgt,gnn,2,saved weights on the graph of the study,True,2.384185791015625e-07,True
+hgt,gnn,3,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+hgt,gnn,4,saved weights on the graph of the study,True,1.7881393432617188e-07,True
+hgt+scores,gnn,0,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+hgt+scores,gnn,1,saved weights on the graph of the study,True,1.7881393432617188e-07,True
+hgt+scores,gnn,2,saved weights on the graph of the study,True,1.1920928955078125e-07,True
+hgt+scores,gnn,3,saved weights on the graph of the study,True,1.6391277313232422e-07,True
+hgt+scores,gnn,4,saved weights on the graph of the study,True,1.7881393432617188e-07,True
+majority,majority,0,"fitted again, no random number",True,0.0,True
+majority,majority,1,"fitted again, no random number",True,0.0,True
+majority,majority,2,"fitted again, no random number",True,0.0,True
+majority,majority,3,"fitted again, no random number",True,0.0,True
+majority,majority,4,"fitted again, no random number",True,0.0,True
+scores_rating_lr,logistic,0,"fitted again, no random number",True,0.0,True
+scores_rating_lr,logistic,1,"fitted again, no random number",True,0.0,True
+scores_rating_lr,logistic,2,"fitted again, no random number",True,0.0,True
+scores_rating_lr,logistic,3,"fitted again, no random number",True,0.0,True
+scores_rating_lr,logistic,4,"fitted again, no random number",True,0.0,True
+scores_all_lr,logistic,0,"fitted again, no random number",True,0.0,True
+scores_all_lr,logistic,1,"fitted again, no random number",True,0.0,True
+scores_all_lr,logistic,2,"fitted again, no random number",True,0.0,True
+scores_all_lr,logistic,3,"fitted again, no random number",True,0.0,True
+scores_all_lr,logistic,4,"fitted again, no random number",True,0.0,True
+text_mlp,mlp,0,trained again,False,0.20678752660751343,False
+text_mlp,mlp,1,trained again,False,0.48185792565345764,False
+text_mlp,mlp,2,trained again,False,0.3534435033798218,False
+text_mlp,mlp,3,trained again,False,0.17619115114212036,False
+text_mlp,mlp,4,trained again,False,0.19661900401115417,False
+text_scores_mlp,mlp,0,trained again,False,0.09997934103012085,False
+text_scores_mlp,mlp,1,trained again,False,0.11610674858093262,False
+text_scores_mlp,mlp,2,trained again,False,0.12453645467758179,False
+text_scores_mlp,mlp,3,trained again,False,0.13135164976119995,False
+text_scores_mlp,mlp,4,trained again,False,0.10672628879547119,False
+text_scores_article_mlp,mlp,0,trained again,False,0.15913334488868713,False
+text_scores_article_mlp,mlp,1,trained again,False,0.16736748814582825,False
+text_scores_article_mlp,mlp,2,trained again,False,0.1226600706577301,False
+text_scores_article_mlp,mlp,3,trained again,False,0.10554301738739014,False
+text_scores_article_mlp,mlp,4,trained again,False,0.21562722325325012,False
+critiques_lr,logistic,0,"fitted again, no random number",True,5.960464477539063e-08,True
+critiques_lr,logistic,1,"fitted again, no random number",True,5.960464477539063e-08,True
+critiques_lr,logistic,2,"fitted again, no random number",True,5.960464477539063e-08,True
+critiques_lr,logistic,3,"fitted again, no random number",True,5.960464477539063e-08,True
+critiques_lr,logistic,4,"fitted again, no random number",True,5.960464477539063e-08,True
+scores_critiques_lr,logistic,0,"fitted again, no random number",True,0.0,True
+scores_critiques_lr,logistic,1,"fitted again, no random number",True,0.0,True
+scores_critiques_lr,logistic,2,"fitted again, no random number",True,0.0,True
+scores_critiques_lr,logistic,3,"fitted again, no random number",True,0.0,True
+scores_critiques_lr,logistic,4,"fitted again, no random number",True,0.0,True
+scores_all_gbt,gbt,0,"fitted again, no random number",True,0.0,True
+scores_all_gbt,gbt,1,"fitted again, no random number",True,0.0,True
+scores_all_gbt,gbt,2,"fitted again, no random number",True,0.0,True
+scores_all_gbt,gbt,3,"fitted again, no random number",True,0.0,True
+scores_all_gbt,gbt,4,"fitted again, no random number",True,0.0,True
+scores_critiques_gbt,gbt,0,"fitted again, no random number",True,0.0,True
+scores_critiques_gbt,gbt,1,"fitted again, no random number",True,0.0,True
+scores_critiques_gbt,gbt,2,"fitted again, no random number",True,0.0,True
+scores_critiques_gbt,gbt,3,"fitted again, no random number",True,0.0,True
+scores_critiques_gbt,gbt,4,"fitted again, no random number",True,0.0,True
+gcn,gcn,0,"trained again, test articles predicted on the extended graph",False,0.5857849717140198,False
+gcn,gcn,1,"trained again, test articles predicted on the extended graph",False,0.420216828584671,False
+gcn,gcn,2,"trained again, test articles predicted on the extended graph",False,0.5005819946527481,False
+gcn,gcn,3,"trained again, test articles predicted on the extended graph",False,0.49727320671081543,False
+gcn,gcn,4,"trained again, test articles predicted on the extended graph",False,0.4662940055131912,False

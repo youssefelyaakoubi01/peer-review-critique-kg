@@ -1,0 +1,541 @@
+# Default configuration. All scripts load this file through src.utils.config.load_config().
+
+project:
+  name: peer-review-kg
+  venue: ICLR
+
+# Conference years covered by the study.
+# Decision of 2026-11-15: the study is restricted to ICLR 2024 and 2025, the only years
+# for which pre-rebuttal review scores exist (external.iclr_insights). OpenReview does
+# not expose the initial version of a review that was edited after its release.
+# ICLR 2026 joined on 2026-11-18 as a second test year that no choice was ever made on
+# (`splits.holdout`): its reviews were reverted to their initial state by the conference
+# (see clean.initial_scores), and its review cycle is atypical (JOURNAL.md).
+years: [2024, 2025, 2026]
+
+# Temporal split by conference year: the test year comes strictly after the training
+# years. With two years only, the validation set cannot be a year of its own: it is
+# carved out of the training years with a deterministic hash of the submission id
+# (same assignment at every run, independent of the seeds).
+splits:
+  train: [2024]
+  test: [2025]
+  # Years after the test years, kept apart: a model is never trained, selected or tuned
+  # on them, and the test year keeps its results.
+  holdout: [2026]
+  validation:
+    fraction: 0.15
+    salt: val-v1
+
+# Five seeds per experiment.
+seeds: [0, 1, 2, 3, 4]
+
+# Paths are relative to the repository root.
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  annotation: data/annotation
+  tables: results/tables
+  figures: results/figures
+  predictions: results/predictions   # probability per article, model and seed (not versioned)
+  logs: logs
+  prompts: configs/prompts
+  llm_samples: configs/llm_samples   # frozen samples of review ids for the pilots
+  llm: data/interim/llm
+
+# OpenReview collection: stay well within the terms of use.
+# Credentials are read from the environment (OPENREVIEW_USERNAME / OPENREVIEW_PASSWORD).
+collect:
+  venue_id_template: "ICLR.cc/{year}/Conference"
+  # Limits announced by the API on 2026-11-15 (response headers): /notes 500 per hour,
+  # /notes/edits 18 per hour, /login 3 per window. 8 per minute stays under 500 per hour.
+  max_requests_per_minute: 8
+  # A run waits at most this long when a quota is exhausted; beyond that it stops
+  # cleanly and can be resumed later.
+  max_rate_limit_wait_seconds: 120
+  # Years that may be collected and examined before they join the study (`years`).
+  candidate_years: []
+  # Conference-wide edits of the reviews (UTC windows), read from the hours of last
+  # modification (results/tables/feasibility_2026.md) and from the ICLR blog post of
+  # 2025-12-03: reviews released on 2025-11-11 (US time), then, after the security
+  # incident of 2025-11-27, review text and scores "reverted ... to their state before the
+  # bug became known, namely, the beginning of the discussion period".
+  review_events:
+    2026:
+      release: [["2025-11-12 02:00", "2025-11-12 11:00"], ["2025-11-13 02:00", "2025-11-13 03:00"]]
+      revert: [["2025-11-28 19:00", "2025-11-29 03:00"]]
+  # Reviews whose edit history is read to check what these edits did (the edit endpoint
+  # allows 18 requests per hour).
+  revert_check: {reverted: 12, released: 4, seed: 0}
+  # Pilot run: `size` submissions in total, spread evenly over `years`.
+  # (The pilot of 2026-11-15 also covered 2023, before the study was restricted.)
+  pilot:
+    years: [2024, 2025]
+    size: 50
+    withdrawn_per_year: 2
+    desk_rejected_per_year: 2
+
+# References through OpenAlex (title search). Only these fields are requested:
+# no citations received, no authors, no publication source.
+# Optional API key read from the environment (OPENALEX_API_KEY).
+openalex:
+  base_url: https://api.openalex.org
+  max_requests_per_minute: 30
+  select: [id, title, publication_year, referenced_works]
+  title_match_threshold: 0.95
+  year_tolerance: 1
+
+# External data, stored under paths.raw.
+external:
+  # Review scores archived when the reviews were released (before the rebuttal) and
+  # after it, as "initial;post" pairs per reviewer. Numeric scores only, no text.
+  iclr_insights:
+    url: https://github.com/papercopilot/iclr-insights
+    paper: "arXiv:2511.15462"
+    license: CC BY 4.0
+    dir: external/iclr_insights
+    files:
+      2024: iclr2024_threshold6_7407_reviewers.json
+      2025: iclr2025_threshold6_11677_reviewers.json
+    # The two files were downloaded by hand on 2026-11-15 (no commit recorded then). Their
+    # checksums, taken on 2026-11-19, let scripts/reproduce_all.sh check a new download.
+    sha256:
+      2024: d092a77a8f018e13f1efb4194b5338e4fc7199bb9abe28a467d4312ca86dbab1
+      2025: 5747e0a24982e5eccee8209b267b70cf6f98543518ecdcee2ce4d50fbad1a498
+    # External field name -> our field name. The 2024 file uses older names; the mapping
+    # is checked at every run of scripts/02_clean.py (external post score = our final score).
+    fields:
+      rating: rating
+      confidence: confidence
+      soundness: soundness
+      presentation: presentation
+      contribution: contribution
+      correctness: soundness
+      technical_novelty: contribution
+
+  # Title, abstract and keywords of the submissions as they were BEFORE the decisions.
+  # On OpenReview the current text of an accepted paper is its camera-ready version
+  # (forbidden as a model input), and the earlier versions cannot be read. This
+  # repository scraped the submissions while they were still anonymous; the versions
+  # below are the files of the commits named here (scripts/05a_article_text.py).
+  iclr_dataset:
+    url: https://github.com/berenslab/iclr-dataset
+    paper: "arXiv:2404.08403"
+    license: MIT (license of the repository; the texts belong to their authors)
+    dir: external/iclr_dataset
+    before_decision:
+      2024: {path: data/iclr24v1.parquet.gzip, commit: 37df25fa306c0cd97f023f11741f2d350e1de730, committed: "2024-02-09"}
+      2025: {path: data/iclr25v1.parquet, commit: 363b5588734645f49dc20f3c13f28113b8f4bce6, committed: "2024-10-16"}
+      # 2026 (candidate year): before the reviews were released (2025-11-11); the first
+      # commit of this file stores some keyword lists as one string.
+      2026: {path: data/iclr26v1.parquet, commit: 04f114e61733b2dfbbd8535bc126e857edb978fc, committed: "2025-10-10"}
+    # Later versions of the same repository, read only to show the contrast in the check table.
+    after_decision:
+      2024: {path: data/iclr24v2.parquet, commit: 96fa8512dbd587da47cdf33c2e96b144a4ead6e2, committed: "2024-03-13"}
+      2025: {path: data/iclr25v2.parquet, commit: 79900d005acf1cb5604f9b32d62eb587ed2b910c, committed: "2025-05-05"}
+
+# Cleaning (phase 2): tables written to paths.interim.
+clean:
+  # Tables a model may read in setting A (initial reviews, before the rebuttal).
+  # tests/test_leakage.py checks their columns against leakage.forbidden_fields.
+  model_input_tables: [papers_initial, reviews]
+  # Where the pre-rebuttal scores of each year come from.
+  #   iclr_insights  external archive (external.iclr_insights).
+  #   current_state  the scores now on OpenReview, for the reviews last modified by a
+  #                  conference-wide edit (collect.review_events) or never modified: ICLR
+  #                  2026 reverted every review modified during the discussion to its
+  #                  state at the release (decision of the author, 2026-11-18). A review
+  #                  modified at another time has no initial score.
+  initial_scores: {2024: iclr_insights, 2025: iclr_insights, 2026: current_state}
+  # Overall rating brought to the scale of 2024 and 2025, level by level: both scales
+  # have six levels, with close shares level by level
+  # (results/tables/feasibility_2026_rating_levels.csv). The labels of the 2026 form
+  # could not be read; rule fixed on 2026-11-18, before any outcome of 2026 was looked at.
+  rating_levels:
+    2026: {0: 1, 2: 3, 4: 5, 6: 6, 8: 8, 10: 10}
+
+# Critique extraction with an open-source LLM served by vLLM (phase 3).
+# The server runs in its own environment (envs/vllm), started by scripts/03_serve_vllm.sh.
+llm:
+  model: Qwen/Qwen3-14B-AWQ
+  revision: 31c69efc29464b6bb0aee1398b5a7b50a99340c3  # Hugging Face commit of the weights
+  base_url: http://127.0.0.1:8001/v1
+  max_model_len: 16384
+  temperature: 0
+  seed: 0
+  concurrency: 32                  # simultaneous requests sent to the server
+  timeout_seconds: 600
+  retry_wait_seconds: 5            # pause before retrying after a connection error
+  max_connection_errors: 20        # in a row: the server is down, the run stops (it can be resumed)
+  progress_every: 500              # items between two progress lines in the log
+  max_input_chars: 36000           # longer reviews / author replies are cut (and reported)
+  max_tokens:                      # output budget per step; doubled on the first retry
+    segment: 4096                  # format `labels` writes one entry per sentence of the review
+    type: 2048
+    align: 2048
+  # Hosted alternative to the local server, chosen with --backend (decision of the
+  # author, 2026-11-18: the GPU is shared and was busy). Answers of a backend are cached
+  # under its own model name and never mixed with those of another.
+  backends:
+    deepseek:
+      model: deepseek-flash
+      # Version served under this name on 2026-11-18 according to the API documentation.
+      # It cannot be pinned: the version reported by the server is written to run_stats.json.
+      revision: DeepSeek-V4.1-Flash-1017
+      base_url: https://api.deepseek.com
+      api_key_env: DEEPSEEK_API_KEY
+      concurrency: 48
+      # USD per million tokens, read on 2026-11-18 (api-docs.deepseek.com/quick_start/pricing).
+      prices:
+        off_peak: {input_cache_hit: 0.003, input_cache_miss: 0.15, output: 0.60}
+        peak: {input_cache_hit: 0.006, input_cache_miss: 0.30, output: 1.20}
+      peak_hours_utc: [[1, 4], [6, 10]]   # Monday to Friday
+      off_peak_only: true                 # a run waits rather than paying peak prices
+      budget_usd: 2                       # a run stops when its requests have cost this (--budget)
+  # Named sets of prompts, chosen with --prompt-set. A released prompt file is never
+  # edited: a change is a new file and a new set.
+  #   v1: first pilot.
+  #   v2: source lines shown and every unit classified in three lists (segment_v2),
+  #       author reply cut into blocks (align_v3).
+  #   v3: one label per unit, in the order of the review (segment_v3); align_v3.
+  #   v4: v3 with score promises of the first version ignored, not post-rebuttal (segment_v4).
+  prompt_sets:
+    v1: {segment: segment_v1, type: type_v1, align: align_v2}
+    v2: {segment: segment_v2, type: type_v1, align: align_v3}
+    v3: {segment: segment_v3, type: type_v1, align: align_v3}
+    v4: {segment: segment_v4, type: type_v1, align: align_v3}
+  # Set validated by the author on 2026-11-15 for the full corpus (scripts/03_run_full.sh).
+  validated_prompt_set: v3
+  # Pilot samples: lists of review ids frozen in paths.llm_samples, drawn from the
+  # training split only, so that prompts are never tuned on the test year.
+  #   dev:   the 200 reviews of the first pilot; prompts are tuned on them.
+  #   check: 200 other reviews, only used to verify a set of prompts once it is tuned.
+  samples:
+    split: train
+    size: 200
+    seeds: {dev: 0, check: 1}
+  # Random reviews shown in the examples file of a report.
+  examples: {n: 20, seed: 0}
+
+# Human validation of the labels given by the LLM (phase 4).
+# The annotators never see a label of the LLM; the reference labels are theirs only.
+annotation:
+  run: full_v3                     # extraction run the critiques come from (paths.llm/<run>)
+  size: 500                        # critiques to annotate
+  stratum_floor: 5                 # critiques drawn in every stratum (year x aspect x severity)
+  seed: 0
+  annotators: [A, B]               # one file to_annotate_<name>.csv each, same items, different order
+  context_units: 12                # sentences of the review shown before and after the critique
+  # Reviews the sample never draws from: the few-shot examples of the prompts (always)
+  # and these pilot samples, on which the prompts were tuned.
+  excluded_samples: [dev]
+  # Frozen list of the sampled critique ids, in the order of the items. Drawn once.
+  sample_file: configs/annotation_sample.txt
+
+# Knowledge graph (phase 5).
+kg:
+  run: full_v3                     # extraction run the critiques and responses come from
+  dir: data/interim/kg             # embeddings and their cache
+  # Articles: SPECTER2 = base model + proximity adapter, on "title [SEP] abstract" of the
+  # text before the decisions (papers_initial). Runs in envs/specter2
+  # (scripts/05b_embed_articles.py).
+  article_model:
+    base: allenai/specter2_base
+    base_revision: 3447645e1def9117997203454fa4495937bfbd83
+    adapter: allenai/specter2
+    adapter_revision: 2081559630a80fc5851d8f798a05ba81e9468089
+    max_length: 512
+    batch_size: 64
+  # Reviews, critiques, author responses, concepts: one sentence-embedding model.
+  text_model:
+    name: sentence-transformers/all-mpnet-base-v2
+    revision: e8c3b32edf5434bc2275fc9bab85f82640a19130
+    batch_size: 256
+  # A review is longer than what the model reads at once: it is cut into chunks of
+  # whole sentences of about this many characters, and the review embedding is the
+  # mean of the chunk embeddings.
+  review_chunk_chars: 1200
+  concepts:
+    min_articles: 2                # a keyword is a concept if at least this many articles use it
+    max_articles_for_shared: 100   # shares_concept only through concepts used by at most this many articles
+  rdf:
+    # Placeholder namespace: to be replaced by a permanent one before publication.
+    base_iri: https://example.org/peer-review-kg/
+    articles_per_chunk: 500
+  benchmark_texts: 2000            # texts of each kind encoded to estimate the run time
+  # Holdout year added afterwards to the graph of setting A (scripts/05c_extend_graph.py):
+  # its critiques come from their own extraction run; the extended graph and its targets
+  # are written to a sub-directory of paths.processed, and the graph of the study is not
+  # touched. The concepts are those of the graph of the study (frozen vocabulary).
+  holdout:
+    run: full_v3_2026
+    dir: holdout
+    article_vectors: article_specter2_holdout
+
+# Baselines (phase 6). They read the graph of setting A and nothing else.
+baselines:
+  setting: A
+  # Borderline papers: mean initial rating inside the zone where, among the training
+  # papers, the acceptance rate of a bin of mean rating lies between `low` and `high`.
+  borderline: {bin_width: 0.25, min_papers: 20, low: 0.2, high: 0.8}
+  # Hyper-parameters are chosen on the validation AUC with this seed; the chosen
+  # configuration is then run with the five seeds.
+  selection_seed: 0
+  max_minutes: 30                  # the script stops if its projected run time exceeds this
+  training: {max_epochs: 500, patience: 50}   # full batch, early stopping on validation AUC
+  # Second run (2026-11-18): weight decay added to the grids, learning rate 0.001 dropped
+  # for the GCN (0.01 was better for every architecture in the first run, on validation).
+  # Feature blocks (one row per article): rating = mean, min, max, std of the initial
+  # rating; other_scores = the same for confidence, soundness, contribution, and the
+  # number of reviews; review_text = mean embedding of the reviews; article_text =
+  # SPECTER2 embedding of the article and its text-missing flag.
+  # Critique counts (added after phase 7, mean over the reviews of the article):
+  # critique_marginals = number of critiques, by aspect, severity, polarity, target,
+  # actionable; critique_aspect_severity = negative critiques by aspect x severity,
+  # positive critiques by aspect; critique_worst_review = most negative blocking / major
+  # critiques in one review, fewest positive critiques in one review.
+  models:
+    majority: {kind: majority}
+    scores_rating_lr: {kind: logistic, features: [rating], grid: {C: [0.1, 1, 10]}}
+    scores_all_lr: {kind: logistic, features: [rating, other_scores], grid: {C: [0.1, 1, 10]}}
+    text_mlp:
+      kind: mlp
+      features: [review_text]
+      grid: {hidden: [128, 256], dropout: [0.2, 0.5], lr: [0.001, 0.01], weight_decay: [0.0001, 0.01]}
+    text_scores_mlp:
+      kind: mlp
+      features: [review_text, rating, other_scores]
+      grid: {hidden: [128, 256], dropout: [0.2, 0.5], lr: [0.001, 0.01], weight_decay: [0.0001, 0.01]}
+    text_scores_article_mlp:
+      kind: mlp
+      features: [review_text, rating, other_scores, article_text]
+      grid: {hidden: [128, 256], dropout: [0.2, 0.5], lr: [0.001, 0.01], weight_decay: [0.0001, 0.01]}
+    # Critique counts without the graph (added after phase 7, once the 2025 test results of
+    # the GNNs were known). Each model has a control of the same family that reads the
+    # scores only: scores_all_lr for scores_critiques_lr, scores_all_gbt for scores_critiques_gbt.
+    critiques_lr:
+      kind: logistic
+      features: [critique_marginals, critique_aspect_severity, critique_worst_review]
+      grid: {C: [0.1, 1, 10]}
+    scores_critiques_lr:
+      kind: logistic
+      features: [rating, other_scores, critique_marginals, critique_aspect_severity, critique_worst_review]
+      grid: {C: [0.1, 1, 10]}
+    scores_all_gbt:
+      kind: gbt
+      features: [rating, other_scores]
+      grid: {learning_rate: [0.05, 0.1], max_iter: [100, 300], max_leaf_nodes: [7, 15]}
+    scores_critiques_gbt:
+      kind: gbt
+      features: [rating, other_scores, critique_marginals, critique_aspect_severity, critique_worst_review]
+      grid: {learning_rate: [0.05, 0.1], max_iter: [100, 300], max_leaf_nodes: [7, 15]}
+    # Flattened graph: one feature space, one kind of edge, no relation type, no weight.
+    gcn:
+      kind: gcn
+      grid: {layers: [2, 3], hidden: [128, 256], dropout: [0.2], lr: [0.01], weight_decay: [0.0001, 0.01]}
+
+# Heterogeneous GNNs (phase 7): R-GCN, HAN, HGT on the graphs of settings A and B.
+gnn:
+  settings: [A, B]
+  models: [rgcn, han, hgt]
+  # Second variant of every model: the score statistics of the baselines (feature blocks
+  # rating and other_scores) added to the article node. It reuses the hyper-parameters
+  # chosen for the plain model.
+  score_variant: {suffix: "+scores", features: [rating, other_scores]}
+  selection_seed: 0                # hyper-parameters chosen on the validation AUC with this seed
+  max_hours: 4                     # the script stops if its projected run time exceeds this
+  training: {heads: 4, weight_decay: 0.0001, max_epochs: 300, patience: 30}
+  # Setting B needs three layers for an author response to reach its article
+  # (response -> critique -> review -> article).
+  grid:
+    A: {layers: [2, 3], hidden: [64, 128], dropout: [0.2, 0.5], lr: [0.001, 0.005]}
+    B: {layers: [3, 4], hidden: [64, 128], dropout: [0.2, 0.5], lr: [0.001, 0.005]}
+  # Robustness: papers withdrawn before a decision counted as rejections. The best plain
+  # model of this setting (validation AUC) and this baseline are trained again.
+  robustness: {setting: A, baseline: scores_rating_lr}
+  # scripts/07b_main_results.py: bootstrap over the papers and DeLong tests of every model
+  # against `reference_baselines` (and the best baseline on validation if it is not one
+  # of them). `comparisons`: pairs (model, control) of setting A, written to
+  # results/tables/paired_comparisons.csv: the first three differ by their inputs only,
+  # the last three set each heterogeneous GNN against the homogeneous one (RQ1 c).
+  statistics:
+    n_resamples: 1000
+    seed: 0
+    confidence: 0.95
+    subsets: [all, borderline]
+    reference_baselines: [text_scores_mlp, scores_rating_lr]
+    comparisons:
+      - [scores_critiques_lr, scores_all_lr]
+      - [scores_critiques_gbt, scores_all_gbt]
+      - [critiques_lr, text_mlp]
+      - [hgt, gcn]
+      - [han, gcn]
+      - [rgcn, gcn]
+
+# Models frozen on the holdout year (scripts/07c_holdout.py, 07d_holdout_results.py).
+# Nothing is chosen or tuned on the holdout year: the GNNs are the saved weights of phase
+# 7 (setting A), the baselines are fitted again on the training year with the
+# configurations kept in phase 6. Before any metric of the holdout year, the script
+# checks that these models give back the predictions already stored for the test year.
+holdout:
+  setting: A
+  max_gap: 0.0001          # largest accepted gap between a stored probability and the one computed again
+  gpu: {min_free_gb: 12, margin_gb: 1}
+
+# Ablations of the best plain model on validation (phase 8): one element of the graph is
+# removed, the model is trained again with the hyper-parameters chosen in phase 7 and
+# the five seeds. A variant lists what it removes (src/models/ablation.py).
+ablations:
+  setting: A
+  model: hgt
+  variants:
+    full: {}
+    no_shares_concept: {drop_edges: [shares_concept]}
+    # Text of the critiques only: no typed attribute, and no aspect node (the aspect
+    # would otherwise still be readable through the relation critique-aspect).
+    no_critique_labels:
+      drop_nodes: [aspect]
+      drop_features: {critique: [aspect, severity, polarity, target, actionable]}
+    no_critique_text: {drop_features: {critique: [text]}}       # typed attributes only
+    no_critiques: {drop_nodes: [critique, aspect]}
+    no_scores:
+      drop_features: {review: [rating_initial, confidence_initial, soundness_initial, contribution_initial]}
+    # Added to the original plan: what the critiques bring when there is no score.
+    no_scores_no_critiques:
+      drop_nodes: [critique, aspect]
+      drop_features: {review: [rating_initial, confidence_initial, soundness_initial, contribution_initial]}
+  # Nothing is trained for these: predictions of phase 7, read under another name.
+  # with_responses = the same model in setting B (the ablation "response nodes", read the other way).
+  from_phase7:
+    with_responses: {model: hgt, setting: B}
+  # A variant without scores against a baseline that reads no score either.
+  comparisons:
+    - [no_scores, critiques_lr]
+    - [no_scores, text_mlp]
+    - [no_scores_no_critiques, text_mlp]
+  # The GPU is shared with other users: the script does not start with less free memory
+  # than `min_free_gb`, and never takes more than the free memory minus `margin_gb`.
+  gpu: {min_free_gb: 10, margin_gb: 2}
+
+# Explanations of the main model (phase 9), computed on CPU. Each explained article is
+# predicted again on its own computation graph (src/explain/subgraph.py), then elements
+# are removed from it (occlusion) or attributed by gradients (captum).
+explain:
+  setting: A
+  model: hgt
+  seed: 0                          # model whose explanations are reported
+  # Test articles with a decision: the same number in each of the four groups (accepted or
+  # rejected, borderline or not), in the order of a hash of their id.
+  sample: {per_group: 300, salt: explain-v1}
+  # Stability between seeds: occlusion of the critiques of the first articles of each
+  # group, with the models of the other seeds.
+  stability: {per_group: 50, seeds: [1, 2, 3, 4]}
+  integrated_gradients: {per_group: 75, steps: 20}   # first articles of each group
+  fidelity_k: [1, 3, 5]            # critiques removed / kept
+  max_prediction_gap: 0.0001       # with the probability stored in phase 7; the run stops beyond
+  threads: 2                       # per process; several processes run side by side (--shards)
+  max_hours: 8                     # a process stops if its projected run time exceeds this
+  statistics: {n_resamples: 1000, seed: 0, confidence: 0.95}
+
+# Anti-leakage: field names that must never appear in model inputs (setting A).
+# Matching is case-insensitive on the exact column / attribute name.
+# tests/test_leakage.py fails if one of them shows up in a model input table.
+leakage:
+  # Setting B reads the author responses: these fields, forbidden in setting A, are
+  # model inputs there. Everything else in the list below stays forbidden in both.
+  setting_b_fields: [response_text, response_type]
+  forbidden_fields:
+    # Outcome and area-chair material
+    - decision
+    - decision_text
+    - decision_type
+    - accepted
+    - label
+    - label_withdrawn_as_reject
+    - eligible
+    - eligible_withdrawn_as_reject
+    - status
+    - withdrawn
+    - withdrawn_before_decision
+    - meta_review
+    - metareview
+    - area_chair_comment
+    # Post-rebuttal state of the reviews (setting A uses initial scores only)
+    - final_rating
+    - final_confidence
+    - rating_final
+    - confidence_final
+    - soundness_final
+    - presentation_final
+    - contribution_final
+    - tmdate
+    - modified_after_release
+    - any_score_changed
+    # What happened after the reviews: author replies, second phase
+    - n_author_replies
+    - first_author_reply_tcdate
+    - has_author_response
+    - first_author_response_tcdate
+    - phase
+    # Critique extraction: what refers to the author response or to later edits
+    - response_start
+    - response_end
+    - response_text
+    - response_type
+    - post_rebuttal_units
+    # Venue fields contain "poster", "oral", ...
+    - venue
+    - venueid
+    - _bibtex
+    # Post-decision manuscript versions. In API v2 the current title, abstract and PDF
+    # of an accepted paper are the camera-ready ones, and the submission's `invitations`
+    # list contains Camera_Ready_Revision for accepted papers only.
+    - camera_ready
+    - camera_ready_revision
+    - post_decision_revision
+    - invitations
+    - pdf
+    # Citations received depend on acceptance
+    - citation_count
+    - citations_received
+    - cited_by_count
+    # Double-blind review: no author information
+    - authors
+    - authorids
+    - author_affiliation
+    - author_h_index
+    - paperhash
+    - signatures
+
+# Consolidation (phase 10): scripts/10_consolidate.py reads the tables of results/tables/
+# and writes the LaTeX tables of the paper, three figures and results/RESULTS_SUMMARY.md.
+# It trains nothing and computes no metric.
+consolidate:
+  reference: scores_rating_lr     # baseline the differences are given against
+  full_model: {model: hgt, setting: A}
+  # Rows of the compact table and of the figure of the main results, in this order:
+  # [model, setting, group, name shown].
+  main_models:
+    - [majority, A, Baselines, "Majority class"]
+    - [scores_rating_lr, A, Baselines, "Initial rating (LR)"]
+    - [scores_all_lr, A, Baselines, "All initial scores (LR)"]
+    - [text_mlp, A, Baselines, "Review text (MLP)"]
+    - [text_scores_mlp, A, Baselines, "Review text + scores (MLP)"]
+    - [critiques_lr, A, Baselines, "Critique counts (LR)"]
+    - [scores_critiques_lr, A, Baselines, "Scores + critique counts (LR)"]
+    - [gcn, A, Homogeneous GNN, "GCN, untyped graph"]
+    - [rgcn, A, Heterogeneous GNNs, "R-GCN"]
+    - [han, A, Heterogeneous GNNs, "HAN"]
+    - [hgt, A, Heterogeneous GNNs, "HGT"]
+    - [hgt+scores, A, Heterogeneous GNNs, "HGT + score statistics"]
+    - [hgt, B, Heterogeneous GNNs, "HGT, with author responses"]
+  # Names of the models that are not rows of the main table.
+  other_names:
+    text_scores_article_mlp: "Review and article text + scores (MLP)"
+    scores_all_gbt: "All initial scores (GBT)"
+    scores_critiques_gbt: "Scores + critique counts (GBT)"
+  # Explanations: the mean importance of a kind of critique is only read when at least
+  # this many explained papers hold such a critique (rule set in phase 10: an interval
+  # computed on a handful of papers excludes zero for no reason).
+  min_articles: 20

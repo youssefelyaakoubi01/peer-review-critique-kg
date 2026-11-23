@@ -1,0 +1,113 @@
+# Prompt of step 'segment' (phase 3), version 4. Never edit a released version: copy it to a
+# new file with the next version number, so that cached answers stay attributable.
+# Changes from segment_v3 (it labelled as post-rebuttal the promises about the score made
+# in the first version of a review, such as "I am willing to raise my score if ..."):
+# - post-rebuttal only when the text shows that the authors have already replied;
+# - an overall verdict or a statement about the score in the first version is ignored;
+# - first example replaced by a review that ends on such a promise (0FgmvXj7BJ).
+# The three examples are real ICLR 2024 reviews of the training split; the expected
+# outputs were written by hand. These reviews are in no pilot sample.
+version: segment_v4
+step: segment
+format: labels
+system: |-
+  You split a peer review of a scientific paper into atomic critiques.
+
+  The review is given as numbered units (sentences), grouped by the field of the review form they come from: [strengths], [weaknesses], [questions]. Units that come from the same line of the review (one paragraph or one bullet point) are listed together; a blank line separates two lines of the review.
+
+  A critique is one independent point made by the reviewer about the paper: a strength, a weakness, a question or a request.
+
+  Go through the units in order and give each unit one label.
+
+  "post_rebuttal": the unit was written after the author response. Reviews are sometimes edited after the authors replied: updates after the rebuttal, comments on what the authors answered, statements that the score has been raised, lowered or kept after the discussion. A marker such as "After rebuttal" is post-rebuttal too, like everything that follows it in the field. Use this label only when the text shows that the authors have already replied.
+
+  "ignored": the unit carries no point about the paper:
+  - a heading or a label alone in its unit ("## Weaknesses", "**Minor**", "Strengths:")
+  - a pointer to another part of the review ("See weaknesses.", "Please refer to the questions above.")
+  - a bibliography entry, or a link given as a reference ("[1] Author et al. Title. Venue, 2021")
+  - greetings, thanks, apologies, remarks about the reviewer or about the review process ("Thanks!", "I am not an expert in this area.")
+  - an overall verdict, or a statement about the score written in the first version of the review ("I vote to reject.", "I am willing to raise my score if the authors address my concerns."): the authors have not replied yet, so it is not post-rebuttal
+  - a sentence that only announces a list ("I have the following concerns:")
+  Only these units are ignored. What follows a heading is not ignored: minor remarks, typos and suggestions are critiques.
+
+  "c1", "c2", "c3", ...: the unit belongs to that critique. Number the critiques in the order in which they first appear.
+  - Units of the same line that develop one point (a claim with its justification, its example, the question or the suggestion that goes with it) get the same critique.
+  - A line that makes several independent points gives several critiques.
+  - A unit that repeats a point made earlier (for example a weakness repeated as a question) gets the label of the earlier critique.
+
+  Answer with JSON only: {"units": [{"unit": 1, "label": ...}, {"unit": 2, "label": ...}, ...]} with exactly one entry per unit, in order.
+examples:
+- review_id: 0FgmvXj7BJ
+  input: |-
+    [strengths]
+    1: - The idea is innovative and interesting.
+
+    2: - The experimental results are convincing.
+    [weaknesses]
+    3: - The notions used in this paper are confusing, making it hard to read.
+    4: The authors can simplify the notions in formal setup because it seems that the paper only uses a few of them.
+    5: Moreover, in Eq. (1), what is the meaning of the distribution inside $\phi(.,.)$.
+
+    6: - The generative process or data generation model also confuses me.
+    7: It is not clear why $f_y(\hat{z_c})$ can return $z_{c_1}, z_{c_2}, z_{c_3}$.
+    8: Also, the same question is for the style branch.
+    9: What are $\hat{z_{s_1}}, \hat{z_{s_2}}, \hat{z_{s_3}}$?
+    10: Are they the styles of the domains?
+
+    11: - Eq. (7) is also hard to interpret to me.
+    12: As far as I understand, in the first level you have a single variable $\hat{z_s}$ for the style and using the map $f_{e,y,i}$ to transform it to $p(z_s \mid y,e)$.
+    13: However, why do you need the index $i$ here?
+    [questions]
+    14: Please answer my questions in the weakness session.
+    15: Moreover, how do you design $f_y$ and $f_{e,y,i}$ using distinct flow-based architecture to incorporate the information of e, y, i?
+    16: I am happy to increase my score if the authors can resolve my unclear points.
+  output: |-
+    {"units":[{"unit":1,"label":"c1"},{"unit":2,"label":"c2"},{"unit":3,"label":"c3"},{"unit":4,"label":"c3"},{"unit":5,"label":"c3"},{"unit":6,"label":"c4"},{"unit":7,"label":"c4"},{"unit":8,"label":"c4"},{"unit":9,"label":"c4"},{"unit":10,"label":"c4"},{"unit":11,"label":"c5"},{"unit":12,"label":"c5"},{"unit":13,"label":"c5"},{"unit":14,"label":"ignored"},{"unit":15,"label":"c6"},{"unit":16,"label":"ignored"}]}
+- review_id: 2wnSzHBblp
+  input: |-
+    [strengths]
+    1: S1. The design of region masked attention is simple and effective, which can process rain-affected and unaffected regions of images separately.
+
+    2: S2. The experimental evaluation and discussion are adequate, and the results convincingly support the main claims.
+
+    3: S3. The paper is well-organized and clearly written.
+    [weaknesses]
+    4: W1. The author should delve into the importance of the rain-affected and unaffected regions of rainy images.
+    5: I am curious if utilizing the features of he unaffected regions can better guide image restoration?
+
+    6: W2. How to determine whether high-quality region masks can be generated?
+    7: If some visual examples of intermediate feature maps that illustrate this property are added, the proposed method can become compelling.
+
+    8: -----------------------After Rebuttal---------------------------
+
+    9: Thank you for your feedback.
+    10: The rebuttal addressed my concerns well.
+    11: Considering other reviews, I decide to keep my score as Accept.
+    [questions]
+    12: See the above Weaknesses part.
+  output: |-
+    {"units":[{"unit":1,"label":"c1"},{"unit":2,"label":"c2"},{"unit":3,"label":"c3"},{"unit":4,"label":"c4"},{"unit":5,"label":"c4"},{"unit":6,"label":"c5"},{"unit":7,"label":"c5"},{"unit":8,"label":"post_rebuttal"},{"unit":9,"label":"post_rebuttal"},{"unit":10,"label":"post_rebuttal"},{"unit":11,"label":"post_rebuttal"},{"unit":12,"label":"ignored"}]}
+- review_id: QptoIHh4kS
+  input: |-
+    [strengths]
+    1: 1. Leveraging open-world or public dataset for ZSQ is interesting and reasonable.
+
+    2: 2. Comparing to ZSQ relying on synthetic data, ZeroP is more efficient and easier to implement.
+    [weaknesses]
+    3: 1. The core contribution is somewhat limited.
+    4: In my opinion, ZSQ is just a sub-area of data-free KD, and any data-free KD methods can be extend to ZSQ.
+    5: [1][2] are two data-free KD methods that utilize proxy data for distillation.
+    6: They can also be applied on ZSQ.
+
+    7: 2. There is lack of more details. e.g. image number, of the proxy datasets.
+    8: And there is not ablation on the numbers of proxy data.
+
+    9: ## ref
+
+    10: [1] Sampling to Distill: Knowledge Transfer from Open-World Data, 2307.16601
+
+    11: [2] Learning Student Networks in the Wild, CVPR 2021
+    [questions]
+    12: Please refer to Weaknesses.
+  output: |-
+    {"units":[{"unit":1,"label":"c1"},{"unit":2,"label":"c2"},{"unit":3,"label":"c3"},{"unit":4,"label":"c3"},{"unit":5,"label":"c3"},{"unit":6,"label":"c3"},{"unit":7,"label":"c4"},{"unit":8,"label":"c5"},{"unit":9,"label":"ignored"},{"unit":10,"label":"ignored"},{"unit":11,"label":"ignored"},{"unit":12,"label":"ignored"}]}

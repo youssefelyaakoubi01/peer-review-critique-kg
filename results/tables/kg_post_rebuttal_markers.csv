@@ -1,0 +1,5 @@
+year,modified_after_release,reviews,reviews_with_sentences_set_aside,reviews_with_a_marker_left,share_with_a_marker_left
+2024,False,21042,1097,99,0.0047
+2024,True,5770,1246,104,0.018
+2025,False,33543,1705,150,0.0045
+2025,True,12774,1864,211,0.0165

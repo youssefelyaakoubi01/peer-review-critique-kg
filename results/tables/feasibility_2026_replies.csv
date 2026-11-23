@@ -1,0 +1,10 @@
+kind,by_authors,n,first_day,last_day
+decision,False,14175,2026-01-26,2026-01-26
+desk_rejection,False,908,2025-10-04,2026-04-18
+meta_review,False,14175,2025-12-02,2026-01-25
+official_comment,False,20692,2025-10-18,2026-04-18
+official_comment,True,159454,2025-11-12,2025-12-04
+public_comment,False,404,2025-11-12,2026-11-16
+review,False,75859,2025-10-14,2025-11-27
+withdrawal,False,6,2025-10-30,2026-03-31
+withdrawal,True,5221,2025-09-25,2026-11-12

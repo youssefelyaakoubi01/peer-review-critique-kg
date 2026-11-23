@@ -1,0 +1,69 @@
+# Prompt of step 'type' (phase 3). Never edit a released version: copy it to a new
+# file with the next version number, so that cached answers stay attributable.
+# The three examples are real ICLR 2024 reviews of the training split; the expected
+# outputs were written by hand. These reviews are excluded from the pilot sample.
+version: type_v1
+step: type
+system: |-
+  You label the critiques of a peer review of a scientific paper.
+
+  Each line is one critique: its number, the field(s) of the review form it comes from, and its text. Give every critique exactly one value for each label.
+
+  aspect:
+  - novelty: originality of the idea or contribution with respect to prior work
+  - soundness: technical correctness, validity of the method, the theory, the assumptions or the claims
+  - experimental_comparison: experiments, baselines, datasets, ablations, evaluation protocol, empirical results
+  - clarity: writing, organisation, presentation, notation, readability of figures
+  - reproducibility: code, data, hyper-parameters or details needed to reproduce the work
+  - significance: importance, motivation, usefulness or impact of the problem or of the results
+  - related_work: missing or wrong citations, positioning with respect to the literature
+  - other: none of the above
+
+  severity (weight of the point in the assessment of the paper):
+  - blocking: a negative point that, if not resolved, makes the paper unacceptable according to the reviewer
+  - major: an important point (serious weakness, or a central strength)
+  - minor: a secondary point, a suggestion, a detail, a generic remark
+
+  polarity:
+  - negative: a weakness, a criticism, or a request that points to a shortcoming
+  - positive: a strength or a praise
+  - neutral: a clarification question or a remark without judgment
+
+  target (what the critique is about):
+  - section: a specific section, paragraph, equation, definition or part of the text
+  - figure_table: a figure or a table
+  - experiment: an experiment, a result, a baseline, a dataset, an ablation
+  - reference: a citation or a related paper
+  - general: the paper, the method or the idea as a whole
+
+  actionable: true if the authors can act on the critique with a concrete change or answer (add an experiment, fix a claim, clarify a passage, answer a question); false for praise and for remarks that call for no action.
+
+  Answer with JSON only: {"critiques": [{"id": n, "aspect": ..., "severity": ..., "polarity": ..., "target": ..., "actionable": true|false}, ...]} with one entry per critique, in the same order.
+examples:
+  - review_id: CyAehMYbAW
+    input: |-
+      1 (strengths): 1. The research on differential equations using machine learning methods is of significant research interests.
+      2 (strengths): 2. A multi-modal approach using transformer architecture is technically sound, and the novelty and technical contribution is reasonable.
+      3 (strengths): 3. Experiments results are impressive with high precision.
+      4 (weaknesses, questions): 1. There is no comparison with existing methods, so it is hard to assess how the proposed approach comparing with SOTA. 1. Can you compare with existing methods to verify that the high performance is not because the differential equations used are too simple?
+      5 (weaknesses, questions): 2. The paper claims that high performance partially comes from multimodal learning, an ablation study will be interesting to verify this claim. 2. An ablation study with single inputs will be interesting to show the effectiveness of multimodal input.
+    output: |-
+      {"critiques":[{"id":1,"aspect":"significance","severity":"minor","polarity":"positive","target":"general","actionable":false},{"id":2,"aspect":"soundness","severity":"minor","polarity":"positive","target":"general","actionable":false},{"id":3,"aspect":"experimental_comparison","severity":"minor","polarity":"positive","target":"experiment","actionable":false},{"id":4,"aspect":"experimental_comparison","severity":"major","polarity":"negative","target":"experiment","actionable":true},{"id":5,"aspect":"experimental_comparison","severity":"minor","polarity":"negative","target":"experiment","actionable":true}]}
+  - review_id: 2wnSzHBblp
+    input: |-
+      1 (strengths): S1. The design of region masked attention is simple and effective, which can process rain-affected and unaffected regions of images separately.
+      2 (strengths): S2. The experimental evaluation and discussion are adequate, and the results convincingly support the main claims.
+      3 (strengths): S3. The paper is well-organized and clearly written.
+      4 (weaknesses): W1. The author should delve into the importance of the rain-affected and unaffected regions of rainy images. I am curious if utilizing the features of he unaffected regions can better guide image restoration?
+      5 (weaknesses): W2. How to determine whether high-quality region masks can be generated? If some visual examples of intermediate feature maps that illustrate this property are added, the proposed method can become compelling.
+    output: |-
+      {"critiques":[{"id":1,"aspect":"soundness","severity":"minor","polarity":"positive","target":"general","actionable":false},{"id":2,"aspect":"experimental_comparison","severity":"major","polarity":"positive","target":"experiment","actionable":false},{"id":3,"aspect":"clarity","severity":"minor","polarity":"positive","target":"general","actionable":false},{"id":4,"aspect":"soundness","severity":"minor","polarity":"negative","target":"general","actionable":true},{"id":5,"aspect":"soundness","severity":"minor","polarity":"negative","target":"figure_table","actionable":true}]}
+  - review_id: yRmZ3PtrOU
+    input: |-
+      1 (strengths): This paper targets at an interesting and valuable question.
+      2 (strengths): Both empirical and theoretical results seem solid and convincing.
+      3 (strengths): By learning decomposition of the reward in the terminal stage using potential functions, it can improve both detail-balance based or sub-trajectory balance based GFlownet training.
+      4 (questions): The author(s) use two energy-based decomposition schemes as a base-line, namely, the model-based GFlowNet (Jain et al.) and LSTM-based decomposition (Arjona-Medina et al.). Why not test other base-lines? It seems like a small comparison, and I’m not entirely sure if the LSTM is comparable to a GFlowNet based model given its simplicity.
+      5 (questions): Another question would be the paper discussed both DB-based and subTB based objectives. What about other objectives?
+    output: |-
+      {"critiques":[{"id":1,"aspect":"significance","severity":"minor","polarity":"positive","target":"general","actionable":false},{"id":2,"aspect":"soundness","severity":"minor","polarity":"positive","target":"general","actionable":false},{"id":3,"aspect":"significance","severity":"minor","polarity":"positive","target":"general","actionable":false},{"id":4,"aspect":"experimental_comparison","severity":"major","polarity":"negative","target":"experiment","actionable":true},{"id":5,"aspect":"experimental_comparison","severity":"minor","polarity":"neutral","target":"experiment","actionable":true}]}

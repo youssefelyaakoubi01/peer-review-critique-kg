@@ -1,0 +1,135 @@
+# Prompt of step 'align' (phase 3), version 2. Never edit a released version: copy it to a
+# new file with the next version number, so that cached answers stay attributable.
+# Change from align_v1: a response is null or a complete {start, end, type} object, so
+# that a type can no longer come without a span (frequent invalid answers in the pilot).
+# The three examples are real ICLR 2024 reviews of the training split; the expected
+# outputs were written by hand. These reviews are excluded from the pilot sample.
+version: align_v2
+step: align
+system: |-
+  You match the critiques of a peer review with the reply of the authors.
+
+  You receive the critiques of one review ([critiques], numbered) and the reply of the authors to that review ([author_response], as numbered units).
+
+  For every critique, find the passage of the author response that answers it: a contiguous span of units given by its first and last unit numbers ("start", "end"). Leave out greetings and the quotation of the reviewer's own words when possible. If no passage answers the critique, the response is null.
+
+  type of a response:
+  - new_experiment: the authors report new results, experiments, analyses or figures produced in reply
+  - clarification: the authors explain, or point to content that was already in the paper, without new results
+  - disagreement: the authors argue that the critique is wrong or does not apply
+  - concession: the authors acknowledge the weakness or limitation, possibly revising the text
+  - promise_to_fix: the authors commit to a change that is not done yet
+
+  When several types apply to the same passage, pick the first that applies in this order: new_experiment, disagreement, concession, promise_to_fix, clarification. Strengths are usually not answered: use null unless the authors explicitly reply to them.
+
+  Answer with JSON only: {"critiques": [{"id": n, "response": null or {"start": first unit, "end": last unit, "type": ...}}, ...]} with exactly one entry per critique, in the same order.
+examples:
+  - review_id: CyAehMYbAW
+    input: |-
+      [critiques]
+      1 (strengths): 1. The research on differential equations using machine learning methods is of significant research interests.
+      2 (strengths): 2. A multi-modal approach using transformer architecture is technically sound, and the novelty and technical contribution is reasonable.
+      3 (strengths): 3. Experiments results are impressive with high precision.
+      4 (weaknesses, questions): 1. There is no comparison with existing methods, so it is hard to assess how the proposed approach comparing with SOTA. 1. Can you compare with existing methods to verify that the high performance is not because the differential equations used are too simple?
+      5 (weaknesses, questions): 2. The paper claims that high performance partially comes from multimodal learning, an ablation study will be interesting to verify this claim. 2. An ablation study with single inputs will be interesting to show the effectiveness of multimodal input.
+      [author_response]
+      1: Dear Reviewer 45hW,
+      2: Thank you for the valuable feedback.
+      3: Below we address your questions.
+      4: >  **Q1.** Can you compare with existing methods to verify that the high performance is not because the differential equations used are too simple?
+      5: **A1.** In this paper, we are proposing a new model for the new task of training a single neural network to handle forward/inverse problems for multiple types of equations, or, we construct a neural network to handle multi-operator learning.
+      6: As a comparison, popular operator learning frameworks (e.g. FNO, DeepONet) can only handle one type of equation or operator.
+      7: To the best of our knowledge, PROSE is the first and only method that tackles the multi-operator learning problem with vague equation labels.
+      8: However, as you correctly asked, an ablation study comparing different variants of the PROSE model is necessary.
+      9: An ablation study was included in the original submission.
+      10: > **Q2.** An ablation study with single inputs will be interesting to show the effectiveness of multimodal input.
+      11: **A2.** The ablation study on single vs multimodal inputs appears in section 4.1 (page 8), where we compared the performance of the full PROSE model with multimodal input (system solution with equation encoding) and the model with only the data modality (system solution).
+      12: This was in the original submission.
+      13: We can observe from Figure 3 that, as we reduce the data modality information to the network, the full PROSE model is more robust than data only.
+      14: However, the accuracy of the data-only variant decreases as we reduce the size of the data input.
+    output: |-
+      {"critiques":[{"id":1,"response":null},{"id":2,"response":null},{"id":3,"response":null},{"id":4,"response":{"start":5,"end":9,"type":"disagreement"}},{"id":5,"response":{"start":11,"end":14,"type":"clarification"}}]}
+  - review_id: 2wnSzHBblp
+    input: |-
+      [critiques]
+      1 (strengths): S1. The design of region masked attention is simple and effective, which can process rain-affected and unaffected regions of images separately.
+      2 (strengths): S2. The experimental evaluation and discussion are adequate, and the results convincingly support the main claims.
+      3 (strengths): S3. The paper is well-organized and clearly written.
+      4 (weaknesses): W1. The author should delve into the importance of the rain-affected and unaffected regions of rainy images. I am curious if utilizing the features of he unaffected regions can better guide image restoration?
+      5 (weaknesses): W2. How to determine whether high-quality region masks can be generated? If some visual examples of intermediate feature maps that illustrate this property are added, the proposed method can become compelling.
+      [author_response]
+      1: Thank you for reviewing our paper.
+      2: ***Q1:*** The author should delve into the importance of the rain-affected and unaffected regions of rainy images.
+      3: I am curious if utilizing the features of the unaffected regions can better guide image restoration?
+      4: ***Response:*** Thanks for your concerns.
+      5: First, let me explain why we use rain-affected(Foreground) regions:
+      6: **a)Foreground Mask (rain affected mask):** We utilize the foreground mask to better extract the characteristics of foreground rain streaks.
+      7: This enables the network to identify the varying rain patterns more effectively, preventing the erroneous removal of rain-like features (as shown in Figure 2, where light spots are mistakenly removed as the rain for the results of DRSformer, IDT, and DualGCN).
+      8: **b) Background Mask (rain unaffected mask):** The employment of the background mask aims to emphasize useful features, which can be utilized to recover details in rain streaks (as depicted in Figure 7 in the appendix, where rain streaks in the sky are not separated for the ablation setting without the background mask).
+      9: This ensures that rain areas can be effectively recovered with desired content via the following ``combing mask" stage.
+      10: **c) Combining Masks:**
+      11: As shown in Figure 1 of the main paper, a full mask is utilized to incorporate the results from both masks with a transformer block.
+      12: This technique allows the non-rain areas in the background to guide the restoration of the corresponding rain-streaked foreground areas, resulting in more realistic image details.
+      13: We have conducted experiments using foreground and background masks, respectively, in the ablation experiment section.
+      14: The specific details are explained in the ablation study section (Sec. 4.3).
+      15: The results, particularly for variants v6, v7, and v8, demonstrate the efficacy of our strategy.
+      16: In addition, we also conducted partial ablation experiments on the SPA-Data dataset, as shown below.
+      17: The results again validate our approach.
+      18: |    | Variants         | PSNR  | SSIM   |
+      19: | v2 | Baseline $_{2}$  | 44.38 | 0.988 |
+      20: | v4 | w/RTC$_{2}$      | 44.84 | 0.990 |
+      21: | v5 | w/MGFB           | 44.89 | 0.988 |
+      22: | v6 | v5+FGMask        | 45.25 | 0,990 |
+      23: | v7 | v5+BGMask        | 45.11 | 0.989 |
+      24: | v8 | **Regformer**    | 45.41 | 0.990 |
+      25: Besides, **Reviewer ac1q** also agrees with the significance of using foreground mask and background separately.
+      26: He mentioned that our method first points out the importance of explicitly and individually processing rain-affected and unaffected regions and then combing them.
+      27: Finally, we appreciate your comments and welcome further questions or clarifications.
+      28: We are committed to ongoing discussions to enhance the quality of our paper and address any concerns you may have.
+      29: ***Q2:*** How to determine whether high-quality region masks can be generated?
+      30: If some visual examples of intermediate feature maps that illustrate this property are added, the proposed method can become compelling.
+      31: ***Response:***
+      32: Thank you for your valuable suggestion.
+      33: In response to your query on the quality of generated region masks, we have included a series of intermediate feature maps in the revised supplementary materials, specifically showcased in Figure 10.
+      34: These feature maps represent the masks as they are processed within the network during inference.
+      35: To effectively visualize them, we have averaged the masks across their respective channels and transformed them into RGB images for a more direct and visual representation.
+      36: We believe this addition will provide a clearer insight into the quality and functionality of the masks generated by our method, thereby bolstering the credibility of our proposed approach.
+      37: Should you have any further questions or additional suggestions, we are more than open to them.
+      38: Your feedback is instrumental in enhancing the quality of our work, and we greatly appreciate your contribution to this process.
+    output: |-
+      {"critiques":[{"id":1,"response":null},{"id":2,"response":null},{"id":3,"response":null},{"id":4,"response":{"start":5,"end":24,"type":"new_experiment"}},{"id":5,"response":{"start":32,"end":36,"type":"new_experiment"}}]}
+  - review_id: yRmZ3PtrOU
+    input: |-
+      [critiques]
+      1 (strengths): This paper targets at an interesting and valuable question.
+      2 (strengths): Both empirical and theoretical results seem solid and convincing.
+      3 (strengths): By learning decomposition of the reward in the terminal stage using potential functions, it can improve both detail-balance based or sub-trajectory balance based GFlownet training.
+      4 (questions): The author(s) use two energy-based decomposition schemes as a base-line, namely, the model-based GFlowNet (Jain et al.) and LSTM-based decomposition (Arjona-Medina et al.). Why not test other base-lines? It seems like a small comparison, and I’m not entirely sure if the LSTM is comparable to a GFlowNet based model given its simplicity.
+      5 (questions): Another question would be the paper discussed both DB-based and subTB based objectives. What about other objectives?
+      [author_response]
+      1: Dear reviewer q5Nd,
+      2: We express our deep appreciation for your time and insightful comments.
+      3: In our updated manuscript, we highlight the changes in $\color{blue}{\text{blue}}$.
+      4: In what follows, we address your comments one by one.
+      5: **Q1-1.
+      6: In Figure 10, is LSTM comparable to a GFlowNet-based model given its simplicity?**
+      7: The 'LSTM' baseline in **Figure 10** is comparable since it is also an energy decomposition-based GFlowNet model.
+      8: It just uses the LSTM model to predict the potential $\phi_{\theta}(s\rightarrow s')$ to enable partial inference in GFlowNets.
+      9: Additionally, we would like to reclarify that **Figure 10** shows the comparison with alternative energy decomposition methods *for partial inference in GFlowNets*, i.e., alternative methods to predict the potential $\phi_{\theta}(s\rightarrow s')$ for GFlowNets.
+      10: In our updated manuscript, we modify the description of corresponding ablation studies (last paragraph of **Section 4.5**) to better reflect this point!
+      11: **Q1-2.
+      12: Why not test other baselines for energy decompositions?**
+      13: We do not conduct extensive comparisons between energy decomposition methods since (1) there are no prior studies about energy decomposition-based GFlowNets and (2) our main focus is first to show the effectiveness of energy decomposition in GFlowNets.
+      14: Nevertheless, to further address your comment, we add an additional energy decomposition baseline by modifying a reward redistribution method in reinforcement learning [1] to decompose the energy for GFlowNets.
+      15: In **Figure 10** of our updated manuscript, one can see that our method still shows the most competitive performance.
+      16: If you provide information about an essential baseline, we would be happy to incorporate it!
+      17: **Q2.
+      18: Why not consider the other objectives beyond DB-based and subTB-based objectives?**
+      19: The other conventional objective, i.e., TB, is not considered since TB is defined with the full trajectory but our goal is to enable partial inference for the local trajectory-based objectives, i.e., DB and subTB.
+      20: However, it is worth noting that our new experiments in **Appendix E.3** show that our energy decomposition even improves the TB-based objectives.
+      21: For other objectives extending DB or subTB [2], combining LED-GFN with them can be an interesting future research direction.
+      22: **Reference**
+      23: [1] Gangwani et al., Learning Guidance Rewards with Trajectory-space Smoothing, NeurIPS 2020
+      24: [2] Pan et al., Generative Augmented Flow Networks, ICLR 2023
+    output: |-
+      {"critiques":[{"id":1,"response":null},{"id":2,"response":null},{"id":3,"response":null},{"id":4,"response":{"start":5,"end":16,"type":"new_experiment"}},{"id":5,"response":{"start":17,"end":21,"type":"new_experiment"}}]}

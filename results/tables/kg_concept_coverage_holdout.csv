@@ -1,0 +1,4 @@
+year,articles,keywords,keywords_in_vocabulary,mean_concepts,mean_shares_concept_neighbours,median_shares_concept_neighbours,share_keywords_in_vocabulary,share_articles_with_a_concept,share_articles_with_a_neighbour,concepts_carrying_shares_concept
+2024,6954,25010,18672,2.6851,88.7498,55.0,0.7466,0.915,0.8487,5029
+2025,11422,35661,26253,2.2985,87.6734,41.0,0.7362,0.7847,0.739,5029
+2026,18785,70051,43757,2.3294,110.6599,71.0,0.6246,0.9233,0.8402,5029

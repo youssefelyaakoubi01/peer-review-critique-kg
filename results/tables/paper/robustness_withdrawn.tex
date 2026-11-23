@@ -1,0 +1,15 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Robustness check on the test year (2025): papers withdrawn before a decision counted as rejections ($11\,422$ papers, $4\,365$ of them borderline). AUC, mean $\pm$ standard deviation over 5 seeds.}
+\label{tab:robustness-withdrawn}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Model & All papers & Borderline \\
+\midrule
+HGT & $0.889 \pm 0.003$ & $0.706 \pm 0.004$ \\
+Initial rating (LR) & $0.903 \pm 0.000$ & $0.737 \pm 0.000$ \\
+\bottomrule
+\end{tabular}
+\end{table}

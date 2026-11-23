@@ -1,0 +1,30 @@
+\begin{table}[t]
+\centering
+\caption{Ablations of the HGT model in setting A on the test year (2025): one element of the graph removed at a time, same hyper-parameters, mean $\pm$ standard deviation over 5 seeds.}
+\label{tab:ablations}
+\begin{tabular}{lccccc}
+\toprule
+Model & AUC & Macro F1 & MCC & Accuracy & ECE \\
+\midrule
+\multicolumn{6}{l}{\emph{All papers} ($n = 8655$)} \\
+Full graph & $0.858 \pm 0.001$ & $0.773 \pm 0.002$ & $0.549 \pm 0.003$ & $0.776 \pm 0.003$ & $0.069 \pm 0.008$ \\
+No shares\_concept edges & $0.856 \pm 0.001$ & $0.775 \pm 0.002$ & $0.551 \pm 0.003$ & $0.780 \pm 0.000$ & $0.059 \pm 0.016$ \\
+No critique labels (text only) & $0.856 \pm 0.002$ & $0.773 \pm 0.003$ & $0.547 \pm 0.005$ & $0.779 \pm 0.002$ & $0.065 \pm 0.010$ \\
+No critique text (labels only) & $0.858 \pm 0.002$ & $0.776 \pm 0.004$ & $0.552 \pm 0.007$ & $0.781 \pm 0.003$ & $0.056 \pm 0.004$ \\
+No critique nodes & $0.833 \pm 0.007$ & $0.757 \pm 0.004$ & $0.520 \pm 0.006$ & $0.759 \pm 0.004$ & $0.064 \pm 0.018$ \\
+No initial scores & $0.538 \pm 0.023$ & $0.480 \pm 0.102$ & $0.042 \pm 0.024$ & $0.514 \pm 0.050$ & $0.078 \pm 0.006$ \\
+No scores, no critiques & $0.533 \pm 0.025$ & $0.448 \pm 0.109$ & $0.031 \pm 0.029$ & $0.523 \pm 0.057$ & $0.070 \pm 0.018$ \\
+With author responses (setting B) & $0.855 \pm 0.003$ & $0.771 \pm 0.005$ & $0.544 \pm 0.007$ & $0.777 \pm 0.006$ & $0.057 \pm 0.006$ \\
+\midrule
+\multicolumn{6}{l}{\emph{Borderline papers} ($n = 4049$)} \\
+Full graph & $0.695 \pm 0.001$ & $0.613 \pm 0.012$ & $0.258 \pm 0.009$ & $0.652 \pm 0.004$ & $0.117 \pm 0.009$ \\
+No shares\_concept edges & $0.691 \pm 0.004$ & $0.632 \pm 0.003$ & $0.270 \pm 0.003$ & $0.652 \pm 0.003$ & $0.101 \pm 0.024$ \\
+No critique labels (text only) & $0.691 \pm 0.004$ & $0.632 \pm 0.005$ & $0.268 \pm 0.007$ & $0.649 \pm 0.004$ & $0.111 \pm 0.014$ \\
+No critique text (labels only) & $0.694 \pm 0.002$ & $0.635 \pm 0.006$ & $0.276 \pm 0.009$ & $0.653 \pm 0.005$ & $0.098 \pm 0.006$ \\
+No critique nodes & $0.659 \pm 0.006$ & $0.590 \pm 0.011$ & $0.214 \pm 0.009$ & $0.633 \pm 0.003$ & $0.102 \pm 0.039$ \\
+No initial scores & $0.513 \pm 0.013$ & $0.475 \pm 0.059$ & $0.021 \pm 0.012$ & $0.519 \pm 0.037$ & $0.081 \pm 0.006$ \\
+No scores, no critiques & $0.512 \pm 0.015$ & $0.431 \pm 0.095$ & $0.013 \pm 0.013$ & $0.498 \pm 0.061$ & $0.090 \pm 0.018$ \\
+With author responses (setting B) & $0.689 \pm 0.005$ & $0.627 \pm 0.018$ & $0.265 \pm 0.020$ & $0.648 \pm 0.006$ & $0.093 \pm 0.011$ \\
+\bottomrule
+\end{tabular}
+\end{table}

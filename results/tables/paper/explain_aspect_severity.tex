@@ -1,0 +1,23 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{Mean importance of one critique for the prediction of its paper, by occlusion, in hundredths of a logit (positive: the critique pushes towards acceptance). Negative critiques by aspect and severity (minor, major, blocking) and positive critiques by aspect; $1\,200$ explained test papers. Bold: the 95\,\% confidence interval excludes zero. In parentheses: fewer than 20 explained papers hold such a critique.}
+\label{tab:explain-aspect-severity}
+\begin{tabular}{@{}lrrrrrrrrrrrr@{}}
+\toprule
+ & \multicolumn{4}{c}{Accepted papers} & \multicolumn{4}{c}{Rejected papers} & \multicolumn{4}{c}{Borderline papers} \\
+\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13}
+Aspect & Min. & Maj. & Blo. & Pos. & Min. & Maj. & Blo. & Pos. & Min. & Maj. & Blo. & Pos. \\
+\midrule
+Novelty & $-0.9$ & $\mathbf{-2.0}$ & $-0.9$ & $\mathbf{+1.7}$ & $\mathbf{-0.7}$ & $0.0$ & $+0.4$ & $\mathbf{+3.4}$ & $\mathbf{-1.0}$ & $\mathbf{-2.0}$ & $\mathbf{-1.7}$ & $\mathbf{+1.8}$ \\
+Soundness & $\mathbf{-0.4}$ & $\mathbf{-1.1}$ & $\mathbf{-0.7}$ & $\mathbf{+2.2}$ & $\mathbf{+1.1}$ & $\mathbf{+0.5}$ & $-0.2$ & $\mathbf{+4.0}$ & $\mathbf{-0.2}$ & $\mathbf{-1.0}$ & $\mathbf{-0.8}$ & $\mathbf{+2.1}$ \\
+Experimental comparison & $0.0$ & $\mathbf{-0.8}$ & $+0.1$ & $\mathbf{+2.4}$ & $\mathbf{+1.7}$ & $\mathbf{+0.8}$ & $\mathbf{+0.6}$ & $\mathbf{+3.9}$ & $\mathbf{+0.2}$ & $\mathbf{-0.7}$ & $0.0$ & $\mathbf{+2.4}$ \\
+Clarity & $0.0$ & $\mathbf{-0.9}$ & ($-0.8$) & $\mathbf{+3.0}$ & $\mathbf{+1.2}$ & $+0.2$ & $\mathbf{+1.9}$ & $\mathbf{+4.8}$ & $+0.1$ & $\mathbf{-0.8}$ & ($-0.6$) & $\mathbf{+2.9}$ \\
+Reproducibility & $\mathbf{+1.0}$ & $+0.1$ & ($+1.1$) & $\mathbf{+3.2}$ & $\mathbf{+2.9}$ & $\mathbf{+3.0}$ & ($+3.2$) & $\mathbf{+3.4}$ & $\mathbf{+0.9}$ & $\mathbf{+0.5}$ & ($+1.2$) & $\mathbf{+3.1}$ \\
+Significance & $\mathbf{-0.7}$ & $\mathbf{-1.5}$ & ($-1.3$) & $\mathbf{+2.0}$ & $\mathbf{+0.9}$ & $+0.3$ & ($+0.1$) & $\mathbf{+3.1}$ & $-0.3$ & $\mathbf{-1.3}$ & ($-1.0$) & $\mathbf{+1.9}$ \\
+Related work & $\mathbf{+0.9}$ & $0.0$ & ($+0.2$) & $\mathbf{+2.2}$ & $\mathbf{+2.1}$ & $\mathbf{+1.2}$ & ($+2.3$) & $\mathbf{+3.3}$ & $\mathbf{+0.9}$ & $+0.1$ & ($+0.2$) & $\mathbf{+2.3}$ \\
+Other & ($+2.1$) & ($+1.2$) & ($-0.3$) & ($+5.1$) & ($+1.7$) & ($+1.6$) & ($+0.5$) & ($+3.7$) & ($+2.1$) & ($+1.1$) & ($-0.3$) & ($+1.4$) \\
+\bottomrule
+\end{tabular}
+\end{table*}

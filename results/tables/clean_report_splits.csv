@@ -1,0 +1,9 @@
+withdrawn,split,year,papers,accepted,rejected,acceptance_rate,reviews
+excluded,holdout,2026,14169,5356,8813,0.378,55215
+excluded,test,2025,8655,3678,4977,0.425,35035
+excluded,train,2024,4695,1861,2834,0.3964,18149
+excluded,val,2024,839,314,525,0.3743,3229
+as_reject,holdout,2026,18785,5356,13429,0.2851,73185
+as_reject,test,2025,11422,3678,7744,0.322,46317
+as_reject,train,2024,5906,1861,4045,0.3151,22779
+as_reject,val,2024,1048,314,734,0.2996,4033

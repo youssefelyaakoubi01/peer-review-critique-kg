@@ -1,0 +1,9 @@
+aspect,critiques,share
+experimental_comparison,464,0.3005
+soundness,353,0.2286
+clarity,272,0.1762
+significance,175,0.1133
+novelty,126,0.0816
+related_work,84,0.0544
+reproducibility,60,0.0389
+other,10,0.0065

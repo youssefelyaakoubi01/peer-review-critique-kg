@@ -1,0 +1,33 @@
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Test year (2025): AUC, mean over 5 seeds. $\Delta$: AUC minus the AUC of the logistic regression on the initial rating, with its 95\,\% confidence interval (paired bootstrap over the papers, $1\,000$ resamples).}
+\label{tab:main}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+ & \multicolumn{3}{c}{All papers ($n = 8\,655$)} & \multicolumn{3}{c}{Borderline papers ($n = 4\,049$)} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+Model & AUC & $\Delta$ & 95\,\% CI of $\Delta$ & AUC & $\Delta$ & 95\,\% CI of $\Delta$ \\
+\midrule
+\multicolumn{7}{l}{\emph{Baselines}} \\
+Majority class & $0.500$ & $-0.373$ & $[-0.381,\,-0.366]$ & $0.500$ & $-0.222$ & $[-0.238,\,-0.207]$ \\
+Initial rating (LR) & $0.873$ & -- & -- & $0.722$ & -- & -- \\
+All initial scores (LR) & $0.874$ & $+0.001$ & $[-0.001,\,+0.003]$ & $0.719$ & $-0.003$ & $[-0.010,\,+0.005]$ \\
+Review text (MLP) & $0.609$ & $-0.264$ & $[-0.277,\,-0.252]$ & $0.534$ & $-0.187$ & $[-0.210,\,-0.166]$ \\
+Review text + scores (MLP) & $0.876$ & $+0.003$ & $[+0.000,\,+0.005]$ & $0.724$ & $+0.003$ & $[-0.005,\,+0.011]$ \\
+Critique counts (LR) & $0.760$ & $-0.113$ & $[-0.122,\,-0.104]$ & $0.617$ & $-0.105$ & $[-0.126,\,-0.084]$ \\
+Scores + critique counts (LR) & $0.873$ & $-0.001$ & $[-0.003,\,+0.002]$ & $0.715$ & $-0.007$ & $[-0.016,\,+0.003]$ \\
+\addlinespace
+\multicolumn{7}{l}{\emph{Homogeneous GNN}} \\
+GCN, untyped graph & $0.831$ & $-0.042$ & $[-0.048,\,-0.037]$ & $0.661$ & $-0.061$ & $[-0.075,\,-0.044]$ \\
+\addlinespace
+\multicolumn{7}{l}{\emph{Heterogeneous GNNs}} \\
+R-GCN & $0.820$ & $-0.054$ & $[-0.060,\,-0.047]$ & $0.646$ & $-0.076$ & $[-0.092,\,-0.060]$ \\
+HAN & $0.856$ & $-0.018$ & $[-0.022,\,-0.013]$ & $0.683$ & $-0.038$ & $[-0.052,\,-0.024]$ \\
+HGT & $0.858$ & $-0.015$ & $[-0.020,\,-0.011]$ & $0.695$ & $-0.027$ & $[-0.040,\,-0.013]$ \\
+HGT + score statistics & $0.858$ & $-0.015$ & $[-0.019,\,-0.011]$ & $0.689$ & $-0.032$ & $[-0.045,\,-0.019]$ \\
+HGT, with author responses & $0.855$ & $-0.018$ & $[-0.022,\,-0.014]$ & $0.689$ & $-0.033$ & $[-0.046,\,-0.020]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

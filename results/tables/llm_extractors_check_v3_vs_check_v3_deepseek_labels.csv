@@ -1,0 +1,6 @@
+label,critiques_compared,agreement,cohen_kappa
+aspect,1144,0.7692,0.7142
+severity,1144,0.8357,0.6515
+polarity,1144,0.9196,0.8669
+target,1144,0.8191,0.7339
+actionable,1144,0.9747,0.9471

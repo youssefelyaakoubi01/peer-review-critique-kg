@@ -1,0 +1,5 @@
+kind,texts,distinct_texts,sample,sample_seconds,texts_per_second,estimated_minutes
+critique,577815,572035,2000,1.48,1347.8,7.1
+response,293514,292551,2000,3.96,504.5,9.7
+concept,5073,5073,2000,0.15,13100.8,0.0
+review,177285,177099,2000,4.41,453.3,6.5

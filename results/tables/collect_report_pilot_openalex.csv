@@ -1,0 +1,5 @@
+status,n_papers,n_matched,n_with_references,median_references
+accepted,17,13,13,12.0
+desk_rejected,6,4,3,34.0
+rejected,17,5,5,17.0
+withdrawn,10,5,5,27.0

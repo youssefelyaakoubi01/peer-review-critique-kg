@@ -1,0 +1,23 @@
+setting,kind,type,count,count_2024,count_2025
+A,node,article,18376,6954,11422
+A,node,review,73129,26812,46317
+A,node,critique,577815,207498,370317
+A,node,aspect,8,,
+A,node,concept,5073,,
+A,edge,article -has_review-> review,73129,,
+A,edge,review -contains-> critique,577815,,
+A,edge,critique -about-> aspect,577804,,
+A,edge,article -has_concept-> concept,44925,,
+A,edge,article -shares_concept-> article,385514,,
+B,node,article,18376,6954,11422
+B,node,review,73129,26812,46317
+B,node,critique,577815,207498,370317
+B,node,response,293514,104949,188565
+B,node,aspect,8,,
+B,node,concept,5073,,
+B,edge,article -has_review-> review,73129,,
+B,edge,review -contains-> critique,577815,,
+B,edge,critique -about-> aspect,577804,,
+B,edge,article -has_concept-> concept,44925,,
+B,edge,article -shares_concept-> article,385514,,
+B,edge,response -responds_to-> critique,315997,,
