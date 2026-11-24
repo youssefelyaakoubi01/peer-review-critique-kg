@@ -1,0 +1,31 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2pt}
+\caption{Information read by each model. S: statistics per paper (mean, minimum, maximum, standard deviation; number of reviews with the other scores); M: mean embedding of the reviews of the paper; C: counts of the labels of the critiques per paper; E: embedding of the title and abstract; N: feature of a node of the graph (the scores and the text of each review, the text and the labels of each critique, the keyword concepts). No baseline reads the keywords, and no graph model without the score statistics receives the scores aggregated per paper. LR: logistic regression; MLP: multilayer perceptron; GBT: gradient-boosted trees.}
+\label{tab:model-inputs}
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+Model & Rating & Other scores & Review text & Critiques & Paper text & Keywords & Graph & Responses \\
+\midrule
+\multicolumn{9}{l}{\emph{Baselines without the graph}} \\
+Majority class & -- & -- & -- & -- & -- & -- & -- & -- \\
+Initial rating (LR) & S & -- & -- & -- & -- & -- & -- & -- \\
+All initial scores (LR) & S & S & -- & -- & -- & -- & -- & -- \\
+Review text (MLP) & -- & -- & M & -- & -- & -- & -- & -- \\
+Review text + scores (MLP) & S & S & M & -- & -- & -- & -- & -- \\
+Review and article text + scores (MLP) & S & S & M & -- & E & -- & -- & -- \\
+Critique counts (LR) & -- & -- & -- & C & -- & -- & -- & -- \\
+Scores + critique counts (LR) & S & S & -- & C & -- & -- & -- & -- \\
+All initial scores (GBT) & S & S & -- & -- & -- & -- & -- & -- \\
+Scores + critique counts (GBT) & S & S & -- & C & -- & -- & -- & -- \\
+\addlinespace
+\multicolumn{9}{l}{\emph{Graph models}} \\
+GCN, untyped graph & N & N & N & N & E & N & untyped & -- \\
+R-GCN, HAN, HGT (setting A) & N & N & N & N & E & N & typed & -- \\
+\quad with score statistics (+scores) & N + S & N + S & N & N & E & N & typed & -- \\
+R-GCN, HAN, HGT (setting B) & N & N & N & N & E & N & typed & N \\
+\quad with score statistics & N + S & N + S & N & N & E & N & typed & N \\
+\bottomrule
+\end{tabular}
+\end{table*}

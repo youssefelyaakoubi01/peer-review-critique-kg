@@ -1,0 +1,5 @@
+population,year,articles,share_with_a_concept,share_with_a_neighbour,share_with_a_training_year_neighbour
+articles of the graph,2024,6954,0.915,0.8487,0.8123
+articles of the graph,2025,11422,0.7847,0.739,0.6945
+papers with a decision,2024,5534,0.9209,0.8571,0.8197
+papers with a decision,2025,8655,0.7978,0.7526,0.709

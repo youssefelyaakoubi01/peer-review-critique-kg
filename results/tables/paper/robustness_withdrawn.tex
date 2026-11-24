@@ -1,15 +1,17 @@
-\begin{table}[t]
+\begin{table*}[t]
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
-\caption{Robustness check on the test year (2025): papers withdrawn before a decision counted as rejections ($11\,422$ papers, $4\,365$ of them borderline). AUC, mean $\pm$ standard deviation over 5 seeds.}
+\caption{Robustness check on the test year (2025): papers withdrawn before a decision counted as rejections. AUC, mean $\pm$ standard deviation over 5 seeds. $\Delta$: AUC minus the AUC of the logistic regression on the initial rating, paired bootstrap over the papers. LR: logistic regression; CI: confidence interval. $^{\dagger}$Computed after the test and holdout years were read, with the sensitivity analyses (Table~\ref{tab:analysis-status}).}
 \label{tab:robustness-withdrawn}
-\begin{tabular}{@{}lrr@{}}
+\begin{tabular}{@{}lrrrrrr@{}}
 \toprule
-Model & All papers & Borderline \\
+ & \multicolumn{3}{c}{All papers ($n = 11\,422$)} & \multicolumn{3}{c}{Borderline papers ($n = 4\,365$)} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+Model & AUC & $\Delta$$^{\dagger}$ & 95\,\% CI of $\Delta$$^{\dagger}$ & AUC & $\Delta$$^{\dagger}$ & 95\,\% CI of $\Delta$$^{\dagger}$ \\
 \midrule
-HGT & $0.889 \pm 0.003$ & $0.706 \pm 0.004$ \\
-Initial rating (LR) & $0.903 \pm 0.000$ & $0.737 \pm 0.000$ \\
+HGT & $0.889 \pm 0.003$ & $-0.014$ & $[-0.018,\,-0.011]$ & $0.706 \pm 0.004$ & $-0.030$ & $[-0.043,\,-0.017]$ \\
+Initial rating (LR) & $0.903 \pm 0.000$ & -- & -- & $0.737 \pm 0.000$ & -- & -- \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}

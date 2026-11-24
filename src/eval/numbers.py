@@ -12,10 +12,12 @@ B carries a `B` after its name.
 """
 
 import inspect
+import json
 import re
+from datetime import date
 
 from src.eval import latex
-from src.eval.paper import SEVERITIES, holdout_tag
+from src.eval.paper import SEVERITIES, has_protocol, holdout_tag
 from src.eval.sources import Sources, verdict
 from src.eval.summary import MAIN, TESTS, has_holdout, is_gnn
 
@@ -104,6 +106,10 @@ class Numbers:
             raise ValueError(f"macro {name}: reads {unnamed}, which it does not name")
         self.macros[name] = (text, named)
 
+    def take(self) -> None:
+        """Forget the tables read for a check that defines no macro."""
+        self.s.take_used()
+
     def table(self, name: str):
         """A whole table whose rows are gone through one by one: each macro then names the
         tables its own value comes from."""
@@ -168,8 +174,13 @@ def configuration(n: Numbers, cfg: dict) -> None:
         "InsightsUrl": rf"\url{{{external['iclr_insights']['url']}}}",
         "IclrDatasetPaper": escape(external["iclr_dataset"]["paper"]),
         "IclrDatasetUrl": rf"\url{{{external['iclr_dataset']['url']}}}",
+        "IncidentAnnouncementTitle": escape(cfg["collect"]["incident_announcement"]["title"]),
+        "IncidentAnnouncementAuthor": escape(cfg["collect"]["incident_announcement"]["author"]),
+        "IncidentAnnouncementDate": day_text(cfg["collect"]["incident_announcement"]["date"]),
+        "IncidentAnnouncementUrl": rf"\url{{{cfg['collect']['incident_announcement']['url']}}}",
         "DataDoi": rf"\href{{https://doi.org/{cfg['release']['doi']}}}{{\nolinkurl{{{cfg['release']['doi']}}}}}",
         "DataLicence": escape(cfg["release"]["licence"]),
+        "DataVersion": str(cfg["release"]["version"]),
         "CodeUrl": rf"\url{{{cfg['release']['code_url']}}}",
         "GridLr": grid_text(cfg["baselines"]["models"]["scores_rating_lr"]["grid"]),
         "GridMlp": grid_text(cfg["baselines"]["models"]["text_scores_mlp"]["grid"]),
@@ -204,11 +215,15 @@ def corpus(n: Numbers, cfg: dict) -> None:
         n.add(f"Submissions{name}", count(row["papers"]), by_year)
         n.add(f"Decided{name}", count(row["papers_with_decision"]), by_year)
         n.add(f"Withdrawn{name}", count(row["withdrawn"]), by_year)
+        n.add(f"WithdrawnBeforeDecision{name}", count(row["withdrawn_before_decision"]), by_year)
+        # papers with a decision that the splits do not hold: a review posted before the author response has no initial score
+        n.add(f"DecidedNotKept{name}", count(row["papers_with_decision"] - row["eligible_withdrawn_excluded"]), by_year)
         n.add(f"AllReviews{name}", count(row["reviews"]), by_year)
         n.add(f"InitialReviews{name}", count(row["reviews_with_initial_scores"]), by_year)
         n.add(f"Modified{name}", percent(row["share_reviews_modified_after_release"]), by_year)
     for year in (*cfg["splits"]["train"], *cfg["splits"]["test"]):
         row, name = s.row(check, year=year), year_names[year]
+        n.add(f"ReviewsChecked{name}", count(row["reviews_ours"]), check)   # desk-rejected papers included
         n.add(f"ScoresMatched{name}", count(row["reviews_matched"]), check)
         n.add(f"ScoresMatchedShare{name}", percent(row["share_reviews_matched"]), check)
         n.add(f"ScoresEqualFinal{name}", percent(row["share_post_rating_equals_final"], 0), check)
@@ -217,6 +232,10 @@ def corpus(n: Numbers, cfg: dict) -> None:
         n.add(f"RatingLowered{name}", count(row["matched_rating_decreased"]), check)
         for modified, tag in ((True, "Modified"), (False, "Unmodified")):
             n.add(f"Marker{tag}{name}", percent(s.value(markers, "share_with_a_marker_left", year=year, modified_after_release=modified), 2), markers)
+    # reviews in which the LLM set sentences aside as post-rebuttal although they carry no mark of a later modification
+    set_aside = s.table(markers)
+    set_aside = set_aside[set_aside["year"].isin([*cfg["splits"]["train"], *cfg["splits"]["test"]]) & ~set_aside["modified_after_release"].astype(bool)]
+    n.add("PostRebuttalUnmodified", count(set_aside["reviews_with_sentences_set_aside"].sum()), markers)
     zone = s.table("borderline_definition.csv")
     zone = zone[zone["in_zone"]]
     n.add("ZoneLow", plain(zone["bin_start"].min(), 2), "borderline_definition.csv")
@@ -229,6 +248,32 @@ def corpus(n: Numbers, cfg: dict) -> None:
         n.add(f"BorderlineShare{name}", percent(inside / everyone), MAIN)
     papers = {subset: s.value("baselines.csv", "n_papers", model="majority", split="test", subset=subset) for subset in ("all", "with_text")}
     n.add("TestWithoutText", count(papers["all"] - papers["with_text"]), "baselines.csv")
+
+
+def day_text(iso: str) -> str:
+    """"2024-02-09" -> "9 February 2024"."""
+    day = date.fromisoformat(str(iso))
+    return f"{day.day} {day.strftime('%B %Y')}"
+
+
+def inputs(n: Numbers, cfg: dict) -> None:
+    """Dates of the sources of the inputs against the decisions, and the checks on the content of the text archive."""
+    s, year_names = n.s, roles(cfg)
+    dates, source = "input_dates.csv", "article_text_source.csv"
+    for year, name in year_names.items():
+        row = s.row(dates, year=year)
+        n.add(f"FirstDecision{name}", day_text(row["first_decision_note"]), dates)
+        n.add(f"TextCommitted{name}", day_text(row["text_archive_committed"]), dates)
+        n.add(f"TextCommitGap{name}", str(abs(int(row["days_from_first_decision_to_commit"]))), dates)
+        n.add(f"ArchiveSubmissions{name}", count(row["archive_submissions"]), dates)
+        n.add(f"ArchiveWithDecision{name}", count(row["archive_submissions_with_a_decision"]), dates)
+        for outcome in ("accepted", "rejected"):
+            check = s.row(source, year=year, version="before_decision", outcome=outcome)
+            n.add(f"ArchiveLinks{camel(outcome)}{name}", percent(check["archive_abstracts_with_link"]), source)
+            n.add(f"CurrentLinks{camel(outcome)}{name}", percent(check["current_abstracts_with_link"]), source)
+            n.add(f"TextFound{camel(outcome)}{name}", percent(check["found_in_archive"]), source)
+    committed = s.table(dates)
+    n.add("YearsTextCommittedAfterDecisions", str(int((~committed["text_committed_before_decisions"].astype(bool)).sum())), dates)
 
 
 def extraction(n: Numbers, cfg: dict) -> None:
@@ -480,9 +525,281 @@ def holdout(n: Numbers, cfg: dict) -> None:
     n.add("ReadingsHolding", str(int(readings["holds"].sum())), readings_table)
 
 
+# Names of the alternative borderline zones in the macros (a macro name only holds letters).
+ZONE_NAMES = {"study": "Study", "bin_width_0.5": "WideBins", "rates_0.3_0.7": "NarrowRates", "rates_0.1_0.9": "WideRates",
+              "min_papers_50": "MorePapers"}
+TEXT_SUBSETS = {"with_text": "Text", "borderline_with_text": "BorderText"}
+
+
+def sensitivity(n: Numbers, cfg: dict) -> None:
+    """Sensitivity analyses computed afterwards from the stored predictions (scripts/07e_sensitivity.py)."""
+    s, settings, year_names = n.s, cfg["sensitivity"], roles(cfg)
+    train_years, test_years = cfg["splits"]["train"], cfg["splits"]["test"]
+
+    # ---- scope of the concept vocabulary
+    scope_table, by_year, neighbours = "kg_concept_scope.csv", "kg_shares_concept_by_year.csv", "kg_concept_neighbours.csv"
+    scope = s.row(scope_table)
+    n.add("ConceptsBelowMin", count(scope["concepts_below_min_in_training_years"]), scope_table)
+    n.add("ConceptsBelowMinShare", percent(scope["share_concepts_below_min_in_training_years"]), scope_table)
+    n.add("ConceptsAbsentTrain", count(scope["concepts_absent_from_training_years"]), scope_table)
+    n.add("ConceptsStatusChanges", count(scope["concepts_kept_whose_shares_concept_status_changes"]), scope_table)
+    n.add("ConceptLinksTrainBelowMin", count(scope["has_concept_links_of_training_years_to_concepts_below_min"]), scope_table)
+    for (first, second), name in (((train_years[0], train_years[0]), "TrainTrain"), ((train_years[0], test_years[0]), "TrainTest"),
+                                  ((test_years[0], test_years[0]), "TestTest")):
+        n.add(f"SharesPairs{name}", count(s.value(by_year, "pairs", year_a=first, year_b=second)), by_year)
+    for year in (*train_years, *test_years):
+        row = s.row(neighbours, population="papers with a decision", year=year)
+        n.add(f"WithTrainNeighbour{year_names[year]}", percent(row["share_with_a_training_year_neighbour"]), neighbours)
+        n.add(f"WithNeighbour{year_names[year]}", percent(row["share_with_a_neighbour"]), neighbours)
+
+    # ---- the mean initial rating used as a score
+    rating = "sensitivity_mean_rating.csv"
+    for _, row in s.table(rating).iterrows():
+        name = camel(row["split"]) + SUBSETS[row["subset"]]
+        n.add(f"AucMeanRating{name}", plain(row["auc"]), rating)
+        n.add(f"AucCiMeanRating{name}", interval(row["auc_ci_low"], row["auc_ci_high"], 3, sign=False), rating)
+
+    # ---- pairs compared afterwards, with the Holm correction inside this family
+    pairs, holm = "sensitivity_pairs.csv", "tests_holm.csv"
+    for _, row in s.table(pairs).iterrows():
+        name = model_name(row["model"], row["setting"], cfg) + camel(row["control"]) + SUBSETS[row["subset"]]
+        n.add(f"SensPair{name}", difference(row["difference"], row["ci_low"], row["ci_high"]), pairs)
+        n.add(f"SensPairP{name}", p_value(row["delong_p"]), pairs)
+        adjusted = s.value(holm, "delong_p_holm", family="pairs_added_afterwards", model=row["model"], setting=row["setting"],
+                           control=row["control"], subset=row["subset"])
+        n.add(f"SensPairHolm{name}", p_value(adjusted), holm)
+
+    # ---- test papers with text; withdrawn papers counted as rejections
+    subgroups = "sensitivity_subgroups.csv"
+    for _, row in s.table(subgroups).iterrows():
+        model = model_name(row["model"], row["setting"], cfg)
+        if row["analysis"] == "papers_with_text":
+            name = f"SensText{model}{TEXT_SUBSETS[row['subset']]}"
+        else:
+            name = f"SensAsReject{model}{SUBSETS[row['subset']]}"
+        n.add(name, difference(row["difference"], row["ci_low"], row["ci_high"]), subgroups)
+    with_text = s.rows(subgroups, analysis="papers_with_text")
+    for subset, tag in TEXT_SUBSETS.items():
+        n.add(f"PapersTest{tag}", count(with_text.loc[with_text["subset"] == subset, "n_papers"].iloc[0]), subgroups)
+    below = with_text["ci_high"] < 0
+    gnn_rows = with_text["model"].map(lambda model: is_gnn(model, cfg))
+    for subset, tag in TEXT_SUBSETS.items():
+        chosen = gnn_rows & (with_text["subset"] == subset)
+        n.add(f"SensTextGnn{tag}", str(int(chosen.sum())), subgroups)
+        n.add(f"SensTextGnnBelow{tag}", str(int((chosen & below).sum())), subgroups)
+
+    # ---- other definitions of the borderline zone
+    zones_table, zone_pairs = "sensitivity_borderline_zones.csv", "sensitivity_borderline.csv"
+    zones = s.table(zones_table)
+    n.add("ZoneVariants", str(int((zones["variant"] != "study").sum())), zones_table)
+    n.add("ZoneVariantsEvaluated", str(int(((zones["variant"] != "study") & (zones["status"] == "ok")).sum())), zones_table)
+    for _, zone in zones.iterrows():
+        if zone["status"] != "ok":
+            continue
+        name = ZONE_NAMES[zone["variant"]]
+        n.add(f"Zone{name}", f"[{zone['zone_low']:.2f}, {zone['zone_high']:.2f})", zones_table)
+        n.add(f"ZonePapers{name}", count(zone["n_test_papers"]), zones_table)
+        n.add(f"ZoneShare{name}", percent(zone["share_of_test_papers"]), zones_table)
+    others = s.table(zone_pairs)
+    others = others[others["variant"] != "study"]
+    for _, row in others.iterrows():
+        n.add(f"ZoneDelta{ZONE_NAMES[row['variant']]}{model_name(row['model'], row['setting'], cfg)}",
+              difference(row["difference"], row["ci_low"], row["ci_high"]), zone_pairs)
+    graph_models = others["model"].map(lambda model: is_gnn(model, cfg))
+    n.add("ZoneGnnPairs", str(int(graph_models.sum())), zone_pairs)
+    n.add("ZoneGnnBelow", str(int((graph_models & (others["ci_high"] < 0)).sum())), zone_pairs)
+    n.add("ZoneAnyAbove", str(int((others["ci_low"] > 0).sum())), zone_pairs)
+
+    # ---- Holm correction, one family per table
+    table = s.table(holm)
+    counted = table[table["delong_p"].notna()]
+    for family in settings["holm"]["families"]:
+        tests = counted[counted["family"] == family]
+        name = camel(family)
+        n.add(f"Holm{name}Tests", str(len(tests)), holm)
+        n.add(f"Holm{name}Rejects", str(int(tests["rejects"].sum())), holm)
+        n.add(f"Holm{name}RejectsAfter", str(int(tests["rejects_holm"].sum())), holm)
+    n.add("HolmFamilies", str(len(settings["holm"]["families"])), CONFIG)
+    n.add("HolmTests", str(len(counted)), holm)
+    n.add("HolmRejects", str(int(counted["rejects"].sum())), holm)
+    n.add("HolmRejectsAfter", str(int(counted["rejects_holm"].sum())), holm)
+    n.add("HolmLost", str(int((counted["rejects"] & ~counted["rejects_holm"]).sum())), holm)
+    # the heterogeneous GNNs against the initial rating, test year: tests that still reject after the correction
+    main = counted[(counted["family"] == "main_vs_initial_rating") & counted["model"].map(lambda model: is_gnn(model, cfg))]
+    for subset, tag in SUBSETS.items():
+        chosen = main[main["subset"] == subset]
+        n.add(f"HolmHetero{tag}", str(len(chosen)), holm)
+        n.add(f"HolmHeteroRejectsAfter{tag}", str(int((chosen["rejects_holm"] & (chosen["difference"] < 0)).sum())), holm)
+
+
+# Roles of the pretrained models in results/tables/pretrained_model_dates.csv, and their names in the macros.
+PRETRAINED = {"article encoder, base model": "ArticleEncoder", "article encoder, adapter": "ArticleAdapter", "text encoder": "TextEncoder",
+              "LLM typing the critiques": "Llm"}
+
+
+def pretrained(n: Numbers, cfg: dict) -> None:
+    """Dates of the weights of the pretrained models against the first review and the first decision of each year
+    (scripts/05e_model_dates.py), and values of the decision field in the text files (scripts/05d_input_dates.py)."""
+    s, year_names, table, dates = n.s, roles(cfg), "pretrained_model_dates.csv", "input_dates.csv"
+    for role, name in PRETRAINED.items():
+        rows = {year: s.row(table, role=role, year=year) for year in year_names}
+        first = next(iter(rows.values()))
+        n.add(f"WeightsDate{name}", day_text(first["weights_dated"]), table)
+        for year, year_name in year_names.items():
+            n.add(f"WeightsDays{name}{year_name}", str(abs(int(rows[year]["days_from_weights_to_first_review"]))), table)
+        n.add(f"YearsWeightsBeforeReviews{name}", str(sum(bool(row["weights_before_first_review"]) for row in rows.values())), table)
+        n.add(f"YearsWeightsBeforeDecisions{name}", str(sum(bool(row["weights_before_first_decision"]) for row in rows.values())), table)
+    for year, year_name in year_names.items():
+        n.add(f"FirstReview{year_name}", day_text(s.value(table, "first_review_created", role="text encoder", year=year)), table)
+    compared = s.row(table, role="text encoder", year=cfg["splits"]["train"][0])
+    if not bool(compared["formats_identical"]):
+        raise ValueError("the two weight files of the text encoder are no longer reported as identical")
+    n.add("TextEncoderTensorsCompared", str(int(compared["tensors_compared"])), table)
+    n.add("YearsStudied", str(len(year_names)), CONFIG)
+    second = cfg["llm"]["backends"]["deepseek"]  # the hosted model of the agreement check: not a model input, cannot be pinned
+    n.add("SecondLlm", rf"\texttt{{{escape(second['model'])}}}", CONFIG)
+    n.add("SecondLlmVersion", escape(second["revision"]), CONFIG)
+    for year in (*cfg["splits"]["test"], *cfg["splits"].get("holdout", [])):
+        n.add(f"ArchiveDecisionValues{year_names[year]}", escape(str(s.value(dates, "archive_decision_values", year=year)).lower()), dates)
+
+
+ARCHITECTURES = {"gcn": "GCN", "rgcn": "R-GCN", "han": "HAN", "hgt": "HGT"}
+# Names in the macros of the protocol checks (scripts/07f, 07g): kind of comparison, evaluated year.
+PROTOCOL_KINDS = {"vs_reference": "Ref", "vs_study": "Study", "hetero_vs_gcn": "Gcn", "vs_full": "Full", "vs_first_run": "FirstRun"}
+EVALUATED = {"test": "Test", "holdout": "Hold"}
+
+
+def protocol(n: Numbers, cfg: dict) -> None:
+    """Protocol checks and the follow-up of the ablations of the encoders. Macro of a comparison:
+    Proto<Stage><Test|Hold><Model><Ref|Study|Gcn|Full|FirstRun|name of the other model><All|Border>."""
+    s, settings = n.s, cfg["protocol"]
+    if not has_protocol(s, cfg):
+        return
+    comparisons, measures, readings, signs = "protocol_comparisons.csv", "protocol_metrics.csv", "protocol_readings.csv", "protocol_seed_signs.csv"
+    table = n.table(comparisons)
+    for _, row in table.iterrows():
+        tail = PROTOCOL_KINDS.get(row["comparison"]) or camel(row["control"])
+        name = "Proto" + camel(row["stage"]) + EVALUATED[row["evaluated"]] + camel(row["model"]) + tail + SUBSETS[row["subset"]]
+        n.add(name, difference(row["difference"], row["ci_low"], row["ci_high"]), comparisons)
+        if row["comparison"] == "vs_reference" and not (row["delong_p_holm"] != row["delong_p_holm"]):  # DeLong after Holm, within the family
+            n.add(name.replace("Proto", "ProtoHolm", 1), p_value(row["delong_p_holm"]), comparisons)
+    # AUC of the models trained by the checks (their setting is the name of the check) and of the variants without encoders
+    variants = {*cfg["ablations"]["encoder_variants"], "full"}
+    for _, row in n.table(measures).iterrows():
+        if row["setting"] == cfg["protocol"]["setting"] and row["model"] not in variants:
+            continue
+        stage = "encoders" if row["setting"] == cfg["protocol"]["setting"] else row["setting"]
+        name = "ProtoAuc" + camel(stage) + EVALUATED[row["evaluated"]] + camel(row["model"]) + SUBSETS[row["subset"]]
+        n.add(name, plain(row["auc_mean"], 4), measures)
+        n.add(name.replace("ProtoAuc", "ProtoStd", 1), plain(row["auc_std"], 4), measures)
+    for subset, tag in SUBSETS.items():  # the references searched and trained again
+        for stage, rule in settings["comparisons"].items():
+            if not isinstance(rule, dict) or rule.get("vs_reference") != "stage":
+                continue
+            for evaluated in rule["evaluated"]:
+                found = s.rows(comparisons, stage=stage, evaluated=evaluated, comparison="vs_reference", subset=subset)["auc_control"].unique()
+                n.add(f"ProtoAucReference{camel(stage)}{EVALUATED[evaluated]}{tag}", plain(found[0], 4), comparisons)
+
+    # each model of the vocabulary check against the same model on the graph of the study
+    same = table[(table["stage"] == "vocabulary") & (table["comparison"] == "vs_study")]
+    for subset, tag in SUBSETS.items():
+        rows = same[same["subset"] == subset]
+        n.add(f"ProtoVocabularyStudyModels{tag}", str(len(rows)), comparisons)
+        n.add(f"ProtoVocabularyStudyAbove{tag}", {0: "none"}.get(int((rows["ci_low"] > 0).sum()), str(int((rows["ci_low"] > 0).sum()))), comparisons)
+        n.add(f"ProtoVocabularyStudyBelow{tag}", str(int((rows["ci_high"] < 0).sum())), comparisons)
+
+    # ---- readings (a), (b) and (d)
+    read = n.table(readings)
+    for _, row in read.iterrows():
+        name = camel(row["stage"]) + EVALUATED[row["evaluated"]] + SUBSETS[row["subset"]]
+        letter = row["reading"].upper()
+        n.add(f"ProtoReading{letter}{name}", row["outcome"], readings)
+        n.add(f"ProtoBelow{letter}{name}", str(int(row["significantly_below"])), readings)
+        n.add(f"ProtoAbove{letter}{name}", str(int(row["significantly_above"])), readings)
+    for letter in ("a", "b"):
+        rows = read[(read["reading"] == letter) & read["stage"].isin(list(settings["stages"]))]
+        n.add(f"ProtoChecks{letter.upper()}", str(len(rows)), readings)
+        for outcome in ("confirmed", "contradicted", "not separated"):
+            n.add(f"ProtoChecks{letter.upper()}{camel(outcome)}", str(int((rows["outcome"] == outcome).sum())), readings)
+    n.add("ProtoVariantsA", str(int(read.loc[read["reading"] == "a", "variants"].iloc[0])), readings)
+
+    # ---- searches: budget, spaces, configurations kept
+    n.add("ProtoBudget", str(settings["budget"]), CONFIG)
+    n.add("ProtoTop", str(settings["selection"]["top"]), CONFIG)
+    n.add("ProtoSelectionSeeds", str(1 + len(settings["selection"]["confirm_seeds"])), CONFIG)
+    n.add("ProtoMaxEpochs", str(settings["training"]["max_epochs"]), CONFIG)
+    n.add("ProtoPatience", str(settings["training"]["patience"]), CONFIG)
+    for family, space in settings["spaces"].items():
+        n.add(f"ProtoSpace{camel(family)}", grid_text(space), CONFIG)
+    hetero = settings["comparisons"]["hetero"]
+    n.add("ProtoHeteroArchitectures", str(len(hetero)), CONFIG)
+    for stage, spec in settings["stages"].items():
+        if not spec["search"]:
+            continue
+        name, chosen = f"protocol_{stage}_chosen.csv", f"protocol_{stage}_selection.csv"
+        kept = n.table(name)
+        searched = kept[kept["searched"].astype(bool)]
+        n.add(f"ProtoModelsSearched{camel(stage)}", str(len(searched)), name)
+        n.add(f"ProtoRunsFailed{camel(stage)}", str(int(searched["runs_failed"].fillna(0).sum())), name)
+        failed = searched[searched["runs_failed"].fillna(0) > 0]
+        n.add(f"ProtoFailedModels{camel(stage)}", ", ".join(f"{ARCHITECTURES.get(row['model'], row['model'])}: {int(row['runs_failed'])}"
+                                                           for _, row in failed.iterrows()) or "none", name)
+        graph_models = searched[searched["model"].isin(hetero)]
+        layers = {json.loads(text)["layers"] for text in graph_models["params"]}
+        n.add(f"ProtoHeteroLayers{camel(stage)}", str(layers.pop()) if len(layers) == 1 else "several numbers of", name)
+        n.add(f"ProtoHeteroAtEdge{camel(stage)}", str(int(graph_models["at_edge_of_space"].fillna("").astype(str).str.len().gt(0).sum())), name)
+        runs = n.table(chosen)
+        n.add(f"ProtoRuns{camel(stage)}", count(len(runs)), chosen)
+        n.add(f"ProtoHours{camel(stage)}", plain(runs["seconds"].sum() / 3600, 1), chosen)
+        for _, row in searched.iterrows():
+            values = json.loads(row["params"])
+            n.add(f"ProtoKept{camel(stage)}{camel(row['model'])}", escape(", ".join(f"{key.replace('_', ' ')} {value:g}" for key, value in values.items())), name)
+            n.add(f"ProtoVal{camel(stage)}{camel(row['model'])}", plain(row["val_auc_final_mean"]), name)
+
+    # ---- seeds: AUC of each seed of a heterogeneous variant against the reference
+    by_seed = n.table(signs)
+    suffix = cfg["gnn"]["score_variant"]["suffix"]
+    variants = [name + end for name in hetero for end in ("", suffix)]
+    for (evaluated, setting, subset), rows in by_seed[by_seed["model"].isin(variants)].groupby(["evaluated", "setting", "subset"], sort=False):
+        where = "Study" if setting == cfg["protocol"]["setting"] else camel(setting)
+        name = where + EVALUATED[evaluated] + SUBSETS[subset]
+        n.add(f"SeedsHetero{name}", str(int(rows["n_seeds"].sum())), signs)
+        n.add(f"SeedsHeteroBelow{name}", str(int(rows["seeds_below_reference"].sum())), signs)
+        n.add(f"SeedsHeteroClosest{name}", signed(rows["difference_max"].max()), signs)
+
+    # sentences of the article on the seeds: each seed of HAN above the reference in the check on the following year
+    han = by_seed[(by_seed["setting"] == "rolling") & (by_seed["model"] == "han") & (by_seed["subset"] == "all")]
+    if len(han) != 1 or int(han["seeds_above_reference"].iloc[0]) != int(han["n_seeds"].iloc[0]):
+        raise ValueError("the sentence 'each seed of HAN in the check on the following year is above the reference' no longer holds")
+    n.take()
+
+    # ---- the graph whose vocabulary is counted on the training year
+    statistics, coverage, study = "kg_statistics_inductive.csv", "kg_concept_coverage_inductive.csv", "kg_concept_coverage_holdout.csv"
+    n.add("InductiveConcepts", count(s.value(statistics, "count", kind="node", type="concept")), statistics)
+    for year, year_name in roles(cfg).items():
+        for file, tag in ((coverage, "Inductive"), (study, "Study")):
+            row = s.row(file, year=year)
+            n.add(f"{tag}KeywordsCovered{year_name}", percent(row["share_keywords_in_vocabulary"]), file)
+            n.add(f"{tag}Neighbours{year_name}", plain(row["mean_shares_concept_neighbours"], 0), file)
+            n.add(f"{tag}WithNeighbour{year_name}", percent(row["share_articles_with_a_neighbour"]), file)
+    n.add("InductiveConceptsCarrying", count(s.value(coverage, "concepts_carrying_shares_concept", year=cfg["splits"]["train"][0])), coverage)
+
+    # ---- follow-up of the ablations of the encoders
+    if (table["stage"] == "followup").any():
+        runs_file = "ablations_followup_selection.csv"
+        runs = n.table(runs_file)
+        n.add("FollowupMaxGapFirstRun", plain(runs["max_gap_with_first_run"].max(), 4), runs_file)
+        main = by_seed[(by_seed["setting"] == "followup") & (by_seed["model"] == cfg["followup"]["main"])]
+        for _, row in main.iterrows():
+            name = EVALUATED[row["evaluated"]] + SUBSETS[row["subset"]]
+            n.add(f"FollowupSeedsAbove{name}", str(int(row["seeds_above_reference"])), signs)
+            n.add(f"FollowupSeedMin{name}", signed(row["difference_min"]), signs)
+
+
 def build(s: Sources, cfg: dict) -> dict[str, tuple[str, list[str]]]:
     """Every macro of the paper: {name: (LaTeX text, files read)}."""
     n = Numbers(s)
-    for section in (configuration, corpus, extraction, graph, main_results, paired, ablations, explanations, holdout):
+    for section in (configuration, corpus, inputs, extraction, graph, main_results, paired, ablations, explanations, holdout, sensitivity,
+                    pretrained, protocol):
         section(n, cfg)
     return n.macros

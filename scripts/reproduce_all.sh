@@ -21,6 +21,11 @@
 # once the files are annotated) and the holdout year, ICLR 2026, which has its own chain
 # after this one: scripts/03_run_full.sh years 2026 (about 23 h of GPU), then
 # scripts/07_run_holdout.sh, then the stage `results` again for the summary.
+# The protocol checks read the graph of the holdout year and come after it:
+# scripts/07_run_protocol.sh (graph with the vocabulary of the training year, three stages,
+# ablations of the encoders; several hours of GPU), scripts/08_ablations.py --group followup,
+# then the stage `results` again, which runs scripts/07g_protocol_results.py when their
+# predictions exist.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -38,7 +43,7 @@ describe() {   # stage -> needs | measured duration | what it does
         gnn)        echo "GPU, ${TRAIN_GPU_GB} GiB free | 1 h | heterogeneous GNNs: hyper-parameter search and five seeds" ;;
         ablations)  echo "GPU, ${TRAIN_GPU_GB} GiB free | 25 min | ablations of the main model" ;;
         explain)    echo "CPU, three processes | 2 h 30 | explanations of the main model on the sampled test papers" ;;
-        results)    echo "CPU | 30 min, mostly the bootstrap | tables, intervals, tests, figures, results/RESULTS_SUMMARY.md" ;;
+        results)    echo "CPU | 53 min, mostly the bootstrap (23 min of them for the sensitivity analyses) | tables, intervals, tests, sensitivity analyses, figures, results/RESULTS_SUMMARY.md" ;;
         paper)      echo "pdflatex, latexmk | seconds | numbers of the text read from the result tables, then paper/main.pdf" ;;
         tests)      echo "- | minutes | pytest" ;;
         *)          echo "unknown stage: $1" >&2; return 1 ;;
@@ -120,6 +125,8 @@ stage_annotation() { run uv run python scripts/04_prepare_annotation.py; }
 stage_graph() {
     need_gpu "$SMALL_GPU_GB"
     run uv run python scripts/05a_article_text.py
+    run uv run python scripts/05d_input_dates.py
+    run uv run python scripts/05e_model_dates.py   # dates of the pretrained weights, read on the Hugging Face Hub (network)
     run uv run --project envs/specter2 python scripts/05b_embed_articles.py
     run uv run python scripts/05_build_graph.py
 }
@@ -155,7 +162,11 @@ stage_results() {   # trains nothing; the report of the extraction is written by
     export CUDA_VISIBLE_DEVICES=""
     run uv run python scripts/07b_main_results.py
     run uv run python scripts/08b_ablation_results.py
+    run uv run python scripts/07e_sensitivity.py   # reads the tables of 07b and 08b, and those of the holdout year when they exist
     run uv run python scripts/09b_explain_results.py
+    if [ -f results/predictions/protocol_vocabulary.parquet ]; then   # the protocol checks have their own chain (see above)
+        run uv run python scripts/07g_protocol_results.py
+    fi
     run uv run python scripts/10_consolidate.py
     unset CUDA_VISIBLE_DEVICES
 }

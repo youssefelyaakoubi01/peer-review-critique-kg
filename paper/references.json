@@ -1333,6 +1333,142 @@
   "publisher": "Association for Computational Linguistics",
   "expected_title": "AgentReview"
  },
+ "ebrahimi2025rottenreviews": {
+  "source": "crossref",
+  "doi": "10.1145/3746252.3761506",
+  "type": "proceedings-article",
+  "title": "RottenReviews: Benchmarking Review Quality with Human and LLM-Based Judgments",
+  "authors": [
+   {
+    "family": "Ebrahimi",
+    "given": "Sajad"
+   },
+   {
+    "family": "Sadeghian",
+    "given": "Soroush"
+   },
+   {
+    "family": "Ghorbanpour",
+    "given": "Ali"
+   },
+   {
+    "family": "Arabzadeh",
+    "given": "Negar"
+   },
+   {
+    "family": "Salamat",
+    "given": "Sara"
+   },
+   {
+    "family": "Li",
+    "given": "Muhan"
+   },
+   {
+    "family": "Le",
+    "given": "Hai Son"
+   },
+   {
+    "family": "Bashari",
+    "given": "Mahdi"
+   },
+   {
+    "family": "Bagheri",
+    "given": "Ebrahim"
+   }
+  ],
+  "year": 2025,
+  "venue": "Proceedings of the 34th ACM International Conference on Information and Knowledge Management",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "5642-5649",
+  "publisher": "ACM",
+  "expected_title": "RottenReviews"
+ },
+ "tang2026quality": {
+  "source": "crossref",
+  "doi": "10.1007/s11192-026-05622-0",
+  "type": "journal-article",
+  "title": "Can large language models assess the quality of peer review? An empirical study",
+  "authors": [
+   {
+    "family": "Tang",
+    "given": "Ying"
+   },
+   {
+    "family": "Kang",
+    "given": "Yanlan"
+   },
+   {
+    "family": "Wu",
+    "given": "Sunsi"
+   },
+   {
+    "family": "Zhang",
+    "given": "Ruilin"
+   },
+   {
+    "family": "Sun",
+    "given": "Zhuanlan"
+   }
+  ],
+  "year": 2026,
+  "venue": "Scientometrics",
+  "series": "",
+  "volume": "131",
+  "issue": "4",
+  "pages": "2237-2259",
+  "publisher": "Springer Science and Business Media LLC",
+  "expected_title": "Can large language models assess the quality of peer review"
+ },
+ "he2026pragmatic": {
+  "source": "crossref",
+  "doi": "10.1016/j.ipm.2026.104704",
+  "type": "journal-article",
+  "title": "Toward better pragmatic tagging of peer review: Enhancing benchmark datasets via human-in-the-loop multi-agent collaboration",
+  "authors": [
+   {
+    "family": "He",
+    "given": "Guoxiu"
+   },
+   {
+    "family": "Su",
+    "given": "Tiancheng"
+   },
+   {
+    "family": "Zhang",
+    "given": "Meicong"
+   },
+   {
+    "family": "Yuan",
+    "given": "Jia"
+   },
+   {
+    "family": "Jiang",
+    "given": "Zhuoren"
+   },
+   {
+    "family": "Ma",
+    "given": "Li"
+   },
+   {
+    "family": "Xiao",
+    "given": "Bo"
+   },
+   {
+    "family": "Zhu",
+    "given": "Xiaomin"
+   }
+  ],
+  "year": 2026,
+  "venue": "Information Processing & Management",
+  "series": "",
+  "volume": "63",
+  "issue": "6",
+  "pages": "104704",
+  "publisher": "Elsevier BV",
+  "expected_title": "Toward better pragmatic tagging of peer review"
+ },
  "bharti2026consistentpeer": {
   "source": "crossref",
   "doi": "10.1007/s41060-026-01047-3",
@@ -2464,5 +2600,359 @@
   "pages": "",
   "publisher": "Chapman and Hall/CRC",
   "expected_title": "An Introduction to the Bootstrap"
+ },
+ "aickin1996holm": {
+  "source": "crossref",
+  "doi": "10.2105/ajph.86.5.726",
+  "type": "journal-article",
+  "title": "Adjusting for multiple testing when reporting research results: the Bonferroni vs Holm methods.",
+  "authors": [
+   {
+    "family": "Aickin",
+    "given": "M"
+   },
+   {
+    "family": "Gensler",
+    "given": "H"
+   }
+  ],
+  "year": 1996,
+  "venue": "American Journal of Public Health",
+  "series": "",
+  "volume": "86",
+  "issue": "5",
+  "pages": "726-728",
+  "publisher": "American Public Health Association",
+  "expected_title": "Bonferroni vs Holm methods"
+ },
+ "wen2026decoupling": {
+  "source": "arxiv",
+  "arxiv": "2604.14162",
+  "doi": "10.48550/arxiv.2604.14162",
+  "type": "preprint",
+  "title": "Decoupling Scores and Text: The Politeness Principle in Peer Review",
+  "authors": [
+   {
+    "family": "Wen",
+    "given": "Yingxuan"
+   }
+  ],
+  "year": 2026,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "Decoupling Scores and Text"
+ },
+ "chakraborty2020aspect": {
+  "source": "crossref",
+  "doi": "10.1145/3383583.3398541",
+  "type": "proceedings-article",
+  "title": "Aspect-based Sentiment Analysis of Scientific Reviews",
+  "authors": [
+   {
+    "family": "Chakraborty",
+    "given": "Souvic"
+   },
+   {
+    "family": "Goyal",
+    "given": "Pawan"
+   },
+   {
+    "family": "Mukherjee",
+    "given": "Animesh"
+   }
+  ],
+  "year": 2020,
+  "venue": "Proceedings of the ACM/IEEE Joint Conference on Digital Libraries in 2020",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "207-216",
+  "publisher": "ACM",
+  "expected_title": "Aspect-based Sentiment Analysis of Scientific Reviews"
+ },
+ "fytas2021accepted": {
+  "source": "crossref",
+  "doi": "10.18653/v1/2021.cinlp-1.4",
+  "type": "proceedings-article",
+  "title": "What Makes a Scientific Paper be Accepted for Publication?",
+  "authors": [
+   {
+    "family": "Fytas",
+    "given": "Panagiotis"
+   },
+   {
+    "family": "Rizos",
+    "given": "Georgios"
+   },
+   {
+    "family": "Specia",
+    "given": "Lucia"
+   }
+  ],
+  "year": 2021,
+  "venue": "Proceedings of the First Workshop on Causal Inference and NLP",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "44-60",
+  "publisher": "Association for Computational Linguistics",
+  "expected_title": "What Makes a Scientific Paper be Accepted for Publication"
+ },
+ "heo2026drives": {
+  "source": "arxiv",
+  "arxiv": "2509.25701",
+  "doi": "10.48550/arxiv.2509.25701",
+  "type": "preprint",
+  "title": "What Drives Paper Acceptance? A Process-Centric Analysis of Modern Peer Review",
+  "authors": [
+   {
+    "family": "Jung",
+    "given": "Sangkeun"
+   },
+   {
+    "family": "Pyeon",
+    "given": "Goun"
+   },
+   {
+    "family": "Heo",
+    "given": "Inbum"
+   },
+   {
+    "family": "Ahn",
+    "given": "Hyungjin"
+   }
+  ],
+  "year": 2025,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "What Drives Paper Acceptance"
+ },
+ "konan2026paperscorer": {
+  "source": "arxiv",
+  "arxiv": "2610.31791",
+  "doi": "10.48550/arxiv.2610.31791",
+  "type": "preprint",
+  "title": "PaperScorer: How Predictable Is Paper Acceptance?",
+  "authors": [
+   {
+    "family": "Konan",
+    "given": "Sachin"
+   },
+   {
+    "family": "Liu",
+    "given": "Jonathan"
+   },
+   {
+    "family": "Liu",
+    "given": "Zhuang"
+   }
+  ],
+  "year": 2026,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "PaperScorer"
+ },
+ "huang2026lottery": {
+  "source": "arxiv",
+  "arxiv": "2610.06591",
+  "doi": "10.48550/arxiv.2610.06591",
+  "type": "preprint",
+  "title": "The Review Lottery: Benchmarking an Observational Estimator of Peer-Review Noise (ICLR 2017-2025)",
+  "authors": [
+   {
+    "family": "Huang",
+    "given": "Feilian"
+   }
+  ],
+  "year": 2026,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "The Review Lottery"
+ },
+ "xu2026comparable": {
+  "source": "arxiv",
+  "arxiv": "2607.27209",
+  "doi": "10.48550/arxiv.2607.27209",
+  "type": "preprint",
+  "title": "Reviewer Scores Are Not Comparable Across Research Areas in ML Peer Review",
+  "authors": [
+   {
+    "family": "Xu",
+    "given": "Binyan"
+   },
+   {
+    "family": "Dai",
+    "given": "Xilin"
+   },
+   {
+    "family": "Yang",
+    "given": "Fan"
+   },
+   {
+    "family": "Zhang",
+    "given": "Kehuan"
+   }
+  ],
+  "year": 2026,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "Reviewer Scores Are Not Comparable Across Research Areas"
+ },
+ "xue2022dgcbert": {
+  "source": "crossref",
+  "doi": "10.1016/j.ipm.2022.103216",
+  "type": "journal-article",
+  "title": "Re-examining lexical and semantic attention: Dual-view graph convolutions enhanced BERT for academic paper rating",
+  "authors": [
+   {
+    "family": "Xue",
+    "given": "Zhikai"
+   },
+   {
+    "family": "He",
+    "given": "Guoxiu"
+   },
+   {
+    "family": "Liu",
+    "given": "Jiawei"
+   },
+   {
+    "family": "Jiang",
+    "given": "Zhuoren"
+   },
+   {
+    "family": "Zhao",
+    "given": "Star"
+   },
+   {
+    "family": "Lu",
+    "given": "Wei"
+   }
+  ],
+  "year": 2023,
+  "venue": "Information Processing & Management",
+  "series": "",
+  "volume": "60",
+  "issue": "2",
+  "pages": "103216",
+  "publisher": "Elsevier BV",
+  "expected_title": "Dual-view graph convolutions enhanced BERT"
+ },
+ "cvetkovic2026explainability": {
+  "source": "crossref",
+  "doi": "10.1093/comnet/cnag006",
+  "type": "journal-article",
+  "title": "Assessing the explainability of Graph Neural Networks in random graphs classification task",
+  "authors": [
+   {
+    "family": "Cvetković",
+    "given": "Darja"
+   },
+   {
+    "family": "Mitrović Dankulov",
+    "given": "Marija"
+   }
+  ],
+  "year": 2026,
+  "venue": "Journal of Complex Networks",
+  "series": "",
+  "volume": "14",
+  "issue": "2",
+  "pages": "cnag006",
+  "publisher": "Oxford University Press (OUP)",
+  "expected_title": "Assessing the explainability of Graph Neural Networks"
+ },
+ "li2023xpath": {
+  "source": "crossref",
+  "doi": "10.1609/aaai.v37i7.26040",
+  "type": "journal-article",
+  "title": "Towards Fine-Grained Explainability for Heterogeneous Graph Neural Network",
+  "authors": [
+   {
+    "family": "Li",
+    "given": "Tong"
+   },
+   {
+    "family": "Deng",
+    "given": "Jiale"
+   },
+   {
+    "family": "Shen",
+    "given": "Yanyan"
+   },
+   {
+    "family": "Qiu",
+    "given": "Luyu"
+   },
+   {
+    "family": "Yongxiang",
+    "given": "Huang"
+   },
+   {
+    "family": "Cao",
+    "given": "Caleb Chen"
+   }
+  ],
+  "year": 2023,
+  "venue": "Proceedings of the AAAI Conference on Artificial Intelligence",
+  "series": "",
+  "volume": "37",
+  "issue": "7",
+  "pages": "8640-8647",
+  "publisher": "Association for the Advancement of Artificial Intelligence (AAAI)",
+  "expected_title": "Towards Fine-Grained Explainability for Heterogeneous Graph Neural Network"
+ },
+ "jiang2026metapath": {
+  "source": "arxiv",
+  "arxiv": "2602.08500",
+  "doi": "10.48550/arxiv.2602.08500",
+  "type": "preprint",
+  "title": "Is Meta-Path Attention an Explanation? Evidence of Alignment and Decoupling in Heterogeneous GNNs",
+  "authors": [
+   {
+    "family": "Jiang",
+    "given": "Maiqi"
+   },
+   {
+    "family": "Ali",
+    "given": "Noman"
+   },
+   {
+    "family": "Ding",
+    "given": "Yiran"
+   },
+   {
+    "family": "Zhang",
+    "given": "Yanfu"
+   }
+  ],
+  "year": 2026,
+  "venue": "",
+  "series": "",
+  "volume": "",
+  "issue": "",
+  "pages": "",
+  "publisher": "",
+  "expected_title": "Is Meta-Path Attention an Explanation"
  }
 }

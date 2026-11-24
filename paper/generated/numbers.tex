@@ -35,8 +35,13 @@
 \newcommand{\InsightsUrl}{\url{https://github.com/papercopilot/iclr-insights}}% configs/default.yaml
 \newcommand{\IclrDatasetPaper}{arXiv:2404.08403}% configs/default.yaml
 \newcommand{\IclrDatasetUrl}{\url{https://github.com/berenslab/iclr-dataset}}% configs/default.yaml
-\newcommand{\DataDoi}{\href{https://doi.org/10.5281/zenodo.24485276}{\nolinkurl{10.5281/zenodo.24485276}}}% configs/default.yaml
+\newcommand{\IncidentAnnouncementTitle}{ICLR 2026 Response to Security Incident}% configs/default.yaml
+\newcommand{\IncidentAnnouncementAuthor}{ICLR 2026 Program Chairs}% configs/default.yaml
+\newcommand{\IncidentAnnouncementDate}{3 December 2025}% configs/default.yaml
+\newcommand{\IncidentAnnouncementUrl}{\url{https://blog.iclr.cc/2025/12/03/iclr-2026-response-to-security-incident/}}% configs/default.yaml
+\newcommand{\DataDoi}{\href{https://doi.org/10.5281/zenodo.24505447}{\nolinkurl{10.5281/zenodo.24505447}}}% configs/default.yaml
 \newcommand{\DataLicence}{CC BY 4.0}% configs/default.yaml
+\newcommand{\DataVersion}{2}% configs/default.yaml
 \newcommand{\CodeUrl}{\url{https://github.com/youssefelyaakoubi01/peer-review-critique-kg}}% configs/default.yaml
 \newcommand{\GridLr}{C \{0.1, 1, 10\}}% configs/default.yaml
 \newcommand{\GridMlp}{hidden \{128, 256\}; dropout \{0.2, 0.5\}; lr \{0.001, 0.01\}; weight decay \{0.0001, 0.01\}}% configs/default.yaml
@@ -75,21 +80,28 @@
 \newcommand{\SubmissionsTrainYear}{7\,351}% results/tables/clean_report_by_year.csv
 \newcommand{\DecidedTrainYear}{5\,780}% results/tables/clean_report_by_year.csv
 \newcommand{\WithdrawnTrainYear}{1\,661}% results/tables/clean_report_by_year.csv
+\newcommand{\WithdrawnBeforeDecisionTrainYear}{1\,571}% results/tables/clean_report_by_year.csv
+\newcommand{\DecidedNotKeptTrainYear}{246}% results/tables/clean_report_by_year.csv
 \newcommand{\AllReviewsTrainYear}{27\,962}% results/tables/clean_report_by_year.csv
 \newcommand{\InitialReviewsTrainYear}{26\,812}% results/tables/clean_report_by_year.csv
 \newcommand{\ModifiedTrainYear}{21.7\,\%}% results/tables/clean_report_by_year.csv
 \newcommand{\SubmissionsTestYear}{11\,602}% results/tables/clean_report_by_year.csv
 \newcommand{\DecidedTestYear}{8\,727}% results/tables/clean_report_by_year.csv
 \newcommand{\WithdrawnTestYear}{2\,992}% results/tables/clean_report_by_year.csv
+\newcommand{\WithdrawnBeforeDecisionTestYear}{2\,875}% results/tables/clean_report_by_year.csv
+\newcommand{\DecidedNotKeptTestYear}{72}% results/tables/clean_report_by_year.csv
 \newcommand{\AllReviewsTestYear}{46\,712}% results/tables/clean_report_by_year.csv
 \newcommand{\InitialReviewsTestYear}{46\,317}% results/tables/clean_report_by_year.csv
 \newcommand{\ModifiedTestYear}{27.6\,\%}% results/tables/clean_report_by_year.csv
 \newcommand{\SubmissionsHoldYear}{18\,906}% results/tables/clean_report_by_year.csv
 \newcommand{\DecidedHoldYear}{14\,173}% results/tables/clean_report_by_year.csv
 \newcommand{\WithdrawnHoldYear}{5\,210}% results/tables/clean_report_by_year.csv
+\newcommand{\WithdrawnBeforeDecisionHoldYear}{4\,733}% results/tables/clean_report_by_year.csv
+\newcommand{\DecidedNotKeptHoldYear}{4}% results/tables/clean_report_by_year.csv
 \newcommand{\AllReviewsHoldYear}{73\,213}% results/tables/clean_report_by_year.csv
 \newcommand{\InitialReviewsHoldYear}{73\,208}% results/tables/clean_report_by_year.csv
 \newcommand{\ModifiedHoldYear}{7.7\,\%}% results/tables/clean_report_by_year.csv
+\newcommand{\ReviewsCheckedTrainYear}{28\,028}% results/tables/initial_scores_check_full.csv
 \newcommand{\ScoresMatchedTrainYear}{26\,878}% results/tables/initial_scores_check_full.csv
 \newcommand{\ScoresMatchedShareTrainYear}{95.9\,\%}% results/tables/initial_scores_check_full.csv
 \newcommand{\ScoresEqualFinalTrainYear}{100\,\%}% results/tables/initial_scores_check_full.csv
@@ -98,6 +110,7 @@
 \newcommand{\RatingLoweredTrainYear}{359}% results/tables/initial_scores_check_full.csv
 \newcommand{\MarkerModifiedTrainYear}{1.80\,\%}% results/tables/kg_post_rebuttal_markers.csv
 \newcommand{\MarkerUnmodifiedTrainYear}{0.47\,\%}% results/tables/kg_post_rebuttal_markers.csv
+\newcommand{\ReviewsCheckedTestYear}{46\,748}% results/tables/initial_scores_check_full.csv
 \newcommand{\ScoresMatchedTestYear}{46\,353}% results/tables/initial_scores_check_full.csv
 \newcommand{\ScoresMatchedShareTestYear}{99.2\,\%}% results/tables/initial_scores_check_full.csv
 \newcommand{\ScoresEqualFinalTestYear}{100\,\%}% results/tables/initial_scores_check_full.csv
@@ -106,6 +119,7 @@
 \newcommand{\RatingLoweredTestYear}{640}% results/tables/initial_scores_check_full.csv
 \newcommand{\MarkerModifiedTestYear}{1.65\,\%}% results/tables/kg_post_rebuttal_markers.csv
 \newcommand{\MarkerUnmodifiedTestYear}{0.45\,\%}% results/tables/kg_post_rebuttal_markers.csv
+\newcommand{\PostRebuttalUnmodified}{2\,802}% results/tables/kg_post_rebuttal_markers.csv
 \newcommand{\ZoneLow}{5.00}% results/tables/borderline_definition.csv
 \newcommand{\ZoneHigh}{6.25}% results/tables/borderline_definition.csv
 \newcommand{\BorderlineVal}{382}% results/tables/main_results.csv
@@ -113,6 +127,40 @@
 \newcommand{\BorderlineTest}{4\,049}% results/tables/main_results.csv
 \newcommand{\BorderlineShareTest}{46.8\,\%}% results/tables/main_results.csv
 \newcommand{\TestWithoutText}{1\,115}% results/tables/baselines.csv
+\newcommand{\FirstDecisionTrainYear}{16 January 2024}% results/tables/input_dates.csv
+\newcommand{\TextCommittedTrainYear}{9 February 2024}% results/tables/input_dates.csv
+\newcommand{\TextCommitGapTrainYear}{24}% results/tables/input_dates.csv
+\newcommand{\ArchiveSubmissionsTrainYear}{7\,304}% results/tables/input_dates.csv
+\newcommand{\ArchiveWithDecisionTrainYear}{0}% results/tables/input_dates.csv
+\newcommand{\ArchiveLinksAcceptedTrainYear}{4.8\,\%}% results/tables/article_text_source.csv
+\newcommand{\CurrentLinksAcceptedTrainYear}{22.8\,\%}% results/tables/article_text_source.csv
+\newcommand{\TextFoundAcceptedTrainYear}{100.0\,\%}% results/tables/article_text_source.csv
+\newcommand{\ArchiveLinksRejectedTrainYear}{4.1\,\%}% results/tables/article_text_source.csv
+\newcommand{\CurrentLinksRejectedTrainYear}{4.1\,\%}% results/tables/article_text_source.csv
+\newcommand{\TextFoundRejectedTrainYear}{100.0\,\%}% results/tables/article_text_source.csv
+\newcommand{\FirstDecisionTestYear}{22 January 2025}% results/tables/input_dates.csv
+\newcommand{\TextCommittedTestYear}{16 October 2024}% results/tables/input_dates.csv
+\newcommand{\TextCommitGapTestYear}{98}% results/tables/input_dates.csv
+\newcommand{\ArchiveSubmissionsTestYear}{10\,079}% results/tables/input_dates.csv
+\newcommand{\ArchiveWithDecisionTestYear}{79}% results/tables/input_dates.csv
+\newcommand{\ArchiveLinksAcceptedTestYear}{5.5\,\%}% results/tables/article_text_source.csv
+\newcommand{\CurrentLinksAcceptedTestYear}{24.8\,\%}% results/tables/article_text_source.csv
+\newcommand{\TextFoundAcceptedTestYear}{84.9\,\%}% results/tables/article_text_source.csv
+\newcommand{\ArchiveLinksRejectedTestYear}{4.9\,\%}% results/tables/article_text_source.csv
+\newcommand{\CurrentLinksRejectedTestYear}{5.4\,\%}% results/tables/article_text_source.csv
+\newcommand{\TextFoundRejectedTestYear}{88.8\,\%}% results/tables/article_text_source.csv
+\newcommand{\FirstDecisionHoldYear}{26 January 2026}% results/tables/input_dates.csv
+\newcommand{\TextCommittedHoldYear}{10 October 2025}% results/tables/input_dates.csv
+\newcommand{\TextCommitGapHoldYear}{108}% results/tables/input_dates.csv
+\newcommand{\ArchiveSubmissionsHoldYear}{19\,793}% results/tables/input_dates.csv
+\newcommand{\ArchiveWithDecisionHoldYear}{120}% results/tables/input_dates.csv
+\newcommand{\ArchiveLinksAcceptedHoldYear}{7.2\,\%}% results/tables/article_text_source.csv
+\newcommand{\CurrentLinksAcceptedHoldYear}{23.0\,\%}% results/tables/article_text_source.csv
+\newcommand{\TextFoundAcceptedHoldYear}{100.0\,\%}% results/tables/article_text_source.csv
+\newcommand{\ArchiveLinksRejectedHoldYear}{6.5\,\%}% results/tables/article_text_source.csv
+\newcommand{\CurrentLinksRejectedHoldYear}{6.6\,\%}% results/tables/article_text_source.csv
+\newcommand{\TextFoundRejectedHoldYear}{100.0\,\%}% results/tables/article_text_source.csv
+\newcommand{\YearsTextCommittedAfterDecisions}{1}% results/tables/input_dates.csv
 \newcommand{\LlmReviews}{73\,129}% results/tables/llm_full_v3_summary.csv
 \newcommand{\LlmReviewsWithCritiques}{73\,005}% results/tables/llm_full_v3_summary.csv
 \newcommand{\LlmCritiques}{577\,815}% results/tables/llm_full_v3_summary.csv
@@ -956,3 +1004,1167 @@
 \newcommand{\AucHoldGcnSecondRun}{0.8113}% results/tables/holdout_2026_second_run.csv
 \newcommand{\ReadingsChecked}{6}% results/tables/holdout_2026_readings.csv
 \newcommand{\ReadingsHolding}{6}% results/tables/holdout_2026_readings.csv
+\newcommand{\ConceptsBelowMin}{2\,754}% results/tables/kg_concept_scope.csv
+\newcommand{\ConceptsBelowMinShare}{54.3\,\%}% results/tables/kg_concept_scope.csv
+\newcommand{\ConceptsAbsentTrain}{1\,073}% results/tables/kg_concept_scope.csv
+\newcommand{\ConceptsStatusChanges}{28}% results/tables/kg_concept_scope.csv
+\newcommand{\ConceptLinksTrainBelowMin}{1\,681}% results/tables/kg_concept_scope.csv
+\newcommand{\SharesPairsTrainTrain}{68\,656}% results/tables/kg_shares_concept_by_year.csv
+\newcommand{\SharesPairsTrainTest}{175\,575}% results/tables/kg_shares_concept_by_year.csv
+\newcommand{\SharesPairsTestTest}{141\,283}% results/tables/kg_shares_concept_by_year.csv
+\newcommand{\WithTrainNeighbourTrainYear}{82.0\,\%}% results/tables/kg_concept_neighbours.csv
+\newcommand{\WithNeighbourTrainYear}{85.7\,\%}% results/tables/kg_concept_neighbours.csv
+\newcommand{\WithTrainNeighbourTestYear}{70.9\,\%}% results/tables/kg_concept_neighbours.csv
+\newcommand{\WithNeighbourTestYear}{75.3\,\%}% results/tables/kg_concept_neighbours.csv
+\newcommand{\AucMeanRatingValAll}{0.876}% results/tables/sensitivity_mean_rating.csv
+\newcommand{\AucCiMeanRatingValAll}{[0.852, 0.897]}% results/tables/sensitivity_mean_rating.csv
+\newcommand{\AucMeanRatingValBorder}{0.729}% results/tables/sensitivity_mean_rating.csv
+\newcommand{\AucCiMeanRatingValBorder}{[0.682, 0.776]}% results/tables/sensitivity_mean_rating.csv
+\newcommand{\AucMeanRatingTestAll}{0.870}% results/tables/sensitivity_mean_rating.csv
+\newcommand{\AucCiMeanRatingTestAll}{[0.863, 0.878]}% results/tables/sensitivity_mean_rating.csv
+\newcommand{\AucMeanRatingTestBorder}{0.707}% results/tables/sensitivity_mean_rating.csv
+\newcommand{\AucCiMeanRatingTestBorder}{[0.692, 0.723]}% results/tables/sensitivity_mean_rating.csv
+\newcommand{\SensPairHgtScoresHgtAll}{\ensuremath{+}0.0002 [\ensuremath{-}0.0034, \ensuremath{+}0.0037]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPHgtScoresHgtAll}{\ensuremath{p = 0.948}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmHgtScoresHgtAll}{\ensuremath{p = 1.000}}% results/tables/tests_holm.csv
+\newcommand{\SensPairHanScoresHanAll}{\ensuremath{+}0.0033 [\ensuremath{+}0.0013, \ensuremath{+}0.0056]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPHanScoresHanAll}{\ensuremath{p = 0.015}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmHanScoresHanAll}{\ensuremath{p = 0.075}}% results/tables/tests_holm.csv
+\newcommand{\SensPairRgcnScoresRgcnAll}{\ensuremath{+}0.0362 [\ensuremath{+}0.0317, \ensuremath{+}0.0413]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPRgcnScoresRgcnAll}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmRgcnScoresRgcnAll}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairHanBHanAll}{\ensuremath{-}0.0013 [\ensuremath{-}0.0023, \ensuremath{-}0.0004]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPHanBHanAll}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmHanBHanAll}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairRgcnBRgcnAll}{\ensuremath{+}0.0054 [\ensuremath{+}0.0036, \ensuremath{+}0.0072]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPRgcnBRgcnAll}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmRgcnBRgcnAll}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairHgtTextMlpAll}{\ensuremath{+}0.2488 [\ensuremath{+}0.2373, \ensuremath{+}0.2609]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPHgtTextMlpAll}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmHgtTextMlpAll}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairHanTextMlpAll}{\ensuremath{+}0.2463 [\ensuremath{+}0.2344, \ensuremath{+}0.2581]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPHanTextMlpAll}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmHanTextMlpAll}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairRgcnTextMlpAll}{\ensuremath{+}0.2103 [\ensuremath{+}0.1991, \ensuremath{+}0.2226]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPRgcnTextMlpAll}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmRgcnTextMlpAll}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairScoresRatingLrMeanInitialRatingAll}{\ensuremath{+}0.0032 [\ensuremath{+}0.0017, \ensuremath{+}0.0047]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPScoresRatingLrMeanInitialRatingAll}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmScoresRatingLrMeanInitialRatingAll}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairHgtMeanInitialRatingAll}{\ensuremath{-}0.0121 [\ensuremath{-}0.0167, \ensuremath{-}0.0074]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPHgtMeanInitialRatingAll}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmHgtMeanInitialRatingAll}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairHanMeanInitialRatingAll}{\ensuremath{-}0.0146 [\ensuremath{-}0.0191, \ensuremath{-}0.0100]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPHanMeanInitialRatingAll}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmHanMeanInitialRatingAll}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairRgcnMeanInitialRatingAll}{\ensuremath{-}0.0505 [\ensuremath{-}0.0571, \ensuremath{-}0.0441]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPRgcnMeanInitialRatingAll}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmRgcnMeanInitialRatingAll}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairHgtScoresHgtBorder}{\ensuremath{-}0.0055 [\ensuremath{-}0.0152, \ensuremath{+}0.0040]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPHgtScoresHgtBorder}{\ensuremath{p = 0.299}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmHgtScoresHgtBorder}{\ensuremath{p = 0.971}}% results/tables/tests_holm.csv
+\newcommand{\SensPairHanScoresHanBorder}{\ensuremath{+}0.0024 [\ensuremath{-}0.0043, \ensuremath{+}0.0092]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPHanScoresHanBorder}{\ensuremath{p = 0.662}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmHanScoresHanBorder}{\ensuremath{p = 1.000}}% results/tables/tests_holm.csv
+\newcommand{\SensPairRgcnScoresRgcnBorder}{\ensuremath{+}0.0335 [\ensuremath{+}0.0215, \ensuremath{+}0.0445]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPRgcnScoresRgcnBorder}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmRgcnScoresRgcnBorder}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairHanBHanBorder}{\ensuremath{-}0.0034 [\ensuremath{-}0.0062, \ensuremath{-}0.0006]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPHanBHanBorder}{\ensuremath{p = 0.002}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmHanBHanBorder}{\ensuremath{p = 0.014}}% results/tables/tests_holm.csv
+\newcommand{\SensPairRgcnBRgcnBorder}{\ensuremath{+}0.0042 [\ensuremath{-}0.0003, \ensuremath{+}0.0083]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPRgcnBRgcnBorder}{\ensuremath{p = 0.003}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmRgcnBRgcnBorder}{\ensuremath{p = 0.022}}% results/tables/tests_holm.csv
+\newcommand{\SensPairHgtTextMlpBorder}{\ensuremath{+}0.1603 [\ensuremath{+}0.1421, \ensuremath{+}0.1789]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPHgtTextMlpBorder}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmHgtTextMlpBorder}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairHanTextMlpBorder}{\ensuremath{+}0.1488 [\ensuremath{+}0.1299, \ensuremath{+}0.1674]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPHanTextMlpBorder}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmHanTextMlpBorder}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairRgcnTextMlpBorder}{\ensuremath{+}0.1117 [\ensuremath{+}0.0924, \ensuremath{+}0.1309]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPRgcnTextMlpBorder}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmRgcnTextMlpBorder}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairScoresRatingLrMeanInitialRatingBorder}{\ensuremath{+}0.0144 [\ensuremath{+}0.0085, \ensuremath{+}0.0204]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPScoresRatingLrMeanInitialRatingBorder}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmScoresRatingLrMeanInitialRatingBorder}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensPairHgtMeanInitialRatingBorder}{\ensuremath{-}0.0126 [\ensuremath{-}0.0260, \ensuremath{+}0.0017]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPHgtMeanInitialRatingBorder}{\ensuremath{p = 0.243}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmHgtMeanInitialRatingBorder}{\ensuremath{p = 0.971}}% results/tables/tests_holm.csv
+\newcommand{\SensPairHanMeanInitialRatingBorder}{\ensuremath{-}0.0241 [\ensuremath{-}0.0384, \ensuremath{-}0.0097]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPHanMeanInitialRatingBorder}{\ensuremath{p = 0.004}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmHanMeanInitialRatingBorder}{\ensuremath{p = 0.024}}% results/tables/tests_holm.csv
+\newcommand{\SensPairRgcnMeanInitialRatingBorder}{\ensuremath{-}0.0612 [\ensuremath{-}0.0780, \ensuremath{-}0.0452]}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairPRgcnMeanInitialRatingBorder}{\ensuremath{p < 0.001}}% results/tables/sensitivity_pairs.csv
+\newcommand{\SensPairHolmRgcnMeanInitialRatingBorder}{\ensuremath{p < 0.001}}% results/tables/tests_holm.csv
+\newcommand{\SensTextTextScoresMlpText}{\ensuremath{+}0.0034 [\ensuremath{+}0.0009, \ensuremath{+}0.0059]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextGcnText}{\ensuremath{-}0.0415 [\ensuremath{-}0.0478, \ensuremath{-}0.0352]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextRgcnText}{\ensuremath{-}0.0566 [\ensuremath{-}0.0637, \ensuremath{-}0.0495]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextHanText}{\ensuremath{-}0.0166 [\ensuremath{-}0.0213, \ensuremath{-}0.0117]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextHgtText}{\ensuremath{-}0.0131 [\ensuremath{-}0.0175, \ensuremath{-}0.0084]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextHgtScoresText}{\ensuremath{-}0.0124 [\ensuremath{-}0.0171, \ensuremath{-}0.0078]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextHgtBText}{\ensuremath{-}0.0161 [\ensuremath{-}0.0202, \ensuremath{-}0.0115]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextTextScoresMlpBorderText}{\ensuremath{+}0.0038 [\ensuremath{-}0.0049, \ensuremath{+}0.0132]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextGcnBorderText}{\ensuremath{-}0.0618 [\ensuremath{-}0.0786, \ensuremath{-}0.0445]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextRgcnBorderText}{\ensuremath{-}0.0789 [\ensuremath{-}0.0974, \ensuremath{-}0.0593]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextHanBorderText}{\ensuremath{-}0.0358 [\ensuremath{-}0.0524, \ensuremath{-}0.0188]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextHgtBorderText}{\ensuremath{-}0.0238 [\ensuremath{-}0.0389, \ensuremath{-}0.0076]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextHgtScoresBorderText}{\ensuremath{-}0.0276 [\ensuremath{-}0.0421, \ensuremath{-}0.0136]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextHgtBBorderText}{\ensuremath{-}0.0306 [\ensuremath{-}0.0450, \ensuremath{-}0.0152]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensAsRejectHgtAll}{\ensuremath{-}0.0144 [\ensuremath{-}0.0180, \ensuremath{-}0.0106]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensAsRejectHgtBorder}{\ensuremath{-}0.0304 [\ensuremath{-}0.0429, \ensuremath{-}0.0170]}% results/tables/sensitivity_subgroups.csv
+\newcommand{\PapersTestText}{7\,540}% results/tables/sensitivity_subgroups.csv
+\newcommand{\PapersTestBorderText}{3\,480}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextGnnText}{5}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextGnnBelowText}{5}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextGnnBorderText}{5}% results/tables/sensitivity_subgroups.csv
+\newcommand{\SensTextGnnBelowBorderText}{5}% results/tables/sensitivity_subgroups.csv
+\newcommand{\ZoneVariants}{4}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZoneVariantsEvaluated}{4}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZoneStudy}{[5.00, 6.25)}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZonePapersStudy}{4\,049}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZoneShareStudy}{46.8\,\%}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZoneWideBins}{[5.00, 6.00)}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZonePapersWideBins}{3\,476}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZoneShareWideBins}{40.2\,\%}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZoneNarrowRates}{[5.00, 6.00)}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZonePapersNarrowRates}{3\,476}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZoneShareNarrowRates}{40.2\,\%}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZoneWideRates}{[4.50, 6.50)}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZonePapersWideRates}{6\,010}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZoneShareWideRates}{69.4\,\%}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZoneMorePapers}{[5.00, 6.25)}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZonePapersMorePapers}{4\,049}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZoneShareMorePapers}{46.8\,\%}% results/tables/sensitivity_borderline_zones.csv
+\newcommand{\ZoneDeltaWideBinsTextScoresMlp}{\ensuremath{+}0.0018 [\ensuremath{-}0.0084, \ensuremath{+}0.0118]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaWideBinsGcn}{\ensuremath{-}0.0522 [\ensuremath{-}0.0703, \ensuremath{-}0.0341]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaWideBinsRgcn}{\ensuremath{-}0.0724 [\ensuremath{-}0.0917, \ensuremath{-}0.0524]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaWideBinsHan}{\ensuremath{-}0.0399 [\ensuremath{-}0.0574, \ensuremath{-}0.0224]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaWideBinsHgt}{\ensuremath{-}0.0285 [\ensuremath{-}0.0430, \ensuremath{-}0.0132]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaWideBinsHgtScores}{\ensuremath{-}0.0377 [\ensuremath{-}0.0550, \ensuremath{-}0.0213]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaWideBinsHgtB}{\ensuremath{-}0.0333 [\ensuremath{-}0.0483, \ensuremath{-}0.0174]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaNarrowRatesTextScoresMlp}{\ensuremath{+}0.0018 [\ensuremath{-}0.0084, \ensuremath{+}0.0118]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaNarrowRatesGcn}{\ensuremath{-}0.0522 [\ensuremath{-}0.0703, \ensuremath{-}0.0341]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaNarrowRatesRgcn}{\ensuremath{-}0.0724 [\ensuremath{-}0.0917, \ensuremath{-}0.0524]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaNarrowRatesHan}{\ensuremath{-}0.0399 [\ensuremath{-}0.0574, \ensuremath{-}0.0224]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaNarrowRatesHgt}{\ensuremath{-}0.0285 [\ensuremath{-}0.0430, \ensuremath{-}0.0132]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaNarrowRatesHgtScores}{\ensuremath{-}0.0377 [\ensuremath{-}0.0550, \ensuremath{-}0.0213]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaNarrowRatesHgtB}{\ensuremath{-}0.0333 [\ensuremath{-}0.0483, \ensuremath{-}0.0174]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaWideRatesTextScoresMlp}{\ensuremath{+}0.0048 [\ensuremath{+}0.0001, \ensuremath{+}0.0093]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaWideRatesGcn}{\ensuremath{-}0.0534 [\ensuremath{-}0.0637, \ensuremath{-}0.0433]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaWideRatesRgcn}{\ensuremath{-}0.0677 [\ensuremath{-}0.0786, \ensuremath{-}0.0565]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaWideRatesHan}{\ensuremath{-}0.0283 [\ensuremath{-}0.0372, \ensuremath{-}0.0195]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaWideRatesHgt}{\ensuremath{-}0.0215 [\ensuremath{-}0.0299, \ensuremath{-}0.0136]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaWideRatesHgtScores}{\ensuremath{-}0.0221 [\ensuremath{-}0.0303, \ensuremath{-}0.0147]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaWideRatesHgtB}{\ensuremath{-}0.0259 [\ensuremath{-}0.0340, \ensuremath{-}0.0178]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaMorePapersTextScoresMlp}{\ensuremath{+}0.0027 [\ensuremath{-}0.0054, \ensuremath{+}0.0112]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaMorePapersGcn}{\ensuremath{-}0.0606 [\ensuremath{-}0.0753, \ensuremath{-}0.0442]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaMorePapersRgcn}{\ensuremath{-}0.0755 [\ensuremath{-}0.0919, \ensuremath{-}0.0596]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaMorePapersHan}{\ensuremath{-}0.0384 [\ensuremath{-}0.0525, \ensuremath{-}0.0244]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaMorePapersHgt}{\ensuremath{-}0.0269 [\ensuremath{-}0.0396, \ensuremath{-}0.0132]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaMorePapersHgtScores}{\ensuremath{-}0.0324 [\ensuremath{-}0.0451, \ensuremath{-}0.0193]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneDeltaMorePapersHgtB}{\ensuremath{-}0.0331 [\ensuremath{-}0.0462, \ensuremath{-}0.0198]}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneGnnPairs}{20}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneGnnBelow}{20}% results/tables/sensitivity_borderline.csv
+\newcommand{\ZoneAnyAbove}{1}% results/tables/sensitivity_borderline.csv
+\newcommand{\HolmMainVsInitialRatingTests}{44}% results/tables/tests_holm.csv
+\newcommand{\HolmMainVsInitialRatingRejects}{34}% results/tables/tests_holm.csv
+\newcommand{\HolmMainVsInitialRatingRejectsAfter}{32}% results/tables/tests_holm.csv
+\newcommand{\HolmHeteroVsGcnTests}{6}% results/tables/tests_holm.csv
+\newcommand{\HolmHeteroVsGcnRejects}{5}% results/tables/tests_holm.csv
+\newcommand{\HolmHeteroVsGcnRejectsAfter}{5}% results/tables/tests_holm.csv
+\newcommand{\HolmCritiqueCountsTests}{6}% results/tables/tests_holm.csv
+\newcommand{\HolmCritiqueCountsRejects}{2}% results/tables/tests_holm.csv
+\newcommand{\HolmCritiqueCountsRejectsAfter}{2}% results/tables/tests_holm.csv
+\newcommand{\HolmAblationsTests}{14}% results/tables/tests_holm.csv
+\newcommand{\HolmAblationsRejects}{9}% results/tables/tests_holm.csv
+\newcommand{\HolmAblationsRejectsAfter}{9}% results/tables/tests_holm.csv
+\newcommand{\HolmHoldoutVsInitialRatingTests}{32}% results/tables/tests_holm.csv
+\newcommand{\HolmHoldoutVsInitialRatingRejects}{26}% results/tables/tests_holm.csv
+\newcommand{\HolmHoldoutVsInitialRatingRejectsAfter}{25}% results/tables/tests_holm.csv
+\newcommand{\HolmHoldoutPairedTests}{12}% results/tables/tests_holm.csv
+\newcommand{\HolmHoldoutPairedRejects}{12}% results/tables/tests_holm.csv
+\newcommand{\HolmHoldoutPairedRejectsAfter}{12}% results/tables/tests_holm.csv
+\newcommand{\HolmPairsAddedAfterwardsTests}{24}% results/tables/tests_holm.csv
+\newcommand{\HolmPairsAddedAfterwardsRejects}{20}% results/tables/tests_holm.csv
+\newcommand{\HolmPairsAddedAfterwardsRejectsAfter}{19}% results/tables/tests_holm.csv
+\newcommand{\HolmFamilies}{7}% configs/default.yaml
+\newcommand{\HolmTests}{138}% results/tables/tests_holm.csv
+\newcommand{\HolmRejects}{108}% results/tables/tests_holm.csv
+\newcommand{\HolmRejectsAfter}{104}% results/tables/tests_holm.csv
+\newcommand{\HolmLost}{4}% results/tables/tests_holm.csv
+\newcommand{\HolmHeteroAll}{12}% results/tables/tests_holm.csv
+\newcommand{\HolmHeteroRejectsAfterAll}{12}% results/tables/tests_holm.csv
+\newcommand{\HolmHeteroBorder}{12}% results/tables/tests_holm.csv
+\newcommand{\HolmHeteroRejectsAfterBorder}{12}% results/tables/tests_holm.csv
+\newcommand{\WeightsDateArticleEncoder}{16 February 2023}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDaysArticleEncoderTrainYear}{238}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDaysArticleEncoderTestYear}{607}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDaysArticleEncoderHoldYear}{971}% results/tables/pretrained_model_dates.csv
+\newcommand{\YearsWeightsBeforeReviewsArticleEncoder}{3}% results/tables/pretrained_model_dates.csv
+\newcommand{\YearsWeightsBeforeDecisionsArticleEncoder}{3}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDateArticleAdapter}{17 February 2023}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDaysArticleAdapterTrainYear}{237}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDaysArticleAdapterTestYear}{606}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDaysArticleAdapterHoldYear}{970}% results/tables/pretrained_model_dates.csv
+\newcommand{\YearsWeightsBeforeReviewsArticleAdapter}{3}% results/tables/pretrained_model_dates.csv
+\newcommand{\YearsWeightsBeforeDecisionsArticleAdapter}{3}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDateTextEncoder}{30 August 2021}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDaysTextEncoderTrainYear}{773}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDaysTextEncoderTestYear}{1142}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDaysTextEncoderHoldYear}{1506}% results/tables/pretrained_model_dates.csv
+\newcommand{\YearsWeightsBeforeReviewsTextEncoder}{3}% results/tables/pretrained_model_dates.csv
+\newcommand{\YearsWeightsBeforeDecisionsTextEncoder}{3}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDateLlm}{1 May 2025}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDaysLlmTrainYear}{567}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDaysLlmTestYear}{198}% results/tables/pretrained_model_dates.csv
+\newcommand{\WeightsDaysLlmHoldYear}{166}% results/tables/pretrained_model_dates.csv
+\newcommand{\YearsWeightsBeforeReviewsLlm}{1}% results/tables/pretrained_model_dates.csv
+\newcommand{\YearsWeightsBeforeDecisionsLlm}{1}% results/tables/pretrained_model_dates.csv
+\newcommand{\FirstReviewTrainYear}{12 October 2023}% results/tables/pretrained_model_dates.csv
+\newcommand{\FirstReviewTestYear}{15 October 2024}% results/tables/pretrained_model_dates.csv
+\newcommand{\FirstReviewHoldYear}{14 October 2025}% results/tables/pretrained_model_dates.csv
+\newcommand{\TextEncoderTensorsCompared}{200}% results/tables/pretrained_model_dates.csv
+\newcommand{\YearsStudied}{3}% configs/default.yaml
+\newcommand{\SecondLlm}{\texttt{deepseek-flash}}% configs/default.yaml
+\newcommand{\SecondLlmVersion}{DeepSeek-V4.1-Flash-1017}% configs/default.yaml
+\newcommand{\ArchiveDecisionValuesTestYear}{desk rejected: 14; withdrawn: 65}% results/tables/input_dates.csv
+\newcommand{\ArchiveDecisionValuesHoldYear}{withdrawn: 120}% results/tables/input_dates.csv
+\newcommand{\ProtoVocabularyTestGcnRefAll}{\ensuremath{-}0.0449 [\ensuremath{-}0.0508, \ensuremath{-}0.0390]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestGcnRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestRgcnRefAll}{\ensuremath{-}0.0633 [\ensuremath{-}0.0706, \ensuremath{-}0.0564]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestRgcnRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestRgcnScoresRefAll}{\ensuremath{-}0.0205 [\ensuremath{-}0.0250, \ensuremath{-}0.0160]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestRgcnScoresRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHanRefAll}{\ensuremath{-}0.0178 [\ensuremath{-}0.0223, \ensuremath{-}0.0132]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHanRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHanScoresRefAll}{\ensuremath{-}0.0145 [\ensuremath{-}0.0188, \ensuremath{-}0.0103]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHanScoresRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHgtRefAll}{\ensuremath{-}0.0171 [\ensuremath{-}0.0214, \ensuremath{-}0.0129]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHgtRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHgtScoresRefAll}{\ensuremath{-}0.0219 [\ensuremath{-}0.0265, \ensuremath{-}0.0170]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHgtScoresRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestGcnStudyAll}{\ensuremath{-}0.0024 [\ensuremath{-}0.0060, \ensuremath{+}0.0013]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestRgcnStudyAll}{\ensuremath{-}0.0096 [\ensuremath{-}0.0130, \ensuremath{-}0.0061]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestRgcnScoresStudyAll}{\ensuremath{-}0.0030 [\ensuremath{-}0.0047, \ensuremath{-}0.0014]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHanStudyAll}{0.0000 [\ensuremath{-}0.0001, \ensuremath{+}0.0001]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHanScoresStudyAll}{\ensuremath{-}0.0001 [\ensuremath{-}0.0002, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHgtStudyAll}{\ensuremath{-}0.0018 [\ensuremath{-}0.0034, \ensuremath{-}0.0004]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHgtScoresStudyAll}{\ensuremath{-}0.0069 [\ensuremath{-}0.0089, \ensuremath{-}0.0047]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestRgcnGcnAll}{\ensuremath{-}0.0184 [\ensuremath{-}0.0239, \ensuremath{-}0.0128]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHanGcnAll}{\ensuremath{+}0.0271 [\ensuremath{+}0.0226, \ensuremath{+}0.0317]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHgtGcnAll}{\ensuremath{+}0.0278 [\ensuremath{+}0.0238, \ensuremath{+}0.0321]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresAllLrRefAll}{\ensuremath{+}0.0007 [\ensuremath{-}0.0013, \ensuremath{+}0.0026]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestScoresAllLrRefAll}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestCritiquesLrRefAll}{\ensuremath{-}0.1133 [\ensuremath{-}0.1222, \ensuremath{-}0.1043]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestCritiquesLrRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresCritiquesLrRefAll}{\ensuremath{-}0.0007 [\ensuremath{-}0.0032, \ensuremath{+}0.0019]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestScoresCritiquesLrRefAll}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresAllGbtRefAll}{\ensuremath{-}0.0006 [\ensuremath{-}0.0027, \ensuremath{+}0.0015]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestScoresAllGbtRefAll}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresCritiquesGbtRefAll}{\ensuremath{+}0.0002 [\ensuremath{-}0.0024, \ensuremath{+}0.0028]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestScoresCritiquesGbtRefAll}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestTextMlpRefAll}{\ensuremath{-}0.2640 [\ensuremath{-}0.2770, \ensuremath{-}0.2513]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestTextMlpRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestTextScoresMlpRefAll}{\ensuremath{+}0.0027 [\ensuremath{+}0.0003, \ensuremath{+}0.0050]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestTextScoresMlpRefAll}{\ensuremath{p = 0.238}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestTextScoresArticleMlpRefAll}{\ensuremath{+}0.0018 [\ensuremath{-}0.0007, \ensuremath{+}0.0043]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestTextScoresArticleMlpRefAll}{\ensuremath{p = 0.767}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestGcnRefAll}{\ensuremath{-}0.0285 [\ensuremath{-}0.0336, \ensuremath{-}0.0232]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestGcnRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestRgcnRefAll}{\ensuremath{-}0.0268 [\ensuremath{-}0.0320, \ensuremath{-}0.0218]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestRgcnRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestRgcnScoresRefAll}{\ensuremath{-}0.0310 [\ensuremath{-}0.0356, \ensuremath{-}0.0263]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestRgcnScoresRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHanRefAll}{\ensuremath{+}0.0041 [\ensuremath{+}0.0017, \ensuremath{+}0.0065]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestHanRefAll}{\ensuremath{p = 0.009}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHanScoresRefAll}{\ensuremath{+}0.0021 [\ensuremath{-}0.0001, \ensuremath{+}0.0044]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestHanScoresRefAll}{\ensuremath{p = 0.884}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHgtRefAll}{\ensuremath{-}0.0080 [\ensuremath{-}0.0113, \ensuremath{-}0.0045]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestHgtRefAll}{\ensuremath{p = 0.003}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHgtScoresRefAll}{\ensuremath{-}0.0083 [\ensuremath{-}0.0118, \ensuremath{-}0.0051]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestHgtScoresRefAll}{\ensuremath{p = 0.238}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresRatingLrStudyAll}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresAllLrStudyAll}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestCritiquesLrStudyAll}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresCritiquesLrStudyAll}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresAllGbtStudyAll}{\ensuremath{-}0.0002 [\ensuremath{-}0.0015, \ensuremath{+}0.0013]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresCritiquesGbtStudyAll}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestTextMlpStudyAll}{0.0000 [\ensuremath{-}0.0016, \ensuremath{+}0.0017]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestTextScoresMlpStudyAll}{\ensuremath{+}0.0001 [\ensuremath{-}0.0002, \ensuremath{+}0.0004]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestTextScoresArticleMlpStudyAll}{\ensuremath{-}0.0011 [\ensuremath{-}0.0016, \ensuremath{-}0.0004]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestGcnStudyAll}{\ensuremath{+}0.0139 [\ensuremath{+}0.0107, \ensuremath{+}0.0172]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestRgcnStudyAll}{\ensuremath{+}0.0269 [\ensuremath{+}0.0230, \ensuremath{+}0.0306]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestRgcnScoresStudyAll}{\ensuremath{-}0.0135 [\ensuremath{-}0.0159, \ensuremath{-}0.0110]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHanStudyAll}{\ensuremath{+}0.0219 [\ensuremath{+}0.0186, \ensuremath{+}0.0253]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHanScoresStudyAll}{\ensuremath{+}0.0165 [\ensuremath{+}0.0129, \ensuremath{+}0.0202]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHgtStudyAll}{\ensuremath{+}0.0073 [\ensuremath{+}0.0051, \ensuremath{+}0.0095]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHgtScoresStudyAll}{\ensuremath{+}0.0067 [\ensuremath{+}0.0047, \ensuremath{+}0.0087]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestRgcnGcnAll}{\ensuremath{+}0.0017 [\ensuremath{-}0.0020, \ensuremath{+}0.0053]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHanGcnAll}{\ensuremath{+}0.0327 [\ensuremath{+}0.0283, \ensuremath{+}0.0366]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHgtGcnAll}{\ensuremath{+}0.0206 [\ensuremath{+}0.0168, \ensuremath{+}0.0243]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoEncodersTestNoArticleTextFullAll}{\ensuremath{+}0.0034 [\ensuremath{+}0.0023, \ensuremath{+}0.0046]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoEncodersTestNoArticleTextRefAll}{\ensuremath{-}0.0116 [\ensuremath{-}0.0159, \ensuremath{-}0.0076]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmEncodersTestNoArticleTextRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoEncodersTestNoTextEmbeddingsFullAll}{\ensuremath{+}0.0204 [\ensuremath{+}0.0166, \ensuremath{+}0.0242]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoEncodersTestNoTextEmbeddingsRefAll}{\ensuremath{+}0.0053 [\ensuremath{+}0.0028, \ensuremath{+}0.0080]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmEncodersTestNoTextEmbeddingsRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsRefAll}{\ensuremath{+}0.0055 [\ensuremath{+}0.0030, \ensuremath{+}0.0082]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupTestNoTextEmbeddingsRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsScoresAllLrAll}{\ensuremath{+}0.0048 [\ensuremath{+}0.0025, \ensuremath{+}0.0073]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsScoresCritiquesLrAll}{\ensuremath{+}0.0062 [\ensuremath{+}0.0039, \ensuremath{+}0.0085]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsScoresAllGbtAll}{\ensuremath{+}0.0059 [\ensuremath{+}0.0035, \ensuremath{+}0.0086]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsScoresCritiquesGbtAll}{\ensuremath{+}0.0053 [\ensuremath{+}0.0030, \ensuremath{+}0.0079]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsTextScoresMlpAll}{\ensuremath{+}0.0029 [\ensuremath{+}0.0008, \ensuremath{+}0.0052]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsHgtAll}{\ensuremath{+}0.0207 [\ensuremath{+}0.0170, \ensuremath{+}0.0246]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoCritiquesRefAll}{\ensuremath{+}0.0042 [\ensuremath{+}0.0020, \ensuremath{+}0.0065]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupTestNoTextNoCritiquesRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoCritiquesScoresAllLrAll}{\ensuremath{+}0.0035 [\ensuremath{+}0.0019, \ensuremath{+}0.0052]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoCritiquesScoresCritiquesLrAll}{\ensuremath{+}0.0049 [\ensuremath{+}0.0025, \ensuremath{+}0.0073]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoCritiquesScoresAllGbtAll}{\ensuremath{+}0.0046 [\ensuremath{+}0.0026, \ensuremath{+}0.0067]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoCritiquesScoresCritiquesGbtAll}{\ensuremath{+}0.0040 [\ensuremath{+}0.0016, \ensuremath{+}0.0064]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoCritiquesTextScoresMlpAll}{\ensuremath{+}0.0016 [\ensuremath{-}0.0002, \ensuremath{+}0.0033]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoCritiquesHgtAll}{\ensuremath{+}0.0194 [\ensuremath{+}0.0155, \ensuremath{+}0.0233]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoSharesConceptRefAll}{\ensuremath{+}0.0066 [\ensuremath{+}0.0043, \ensuremath{+}0.0090]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupTestNoTextNoSharesConceptRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoSharesConceptScoresAllLrAll}{\ensuremath{+}0.0059 [\ensuremath{+}0.0037, \ensuremath{+}0.0080]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoSharesConceptScoresCritiquesLrAll}{\ensuremath{+}0.0073 [\ensuremath{+}0.0051, \ensuremath{+}0.0096]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoSharesConceptScoresAllGbtAll}{\ensuremath{+}0.0070 [\ensuremath{+}0.0046, \ensuremath{+}0.0094]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoSharesConceptScoresCritiquesGbtAll}{\ensuremath{+}0.0064 [\ensuremath{+}0.0040, \ensuremath{+}0.0089]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoSharesConceptTextScoresMlpAll}{\ensuremath{+}0.0040 [\ensuremath{+}0.0019, \ensuremath{+}0.0061]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoSharesConceptHgtAll}{\ensuremath{+}0.0218 [\ensuremath{+}0.0179, \ensuremath{+}0.0258]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsNoTextNoCritiquesAll}{\ensuremath{+}0.0013 [\ensuremath{-}0.0001, \ensuremath{+}0.0028]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsNoTextNoSharesConceptAll}{\ensuremath{-}0.0011 [\ensuremath{-}0.0018, \ensuremath{-}0.0003]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsFirstRunAll}{\ensuremath{+}0.0002 [\ensuremath{+}0.0001, \ensuremath{+}0.0003]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestGcnRefBorder}{\ensuremath{-}0.0603 [\ensuremath{-}0.0753, \ensuremath{-}0.0448]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestGcnRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestRgcnRefBorder}{\ensuremath{-}0.0820 [\ensuremath{-}0.0987, \ensuremath{-}0.0652]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestRgcnRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestRgcnScoresRefBorder}{\ensuremath{-}0.0465 [\ensuremath{-}0.0589, \ensuremath{-}0.0332]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestRgcnScoresRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHanRefBorder}{\ensuremath{-}0.0385 [\ensuremath{-}0.0525, \ensuremath{-}0.0244]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHanRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHanScoresRefBorder}{\ensuremath{-}0.0363 [\ensuremath{-}0.0495, \ensuremath{-}0.0231]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHanScoresRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHgtRefBorder}{\ensuremath{-}0.0267 [\ensuremath{-}0.0383, \ensuremath{-}0.0141]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHgtRefBorder}{\ensuremath{p = 0.004}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHgtScoresRefBorder}{\ensuremath{-}0.0427 [\ensuremath{-}0.0552, \ensuremath{-}0.0298]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHgtScoresRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestGcnStudyBorder}{\ensuremath{+}0.0003 [\ensuremath{-}0.0082, \ensuremath{+}0.0096]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestRgcnStudyBorder}{\ensuremath{-}0.0065 [\ensuremath{-}0.0137, \ensuremath{+}0.0014]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestRgcnScoresStudyBorder}{\ensuremath{-}0.0045 [\ensuremath{-}0.0092, \ensuremath{-}0.0001]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHanStudyBorder}{\ensuremath{-}0.0001 [\ensuremath{-}0.0003, \ensuremath{+}0.0002]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHanScoresStudyBorder}{\ensuremath{-}0.0002 [\ensuremath{-}0.0005, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHgtStudyBorder}{\ensuremath{+}0.0002 [\ensuremath{-}0.0034, \ensuremath{+}0.0038]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHgtScoresStudyBorder}{\ensuremath{-}0.0103 [\ensuremath{-}0.0155, \ensuremath{-}0.0048]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestRgcnGcnBorder}{\ensuremath{-}0.0216 [\ensuremath{-}0.0342, \ensuremath{-}0.0076]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHanGcnBorder}{\ensuremath{+}0.0219 [\ensuremath{+}0.0106, \ensuremath{+}0.0331]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyTestHgtGcnBorder}{\ensuremath{+}0.0337 [\ensuremath{+}0.0225, \ensuremath{+}0.0446]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresAllLrRefBorder}{\ensuremath{-}0.0027 [\ensuremath{-}0.0100, \ensuremath{+}0.0050]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestScoresAllLrRefBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestCritiquesLrRefBorder}{\ensuremath{-}0.1050 [\ensuremath{-}0.1259, \ensuremath{-}0.0844]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestCritiquesLrRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresCritiquesLrRefBorder}{\ensuremath{-}0.0067 [\ensuremath{-}0.0163, \ensuremath{+}0.0034]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestScoresCritiquesLrRefBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresAllGbtRefBorder}{\ensuremath{-}0.0086 [\ensuremath{-}0.0165, \ensuremath{-}0.0003]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestScoresAllGbtRefBorder}{\ensuremath{p = 0.503}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresCritiquesGbtRefBorder}{\ensuremath{-}0.0055 [\ensuremath{-}0.0153, \ensuremath{+}0.0054]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestScoresCritiquesGbtRefBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestTextMlpRefBorder}{\ensuremath{-}0.1889 [\ensuremath{-}0.2112, \ensuremath{-}0.1678]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestTextMlpRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestTextScoresMlpRefBorder}{\ensuremath{+}0.0026 [\ensuremath{-}0.0054, \ensuremath{+}0.0113]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestTextScoresMlpRefBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestTextScoresArticleMlpRefBorder}{\ensuremath{-}0.0005 [\ensuremath{-}0.0090, \ensuremath{+}0.0086]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestTextScoresArticleMlpRefBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestGcnRefBorder}{\ensuremath{-}0.0412 [\ensuremath{-}0.0547, \ensuremath{-}0.0256]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestGcnRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestRgcnRefBorder}{\ensuremath{-}0.0440 [\ensuremath{-}0.0575, \ensuremath{-}0.0293]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestRgcnRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestRgcnScoresRefBorder}{\ensuremath{-}0.0462 [\ensuremath{-}0.0583, \ensuremath{-}0.0341]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestRgcnScoresRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHanRefBorder}{\ensuremath{+}0.0066 [\ensuremath{-}0.0014, \ensuremath{+}0.0161]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestHanRefBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHanScoresRefBorder}{0.0000 [\ensuremath{-}0.0084, \ensuremath{+}0.0089]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestHanScoresRefBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHgtRefBorder}{\ensuremath{-}0.0241 [\ensuremath{-}0.0351, \ensuremath{-}0.0120]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestHgtRefBorder}{\ensuremath{p = 0.014}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHgtScoresRefBorder}{\ensuremath{-}0.0244 [\ensuremath{-}0.0357, \ensuremath{-}0.0130]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchTestHgtScoresRefBorder}{\ensuremath{p = 0.073}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresRatingLrStudyBorder}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresAllLrStudyBorder}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestCritiquesLrStudyBorder}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresCritiquesLrStudyBorder}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresAllGbtStudyBorder}{\ensuremath{-}0.0007 [\ensuremath{-}0.0050, \ensuremath{+}0.0033]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestScoresCritiquesGbtStudyBorder}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestTextMlpStudyBorder}{\ensuremath{-}0.0017 [\ensuremath{-}0.0043, \ensuremath{+}0.0005]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestTextScoresMlpStudyBorder}{\ensuremath{-}0.0001 [\ensuremath{-}0.0012, \ensuremath{+}0.0011]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestTextScoresArticleMlpStudyBorder}{\ensuremath{-}0.0030 [\ensuremath{-}0.0051, \ensuremath{-}0.0011]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestGcnStudyBorder}{\ensuremath{+}0.0195 [\ensuremath{+}0.0100, \ensuremath{+}0.0290]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestRgcnStudyBorder}{\ensuremath{+}0.0315 [\ensuremath{+}0.0226, \ensuremath{+}0.0402]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestRgcnScoresStudyBorder}{\ensuremath{-}0.0042 [\ensuremath{-}0.0087, \ensuremath{+}0.0004]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHanStudyBorder}{\ensuremath{+}0.0450 [\ensuremath{+}0.0359, \ensuremath{+}0.0544]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHanScoresStudyBorder}{\ensuremath{+}0.0360 [\ensuremath{+}0.0252, \ensuremath{+}0.0472]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHgtStudyBorder}{\ensuremath{+}0.0028 [\ensuremath{-}0.0033, \ensuremath{+}0.0087]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHgtScoresStudyBorder}{\ensuremath{+}0.0080 [\ensuremath{+}0.0023, \ensuremath{+}0.0139]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestRgcnGcnBorder}{\ensuremath{-}0.0028 [\ensuremath{-}0.0126, \ensuremath{+}0.0069]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHanGcnBorder}{\ensuremath{+}0.0477 [\ensuremath{+}0.0374, \ensuremath{+}0.0575]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchTestHgtGcnBorder}{\ensuremath{+}0.0171 [\ensuremath{+}0.0073, \ensuremath{+}0.0268]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoEncodersTestNoArticleTextFullBorder}{\ensuremath{+}0.0019 [\ensuremath{-}0.0013, \ensuremath{+}0.0050]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoEncodersTestNoArticleTextRefBorder}{\ensuremath{-}0.0247 [\ensuremath{-}0.0367, \ensuremath{-}0.0115]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmEncodersTestNoArticleTextRefBorder}{\ensuremath{p = 0.002}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoEncodersTestNoTextEmbeddingsFullBorder}{\ensuremath{+}0.0390 [\ensuremath{+}0.0277, \ensuremath{+}0.0506]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoEncodersTestNoTextEmbeddingsRefBorder}{\ensuremath{+}0.0124 [\ensuremath{+}0.0039, \ensuremath{+}0.0217]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmEncodersTestNoTextEmbeddingsRefBorder}{\ensuremath{p = 0.002}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsRefBorder}{\ensuremath{+}0.0130 [\ensuremath{+}0.0044, \ensuremath{+}0.0221]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupTestNoTextEmbeddingsRefBorder}{\ensuremath{p = 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsScoresAllLrBorder}{\ensuremath{+}0.0156 [\ensuremath{+}0.0085, \ensuremath{+}0.0231]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsScoresCritiquesLrBorder}{\ensuremath{+}0.0196 [\ensuremath{+}0.0113, \ensuremath{+}0.0276]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsScoresAllGbtBorder}{\ensuremath{+}0.0208 [\ensuremath{+}0.0116, \ensuremath{+}0.0293]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsScoresCritiquesGbtBorder}{\ensuremath{+}0.0184 [\ensuremath{+}0.0092, \ensuremath{+}0.0275]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsTextScoresMlpBorder}{\ensuremath{+}0.0103 [\ensuremath{+}0.0023, \ensuremath{+}0.0182]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsHgtBorder}{\ensuremath{+}0.0399 [\ensuremath{+}0.0285, \ensuremath{+}0.0513]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoCritiquesRefBorder}{\ensuremath{+}0.0087 [\ensuremath{+}0.0014, \ensuremath{+}0.0172]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupTestNoTextNoCritiquesRefBorder}{\ensuremath{p = 0.011}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoCritiquesScoresAllLrBorder}{\ensuremath{+}0.0113 [\ensuremath{+}0.0057, \ensuremath{+}0.0167]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoCritiquesScoresCritiquesLrBorder}{\ensuremath{+}0.0154 [\ensuremath{+}0.0068, \ensuremath{+}0.0239]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoCritiquesScoresAllGbtBorder}{\ensuremath{+}0.0165 [\ensuremath{+}0.0094, \ensuremath{+}0.0240]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoCritiquesScoresCritiquesGbtBorder}{\ensuremath{+}0.0142 [\ensuremath{+}0.0057, \ensuremath{+}0.0234]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoCritiquesTextScoresMlpBorder}{\ensuremath{+}0.0060 [\ensuremath{-}0.0003, \ensuremath{+}0.0128]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoCritiquesHgtBorder}{\ensuremath{+}0.0356 [\ensuremath{+}0.0242, \ensuremath{+}0.0462]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoSharesConceptRefBorder}{\ensuremath{+}0.0162 [\ensuremath{+}0.0084, \ensuremath{+}0.0247]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupTestNoTextNoSharesConceptRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoSharesConceptScoresAllLrBorder}{\ensuremath{+}0.0188 [\ensuremath{+}0.0123, \ensuremath{+}0.0259]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoSharesConceptScoresCritiquesLrBorder}{\ensuremath{+}0.0228 [\ensuremath{+}0.0152, \ensuremath{+}0.0304]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoSharesConceptScoresAllGbtBorder}{\ensuremath{+}0.0240 [\ensuremath{+}0.0160, \ensuremath{+}0.0323]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoSharesConceptScoresCritiquesGbtBorder}{\ensuremath{+}0.0216 [\ensuremath{+}0.0130, \ensuremath{+}0.0301]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoSharesConceptTextScoresMlpBorder}{\ensuremath{+}0.0134 [\ensuremath{+}0.0059, \ensuremath{+}0.0209]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextNoSharesConceptHgtBorder}{\ensuremath{+}0.0431 [\ensuremath{+}0.0317, \ensuremath{+}0.0543]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsNoTextNoCritiquesBorder}{\ensuremath{+}0.0043 [\ensuremath{-}0.0002, \ensuremath{+}0.0089]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsNoTextNoSharesConceptBorder}{\ensuremath{-}0.0032 [\ensuremath{-}0.0061, \ensuremath{-}0.0003]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupTestNoTextEmbeddingsFirstRunBorder}{\ensuremath{+}0.0006 [\ensuremath{+}0.0001, \ensuremath{+}0.0009]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresAllLrRefAll}{\ensuremath{-}0.0002 [\ensuremath{-}0.0018, \ensuremath{+}0.0014]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldScoresAllLrRefAll}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldCritiquesLrRefAll}{\ensuremath{-}0.1430 [\ensuremath{-}0.1511, \ensuremath{-}0.1351]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldCritiquesLrRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresCritiquesLrRefAll}{\ensuremath{-}0.0054 [\ensuremath{-}0.0079, \ensuremath{-}0.0028]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldScoresCritiquesLrRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresAllGbtRefAll}{\ensuremath{-}0.0024 [\ensuremath{-}0.0040, \ensuremath{-}0.0008]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldScoresAllGbtRefAll}{\ensuremath{p = 0.054}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresCritiquesGbtRefAll}{\ensuremath{-}0.0055 [\ensuremath{-}0.0080, \ensuremath{-}0.0031]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldScoresCritiquesGbtRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldTextMlpRefAll}{\ensuremath{-}0.2913 [\ensuremath{-}0.3018, \ensuremath{-}0.2817]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldTextMlpRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldTextScoresMlpRefAll}{\ensuremath{+}0.0011 [\ensuremath{-}0.0008, \ensuremath{+}0.0031]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldTextScoresMlpRefAll}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldTextScoresArticleMlpRefAll}{\ensuremath{-}0.0006 [\ensuremath{-}0.0027, \ensuremath{+}0.0015]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldTextScoresArticleMlpRefAll}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldGcnRefAll}{\ensuremath{-}0.0421 [\ensuremath{-}0.0467, \ensuremath{-}0.0379]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldGcnRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldRgcnRefAll}{\ensuremath{-}0.0502 [\ensuremath{-}0.0548, \ensuremath{-}0.0457]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldRgcnRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldRgcnScoresRefAll}{\ensuremath{-}0.0342 [\ensuremath{-}0.0379, \ensuremath{-}0.0308]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldRgcnScoresRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHanRefAll}{\ensuremath{+}0.0024 [\ensuremath{+}0.0004, \ensuremath{+}0.0044]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldHanRefAll}{\ensuremath{p = 0.169}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHanScoresRefAll}{\ensuremath{+}0.0003 [\ensuremath{-}0.0016, \ensuremath{+}0.0023]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldHanScoresRefAll}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHgtRefAll}{\ensuremath{-}0.0156 [\ensuremath{-}0.0189, \ensuremath{-}0.0127]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldHgtRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHgtScoresRefAll}{\ensuremath{-}0.0181 [\ensuremath{-}0.0212, \ensuremath{-}0.0154]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldHgtScoresRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresRatingLrStudyAll}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresAllLrStudyAll}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldCritiquesLrStudyAll}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresCritiquesLrStudyAll}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresAllGbtStudyAll}{\ensuremath{+}0.0001 [\ensuremath{-}0.0010, \ensuremath{+}0.0012]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresCritiquesGbtStudyAll}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldTextMlpStudyAll}{\ensuremath{+}0.0002 [\ensuremath{-}0.0014, \ensuremath{+}0.0016]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldTextScoresMlpStudyAll}{\ensuremath{-}0.0001 [\ensuremath{-}0.0003, \ensuremath{+}0.0001]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldTextScoresArticleMlpStudyAll}{\ensuremath{-}0.0016 [\ensuremath{-}0.0022, \ensuremath{-}0.0011]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldGcnStudyAll}{\ensuremath{+}0.0340 [\ensuremath{+}0.0298, \ensuremath{+}0.0379]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldRgcnStudyAll}{\ensuremath{+}0.0591 [\ensuremath{+}0.0551, \ensuremath{+}0.0632]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldRgcnScoresStudyAll}{\ensuremath{-}0.0079 [\ensuremath{-}0.0096, \ensuremath{-}0.0060]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHanStudyAll}{\ensuremath{+}0.0317 [\ensuremath{+}0.0290, \ensuremath{+}0.0344]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHanScoresStudyAll}{\ensuremath{+}0.0280 [\ensuremath{+}0.0252, \ensuremath{+}0.0312]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHgtStudyAll}{\ensuremath{+}0.0090 [\ensuremath{+}0.0072, \ensuremath{+}0.0109]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHgtScoresStudyAll}{\ensuremath{+}0.0035 [\ensuremath{+}0.0018, \ensuremath{+}0.0050]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldRgcnGcnAll}{\ensuremath{-}0.0081 [\ensuremath{-}0.0113, \ensuremath{-}0.0047]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHanGcnAll}{\ensuremath{+}0.0445 [\ensuremath{+}0.0414, \ensuremath{+}0.0480]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHgtGcnAll}{\ensuremath{+}0.0266 [\ensuremath{+}0.0234, \ensuremath{+}0.0298]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresAllLrRefAll}{\ensuremath{+}0.0020 [\ensuremath{+}0.0005, \ensuremath{+}0.0036]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldScoresAllLrRefAll}{\ensuremath{p = 0.131}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldCritiquesLrRefAll}{\ensuremath{-}0.1428 [\ensuremath{-}0.1508, \ensuremath{-}0.1349]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldCritiquesLrRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresCritiquesLrRefAll}{\ensuremath{-}0.0030 [\ensuremath{-}0.0055, \ensuremath{-}0.0005]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldScoresCritiquesLrRefAll}{\ensuremath{p = 0.131}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresAllGbtRefAll}{\ensuremath{-}0.0015 [\ensuremath{-}0.0034, \ensuremath{+}0.0003]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldScoresAllGbtRefAll}{\ensuremath{p = 0.358}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresCritiquesGbtRefAll}{\ensuremath{-}0.0041 [\ensuremath{-}0.0065, \ensuremath{-}0.0020]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldScoresCritiquesGbtRefAll}{\ensuremath{p = 0.005}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldTextMlpRefAll}{\ensuremath{-}0.2884 [\ensuremath{-}0.2990, \ensuremath{-}0.2784]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldTextMlpRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldTextScoresMlpRefAll}{\ensuremath{+}0.0028 [\ensuremath{+}0.0011, \ensuremath{+}0.0047]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldTextScoresMlpRefAll}{\ensuremath{p = 0.023}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldTextScoresArticleMlpRefAll}{\ensuremath{+}0.0026 [\ensuremath{+}0.0007, \ensuremath{+}0.0045]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldTextScoresArticleMlpRefAll}{\ensuremath{p = 0.051}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldGcnRefAll}{\ensuremath{-}0.0482 [\ensuremath{-}0.0526, \ensuremath{-}0.0439]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldGcnRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldRgcnRefAll}{\ensuremath{-}0.0453 [\ensuremath{-}0.0497, \ensuremath{-}0.0412]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldRgcnRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldRgcnScoresRefAll}{\ensuremath{-}0.0292 [\ensuremath{-}0.0328, \ensuremath{-}0.0259]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldRgcnScoresRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHanRefAll}{\ensuremath{+}0.0031 [\ensuremath{+}0.0012, \ensuremath{+}0.0049]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldHanRefAll}{\ensuremath{p = 0.015}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHanScoresRefAll}{\ensuremath{+}0.0007 [\ensuremath{-}0.0011, \ensuremath{+}0.0026]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldHanScoresRefAll}{\ensuremath{p = 0.874}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHgtRefAll}{\ensuremath{-}0.0131 [\ensuremath{-}0.0163, \ensuremath{-}0.0104]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldHgtRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHgtScoresRefAll}{\ensuremath{-}0.0157 [\ensuremath{-}0.0186, \ensuremath{-}0.0131]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldHgtScoresRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresRatingLrStudyAll}{0.0000 [0.0000, \ensuremath{+}0.0001]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresAllLrStudyAll}{\ensuremath{+}0.0023 [\ensuremath{+}0.0017, \ensuremath{+}0.0027]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldCritiquesLrStudyAll}{\ensuremath{+}0.0002 [\ensuremath{-}0.0004, \ensuremath{+}0.0009]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresCritiquesLrStudyAll}{\ensuremath{+}0.0024 [\ensuremath{+}0.0016, \ensuremath{+}0.0031]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresAllGbtStudyAll}{\ensuremath{+}0.0010 [\ensuremath{+}0.0003, \ensuremath{+}0.0019]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresCritiquesGbtStudyAll}{\ensuremath{+}0.0015 [\ensuremath{+}0.0004, \ensuremath{+}0.0027]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldTextMlpStudyAll}{\ensuremath{+}0.0032 [\ensuremath{-}0.0005, \ensuremath{+}0.0066]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldTextScoresMlpStudyAll}{\ensuremath{+}0.0017 [\ensuremath{+}0.0012, \ensuremath{+}0.0022]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldTextScoresArticleMlpStudyAll}{\ensuremath{+}0.0017 [\ensuremath{+}0.0011, \ensuremath{+}0.0022]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldGcnStudyAll}{\ensuremath{+}0.0280 [\ensuremath{+}0.0240, \ensuremath{+}0.0316]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldRgcnStudyAll}{\ensuremath{+}0.0640 [\ensuremath{+}0.0584, \ensuremath{+}0.0690]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldRgcnScoresStudyAll}{\ensuremath{-}0.0028 [\ensuremath{-}0.0049, \ensuremath{-}0.0006]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHanStudyAll}{\ensuremath{+}0.0324 [\ensuremath{+}0.0296, \ensuremath{+}0.0353]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHanScoresStudyAll}{\ensuremath{+}0.0284 [\ensuremath{+}0.0256, \ensuremath{+}0.0316]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHgtStudyAll}{\ensuremath{+}0.0115 [\ensuremath{+}0.0093, \ensuremath{+}0.0137]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHgtScoresStudyAll}{\ensuremath{+}0.0059 [\ensuremath{+}0.0037, \ensuremath{+}0.0079]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldRgcnGcnAll}{\ensuremath{+}0.0028 [\ensuremath{-}0.0005, \ensuremath{+}0.0058]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHanGcnAll}{\ensuremath{+}0.0512 [\ensuremath{+}0.0476, \ensuremath{+}0.0549]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHgtGcnAll}{\ensuremath{+}0.0350 [\ensuremath{+}0.0316, \ensuremath{+}0.0385]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsRefAll}{\ensuremath{+}0.0051 [\ensuremath{+}0.0027, \ensuremath{+}0.0073]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupHoldNoTextEmbeddingsRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsScoresAllLrAll}{\ensuremath{+}0.0053 [\ensuremath{+}0.0033, \ensuremath{+}0.0072]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsScoresCritiquesLrAll}{\ensuremath{+}0.0104 [\ensuremath{+}0.0083, \ensuremath{+}0.0126]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsScoresAllGbtAll}{\ensuremath{+}0.0076 [\ensuremath{+}0.0054, \ensuremath{+}0.0098]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsScoresCritiquesGbtAll}{\ensuremath{+}0.0106 [\ensuremath{+}0.0082, \ensuremath{+}0.0130]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsTextScoresMlpAll}{\ensuremath{+}0.0039 [\ensuremath{+}0.0020, \ensuremath{+}0.0058]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsHgtAll}{\ensuremath{+}0.0297 [\ensuremath{+}0.0264, \ensuremath{+}0.0332]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoCritiquesRefAll}{\ensuremath{+}0.0041 [\ensuremath{+}0.0022, \ensuremath{+}0.0060]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupHoldNoTextNoCritiquesRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoCritiquesScoresAllLrAll}{\ensuremath{+}0.0043 [\ensuremath{+}0.0028, \ensuremath{+}0.0058]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoCritiquesScoresCritiquesLrAll}{\ensuremath{+}0.0095 [\ensuremath{+}0.0072, \ensuremath{+}0.0118]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoCritiquesScoresAllGbtAll}{\ensuremath{+}0.0066 [\ensuremath{+}0.0048, \ensuremath{+}0.0085]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoCritiquesScoresCritiquesGbtAll}{\ensuremath{+}0.0096 [\ensuremath{+}0.0073, \ensuremath{+}0.0121]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoCritiquesTextScoresMlpAll}{\ensuremath{+}0.0029 [\ensuremath{+}0.0015, \ensuremath{+}0.0045]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoCritiquesHgtAll}{\ensuremath{+}0.0287 [\ensuremath{+}0.0254, \ensuremath{+}0.0323]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoSharesConceptRefAll}{\ensuremath{+}0.0062 [\ensuremath{+}0.0040, \ensuremath{+}0.0082]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupHoldNoTextNoSharesConceptRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoSharesConceptScoresAllLrAll}{\ensuremath{+}0.0064 [\ensuremath{+}0.0046, \ensuremath{+}0.0081]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoSharesConceptScoresCritiquesLrAll}{\ensuremath{+}0.0116 [\ensuremath{+}0.0094, \ensuremath{+}0.0137]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoSharesConceptScoresAllGbtAll}{\ensuremath{+}0.0088 [\ensuremath{+}0.0065, \ensuremath{+}0.0107]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoSharesConceptScoresCritiquesGbtAll}{\ensuremath{+}0.0117 [\ensuremath{+}0.0095, \ensuremath{+}0.0140]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoSharesConceptTextScoresMlpAll}{\ensuremath{+}0.0051 [\ensuremath{+}0.0032, \ensuremath{+}0.0069]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoSharesConceptHgtAll}{\ensuremath{+}0.0308 [\ensuremath{+}0.0275, \ensuremath{+}0.0345]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsNoTextNoCritiquesAll}{\ensuremath{+}0.0010 [\ensuremath{-}0.0002, \ensuremath{+}0.0020]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsNoTextNoSharesConceptAll}{\ensuremath{-}0.0011 [\ensuremath{-}0.0018, \ensuremath{-}0.0004]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresAllLrRefBorder}{\ensuremath{-}0.0033 [\ensuremath{-}0.0086, \ensuremath{+}0.0018]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldScoresAllLrRefBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldCritiquesLrRefBorder}{\ensuremath{-}0.1498 [\ensuremath{-}0.1634, \ensuremath{-}0.1341]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldCritiquesLrRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresCritiquesLrRefBorder}{\ensuremath{-}0.0168 [\ensuremath{-}0.0236, \ensuremath{-}0.0099]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldScoresCritiquesLrRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresAllGbtRefBorder}{\ensuremath{-}0.0120 [\ensuremath{-}0.0170, \ensuremath{-}0.0065]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldScoresAllGbtRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresCritiquesGbtRefBorder}{\ensuremath{-}0.0193 [\ensuremath{-}0.0259, \ensuremath{-}0.0123]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldScoresCritiquesGbtRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldTextMlpRefBorder}{\ensuremath{-}0.2191 [\ensuremath{-}0.2345, \ensuremath{-}0.2013]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldTextMlpRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldTextScoresMlpRefBorder}{\ensuremath{+}0.0009 [\ensuremath{-}0.0046, \ensuremath{+}0.0065]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldTextScoresMlpRefBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldTextScoresArticleMlpRefBorder}{\ensuremath{-}0.0041 [\ensuremath{-}0.0099, \ensuremath{+}0.0017]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldTextScoresArticleMlpRefBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldGcnRefBorder}{\ensuremath{-}0.0689 [\ensuremath{-}0.0791, \ensuremath{-}0.0583]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldGcnRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldRgcnRefBorder}{\ensuremath{-}0.0770 [\ensuremath{-}0.0871, \ensuremath{-}0.0663]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldRgcnRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldRgcnScoresRefBorder}{\ensuremath{-}0.0617 [\ensuremath{-}0.0702, \ensuremath{-}0.0526]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldRgcnScoresRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHanRefBorder}{\ensuremath{+}0.0028 [\ensuremath{-}0.0029, \ensuremath{+}0.0088]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldHanRefBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHanScoresRefBorder}{\ensuremath{-}0.0026 [\ensuremath{-}0.0083, \ensuremath{+}0.0031]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldHanScoresRefBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHgtRefBorder}{\ensuremath{-}0.0371 [\ensuremath{-}0.0457, \ensuremath{-}0.0285]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldHgtRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHgtScoresRefBorder}{\ensuremath{-}0.0437 [\ensuremath{-}0.0512, \ensuremath{-}0.0355]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmSearchHoldHgtScoresRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresRatingLrStudyBorder}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresAllLrStudyBorder}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldCritiquesLrStudyBorder}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresCritiquesLrStudyBorder}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresAllGbtStudyBorder}{\ensuremath{-}0.0019 [\ensuremath{-}0.0048, \ensuremath{+}0.0011]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldScoresCritiquesGbtStudyBorder}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldTextMlpStudyBorder}{\ensuremath{-}0.0003 [\ensuremath{-}0.0026, \ensuremath{+}0.0016]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldTextScoresMlpStudyBorder}{\ensuremath{+}0.0001 [\ensuremath{-}0.0005, \ensuremath{+}0.0007]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldTextScoresArticleMlpStudyBorder}{\ensuremath{-}0.0049 [\ensuremath{-}0.0063, \ensuremath{-}0.0035]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldGcnStudyBorder}{\ensuremath{+}0.0385 [\ensuremath{+}0.0303, \ensuremath{+}0.0460]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldRgcnStudyBorder}{\ensuremath{+}0.0456 [\ensuremath{+}0.0384, \ensuremath{+}0.0525]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldRgcnScoresStudyBorder}{\ensuremath{-}0.0025 [\ensuremath{-}0.0058, \ensuremath{+}0.0007]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHanStudyBorder}{\ensuremath{+}0.0608 [\ensuremath{+}0.0540, \ensuremath{+}0.0675]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHanScoresStudyBorder}{\ensuremath{+}0.0610 [\ensuremath{+}0.0524, \ensuremath{+}0.0692]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHgtStudyBorder}{\ensuremath{+}0.0049 [\ensuremath{+}0.0008, \ensuremath{+}0.0089]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHgtScoresStudyBorder}{\ensuremath{+}0.0037 [\ensuremath{-}0.0001, \ensuremath{+}0.0074]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldRgcnGcnBorder}{\ensuremath{-}0.0081 [\ensuremath{-}0.0147, \ensuremath{-}0.0008]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHanGcnBorder}{\ensuremath{+}0.0717 [\ensuremath{+}0.0643, \ensuremath{+}0.0793]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoSearchHoldHgtGcnBorder}{\ensuremath{+}0.0318 [\ensuremath{+}0.0251, \ensuremath{+}0.0387]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresAllLrRefBorder}{\ensuremath{+}0.0045 [\ensuremath{-}0.0004, \ensuremath{+}0.0093]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldScoresAllLrRefBorder}{\ensuremath{p = 0.358}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldCritiquesLrRefBorder}{\ensuremath{-}0.1492 [\ensuremath{-}0.1628, \ensuremath{-}0.1337]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldCritiquesLrRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresCritiquesLrRefBorder}{\ensuremath{-}0.0092 [\ensuremath{-}0.0158, \ensuremath{-}0.0024]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldScoresCritiquesLrRefBorder}{\ensuremath{p = 0.082}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresAllGbtRefBorder}{\ensuremath{-}0.0074 [\ensuremath{-}0.0129, \ensuremath{-}0.0021]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldScoresAllGbtRefBorder}{\ensuremath{p = 0.062}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresCritiquesGbtRefBorder}{\ensuremath{-}0.0154 [\ensuremath{-}0.0214, \ensuremath{-}0.0092]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldScoresCritiquesGbtRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldTextMlpRefBorder}{\ensuremath{-}0.2174 [\ensuremath{-}0.2332, \ensuremath{-}0.1998]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldTextMlpRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldTextScoresMlpRefBorder}{\ensuremath{+}0.0058 [\ensuremath{+}0.0007, \ensuremath{+}0.0110]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldTextScoresMlpRefBorder}{\ensuremath{p = 0.162}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldTextScoresArticleMlpRefBorder}{\ensuremath{+}0.0052 [\ensuremath{+}0.0002, \ensuremath{+}0.0105]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldTextScoresArticleMlpRefBorder}{\ensuremath{p = 0.235}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldGcnRefBorder}{\ensuremath{-}0.0797 [\ensuremath{-}0.0906, \ensuremath{-}0.0686]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldGcnRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldRgcnRefBorder}{\ensuremath{-}0.0768 [\ensuremath{-}0.0872, \ensuremath{-}0.0666]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldRgcnRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldRgcnScoresRefBorder}{\ensuremath{-}0.0562 [\ensuremath{-}0.0648, \ensuremath{-}0.0474]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldRgcnScoresRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHanRefBorder}{\ensuremath{+}0.0048 [\ensuremath{-}0.0007, \ensuremath{+}0.0106]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldHanRefBorder}{\ensuremath{p = 0.358}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHanScoresRefBorder}{\ensuremath{-}0.0016 [\ensuremath{-}0.0070, \ensuremath{+}0.0040]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldHanScoresRefBorder}{\ensuremath{p = 0.874}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHgtRefBorder}{\ensuremath{-}0.0331 [\ensuremath{-}0.0407, \ensuremath{-}0.0251]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldHgtRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHgtScoresRefBorder}{\ensuremath{-}0.0371 [\ensuremath{-}0.0439, \ensuremath{-}0.0293]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmRollingHoldHgtScoresRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresRatingLrStudyBorder}{0.0000 [0.0000, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresAllLrStudyBorder}{\ensuremath{+}0.0078 [\ensuremath{+}0.0063, \ensuremath{+}0.0092]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldCritiquesLrStudyBorder}{\ensuremath{+}0.0006 [\ensuremath{-}0.0004, \ensuremath{+}0.0016]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresCritiquesLrStudyBorder}{\ensuremath{+}0.0076 [\ensuremath{+}0.0055, \ensuremath{+}0.0096]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresAllGbtStudyBorder}{\ensuremath{+}0.0027 [\ensuremath{+}0.0003, \ensuremath{+}0.0050]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldScoresCritiquesGbtStudyBorder}{\ensuremath{+}0.0039 [\ensuremath{+}0.0007, \ensuremath{+}0.0072]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldTextMlpStudyBorder}{\ensuremath{+}0.0014 [\ensuremath{-}0.0037, \ensuremath{+}0.0066]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldTextScoresMlpStudyBorder}{\ensuremath{+}0.0051 [\ensuremath{+}0.0037, \ensuremath{+}0.0066]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldTextScoresArticleMlpStudyBorder}{\ensuremath{+}0.0044 [\ensuremath{+}0.0029, \ensuremath{+}0.0058]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldGcnStudyBorder}{\ensuremath{+}0.0277 [\ensuremath{+}0.0201, \ensuremath{+}0.0353]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldRgcnStudyBorder}{\ensuremath{+}0.0458 [\ensuremath{+}0.0352, \ensuremath{+}0.0553]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldRgcnScoresStudyBorder}{\ensuremath{+}0.0030 [\ensuremath{-}0.0016, \ensuremath{+}0.0076]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHanStudyBorder}{\ensuremath{+}0.0627 [\ensuremath{+}0.0554, \ensuremath{+}0.0698]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHanScoresStudyBorder}{\ensuremath{+}0.0621 [\ensuremath{+}0.0536, \ensuremath{+}0.0702]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHgtStudyBorder}{\ensuremath{+}0.0090 [\ensuremath{+}0.0038, \ensuremath{+}0.0139]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHgtScoresStudyBorder}{\ensuremath{+}0.0103 [\ensuremath{+}0.0057, \ensuremath{+}0.0148]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldRgcnGcnBorder}{\ensuremath{+}0.0029 [\ensuremath{-}0.0043, \ensuremath{+}0.0097]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHanGcnBorder}{\ensuremath{+}0.0844 [\ensuremath{+}0.0763, \ensuremath{+}0.0929]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoRollingHoldHgtGcnBorder}{\ensuremath{+}0.0466 [\ensuremath{+}0.0389, \ensuremath{+}0.0538]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsRefBorder}{\ensuremath{+}0.0109 [\ensuremath{+}0.0045, \ensuremath{+}0.0165]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupHoldNoTextEmbeddingsRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsScoresAllLrBorder}{\ensuremath{+}0.0142 [\ensuremath{+}0.0090, \ensuremath{+}0.0195]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsScoresCritiquesLrBorder}{\ensuremath{+}0.0277 [\ensuremath{+}0.0219, \ensuremath{+}0.0339]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsScoresAllGbtBorder}{\ensuremath{+}0.0210 [\ensuremath{+}0.0151, \ensuremath{+}0.0269]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsScoresCritiquesGbtBorder}{\ensuremath{+}0.0302 [\ensuremath{+}0.0238, \ensuremath{+}0.0365]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsTextScoresMlpBorder}{\ensuremath{+}0.0101 [\ensuremath{+}0.0046, \ensuremath{+}0.0155]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsHgtBorder}{\ensuremath{+}0.0529 [\ensuremath{+}0.0445, \ensuremath{+}0.0611]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoCritiquesRefBorder}{\ensuremath{+}0.0077 [\ensuremath{+}0.0019, \ensuremath{+}0.0130]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupHoldNoTextNoCritiquesRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoCritiquesScoresAllLrBorder}{\ensuremath{+}0.0111 [\ensuremath{+}0.0072, \ensuremath{+}0.0153]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoCritiquesScoresCritiquesLrBorder}{\ensuremath{+}0.0245 [\ensuremath{+}0.0182, \ensuremath{+}0.0306]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoCritiquesScoresAllGbtBorder}{\ensuremath{+}0.0179 [\ensuremath{+}0.0128, \ensuremath{+}0.0230]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoCritiquesScoresCritiquesGbtBorder}{\ensuremath{+}0.0271 [\ensuremath{+}0.0207, \ensuremath{+}0.0336]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoCritiquesTextScoresMlpBorder}{\ensuremath{+}0.0070 [\ensuremath{+}0.0027, \ensuremath{+}0.0114]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoCritiquesHgtBorder}{\ensuremath{+}0.0498 [\ensuremath{+}0.0411, \ensuremath{+}0.0578]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoSharesConceptRefBorder}{\ensuremath{+}0.0133 [\ensuremath{+}0.0072, \ensuremath{+}0.0189]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupHoldNoTextNoSharesConceptRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoSharesConceptScoresAllLrBorder}{\ensuremath{+}0.0166 [\ensuremath{+}0.0116, \ensuremath{+}0.0216]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoSharesConceptScoresCritiquesLrBorder}{\ensuremath{+}0.0301 [\ensuremath{+}0.0246, \ensuremath{+}0.0364]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoSharesConceptScoresAllGbtBorder}{\ensuremath{+}0.0234 [\ensuremath{+}0.0178, \ensuremath{+}0.0292]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoSharesConceptScoresCritiquesGbtBorder}{\ensuremath{+}0.0326 [\ensuremath{+}0.0267, \ensuremath{+}0.0392]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoSharesConceptTextScoresMlpBorder}{\ensuremath{+}0.0125 [\ensuremath{+}0.0072, \ensuremath{+}0.0177]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextNoSharesConceptHgtBorder}{\ensuremath{+}0.0553 [\ensuremath{+}0.0466, \ensuremath{+}0.0638]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsNoTextNoCritiquesBorder}{\ensuremath{+}0.0031 [\ensuremath{+}0.0002, \ensuremath{+}0.0059]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoFollowupHoldNoTextEmbeddingsNoTextNoSharesConceptBorder}{\ensuremath{-}0.0024 [\ensuremath{-}0.0043, \ensuremath{-}0.0005]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoAucEncodersTestFullAll}{0.8582}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdEncodersTestFullAll}{0.0006}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucEncodersTestFullBorder}{0.6951}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdEncodersTestFullBorder}{0.0009}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucEncodersTestNoArticleTextAll}{0.8617}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdEncodersTestNoArticleTextAll}{0.0021}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucEncodersTestNoArticleTextBorder}{0.6970}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdEncodersTestNoArticleTextBorder}{0.0037}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucEncodersTestNoTextEmbeddingsAll}{0.8786}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdEncodersTestNoTextEmbeddingsAll}{0.0013}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucEncodersTestNoTextEmbeddingsBorder}{0.7341}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdEncodersTestNoTextEmbeddingsBorder}{0.0024}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucVocabularyTestGcnAll}{0.8284}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdVocabularyTestGcnAll}{0.0059}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucVocabularyTestGcnBorder}{0.6613}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdVocabularyTestGcnBorder}{0.0040}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucVocabularyTestRgcnAll}{0.8100}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdVocabularyTestRgcnAll}{0.0031}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucVocabularyTestRgcnBorder}{0.6397}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdVocabularyTestRgcnBorder}{0.0030}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucVocabularyTestRgcnScoresAll}{0.8528}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdVocabularyTestRgcnScoresAll}{0.0060}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucVocabularyTestRgcnScoresBorder}{0.6751}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdVocabularyTestRgcnScoresBorder}{0.0100}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucVocabularyTestHanAll}{0.8556}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdVocabularyTestHanAll}{0.0007}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucVocabularyTestHanBorder}{0.6831}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdVocabularyTestHanBorder}{0.0019}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucVocabularyTestHanScoresAll}{0.8588}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdVocabularyTestHanScoresAll}{0.0009}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucVocabularyTestHanScoresBorder}{0.6854}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdVocabularyTestHanScoresBorder}{0.0032}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucVocabularyTestHgtAll}{0.8562}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdVocabularyTestHgtAll}{0.0041}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucVocabularyTestHgtBorder}{0.6950}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdVocabularyTestHgtBorder}{0.0058}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucVocabularyTestHgtScoresAll}{0.8514}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdVocabularyTestHgtScoresAll}{0.0029}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucVocabularyTestHgtScoresBorder}{0.6790}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdVocabularyTestHgtScoresBorder}{0.0055}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestScoresRatingLrAll}{0.8733}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestScoresRatingLrAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestScoresRatingLrBorder}{0.7216}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestScoresRatingLrBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestScoresAllLrAll}{0.8740}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestScoresAllLrAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestScoresAllLrBorder}{0.7190}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestScoresAllLrBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestCritiquesLrAll}{0.7600}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestCritiquesLrAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestCritiquesLrBorder}{0.6167}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestCritiquesLrBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestScoresCritiquesLrAll}{0.8726}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestScoresCritiquesLrAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestScoresCritiquesLrBorder}{0.7150}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestScoresCritiquesLrBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestScoresAllGbtAll}{0.8728}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestScoresAllGbtAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestScoresAllGbtBorder}{0.7131}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestScoresAllGbtBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestScoresCritiquesGbtAll}{0.8735}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestScoresCritiquesGbtAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestScoresCritiquesGbtBorder}{0.7162}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestScoresCritiquesGbtBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestTextMlpAll}{0.6093}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestTextMlpAll}{0.0012}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestTextMlpBorder}{0.5327}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestTextMlpBorder}{0.0015}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestTextScoresMlpAll}{0.8760}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestTextScoresMlpAll}{0.0004}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestTextScoresMlpBorder}{0.7243}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestTextScoresMlpBorder}{0.0016}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestTextScoresArticleMlpAll}{0.8751}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestTextScoresArticleMlpAll}{0.0011}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestTextScoresArticleMlpBorder}{0.7211}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestTextScoresArticleMlpBorder}{0.0036}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestGcnAll}{0.8448}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestGcnAll}{0.0020}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestGcnBorder}{0.6805}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestGcnBorder}{0.0042}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestRgcnAll}{0.8465}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestRgcnAll}{0.0023}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestRgcnBorder}{0.6777}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestRgcnBorder}{0.0068}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestRgcnScoresAll}{0.8423}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestRgcnScoresAll}{0.0077}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestRgcnScoresBorder}{0.6754}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestRgcnScoresBorder}{0.0058}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestHanAll}{0.8775}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestHanAll}{0.0001}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestHanBorder}{0.7282}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestHanBorder}{0.0005}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestHanScoresAll}{0.8754}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestHanScoresAll}{0.0002}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestHanScoresBorder}{0.7216}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestHanScoresBorder}{0.0009}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestHgtAll}{0.8653}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestHgtAll}{0.0015}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestHgtBorder}{0.6975}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestHgtBorder}{0.0031}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestHgtScoresAll}{0.8650}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestHgtScoresAll}{0.0029}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchTestHgtScoresBorder}{0.6972}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchTestHgtScoresBorder}{0.0074}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucFollowupTestNoTextEmbeddingsAll}{0.8788}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdFollowupTestNoTextEmbeddingsAll}{0.0012}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucFollowupTestNoTextEmbeddingsBorder}{0.7346}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdFollowupTestNoTextEmbeddingsBorder}{0.0019}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucFollowupTestNoTextNoCritiquesAll}{0.8775}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdFollowupTestNoTextNoCritiquesAll}{0.0005}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucFollowupTestNoTextNoCritiquesBorder}{0.7303}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdFollowupTestNoTextNoCritiquesBorder}{0.0014}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucFollowupTestNoTextNoSharesConceptAll}{0.8799}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdFollowupTestNoTextNoSharesConceptAll}{0.0006}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucFollowupTestNoTextNoSharesConceptBorder}{0.7378}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdFollowupTestNoTextNoSharesConceptBorder}{0.0017}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldScoresRatingLrAll}{0.8866}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldScoresRatingLrAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldScoresRatingLrBorder}{0.7563}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldScoresRatingLrBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldScoresAllLrAll}{0.8864}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldScoresAllLrAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldScoresAllLrBorder}{0.7530}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldScoresAllLrBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldCritiquesLrAll}{0.7436}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldCritiquesLrAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldCritiquesLrBorder}{0.6065}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldCritiquesLrBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldScoresCritiquesLrAll}{0.8812}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldScoresCritiquesLrAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldScoresCritiquesLrBorder}{0.7395}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldScoresCritiquesLrBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldScoresAllGbtAll}{0.8842}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldScoresAllGbtAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldScoresAllGbtBorder}{0.7443}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldScoresAllGbtBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldScoresCritiquesGbtAll}{0.8811}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldScoresCritiquesGbtAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldScoresCritiquesGbtBorder}{0.7370}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldScoresCritiquesGbtBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldTextMlpAll}{0.5953}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldTextMlpAll}{0.0013}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldTextMlpBorder}{0.5372}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldTextMlpBorder}{0.0019}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldTextScoresMlpAll}{0.8877}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldTextScoresMlpAll}{0.0002}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldTextScoresMlpBorder}{0.7572}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldTextScoresMlpBorder}{0.0005}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldTextScoresArticleMlpAll}{0.8860}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldTextScoresArticleMlpAll}{0.0016}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldTextScoresArticleMlpBorder}{0.7523}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldTextScoresArticleMlpBorder}{0.0045}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldGcnAll}{0.8445}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldGcnAll}{0.0025}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldGcnBorder}{0.6874}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldGcnBorder}{0.0046}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldRgcnAll}{0.8364}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldRgcnAll}{0.0050}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldRgcnBorder}{0.6793}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldRgcnBorder}{0.0054}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldRgcnScoresAll}{0.8524}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldRgcnScoresAll}{0.0057}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldRgcnScoresBorder}{0.6946}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldRgcnScoresBorder}{0.0061}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldHanAll}{0.8890}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldHanAll}{0.0002}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldHanBorder}{0.7592}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldHanBorder}{0.0006}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldHanScoresAll}{0.8869}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldHanScoresAll}{0.0003}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldHanScoresBorder}{0.7537}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldHanScoresBorder}{0.0008}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldHgtAll}{0.8710}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldHgtAll}{0.0017}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldHgtBorder}{0.7192}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldHgtBorder}{0.0030}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldHgtScoresAll}{0.8685}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldHgtScoresAll}{0.0052}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucSearchHoldHgtScoresBorder}{0.7126}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdSearchHoldHgtScoresBorder}{0.0115}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldScoresRatingLrAll}{0.8866}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldScoresRatingLrAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldScoresRatingLrBorder}{0.7563}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldScoresRatingLrBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldScoresAllLrAll}{0.8887}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldScoresAllLrAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldScoresAllLrBorder}{0.7608}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldScoresAllLrBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldCritiquesLrAll}{0.7439}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldCritiquesLrAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldCritiquesLrBorder}{0.6071}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldCritiquesLrBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldScoresCritiquesLrAll}{0.8836}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldScoresCritiquesLrAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldScoresCritiquesLrBorder}{0.7471}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldScoresCritiquesLrBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldScoresAllGbtAll}{0.8851}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldScoresAllGbtAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldScoresAllGbtBorder}{0.7489}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldScoresAllGbtBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldScoresCritiquesGbtAll}{0.8825}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldScoresCritiquesGbtAll}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldScoresCritiquesGbtBorder}{0.7409}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldScoresCritiquesGbtBorder}{0.0000}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldTextMlpAll}{0.5982}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldTextMlpAll}{0.0012}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldTextMlpBorder}{0.5389}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldTextMlpBorder}{0.0014}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldTextScoresMlpAll}{0.8895}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldTextScoresMlpAll}{0.0002}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldTextScoresMlpBorder}{0.7621}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldTextScoresMlpBorder}{0.0008}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldTextScoresArticleMlpAll}{0.8892}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldTextScoresArticleMlpAll}{0.0003}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldTextScoresArticleMlpBorder}{0.7615}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldTextScoresArticleMlpBorder}{0.0010}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldGcnAll}{0.8385}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldGcnAll}{0.0102}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldGcnBorder}{0.6766}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldGcnBorder}{0.0117}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldRgcnAll}{0.8413}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldRgcnAll}{0.0058}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldRgcnBorder}{0.6795}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldRgcnBorder}{0.0066}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldRgcnScoresAll}{0.8574}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldRgcnScoresAll}{0.0040}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldRgcnScoresBorder}{0.7002}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldRgcnScoresBorder}{0.0068}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldHanAll}{0.8897}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldHanAll}{0.0005}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldHanBorder}{0.7611}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldHanBorder}{0.0014}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldHanScoresAll}{0.8873}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldHanScoresAll}{0.0002}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldHanScoresBorder}{0.7547}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldHanScoresBorder}{0.0006}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldHgtAll}{0.8735}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldHgtAll}{0.0019}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldHgtBorder}{0.7233}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldHgtBorder}{0.0043}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldHgtScoresAll}{0.8709}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldHgtScoresAll}{0.0025}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucRollingHoldHgtScoresBorder}{0.7192}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdRollingHoldHgtScoresBorder}{0.0032}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucFollowupHoldNoTextEmbeddingsAll}{0.8917}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdFollowupHoldNoTextEmbeddingsAll}{0.0013}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucFollowupHoldNoTextEmbeddingsBorder}{0.7672}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdFollowupHoldNoTextEmbeddingsBorder}{0.0029}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucFollowupHoldNoTextNoCritiquesAll}{0.8907}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdFollowupHoldNoTextNoCritiquesAll}{0.0003}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucFollowupHoldNoTextNoCritiquesBorder}{0.7641}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdFollowupHoldNoTextNoCritiquesBorder}{0.0015}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucFollowupHoldNoTextNoSharesConceptAll}{0.8928}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdFollowupHoldNoTextNoSharesConceptAll}{0.0011}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucFollowupHoldNoTextNoSharesConceptBorder}{0.7696}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdFollowupHoldNoTextNoSharesConceptBorder}{0.0028}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucReferenceSearchTestAll}{0.8733}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoAucReferenceSearchHoldAll}{0.8866}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoAucReferenceRollingHoldAll}{0.8866}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoAucReferenceSearchTestBorder}{0.7216}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoAucReferenceSearchHoldBorder}{0.7563}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoAucReferenceRollingHoldBorder}{0.7563}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyStudyModelsAll}{7}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyStudyAboveAll}{none}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyStudyBelowAll}{5}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyStudyModelsBorder}{7}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyStudyAboveBorder}{none}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyStudyBelowBorder}{2}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoReadingAVocabularyTestAll}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowAVocabularyTestAll}{6}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveAVocabularyTestAll}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingBVocabularyTestAll}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowBVocabularyTestAll}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveBVocabularyTestAll}{2}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingASearchTestAll}{contradicted}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowASearchTestAll}{4}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveASearchTestAll}{1}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingBSearchTestAll}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowBSearchTestAll}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveBSearchTestAll}{2}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingAVocabularyTestBorder}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowAVocabularyTestBorder}{6}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveAVocabularyTestBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingBVocabularyTestBorder}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowBVocabularyTestBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveBVocabularyTestBorder}{2}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingASearchTestBorder}{not separated}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowASearchTestBorder}{4}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveASearchTestBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingBSearchTestBorder}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowBSearchTestBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveBSearchTestBorder}{2}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingASearchHoldAll}{contradicted}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowASearchHoldAll}{4}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveASearchHoldAll}{1}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingBSearchHoldAll}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowBSearchHoldAll}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveBSearchHoldAll}{2}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingARollingHoldAll}{contradicted}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowARollingHoldAll}{4}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveARollingHoldAll}{1}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingBRollingHoldAll}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowBRollingHoldAll}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveBRollingHoldAll}{2}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingASearchHoldBorder}{not separated}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowASearchHoldBorder}{4}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveASearchHoldBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingBSearchHoldBorder}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowBSearchHoldBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveBSearchHoldBorder}{2}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingARollingHoldBorder}{not separated}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowARollingHoldBorder}{4}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveARollingHoldBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingBRollingHoldBorder}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowBRollingHoldBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveBRollingHoldBorder}{2}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingDFollowupTestAll}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowDFollowupTestAll}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveDFollowupTestAll}{1}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingDFollowupTestBorder}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowDFollowupTestBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveDFollowupTestBorder}{1}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingDFollowupHoldAll}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowDFollowupHoldAll}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveDFollowupHoldAll}{1}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingDFollowupHoldBorder}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowDFollowupHoldBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveDFollowupHoldBorder}{1}% results/tables/protocol_readings.csv
+\newcommand{\ProtoChecksA}{8}% results/tables/protocol_readings.csv
+\newcommand{\ProtoChecksAConfirmed}{2}% results/tables/protocol_readings.csv
+\newcommand{\ProtoChecksAContradicted}{3}% results/tables/protocol_readings.csv
+\newcommand{\ProtoChecksANotSeparated}{3}% results/tables/protocol_readings.csv
+\newcommand{\ProtoChecksB}{8}% results/tables/protocol_readings.csv
+\newcommand{\ProtoChecksBConfirmed}{8}% results/tables/protocol_readings.csv
+\newcommand{\ProtoChecksBContradicted}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoChecksBNotSeparated}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoVariantsA}{6}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBudget}{48}% configs/default.yaml
+\newcommand{\ProtoTop}{5}% configs/default.yaml
+\newcommand{\ProtoSelectionSeeds}{3}% configs/default.yaml
+\newcommand{\ProtoMaxEpochs}{500}% configs/default.yaml
+\newcommand{\ProtoPatience}{50}% configs/default.yaml
+\newcommand{\ProtoSpaceLogistic}{C \{0.001, 0.01, 0.1, 1, 10, 100, 1000\}}% configs/default.yaml
+\newcommand{\ProtoSpaceGbt}{learning rate \{0.02, 0.05, 0.1\}; max iter \{100, 300, 600\}; max leaf nodes \{7, 15, 31\}}% configs/default.yaml
+\newcommand{\ProtoSpaceMlp}{hidden \{128, 256, 512\}; dropout \{0.2, 0.5, 0.7\}; lr \{0.001, 0.01, 0.03\}; weight decay \{0.0001, 0.01, 0.1\}}% configs/default.yaml
+\newcommand{\ProtoSpaceGcn}{layers \{2, 3, 4\}; hidden \{128, 256, 512\}; dropout \{0.2, 0.5\}; lr \{0.003, 0.01, 0.03\}; weight decay \{0.0001, 0.01\}}% configs/default.yaml
+\newcommand{\ProtoSpaceHetero}{layers \{2, 3, 4\}; hidden \{32, 64, 128\}; dropout \{0.2, 0.5, 0.7\}; lr \{0.001, 0.005, 0.01\}; weight decay \{0.0001, 0.01\}}% configs/default.yaml
+\newcommand{\ProtoHeteroArchitectures}{3}% configs/default.yaml
+\newcommand{\ProtoModelsSearchedSearch}{13}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoRunsFailedSearch}{0}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoFailedModelsSearch}{none}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoHeteroLayersSearch}{4}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoHeteroAtEdgeSearch}{3}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoRunsSearch}{568}% results/tables/protocol_search_selection.csv
+\newcommand{\ProtoHoursSearch}{2.6}% results/tables/protocol_search_selection.csv
+\newcommand{\ProtoKeptSearchScoresRatingLr}{C 1}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoValSearchScoresRatingLr}{0.880}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoKeptSearchScoresAllLr}{C 0.1}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoValSearchScoresAllLr}{0.884}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoKeptSearchCritiquesLr}{C 0.1}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoValSearchCritiquesLr}{0.791}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoKeptSearchScoresCritiquesLr}{C 0.1}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoValSearchScoresCritiquesLr}{0.889}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoKeptSearchScoresAllGbt}{learning rate 0.02, max iter 100, max leaf nodes 7}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoValSearchScoresAllGbt}{0.882}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoKeptSearchScoresCritiquesGbt}{learning rate 0.1, max iter 100, max leaf nodes 7}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoValSearchScoresCritiquesGbt}{0.889}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoKeptSearchTextMlp}{hidden 128, dropout 0.7, lr 0.001, weight decay 0.0001}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoValSearchTextMlp}{0.632}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoKeptSearchTextScoresMlp}{hidden 128, dropout 0.5, lr 0.01, weight decay 0.01}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoValSearchTextScoresMlp}{0.887}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoKeptSearchTextScoresArticleMlp}{hidden 128, dropout 0.5, lr 0.03, weight decay 0.01}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoValSearchTextScoresArticleMlp}{0.887}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoKeptSearchGcn}{layers 4, hidden 512, dropout 0.5, lr 0.03, weight decay 0.0001}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoValSearchGcn}{0.864}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoKeptSearchRgcn}{layers 4, hidden 128, dropout 0.7, lr 0.005, weight decay 0.0001}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoValSearchRgcn}{0.879}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoKeptSearchHan}{layers 4, hidden 64, dropout 0.5, lr 0.005, weight decay 0.01}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoValSearchHan}{0.886}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoKeptSearchHgt}{layers 4, hidden 64, dropout 0.2, lr 0.01, weight decay 0.0001}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoValSearchHgt}{0.879}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoModelsSearchedRolling}{13}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoRunsFailedRolling}{19}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoFailedModelsRolling}{GCN: 19}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoHeteroLayersRolling}{4}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoHeteroAtEdgeRolling}{3}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoRunsRolling}{568}% results/tables/protocol_rolling_selection.csv
+\newcommand{\ProtoHoursRolling}{3.5}% results/tables/protocol_rolling_selection.csv
+\newcommand{\ProtoKeptRollingScoresRatingLr}{C 1000}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoValRollingScoresRatingLr}{0.873}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoKeptRollingScoresAllLr}{C 1}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoValRollingScoresAllLr}{0.874}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoKeptRollingCritiquesLr}{C 0.1}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoValRollingCritiquesLr}{0.760}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoKeptRollingScoresCritiquesLr}{C 10}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoValRollingScoresCritiquesLr}{0.874}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoKeptRollingScoresAllGbt}{learning rate 0.02, max iter 300, max leaf nodes 7}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoValRollingScoresAllGbt}{0.874}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoKeptRollingScoresCritiquesGbt}{learning rate 0.02, max iter 300, max leaf nodes 7}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoValRollingScoresCritiquesGbt}{0.875}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoKeptRollingTextMlp}{hidden 256, dropout 0.7, lr 0.001, weight decay 0.0001}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoValRollingTextMlp}{0.615}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoKeptRollingTextScoresMlp}{hidden 256, dropout 0.2, lr 0.01, weight decay 0.01}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoValRollingTextScoresMlp}{0.877}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoKeptRollingTextScoresArticleMlp}{hidden 256, dropout 0.2, lr 0.01, weight decay 0.01}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoValRollingTextScoresArticleMlp}{0.878}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoKeptRollingGcn}{layers 3, hidden 128, dropout 0.2, lr 0.03, weight decay 0.0001}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoValRollingGcn}{0.842}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoKeptRollingRgcn}{layers 4, hidden 128, dropout 0.7, lr 0.01, weight decay 0.0001}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoValRollingRgcn}{0.848}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoKeptRollingHan}{layers 4, hidden 32, dropout 0.2, lr 0.01, weight decay 0.01}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoValRollingHan}{0.878}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoKeptRollingHgt}{layers 4, hidden 64, dropout 0.2, lr 0.01, weight decay 0.0001}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\ProtoValRollingHgt}{0.867}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\SeedsHeteroStudyTestAll}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroBelowStudyTestAll}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroClosestStudyTestAll}{\ensuremath{-}0.0119}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroStudyTestBorder}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroBelowStudyTestBorder}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroClosestStudyTestBorder}{\ensuremath{-}0.0250}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroVocabularyTestAll}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroBelowVocabularyTestAll}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroClosestVocabularyTestAll}{\ensuremath{-}0.0114}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroVocabularyTestBorder}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroBelowVocabularyTestBorder}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroClosestVocabularyTestBorder}{\ensuremath{-}0.0197}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroSearchTestAll}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroBelowSearchTestAll}{20}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroClosestSearchTestAll}{\ensuremath{+}0.0044}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroSearchTestBorder}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroBelowSearchTestBorder}{22}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroClosestSearchTestBorder}{\ensuremath{+}0.0072}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroStudyHoldAll}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroBelowStudyHoldAll}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroClosestStudyHoldAll}{\ensuremath{-}0.0189}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroStudyHoldBorder}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroBelowStudyHoldBorder}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroClosestStudyHoldBorder}{\ensuremath{-}0.0326}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroSearchHoldAll}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroBelowSearchHoldAll}{21}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroClosestSearchHoldAll}{\ensuremath{+}0.0025}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroSearchHoldBorder}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroBelowSearchHoldBorder}{25}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroClosestSearchHoldBorder}{\ensuremath{+}0.0034}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroRollingHoldAll}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroBelowRollingHoldAll}{20}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroClosestRollingHoldAll}{\ensuremath{+}0.0038}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroRollingHoldBorder}{30}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroBelowRollingHoldBorder}{25}% results/tables/protocol_seed_signs.csv
+\newcommand{\SeedsHeteroClosestRollingHoldBorder}{\ensuremath{+}0.0066}% results/tables/protocol_seed_signs.csv
+\newcommand{\InductiveConcepts}{2\,319}% results/tables/kg_statistics_inductive.csv
+\newcommand{\InductiveKeywordsCoveredTrainYear}{67.9\,\%}% results/tables/kg_concept_coverage_inductive.csv
+\newcommand{\InductiveNeighboursTrainYear}{172}% results/tables/kg_concept_coverage_inductive.csv
+\newcommand{\InductiveWithNeighbourTrainYear}{85.1\,\%}% results/tables/kg_concept_coverage_inductive.csv
+\newcommand{\StudyKeywordsCoveredTrainYear}{74.7\,\%}% results/tables/kg_concept_coverage_holdout.csv
+\newcommand{\StudyNeighboursTrainYear}{89}% results/tables/kg_concept_coverage_holdout.csv
+\newcommand{\StudyWithNeighbourTrainYear}{84.9\,\%}% results/tables/kg_concept_coverage_holdout.csv
+\newcommand{\InductiveKeywordsCoveredTestYear}{57.0\,\%}% results/tables/kg_concept_coverage_inductive.csv
+\newcommand{\InductiveNeighboursTestYear}{164}% results/tables/kg_concept_coverage_inductive.csv
+\newcommand{\InductiveWithNeighbourTestYear}{67.6\,\%}% results/tables/kg_concept_coverage_inductive.csv
+\newcommand{\StudyKeywordsCoveredTestYear}{73.6\,\%}% results/tables/kg_concept_coverage_holdout.csv
+\newcommand{\StudyNeighboursTestYear}{88}% results/tables/kg_concept_coverage_holdout.csv
+\newcommand{\StudyWithNeighbourTestYear}{73.9\,\%}% results/tables/kg_concept_coverage_holdout.csv
+\newcommand{\InductiveKeywordsCoveredHoldYear}{51.6\,\%}% results/tables/kg_concept_coverage_inductive.csv
+\newcommand{\InductiveNeighboursHoldYear}{200}% results/tables/kg_concept_coverage_inductive.csv
+\newcommand{\InductiveWithNeighbourHoldYear}{78.6\,\%}% results/tables/kg_concept_coverage_inductive.csv
+\newcommand{\StudyKeywordsCoveredHoldYear}{62.5\,\%}% results/tables/kg_concept_coverage_holdout.csv
+\newcommand{\StudyNeighboursHoldYear}{111}% results/tables/kg_concept_coverage_holdout.csv
+\newcommand{\StudyWithNeighbourHoldYear}{84.0\,\%}% results/tables/kg_concept_coverage_holdout.csv
+\newcommand{\InductiveConceptsCarrying}{2\,303}% results/tables/kg_concept_coverage_inductive.csv
+\newcommand{\FollowupMaxGapFirstRun}{0.2495}% results/tables/ablations_followup_selection.csv
+\newcommand{\FollowupSeedsAboveTestAll}{5}% results/tables/protocol_seed_signs.csv
+\newcommand{\FollowupSeedMinTestAll}{\ensuremath{+}0.0035}% results/tables/protocol_seed_signs.csv
+\newcommand{\FollowupSeedsAboveTestBorder}{5}% results/tables/protocol_seed_signs.csv
+\newcommand{\FollowupSeedMinTestBorder}{\ensuremath{+}0.0096}% results/tables/protocol_seed_signs.csv
+\newcommand{\FollowupSeedsAboveHoldAll}{5}% results/tables/protocol_seed_signs.csv
+\newcommand{\FollowupSeedMinHoldAll}{\ensuremath{+}0.0029}% results/tables/protocol_seed_signs.csv
+\newcommand{\FollowupSeedsAboveHoldBorder}{5}% results/tables/protocol_seed_signs.csv
+\newcommand{\FollowupSeedMinHoldBorder}{\ensuremath{+}0.0061}% results/tables/protocol_seed_signs.csv

@@ -52,6 +52,10 @@ russo2025lottery: {doi: 10.1145/3757667, title: "The AI Review Lottery"}
 thakkar2026feedback: {doi: 10.1038/s42256-026-01188-x, title: "randomized study of large language model feedback in peer review"}
 yang2026alignment: {doi: 10.3390/publications14030055, title: "Large Language Models in Peer Review"}
 jin2024agentreview: {doi: 10.18653/v1/2024.emnlp-main.70, title: "AgentReview"}
+# agreement between the judgements of LLMs and of humans on review text (Scopus export)
+ebrahimi2025rottenreviews: {doi: 10.1145/3746252.3761506, title: "RottenReviews"}
+tang2026quality: {doi: 10.1007/s11192-026-05622-0, title: "Can large language models assess the quality of peer review"}
+he2026pragmatic: {doi: 10.1016/j.ipm.2026.104704, title: "Toward better pragmatic tagging of peer review"}
 
 # --- graphs (the second one was found by a title search in Crossref, not in the Scopus export)
 bharti2026consistentpeer: {doi: 10.1007/s41060-026-01047-3, title: "ConsistentPeer"}
@@ -86,3 +90,19 @@ cohen1960kappa: {doi: 10.1177/001316446002000104, title: "A Coefficient of Agree
 guo2017calibration: {arxiv: "1706.04599", title: "On Calibration of Modern Neural Networks"}
 delong1988auc: {doi: 10.2307/2531595, title: "Comparing the Areas under Two or More Correlated Receiver Operating Characteristic Curves"}
 efron1994bootstrap: {doi: 10.1201/9780429246593, title: "An Introduction to the Bootstrap"}
+# Holm (1979, Scandinavian Journal of Statistics) has no DOI in Crossref (two searches, 2026-11-24): the correction is
+# cited through this description of the method, whose record can be fetched.
+aickin1996holm: {doi: 10.2105/ajph.86.5.726, title: "Bonferroni vs Holm methods"}
+
+# --- found with Consensus (three searches, 2026-11-24); Wen is read in full text, the others from their abstracts
+wen2026decoupling: {arxiv: "2604.14162", title: "Decoupling Scores and Text"}
+chakraborty2020aspect: {doi: 10.1145/3383583.3398541, title: "Aspect-based Sentiment Analysis of Scientific Reviews"}
+fytas2021accepted: {doi: 10.18653/v1/2021.cinlp-1.4, title: "What Makes a Scientific Paper be Accepted for Publication"}
+heo2026drives: {arxiv: "2509.25701", title: "What Drives Paper Acceptance"}
+konan2026paperscorer: {arxiv: "2610.31791", title: "PaperScorer"}
+huang2026lottery: {arxiv: "2610.06591", title: "The Review Lottery"}
+xu2026comparable: {arxiv: "2607.27209", title: "Reviewer Scores Are Not Comparable Across Research Areas"}
+xue2022dgcbert: {doi: 10.1016/j.ipm.2022.103216, title: "Dual-view graph convolutions enhanced BERT"}
+cvetkovic2026explainability: {doi: 10.1093/comnet/cnag006, title: "Assessing the explainability of Graph Neural Networks"}
+li2023xpath: {doi: 10.1609/aaai.v37i7.26040, title: "Towards Fine-Grained Explainability for Heterogeneous Graph Neural Network"}
+jiang2026metapath: {arxiv: "2602.08500", title: "Is Meta-Path Attention an Explanation"}

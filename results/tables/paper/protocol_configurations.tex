@@ -1,0 +1,42 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{Configurations kept by the two protocol checks that search. Tried: configurations drawn in the space of the family (Section~\ref{sec:protocol}); a space smaller than the budget is searched entirely. Failed: training runs of the selection that did not end (GPU memory). The 5 best configurations with seed 0 are trained again with 2 other seeds, and the best mean validation AUC is kept. At an edge: hyper-parameters whose kept value is the smallest or the largest of the space. Val. AUC: mean over 5 seeds, on the validation papers of the check (a part of the training year, or the whole following year). LR: logistic regression; MLP: multilayer perceptron; GBT: gradient-boosted trees. $^{\ddagger}$Protocol check added after the test and holdout years were read; its design was fixed before it was run (Table~\ref{tab:analysis-status}).}
+\label{tab:protocol-configurations}
+\begin{tabular}{@{}llr>{\raggedright\arraybackslash}p{0.30\linewidth}>{\raggedright\arraybackslash}p{0.13\linewidth}r@{}}
+\toprule
+Model & Tried & Failed & Configuration kept & At an edge & Val. AUC \\
+\midrule
+\multicolumn{6}{l}{\emph{Equal and wider search}} \\
+Initial rating (LR) & 7 of 7 & 0 & C 1 & -- & $0.880$ \\
+All initial scores (LR) & 7 of 7 & 0 & C 0.1 & -- & $0.884$ \\
+Critique counts (LR) & 7 of 7 & 0 & C 0.1 & -- & $0.791$ \\
+Scores + critique counts (LR) & 7 of 7 & 0 & C 0.1 & -- & $0.889$ \\
+All initial scores (GBT) & 27 of 27 & 0 & learning\_rate 0.02, max\_iter 100, max\_leaf\_nodes 7 & learning rate max iter max leaf nodes & $0.882$ \\
+Scores + critique counts (GBT) & 27 of 27 & 0 & learning\_rate 0.1, max\_iter 100, max\_leaf\_nodes 7 & learning rate max iter max leaf nodes & $0.889$ \\
+Review text (MLP) & 48 of 81 & 0 & hidden 128, dropout 0.7, lr 0.001, weight\_decay 0.0001 & hidden dropout lr weight decay & $0.632$ \\
+Review text + scores (MLP) & 48 of 81 & 0 & hidden 128, dropout 0.5, lr 0.01, weight\_decay 0.01 & hidden & $0.887$ \\
+Review and article text + scores (MLP) & 48 of 81 & 0 & hidden 128, dropout 0.5, lr 0.03, weight\_decay 0.01 & hidden lr & $0.887$ \\
+GCN, untyped graph & 48 of 108 & 0 & layers 4, hidden 512, dropout 0.5, lr 0.03, weight\_decay 0.0001 & layers hidden dropout lr weight decay & $0.864$ \\
+R-GCN & 48 of 162 & 0 & layers 4, hidden 128, dropout 0.7, lr 0.005, weight\_decay 0.0001 & layers hidden dropout weight decay & $0.879$ \\
+HAN & 48 of 162 & 0 & layers 4, hidden 64, dropout 0.5, lr 0.005, weight\_decay 0.01 & layers weight decay & $0.886$ \\
+HGT & 48 of 162 & 0 & layers 4, hidden 64, dropout 0.2, lr 0.01, weight\_decay 0.0001 & layers dropout lr weight decay & $0.879$ \\
+\addlinespace
+\multicolumn{6}{l}{\emph{Validation on the following year}} \\
+Initial rating (LR) & 7 of 7 & 0 & C 1000 & C & $0.873$ \\
+All initial scores (LR) & 7 of 7 & 0 & C 1 & -- & $0.874$ \\
+Critique counts (LR) & 7 of 7 & 0 & C 0.1 & -- & $0.760$ \\
+Scores + critique counts (LR) & 7 of 7 & 0 & C 10 & -- & $0.874$ \\
+All initial scores (GBT) & 27 of 27 & 0 & learning\_rate 0.02, max\_iter 300, max\_leaf\_nodes 7 & learning rate max leaf nodes & $0.874$ \\
+Scores + critique counts (GBT) & 27 of 27 & 0 & learning\_rate 0.02, max\_iter 300, max\_leaf\_nodes 7 & learning rate max leaf nodes & $0.875$ \\
+Review text (MLP) & 48 of 81 & 0 & hidden 256, dropout 0.7, lr 0.001, weight\_decay 0.0001 & dropout lr weight decay & $0.615$ \\
+Review text + scores (MLP) & 48 of 81 & 0 & hidden 256, dropout 0.2, lr 0.01, weight\_decay 0.01 & dropout & $0.877$ \\
+Review and article text + scores (MLP) & 48 of 81 & 0 & hidden 256, dropout 0.2, lr 0.01, weight\_decay 0.01 & dropout & $0.878$ \\
+GCN, untyped graph & 48 of 108 & 19 & layers 3, hidden 128, dropout 0.2, lr 0.03, weight\_decay 0.0001 & hidden dropout lr weight decay & $0.842$ \\
+R-GCN & 48 of 162 & 0 & layers 4, hidden 128, dropout 0.7, lr 0.01, weight\_decay 0.0001 & layers hidden dropout lr weight decay & $0.848$ \\
+HAN & 48 of 162 & 0 & layers 4, hidden 32, dropout 0.2, lr 0.01, weight\_decay 0.01 & layers hidden dropout lr weight decay & $0.878$ \\
+HGT & 48 of 162 & 0 & layers 4, hidden 64, dropout 0.2, lr 0.01, weight\_decay 0.0001 & layers dropout lr weight decay & $0.867$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

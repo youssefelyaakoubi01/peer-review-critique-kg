@@ -8,9 +8,11 @@ Reads the CSV files of results/tables/ and configs/default.yaml and writes
                                    followed by the file it is read in (src/eval/numbers.py)
 and, from the records verified by scripts/11c_references.py (paper/references.json),
     paper/generated/references.tex the reference list, in the order of first citation
+and, from paper/related_studies.yaml (values and supporting passages of the studies read in full text),
+    paper/generated/related_studies.tex   the comparison table of the related work
 then compiles paper/main.tex with latexmk and reports what is left to do in the text:
-undefined references, lines that overflow, and the markers of missing citations, of the
-pending human annotation and of the points to confirm.
+undefined references, lines that overflow, and the markers of missing citations and of
+the points to confirm.
 """
 
 import argparse
@@ -21,12 +23,12 @@ import sys
 
 from src.eval import numbers
 from src.eval.sources import Sources
-from src.paper import references
+from src.paper import references, related
 from src.utils.config import REPO_ROOT, load_config
 from src.utils.runlog import setup_run_logging
 
 PAPER = REPO_ROOT / "paper"
-MARKERS = {r"\needcite": "citations to find", r"\pending": "results waiting for the human annotation", r"\toconfirm": "points to confirm"}
+MARKERS = {r"\needcite": "citations to find", r"\toconfirm": "points to confirm"}
 
 
 def write_numbers(cfg: dict, log) -> None:
@@ -53,6 +55,21 @@ def write_references(log) -> None:
     unused = sorted(set(records) - set(keys))
     log.info("%d references cited, written to %s; verified but not cited: %s", len(keys), target.relative_to(REPO_ROOT),
              ", ".join(unused) or "none")
+
+
+def write_related(log) -> int:
+    spec = related.load(PAPER / "related_studies.yaml")
+    wrong = related.problems(spec)
+    missing, checked = related.check_quotes(spec, PAPER / "refs" / "fulltext")
+    for line in [*wrong, *(f"passage not found in the paper: {m}" for m in missing)]:
+        log.error("related studies: %s", line)
+    if wrong or missing:
+        return 1
+    records = json.loads((PAPER / "references.json").read_text(encoding="utf-8"))
+    (PAPER / "generated" / "related_studies.tex").write_text(related.render(spec, records), encoding="utf-8")
+    log.info("related studies: %d in the table, %d not read in full text; %d supporting passages found in the papers%s",
+             len(spec["studies"]), len(spec["not_read"]), checked, "" if checked else " (full texts not on this machine: not checked)")
+    return 0
 
 
 def compile_paper(log) -> int:
@@ -84,6 +101,8 @@ def main() -> int:
     cfg = load_config()
     log = setup_run_logging("11_paper", cfg["paths"]["logs"])
     write_numbers(cfg, log)
+    if write_related(log):
+        return 1
     write_references(log)
     report_markers(log)
     return 0 if args.no_compile else compile_paper(log)

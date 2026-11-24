@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{DeLong tests of each table, on all papers and on borderline papers: number of tests, number that reject at 0.05 before and after the Holm correction applied within the family, and number of differences whose bootstrap confidence interval excludes zero. CI: confidence interval. $^{\dagger}$Designed after the test and holdout years were read (Table~\ref{tab:analysis-status}).}
+\label{tab:holm}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.52\linewidth}rrrr@{}}
+\toprule
+Family of tests & Tests & $p < 0.05$ & After Holm & CI excludes zero \\
+\midrule
+Every model against the initial rating, test year (Tables~\ref{tab:main} and~\ref{tab:main-full}) & 44 & 34 & 32 & 34 \\
+Heterogeneous GNNs against the GCN, test year (Table~\ref{tab:hetero-vs-gcn}) & 6 & 5 & 5 & 6 \\
+Critique counts against their controls, test year (Table~\ref{tab:critique-baselines}) & 6 & 2 & 2 & 2 \\
+Ablations against the full graph (Table~\ref{tab:ablations-delta}) & 14 & 9 & 9 & 11 \\
+Every model against the initial rating, holdout year (Table~\ref{tab:holdout}) & 32 & 26 & 25 & 26 \\
+Models against their controls, holdout year (Table~\ref{tab:holdout-paired}) & 12 & 12 & 12 & 12 \\
+Pairs compared afterwards (Table~\ref{tab:sensitivity-pairs}) & 24 & 20 & 19 & 19 \\
+\bottomrule
+\end{tabular}
+\end{table*}

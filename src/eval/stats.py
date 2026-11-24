@@ -35,6 +35,22 @@ def delong(labels: np.ndarray, scores_a: np.ndarray, scores_b: np.ndarray) -> di
             "p_value": float(2 * stats.norm.sf(abs(z)))}
 
 
+def holm(p_values: np.ndarray) -> np.ndarray:
+    """Holm step-down adjustment of the p-values of one family of tests (Holm, 1979).
+
+    The i-th smallest of m p-values is multiplied by m - i + 1, the adjusted values are
+    made non-decreasing in that order and capped at one. A missing p-value (a test that
+    could not be computed) stays missing and is not counted in the family.
+    """
+    p_values = np.asarray(p_values, dtype=float)
+    adjusted = np.full(p_values.shape, np.nan)
+    known = np.flatnonzero(~np.isnan(p_values))
+    order = known[np.argsort(p_values[known], kind="stable")]
+    scaled = p_values[order] * (len(order) - np.arange(len(order)))
+    adjusted[order] = np.minimum(np.maximum.accumulate(scaled), 1.0)
+    return adjusted
+
+
 def resamples(n: int, n_resamples: int, seed: int) -> np.ndarray:
     """Indices of `n_resamples` bootstrap samples of `n` papers (one row each)."""
     return np.random.default_rng(seed).integers(0, n, size=(n_resamples, n))

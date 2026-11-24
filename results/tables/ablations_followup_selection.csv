@@ -1,0 +1,16 @@
+variant,setting,model,params,seed,max_gap_with_first_run,val_auc,best_epoch,epochs,seconds,peak_gpu_gb,status
+no_text_embeddings,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",0,0.1030036211013794,0.8934121929026388,162,192,54.1,12.4,ok
+no_text_embeddings,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",1,0.06873878836631775,0.8943888383378831,146,176,49.6,12.4,ok
+no_text_embeddings,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",2,0.10786095261573792,0.8927813163481954,125,155,73.8,12.4,ok
+no_text_embeddings,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",3,0.24948471784591675,0.8935941765241129,163,193,54.4,12.4,ok
+no_text_embeddings,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",4,0.09873101115226746,0.8963057324840765,195,225,63.2,12.4,ok
+no_text_no_critiques,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",0,,0.8879830148619957,136,166,6.8,4.43,ok
+no_text_no_critiques,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",1,,0.8867940552016985,84,114,4.8,4.43,ok
+no_text_no_critiques,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",2,,0.8880740066727327,74,104,5.1,4.43,ok
+no_text_no_critiques,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",3,,0.8856475583864118,53,83,3.6,4.43,ok
+no_text_no_critiques,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",4,,0.8886745526235972,95,125,5.0,4.43,ok
+no_text_no_shares_concept,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",0,,0.8926721261753108,119,149,34.5,8.69,ok
+no_text_no_shares_concept,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",1,,0.8937276311798604,165,195,63.8,8.69,ok
+no_text_no_shares_concept,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",2,,0.8928116469517743,98,128,34.0,8.69,ok
+no_text_no_shares_concept,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",3,,0.893096754625417,187,217,70.9,8.69,ok
+no_text_no_shares_concept,A,hgt,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",4,,0.8920958447073097,121,151,49.7,8.69,ok

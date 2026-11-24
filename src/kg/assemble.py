@@ -10,14 +10,17 @@ from src.clean import views
 from src.kg import tables as kg_tables
 
 
-def load_tables(cfg) -> kg_tables.GraphTables:
-    """Tables of the graph of the study: training and test years, settings A and B."""
+def load_tables(cfg, splits: tuple[str, ...] = ("train", "val", "test")) -> kg_tables.GraphTables:
+    """Tables of the graph of the study: training and test years, settings A and B.
+
+    `splits`: the papers of the graph. The default is the graph of the study (a holdout
+    year is not part of it); ("train", "val") gives the graph of the training years alone,
+    whose vocabulary of concepts owes nothing to a later year."""
     settings = cfg["kg"]
     inputs = views.load_model_inputs(cfg, "A")
     run_dir = cfg["paths"]["llm"] / settings["run"]
     labels = views.load_labels(cfg, "as_reject")  # the widest set of usable papers
-    # Training and test years only: a holdout year is not part of the graph of the study.
-    forum_ids = set(labels.loc[labels["split"] != "holdout", "forum_id"])
+    forum_ids = set(labels.loc[labels["split"].isin(splits), "forum_id"])
     return kg_tables.build_tables(
         inputs["papers_initial"], inputs["reviews"],
         pd.read_parquet(run_dir / "critiques.parquet"), pd.read_parquet(run_dir / "critique_responses.parquet"),

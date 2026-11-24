@@ -1,0 +1,21 @@
+stage,evaluated,subset,reading,statement,outcome,variants,significantly_below,significantly_above,rejects_after_holm,closest,closest_difference,closest_ci_low,closest_ci_high
+vocabulary,test,all,a,no heterogeneous GNN is above scores_rating_lr,confirmed,6,6,0,6,han+scores,-0.014499536366469945,-0.018822947197680184,-0.01028789740139919
+vocabulary,test,all,b,HAN and HGT are above the GCN,confirmed,2,0,2,2,han,0.027148521043455887,0.02263448064542981,0.03174275286767373
+search,test,all,a,no heterogeneous GNN is above scores_rating_lr,contradicted,6,4,1,4,han,0.004149369863744035,0.0016528840635994637,0.006521797814933649
+search,test,all,b,HAN and HGT are above the GCN,confirmed,2,0,2,2,hgt,0.020564908530299797,0.016773870650563596,0.02430542951356473
+vocabulary,test,borderline,a,no heterogeneous GNN is above scores_rating_lr,confirmed,6,6,0,6,hgt,-0.026668752497342352,-0.03826844247935966,-0.014135992343573045
+vocabulary,test,borderline,b,HAN and HGT are above the GCN,confirmed,2,0,2,2,han,0.021858902350454734,0.010621022123403096,0.03306714298162353
+search,test,borderline,a,no heterogeneous GNN is above scores_rating_lr,not separated,6,4,0,3,han,0.006562199219447007,-0.0014183362195449838,0.016067896424942853
+search,test,borderline,b,HAN and HGT are above the GCN,confirmed,2,0,2,2,hgt,0.01707586643647141,0.007307459100158487,0.026789561950071674
+search,holdout,all,a,no heterogeneous GNN is above scores_rating_lr,contradicted,6,4,1,4,han,0.0023970419487744365,0.0003581040837584343,0.004358615128174502
+search,holdout,all,b,HAN and HGT are above the GCN,confirmed,2,0,2,2,hgt,0.026553784479052767,0.023396136973242908,0.029762941031154407
+rolling,holdout,all,a,no heterogeneous GNN is above scores_rating_lr,contradicted,6,4,1,5,han,0.0030654440063973,0.0012002916739418423,0.0049151418225718115
+rolling,holdout,all,b,HAN and HGT are above the GCN,confirmed,2,0,2,2,hgt,0.03502100781764861,0.031585201532330125,0.03854181361169292
+search,holdout,borderline,a,no heterogeneous GNN is above scores_rating_lr,not separated,6,4,0,4,han,0.0028324009530761307,-0.00289400068033499,0.00878202004852123
+search,holdout,borderline,b,HAN and HGT are above the GCN,confirmed,2,0,2,2,hgt,0.03176375776868878,0.02505820305723016,0.03867144072834118
+rolling,holdout,borderline,a,no heterogeneous GNN is above scores_rating_lr,not separated,6,4,0,4,han,0.004751431240916371,-0.0006562281465504074,0.010577116816655935
+rolling,holdout,borderline,b,HAN and HGT are above the GCN,confirmed,2,0,2,2,hgt,0.046610982816359225,0.038931936865168715,0.0537817951345327
+followup,test,all,d,hgt without pretrained embeddings is above scores_rating_lr,confirmed,1,0,1,1,no_text_embeddings,0.005529579622544412,0.0029902150832825047,0.008236748728851917
+followup,test,borderline,d,hgt without pretrained embeddings is above scores_rating_lr,confirmed,1,0,1,1,no_text_embeddings,0.012989849795060904,0.004443293096145433,0.022085702777650307
+followup,holdout,all,d,hgt without pretrained embeddings is above scores_rating_lr,confirmed,1,0,1,1,no_text_embeddings,0.005080842451579137,0.0026562902188911673,0.007279868012799808
+followup,holdout,borderline,d,hgt without pretrained embeddings is above scores_rating_lr,confirmed,1,0,1,1,no_text_embeddings,0.010865181279461233,0.004530704998106382,0.016542215930997042

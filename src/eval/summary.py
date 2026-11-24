@@ -6,7 +6,8 @@ named under each table and after each sentence. A sentence that states a reading
 summary is not written and the sentence must be revised.
 """
 
-from src.eval.paper import GROUPS, SEVERITIES, SUBSETS, VARIANT_LABELS, ablation_variants, comparison_pairs
+from src.eval.paper import (ENCODER_LABELS, GROUPS, PROTOCOL_STAGES, SEVERITIES, SUBSETS, VARIANT_LABELS, ablation_variants, comparison_pairs,
+                            full_name, has_followup, has_protocol)
 from src.eval.sources import Sources, excludes_zero, verdict
 
 MAIN, TESTS, PAIRED = "main_results.csv", "main_results_tests.csv", "paired_comparisons.csv"
@@ -130,7 +131,8 @@ def protocol(s: Sources, cfg: dict) -> list[str]:
         "- **Reading rule**: a difference is called *significant* when its confidence interval excludes zero. When the "
         "DeLong test does not reject at 0.05 although the interval excludes zero, the verdict says so: the interval is on the "
         "mean of the AUCs of the seeds, the test on the AUC of the probability averaged over the seeds. "
-        "No correction for multiple comparisons is applied.", "",
+        "The tests of the sections RQ1 to *Holdout year* are given without correction for multiple comparisons; the section "
+        "*Sensitivity analyses* gives the Holm correction within each table.", "",
     ]
     return lines
 
@@ -142,13 +144,20 @@ def status(s: Sources, cfg: dict) -> list[str]:
     lines = ["## Status", "",
              "Final on ICLR 2024 and 2025: collection, cleaning, critique extraction, graph, baselines, GNNs, ablations, "
              "explanations.", "", "Not available, hence no number below:", "",
-             f"- **Human validation of the LLM labels** (phase 4): {sampled} critiques are drawn and the annotation files are "
-             f"written; they are not annotated yet. {source(s, 'annotation_sample_strata.csv')}",
+             f"- **Human validation of the LLM labels** (phase 4): not done; no human annotation was made for this study. A "
+             f"sample of {sampled} critiques and the annotation files exist and were not annotated. "
+             f"{source(s, 'annotation_sample_strata.csv')}",
              *([] if has_holdout(s, cfg) else
                ["- **ICLR 2026 as a fresh test year**: critique extraction not finished; no model has been run on 2026."]),
              *(["- **Split train 2024 / validation 2025 / test 2026** (models trained again): not done. On ICLR 2026, only the "
-                "models frozen after the test year have been run (section *Holdout year*)."] if has_holdout(s, cfg) else []),
+                "models frozen after the test year have been run (section *Holdout year*)."]
+               if has_holdout(s, cfg) and not has_protocol(s, cfg) else []),
              "- **Comparison of the explanations with the meta-reviews**: not done.", ""]
+    if has_protocol(s, cfg):
+        lines += ["**How to read the sections below.** RQ1 to RQ4, the holdout year and the sensitivity analyses report the study as "
+                  "it was designed: graph models that read the embeddings of the texts, selected on a part of the training year. The "
+                  "section *Protocol checks*, added afterwards, tests this design; some of its checks contradict the main negative "
+                  "conclusion of the study, and it must be read with the sections that precede it.", ""]
     return lines
 
 
@@ -593,6 +602,166 @@ def holdout(s: Sources, cfg: dict) -> list[str]:
     return lines
 
 
+def pair_line(row, cfg: dict, holm=None) -> list[str]:
+    cells = [full_name(row["model"], row["setting"], cfg), full_name(row["control"], row.get("control_setting", row["setting"]), cfg),
+             n(row["n_papers"]), f(row["auc_model"], 4), f(row["auc_control"], 4), d(row["difference"]), ci(row["ci_low"], row["ci_high"]),
+             p(row["delong_p"])]
+    return cells if holm is None else [*cells, p(holm)]
+
+
+def sensitivity(s: Sources, cfg: dict) -> list[str]:
+    """Analyses computed afterwards from the stored predictions (scripts/07e_sensitivity.py, scripts/05d_input_dates.py)."""
+    if not (s.tables_dir / "tests_holm.csv").is_file():
+        return []
+    settings = cfg["sensitivity"]
+    columns = ["Model", "Control", "Papers", "AUC", "Control AUC", "Δ", "95 % CI", "DeLong"]
+    lines = ["## Sensitivity analyses", "",
+             "Added on 2026-11-24, after the test and holdout years had been read: every result of this section is post hoc. "
+             "Nothing is trained; the pairs, subsets, zones and families of tests were written in `configs/default.yaml` "
+             "(`sensitivity`) before the computation.", ""]
+
+    # ---- what the inputs owe to later data
+    scope = s.row("kg_concept_scope.csv")
+    lines += ["### Scope of the concept vocabulary", "",
+              f"The vocabulary is counted on every paper of the graph. {n(scope['concepts_below_min_in_training_years'])} of the "
+              f"{n(scope['concepts'])} concepts ({pct(scope['share_concepts_below_min_in_training_years'])}) have fewer than "
+              f"{int(scope['min_articles'])} papers of the training year and would not be concepts with a vocabulary counted on that "
+              f"year alone; {n(scope['concepts_absent_from_training_years'])} have none. "
+              f"{n(scope['has_concept_links_of_training_years_to_concepts_below_min'])} `has_concept` links of papers of the training "
+              f"year lead to such concepts, and {n(scope['concepts_kept_whose_shares_concept_status_changes'])} other concepts would "
+              f"change whether they carry `shares_concept`. {source(s, 'kg_concept_scope.csv')}", ""]
+    lines += table(["Years", "`shares_concept` pairs"], [[f"{int(row['year_a'])}–{int(row['year_b'])}", n(row["pairs"])]
+                                                         for _, row in s.table("kg_shares_concept_by_year.csv").iterrows()])
+    lines += [source(s, "kg_shares_concept_by_year.csv"), ""]
+    lines += table(["Papers", "Year", "Count", "With a concept", "With a neighbour", "With a neighbour of the training year"],
+                   [[row["population"], str(int(row["year"])), n(row["articles"]), pct(row["share_with_a_concept"]),
+                     pct(row["share_with_a_neighbour"]), pct(row["share_with_a_training_year_neighbour"])]
+                    for _, row in s.table("kg_concept_neighbours.csv").iterrows()])
+    lines += [source(s, "kg_concept_neighbours.csv"), ""]
+
+    dates = s.table("input_dates.csv")
+    lines += ["### Dates of the text archive against the decisions", ""]
+    lines += table(["Year", "First decision note", "Text archive committed", "Days from first decision to commit", "Submissions in the file",
+                    "With a decision in the file", "Author replies to a review", "Created from the first decision day"],
+                   [[str(int(row["year"])), row["first_decision_note"], row["text_archive_committed"], str(int(row["days_from_first_decision_to_commit"])),
+                     n(row["archive_submissions"]), n(row["archive_submissions_with_a_decision"]), n(row["author_replies_to_a_review"]),
+                     n(row["author_replies_from_first_decision_day"])] for _, row in dates.iterrows()])
+    late = dates[~dates["text_committed_before_decisions"].astype(bool)]
+    lines += [f"The version of the text archive used for {', '.join(str(int(year)) for year in late['year'])} was committed after the "
+              "first decision note of that year: its date does not establish that the text precedes the decisions; the file carries no "
+              f"decision. {source(s, 'input_dates.csv')}", ""]
+
+    # ---- the mean initial rating, and the pairs that had no test
+    lines += ["### Mean initial rating used as a score (RQ1 a)", "",
+              "The mean of the initial ratings of a paper, without any fitting."]
+    lines += ["", *table(["Split", "Papers", "Subset", "AUC", "95 % CI"],
+                         [[row["split"], n(row["n_papers"]), row["subset"], f(row["auc"], 4), ci(row["auc_ci_low"], row["auc_ci_high"], sign=False)]
+                          for _, row in s.table("sensitivity_mean_rating.csv").iterrows()])]
+    lines += [source(s, "sensitivity_mean_rating.csv"), ""]
+    holm = s.table("tests_holm.csv")
+    adjusted = holm[holm["family"] == "pairs_added_afterwards"].set_index(["model", "setting", "control", "subset"])["delong_p_holm"]
+    lines += ["### Pairs compared afterwards (test year)", ""]
+    for subset, title in SUBSETS.items():
+        rows = [pair_line(row, cfg, adjusted[(row["model"], row["setting"], row["control"], subset)])
+                for _, row in s.rows("sensitivity_pairs.csv", subset=subset).iterrows()]
+        lines += [f"{title}:", "", *table([*columns, "Holm"], rows)]
+    lines += [source(s, "sensitivity_pairs.csv", "tests_holm.csv"), ""]
+
+    # ---- subsets of the test papers
+    subgroups = s.table("sensitivity_subgroups.csv")
+    lines += ["### Test papers with text; withdrawn papers counted as rejections", ""]
+    lines += table(["Analysis", "Subset", *columns], [[row["analysis"], row["subset"], *pair_line(row, cfg)] for _, row in subgroups.iterrows()])
+    lines += [source(s, "sensitivity_subgroups.csv"), ""]
+
+    zones = s.table("sensitivity_borderline_zones.csv")
+    lines += ["### Other definitions of the borderline zone", "",
+              "Each zone is fitted on the training papers only; `study` is the zone of the other sections.", ""]
+    lines += table(["Definition", "Bin width", "Min. papers", "Rates", "Status", "Zone", "Test papers", "Accepted"],
+                   [[row["variant"], f"{row['bin_width']:g}", str(int(row["min_papers"])), f"[{row['low']:g}, {row['high']:g}]", row["status"],
+                     *([f"[{row['zone_low']:.2f}, {row['zone_high']:.2f})", n(row["n_test_papers"]), pct(row["acceptance_rate_in_zone"])]
+                       if row["status"] == "ok" else ["–", "–", "–"])] for _, row in zones.iterrows()])
+    lines += table(["Definition", *columns], [[row["variant"], *pair_line(row, cfg)] for _, row in s.table("sensitivity_borderline.csv").iterrows()])
+    lines += [source(s, "sensitivity_borderline_zones.csv", "sensitivity_borderline.csv"), ""]
+
+    # ---- Holm
+    counted = holm[holm["delong_p"].notna()]
+    alpha = settings["holm"]["alpha"]
+    lines += ["### Holm correction, one family of tests per table", ""]
+    lines += table(["Family", "File", "Tests", f"p < {alpha:g}", "After Holm", "Interval excludes zero"],
+                   [[family, code(s.path(tests["file"].iloc[0])), str(len(tests)), str(int(tests["rejects"].sum())),
+                     str(int(tests["rejects_holm"].sum())), str(int(tests["ci_excludes_zero"].sum()))]
+                    for family, tests in counted.groupby("family", sort=False)])
+    lost = counted[counted["rejects"] & ~counted["rejects_holm"]]
+    lines += [f"{len(lost)} of the {int(counted['rejects'].sum())} tests that reject at {alpha:g} no longer reject after the correction:", ""]
+    lines += table(["Family", "Model", "Setting", "Control", "Subset", "Δ", "95 % CI", "DeLong", "Holm"],
+                   [[row["family"], row["model"], str(row["setting"]), row["control"], row["subset"], d(row["difference"]),
+                     ci(row["ci_low"], row["ci_high"]), p(row["delong_p"]), p(row["delong_p_holm"])] for _, row in lost.iterrows()])
+    lines += [source(s, "tests_holm.csv"), ""]
+    return lines
+
+
+def protocol_checks(s: Sources, cfg: dict) -> list[str]:
+    """Protocol checks (scripts/07f, 07g), ablations of the encoders and their follow-up (scripts/08_ablations.py)."""
+    if not has_protocol(s, cfg):
+        return []
+    settings, comparisons, readings = cfg["protocol"], "protocol_comparisons.csv", "protocol_readings.csv"
+    reference, setting = settings["reference"], settings["setting"]
+    lines = ["## Protocol checks", "",
+             "Added on 2026-11-24, after the test and holdout years had been read: every result of this section is post hoc. "
+             "Unlike the sensitivity analyses, these checks train models. Their design (spaces searched, budget of "
+             f"{settings['budget']} configurations per family trained by epochs, selection rule, comparisons, reading rule) is the "
+             f"section `protocol` of {code('configs/default.yaml')}, committed before the first run; each stage was trained once.", "",
+             "Reading rule. (a) *no heterogeneous GNN is above the logistic regression on the initial rating*: confirmed if the "
+             "interval of the difference is below zero for every heterogeneous variant, contradicted if it is above zero for at "
+             "least one, not separated otherwise. (b) *HAN and HGT are above the GCN*: read in the same way.", ""]
+    rows = []
+    for stage in settings["stages"]:
+        for evaluated in settings["comparisons"][stage]["evaluated"]:
+            for subset, title in SUBSETS.items():
+                a = s.row(readings, stage=stage, evaluated=evaluated, subset=subset, reading="a")
+                b = s.row(readings, stage=stage, evaluated=evaluated, subset=subset, reading="b")
+                rows.append([PROTOCOL_STAGES[stage], ", ".join(map(str, cfg["splits"][evaluated])), title, a["outcome"],
+                             f"{int(a['significantly_below'])} / {int(a['significantly_above'])} of {int(a['variants'])}",
+                             f"{full_name(a['closest'], setting, cfg)} {d(a['closest_difference'])} {ci(a['closest_ci_low'], a['closest_ci_high'])}",
+                             b["outcome"]])
+    lines += table(["Check", "Year", "Papers", "(a)", "Variants below / above", "Closest heterogeneous variant", "(b)"], rows)
+    lines += [source(s, readings, comparisons), ""]
+
+    lines += ["### The main model without the pretrained text encoders", "",
+              f"{cfg['ablations']['model'].upper()} of the study, same hyper-parameters, test year."] + [""]
+    rows = []
+    for subset, title in SUBSETS.items():
+        for variant in cfg["ablations"]["encoder_variants"]:
+            full = s.row(comparisons, stage="encoders", comparison="vs_full", model=variant, subset=subset)
+            ref = s.row(comparisons, stage="encoders", comparison="vs_reference", model=variant, subset=subset)
+            rows.append([title, ENCODER_LABELS[variant], f(full["auc_model"], 4), f"{d(full['difference'])} {ci(full['ci_low'], full['ci_high'])}",
+                         f"{d(ref['difference'])} {ci(ref['ci_low'], ref['ci_high'])}"])
+    lines += table(["Papers", "Variant", "AUC", "Δ with the full graph", f"Δ with {full_name(reference, setting, cfg)}"], rows)
+    lines += [source(s, comparisons), ""]
+
+    if has_followup(s, cfg):
+        followup = cfg["followup"]
+        lines += ["### Follow-up: the model without embeddings on the holdout year", "",
+                  f"Section `followup` of {code('configs/default.yaml')}, written after the result above was read and before its own "
+                  "runs. The variants are trained again on the training year and applied, frozen, to the holdout year.", ""]
+        rows = []
+        for evaluated in ("test", "holdout"):
+            for subset, title in SUBSETS.items():
+                for variant in followup["variants"]:
+                    row = s.row(comparisons, stage="followup", evaluated=evaluated, comparison="vs_reference", model=variant, subset=subset)
+                    rows.append([", ".join(map(str, cfg["splits"][evaluated])), title, variant, f(row["auc_model"], 4), f(row["auc_control"], 4),
+                                 f"{d(row['difference'])} {ci(row['ci_low'], row['ci_high'])}", p(row["delong_p_holm"])])
+        lines += table(["Year", "Papers", "Variant", "AUC", f"AUC of {full_name(reference, setting, cfg)}", "Δ", "DeLong, Holm"], rows)
+        rows = []
+        for evaluated in ("test", "holdout"):
+            for subset, title in SUBSETS.items():
+                row = s.row(readings, stage="followup", evaluated=evaluated, subset=subset, reading="d")
+                rows.append([", ".join(map(str, cfg["splits"][evaluated])), title, row["outcome"]])
+        lines += ["Reading (d), *the model without pretrained embeddings is above the logistic regression on the initial rating*:", "",
+                  *table(["Year", "Papers", "(d)"], rows), source(s, comparisons, readings), ""]
+    return lines
+
+
 def holdout_negative_results(s: Sources, cfg: dict) -> list[str]:
     """What the holdout year adds to the list of negative results (nothing before it is run)."""
     if not has_holdout(s, cfg):
@@ -665,6 +834,7 @@ def negative_results(s: Sources, cfg: dict) -> list[str]:
 
 
 def limitations(s: Sources, cfg: dict) -> list[str]:
+    checked = has_protocol(s, cfg)  # the protocol checks have measured some of these limits
     by_year = {year: s.row("clean_report_by_year.csv", year=year) for year in (*cfg["splits"]["train"], *cfg["splits"]["test"])}
     extraction = dict(s.table("llm_full_v3_summary.csv").itertuples(index=False, name=None))
     markers = s.rows("kg_post_rebuttal_markers.csv", modified_after_release=True)
@@ -680,8 +850,8 @@ def limitations(s: Sources, cfg: dict) -> list[str]:
         "## Limitations", "",
         "1. **One venue, one field, two years.** Every paper is a machine-learning submission to ICLR; nothing is measured on "
         "another field, another venue or another review form. The model is trained on one year and tested on the next.",
-        "2. **The labels of the critiques are not validated by humans.** They come from one LLM (Qwen3-14B, temperature 0); the "
-        "annotation of phase 4 is not done. Everything that reads the labels (critique counts, ablations of labels, "
+        "2. **The labels of the critiques are not validated by humans.** They come from one LLM (Qwen3-14B, temperature 0); "
+        "no human annotation was made, so their accuracy is not measured. Everything that reads the labels (critique counts, ablations of labels, "
         "importance by aspect × severity) inherits this.",
         f"3. **Extraction failures.** {n(extraction['align_failed'])} reviews whose author responses could not be aligned, "
         f"{n(extraction['segment_failed'])} review not segmented, {n(extraction['type_failed'])} not typed, out of "
@@ -704,7 +874,8 @@ def limitations(s: Sources, cfg: dict) -> list[str]:
         + ("ICLR 2026 is the fresh test: the models were frozen before it was looked at (section *Holdout year*)."
            if has_holdout(s, cfg) else "ICLR 2026 is meant to be the fresh test; it is not available yet."),
         f"7. **Multiple comparisons.** {n_tests} DeLong tests in {code(s.path(TESTS))}, plus the paired comparisons and the "
-        "ablations, without correction.",
+        "ablations, first read without correction. The Holm correction of the section *Sensitivity analyses* is applied within "
+        "each table, not over the whole study.",
         f"8. **Hyper-parameter search.** One seed, {n(s.value('clean_report_splits.csv', 'papers', withdrawn='excluded', split='val'))} "
         f"validation papers of the training year; {int((searched['status'] != 'ok').sum())} of the {len(searched)} configurations "
         f"tried for the GNNs ran out of memory ({code(s.path('gnn_selection.csv'))}); the chosen configurations are at the edge "
@@ -715,7 +886,29 @@ def limitations(s: Sources, cfg: dict) -> list[str]:
         "one critique at a time, so redundant critiques look unimportant; GNNExplainer was not used (its edge masks do not "
         "reach the HGT layers in PyTorch Geometric).",
         "11. **Ablations.** Hyper-parameters are not tuned again for each variant, which makes the variants without scores hard "
-        "to interpret.", "",
+        "to interpret.",
+        "12. **Concept vocabulary counted with the test year.** The keyword concepts and the `shares_concept` edges are counted "
+        "on the training and test years together, without any label: the graph a model is trained on depends on the keywords of "
+        "the test papers (section *Sensitivity analyses*). "
+        + ("The graph models were trained again on a graph whose vocabulary is counted on the training year alone (section "
+           "*Protocol checks*). " if checked else "No model was trained again on a graph whose vocabulary is counted on the training "
+           "year alone. ") + "The holdout year was appended with the vocabulary frozen.",
+        "13. **Validation and test on different graphs.** Validation papers are predicted on the graph of the training year, test "
+        "papers on the whole graph, where they are also linked to one another."
+        + (" The check with the following year as validation year predicts both on a graph that holds their year (section "
+           "*Protocol checks*)." if checked else ""),
+        "14. **Pretrained models.** The LLM that types the critiques and the two text encoders were trained on data that were not "
+        f"audited. Their weights are dated ({code(s.path('pretrained_model_dates.csv'))}): those of the encoders precede the first "
+        "review of every year; those of the LLM are later than the decisions of the training and test years, whose public reviews "
+        "and decisions it may have read, and earlier than the reviews of the holdout year. The reference baseline uses none of them.",
+        "15. **Unequal hyper-parameter searches.** In the study, the grids do not have the same size for every family of models, "
+        "and the weight decay is fixed for the heterogeneous GNNs. "
+        + ("An equal and wider search was run afterwards (section *Protocol checks*); the variants without pretrained embeddings "
+           "were not searched and use the configuration chosen for the model with embeddings." if checked
+           else "No wider search was run for them."),
+        "16. **Status of the protocol checks.** They were added after the test and holdout years had been read. Their design was "
+        "committed before the runs and each stage was trained once, but they are not confirmations on unseen data, except the "
+        "reading (d) of the follow-up, written down before the variant was applied to the holdout year." if checked else "", "",
     ]
 
 
@@ -729,6 +922,6 @@ def build(s: Sources, cfg: dict, artefacts: list[dict]) -> str:
     lines = ["# Results summary", "",
              "Written by `scripts/10_consolidate.py` from the files of `results/tables/`. Do not edit by hand: change the "
              "script or the text in `src/eval/summary.py` and run it again. Every number is followed by the file it is read in.", ""]
-    for section in (protocol, status, rq1, rq2, rq3, rq4, holdout, negative_results, limitations):
+    for section in (protocol, status, rq1, rq2, rq3, rq4, holdout, sensitivity, protocol_checks, negative_results, limitations):
         lines += section(s, cfg)
     return "\n".join(lines + index(artefacts)) + "\n"

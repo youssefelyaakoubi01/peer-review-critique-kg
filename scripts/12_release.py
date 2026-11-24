@@ -40,7 +40,8 @@ Snapshot of the development repository at commit `{commit}`, without its history
 | `results/tables/`, `results/figures/` | result files and figures, and `results/RESULTS_SUMMARY.md` generated from them |
 | `paper/references.yaml`, `paper/references.json`, `paper/references.bib` | references of the article, each fetched from Crossref or arXiv |
 | `paper/generated/` | numbers quoted in the article, each with the result file it is read in, and the reference list |
-| `data/annotation/GUIDE.md` | annotation guide for the human validation of the labels |
+| `data/annotation/GUIDE.md` | annotation guide prepared for a human validation of the labels, which was not carried out |
+| `LICENSE` | MIT licence of the code |
 | `uv.lock`, `envs/` | pinned packages of the main environment and of the two auxiliary ones |
 | `SHA256SUMS` | checksum of every file |
 

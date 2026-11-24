@@ -104,3 +104,20 @@ def test_a_model_trains_on_an_ablated_graph_without_the_test_year(synthetic, spe
     second, _, _ = hetero.run("hgt", PARAMS, data, other, seed=0, settings=SETTINGS)
     known = split != "test"
     assert np.abs(first[known] - second[known]).max() < 1e-4 and np.abs(first[~known] - second[~known]).max() > 1e-2
+
+
+def test_encoder_variants_remove_every_pretrained_embedding_and_still_train(synthetic):
+    graph, labels, split = synthetic
+    variants = load_config()["ablations"]["encoder_variants"]
+    assert not set(variants) & set(load_config()["ablations"]["variants"])  # the tables of phase 8 are unchanged
+    assert variants["no_article_text"] == {"drop_features": {"article": ["specter2"]}}
+    ablated, layout = ablated_graph(graph, LAYOUT, variants["no_text_embeddings"])
+    assert "concept" not in ablated.node_types and ("article", "shares_concept", "article") in ablated.edge_types
+    left = {block["name"] for blocks in layout.values() for block in blocks}
+    assert not left & {"specter2", "text"} and [block["name"] for block in layout["article"]] == ["text_missing"]
+    assert {block["name"] for block in layout["review"]} == {"rating_initial", "confidence_initial", "soundness_initial", "contribution_initial"}
+    data = baselines.Data(features.article_table(graph, LAYOUT), labels, split)
+    views = hetero.hetero_views(ablated, layout, split, "cpu")  # scaled without any concept node
+    probabilities, fitted, _ = hetero.run("hgt", {"layers": 2, "hidden": 16, "dropout": 0.0, "lr": 0.01}, data, views, 0,
+                                          {"heads": 2, "weight_decay": 0.0, "max_epochs": 40, "patience": 15})
+    assert fitted.best_val_auc > 0.7 and not np.isnan(probabilities).any()

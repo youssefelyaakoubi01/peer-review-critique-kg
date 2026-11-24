@@ -16,7 +16,7 @@ mkdir -p "$OUT"
 \documentclass[10pt,twocolumn]{article}
 \usepackage[a4paper,margin=2cm]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{booktabs,graphicx,amsmath,amssymb}
+\usepackage{booktabs,graphicx,amsmath,amssymb,array,url}
 \newsavebox\figurebox
 \newcommand\showfigure[2]{%
   \sbox\figurebox{\includegraphics{#1}}%

@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{The HGT model of the study without the pretrained text encoders, on the test year (2025): same hyper-parameters, 5 seeds. First variant: the embedding of the title and abstract is removed from the paper node. Second variant: every embedding is removed; a review keeps its scores, a critique its labels, and the concept nodes, whose only feature is an embedding, are removed. Paired bootstrap over the papers. LR: logistic regression; CI: confidence interval. $^{\ddagger}$Protocol check added after the test and holdout years were read; its design was fixed before it was run (Table~\ref{tab:analysis-status}).}
+\label{tab:protocol-encoders}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+ & & \multicolumn{2}{c}{Against the full graph} & \multicolumn{2}{c}{Against the initial rating (LR)} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+Variant & AUC & $\Delta$ & 95\,\% CI & $\Delta$ & 95\,\% CI \\
+\midrule
+\multicolumn{6}{l}{\emph{All papers}} \\
+No embedding of the paper & $0.8617$ & $+0.0034$ & $[+0.0023,\,+0.0046]$ & $-0.0116$ & $[-0.0159,\,-0.0076]$ \\
+No pretrained embedding at all & $0.8786$ & $+0.0204$ & $[+0.0166,\,+0.0242]$ & $+0.0053$ & $[+0.0028,\,+0.0080]$ \\
+\addlinespace
+\multicolumn{6}{l}{\emph{Borderline papers}} \\
+No embedding of the paper & $0.6970$ & $+0.0019$ & $[-0.0013,\,+0.0050]$ & $-0.0247$ & $[-0.0367,\,-0.0115]$ \\
+No pretrained embedding at all & $0.7341$ & $+0.0390$ & $[+0.0277,\,+0.0506]$ & $+0.0124$ & $[+0.0039,\,+0.0217]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

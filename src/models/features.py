@@ -166,7 +166,8 @@ def training_nodes(graph: HeteroData, train_articles: torch.Tensor) -> dict[str,
     """Nodes whose features may be used to fit the scaling: the training articles, what
     belongs to them, the concepts they use, and the aspects."""
     masks = article_masks(graph, train_articles)
-    masks["concept"] = member_of(train_articles, graph[HAS_CONCEPT].edge_index, graph["concept"].num_nodes)
+    if "concept" in graph.node_types:  # an ablated graph may have no concept
+        masks["concept"] = member_of(train_articles, graph[HAS_CONCEPT].edge_index, graph["concept"].num_nodes)
     return masks
 
 

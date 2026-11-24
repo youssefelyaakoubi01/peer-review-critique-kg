@@ -1,0 +1,6 @@
+variant,bin_width,min_papers,low,high,status,zone_low,zone_high,n_test_papers,share_of_test_papers,acceptance_rate_in_zone
+study,0.25,20,0.2,0.8,ok,5.0,6.25,4049,0.4678,0.5853
+bin_width_0.5,0.5,20,0.2,0.8,ok,5.0,6.0,3476,0.4016,0.5423
+rates_0.3_0.7,0.25,20,0.3,0.7,ok,5.0,6.0,3476,0.4016,0.5423
+rates_0.1_0.9,0.25,20,0.1,0.9,ok,4.5,6.5,6010,0.6944,0.513
+min_papers_50,0.25,50,0.2,0.8,ok,5.0,6.25,4049,0.4678,0.5853

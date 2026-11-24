@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Inputs of the models in the two settings: source, date at which each input was fixed, and residual risk of leakage. The reference baseline reads the first row only. The weights of a pretrained model are dated by the last commit that changed its weight files in the pinned revision.}
+\label{tab:input-audit}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.15\linewidth}>{\raggedright\arraybackslash}p{0.21\linewidth}>{\raggedright\arraybackslash}p{0.21\linewidth}>{\raggedright\arraybackslash}p{0.35\linewidth}@{}}
+\toprule
+Input & Source & Fixed at & What remains uncertain \\
+\midrule
+Initial scores of the reviews & Archive of the scores recorded when the reviews were released~\cite{kargaran2025insights} & Release of the reviews, before the author response & None identified. A paper is left out when one of its reviews posted before the author response has no initial score. 2026: no such archive; the current scores are read, after the conference reverted the reviews to their state at the start of the discussion, and $7.7\,\%$ of the reviews of that year were modified after their release. \\
+Text of the reviews & OpenReview, current text & Final state; the earlier versions cannot be read & Text added after the author response. The LLM sets such sentences aside where it identifies them; an explicit mention of the discussion remains in $1.80\,\%$ (2024), $1.65\,\%$ (2025) and $1.42\,\%$ (2026) of the reviews modified after their release. \\
+Critiques and their labels & \texttt{Qwen/Qwen3-14B-AWQ} applied to the text of the reviews & As the text of the reviews & Inherit the risk of the review text. The training data of the LLM are not known. Its weights are dated 2025-05-01: after the decisions of 2024 and 2025, whose public reviews and decisions it may have read, and 166 days before the first review of 2026. It reads the review alone, never a title, a score or a decision. Labels not validated by humans. \\
+Title and abstract of the paper & Archive of the submissions under review~\cite{gonzalez2024iclr}, earliest version of each year & 2024: committed 24 days after the first decision note, no decision in the file. 2025, 2026: committed 98 and 108 days before it & 2024: an abstract edited between the decisions and the commit cannot be excluded (inputs of the training year only). $1\,115$ test papers are absent from the archive and have no text. The decision field of the files of 2025 and 2026 only holds withdrawals and desk rejections (desk rejected: 14; withdrawn: 65; withdrawn: 120). \\
+Keyword concepts and \texttt{shares\_concept} edges & Keywords of the same archive & Counted on the training and test years together & The graph used for training depends on the keywords of the test year: $2\,754$ of $5\,073$ concepts would not exist with the training year alone. No label is involved. None for the holdout year, appended with the vocabulary frozen. \\
+Embeddings of the texts & \texttt{specter2\_base} with its adapter \texttt{specter2} (papers) and \texttt{all-mpnet-base-v2} (other texts), frozen; full identifiers in Section~\ref{sec:features} & Pinned revisions of the pretrained models & Their training data were not audited. Their weights are dated 2023-02-16 (papers) and 2021-08-30 (other texts), 238 and 773 days before the first review of 2024: they can encode no review and no decision of the three years, and no citation made after these dates. The base model of SPECTER2 is trained on citation links between papers, according to its model card (\url{https://huggingface.co/allenai/specter2}). \\
+Author responses (setting B only) & OpenReview, replies of the authors to a review & Discussion period & None identified: 0 (2024) and 0 (2025) of these replies were created on or after the day of the first decision note. \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,48 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{1.2pt}
+\caption{Protocol checks on the test year (2025): AUC of a model minus AUC of the logistic regression on the initial rating, mean over 5 seeds, with its 95\,\% confidence interval (paired bootstrap over the papers; the interval does not count the variability between seeds). Study: the models of Table~\ref{tab:main}. Vocabulary: the graph models with the configurations of the study, on the graph whose concepts are counted on the training year; the baselines read no keyword and are not run again (--). Search: every model searched again in a wider space, 48 configurations for each family trained by epochs, on the graph of the study. The reference is the one of the study, except in the column groups ``Search'', where it is searched and trained again like the other models. LR: logistic regression; MLP: multilayer perceptron; GBT: gradient-boosted trees; CI: confidence interval. $^{\ddagger}$Protocol check added after the test and holdout years were read; its design was fixed before it was run (Table~\ref{tab:analysis-status}).}
+\label{tab:protocol-test}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{Study} & \multicolumn{2}{c}{Vocabulary} & \multicolumn{2}{c}{Search} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+Model & $\Delta$ & 95\,\% CI & $\Delta$ & 95\,\% CI & $\Delta$ & 95\,\% CI \\
+\midrule
+\multicolumn{7}{l}{\emph{All papers ($n = 8\,655$); AUC of the reference: 0.8733 (study), 0.8733 (vocabulary), 0.8733 (search)}} \\
+All initial scores (LR) & $+0.0007$ & $[-0.0013,\,+0.0026]$ & -- & -- & $+0.0007$ & $[-0.0013,\,+0.0026]$ \\
+Critique counts (LR) & $-0.1133$ & $[-0.1222,\,-0.1043]$ & -- & -- & $-0.1133$ & $[-0.1222,\,-0.1043]$ \\
+Scores + critique counts (LR) & $-0.0007$ & $[-0.0032,\,+0.0019]$ & -- & -- & $-0.0007$ & $[-0.0032,\,+0.0019]$ \\
+All initial scores (GBT) & $-0.0004$ & $[-0.0028,\,+0.0021]$ & -- & -- & $-0.0006$ & $[-0.0027,\,+0.0015]$ \\
+Scores + critique counts (GBT) & $+0.0002$ & $[-0.0024,\,+0.0028]$ & -- & -- & $+0.0002$ & $[-0.0024,\,+0.0028]$ \\
+Review text (MLP) & $-0.2640$ & $[-0.2769,\,-0.2518]$ & -- & -- & $-0.2640$ & $[-0.2770,\,-0.2513]$ \\
+Review text + scores (MLP) & $+0.0026$ & $[+0.0002,\,+0.0049]$ & -- & -- & $+0.0027$ & $[+0.0003,\,+0.0050]$ \\
+Review and article text + scores (MLP) & $+0.0028$ & $[+0.0005,\,+0.0053]$ & -- & -- & $+0.0018$ & $[-0.0007,\,+0.0043]$ \\
+GCN, untyped graph & $-0.0425$ & $[-0.0481,\,-0.0366]$ & $-0.0449$ & $[-0.0508,\,-0.0390]$ & $-0.0285$ & $[-0.0336,\,-0.0232]$ \\
+R-GCN & $-0.0537$ & $[-0.0602,\,-0.0474]$ & $-0.0633$ & $[-0.0706,\,-0.0564]$ & $-0.0268$ & $[-0.0320,\,-0.0218]$ \\
+R-GCN + score statistics & $-0.0175$ & $[-0.0220,\,-0.0133]$ & $-0.0205$ & $[-0.0250,\,-0.0160]$ & $-0.0310$ & $[-0.0356,\,-0.0263]$ \\
+HAN & $-0.0177$ & $[-0.0223,\,-0.0132]$ & $-0.0178$ & $[-0.0223,\,-0.0132]$ & $+0.0041$ & $[+0.0017,\,+0.0065]$ \\
+HAN + score statistics & $-0.0144$ & $[-0.0187,\,-0.0101]$ & $-0.0145$ & $[-0.0188,\,-0.0103]$ & $+0.0021$ & $[-0.0001,\,+0.0044]$ \\
+HGT & $-0.0152$ & $[-0.0198,\,-0.0108]$ & $-0.0171$ & $[-0.0214,\,-0.0129]$ & $-0.0080$ & $[-0.0113,\,-0.0045]$ \\
+HGT + score statistics & $-0.0150$ & $[-0.0193,\,-0.0107]$ & $-0.0219$ & $[-0.0265,\,-0.0170]$ & $-0.0083$ & $[-0.0118,\,-0.0051]$ \\
+\addlinespace
+\multicolumn{7}{l}{\emph{Borderline papers ($n = 4\,049$); AUC of the reference: 0.7216 (study), 0.7216 (vocabulary), 0.7216 (search)}} \\
+All initial scores (LR) & $-0.0027$ & $[-0.0100,\,+0.0050]$ & -- & -- & $-0.0027$ & $[-0.0100,\,+0.0050]$ \\
+Critique counts (LR) & $-0.1050$ & $[-0.1259,\,-0.0844]$ & -- & -- & $-0.1050$ & $[-0.1259,\,-0.0844]$ \\
+Scores + critique counts (LR) & $-0.0067$ & $[-0.0163,\,+0.0034]$ & -- & -- & $-0.0067$ & $[-0.0163,\,+0.0034]$ \\
+All initial scores (GBT) & $-0.0078$ & $[-0.0165,\,+0.0011]$ & -- & -- & $-0.0086$ & $[-0.0165,\,-0.0003]$ \\
+Scores + critique counts (GBT) & $-0.0055$ & $[-0.0153,\,+0.0054]$ & -- & -- & $-0.0055$ & $[-0.0153,\,+0.0054]$ \\
+Review text (MLP) & $-0.1872$ & $[-0.2097,\,-0.1658]$ & -- & -- & $-0.1889$ & $[-0.2112,\,-0.1678]$ \\
+Review text + scores (MLP) & $+0.0027$ & $[-0.0054,\,+0.0112]$ & -- & -- & $+0.0026$ & $[-0.0054,\,+0.0113]$ \\
+Review and article text + scores (MLP) & $+0.0025$ & $[-0.0056,\,+0.0110]$ & -- & -- & $-0.0005$ & $[-0.0090,\,+0.0086]$ \\
+GCN, untyped graph & $-0.0606$ & $[-0.0753,\,-0.0442]$ & $-0.0603$ & $[-0.0753,\,-0.0448]$ & $-0.0412$ & $[-0.0547,\,-0.0256]$ \\
+R-GCN & $-0.0755$ & $[-0.0919,\,-0.0596]$ & $-0.0820$ & $[-0.0987,\,-0.0652]$ & $-0.0440$ & $[-0.0575,\,-0.0293]$ \\
+R-GCN + score statistics & $-0.0420$ & $[-0.0545,\,-0.0291]$ & $-0.0465$ & $[-0.0589,\,-0.0332]$ & $-0.0462$ & $[-0.0583,\,-0.0341]$ \\
+HAN & $-0.0384$ & $[-0.0525,\,-0.0244]$ & $-0.0385$ & $[-0.0525,\,-0.0244]$ & $+0.0066$ & $[-0.0014,\,+0.0161]$ \\
+HAN + score statistics & $-0.0361$ & $[-0.0492,\,-0.0228]$ & $-0.0363$ & $[-0.0495,\,-0.0231]$ & $0.0000$ & $[-0.0084,\,+0.0089]$ \\
+HGT & $-0.0269$ & $[-0.0396,\,-0.0132]$ & $-0.0267$ & $[-0.0383,\,-0.0141]$ & $-0.0241$ & $[-0.0351,\,-0.0120]$ \\
+HGT + score statistics & $-0.0324$ & $[-0.0451,\,-0.0193]$ & $-0.0427$ & $[-0.0552,\,-0.0298]$ & $-0.0244$ & $[-0.0357,\,-0.0130]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -61,6 +61,12 @@ collect:
   # 2025-12-03: reviews released on 2025-11-11 (US time), then, after the security
   # incident of 2025-11-27, review text and scores "reverted ... to their state before the
   # bug became known, namely, the beginning of the discussion period".
+  # The blog post itself, cited in the article (read in full on 2026-11-24).
+  incident_announcement:
+    title: "ICLR 2026 Response to Security Incident"
+    author: ICLR 2026 Program Chairs
+    date: "2025-12-03"
+    url: https://blog.iclr.cc/2025/12/03/iclr-2026-response-to-security-incident/
   review_events:
     2026:
       release: [["2025-11-12 02:00", "2025-11-12 11:00"], ["2025-11-13 02:00", "2025-11-13 03:00"]]
@@ -272,6 +278,12 @@ kg:
     run: full_v3_2026
     dir: holdout
     article_vectors: article_specter2_holdout
+  # Graph of setting A whose vocabulary of concepts is counted on the training years only
+  # (scripts/05f_inductive_graph.py, added on 2026-11-24): the graph of the training years
+  # is built first, then the test and holdout years are appended one after the other with
+  # the vocabulary frozen, as the holdout year was appended to the graph of the study.
+  inductive:
+    dir: inductive
 
 # Baselines (phase 6). They read the graph of setting A and nothing else.
 baselines:
@@ -409,6 +421,18 @@ ablations:
   # with_responses = the same model in setting B (the ablation "response nodes", read the other way).
   from_phase7:
     with_responses: {model: hgt, setting: B}
+  # Added on 2026-11-24 (protocol checks, after the test and holdout years were read): what
+  # the model owes to the pretrained text encoders. Their own group, so that the tables of
+  # phase 8 are unchanged (scripts/08_ablations.py --group encoder_variants; control: `full`).
+  # no_article_text removes the SPECTER2 vector of the article (its text-missing flag stays).
+  # no_text_embeddings removes every pretrained embedding: the article keeps its flag, a
+  # review its scores, a critique its labels; the concept nodes, whose only feature is an
+  # embedding, are removed, and the shares_concept edges, counted from the keywords, stay.
+  encoder_variants:
+    no_article_text: {drop_features: {article: [specter2]}}
+    no_text_embeddings:
+      drop_nodes: [concept]
+      drop_features: {article: [specter2], review: [text], critique: [text]}
   # A variant without scores against a baseline that reads no score either.
   comparisons:
     - [no_scores, critiques_lr]
@@ -416,6 +440,220 @@ ablations:
     - [no_scores_no_critiques, text_mlp]
   # The GPU is shared with other users: the script does not start with less free memory
   # than `min_free_gb`, and never takes more than the free memory minus `margin_gb`.
+  gpu: {min_free_gb: 10, margin_gb: 2}
+
+# Sensitivity analyses (scripts/07e_sensitivity.py), added on 2026-11-24. They read the
+# stored predictions and the graph; nothing is trained and no model is chosen. All of
+# them are post hoc: the test year and the holdout year had already been looked at. The
+# pairs, the subsets, the alternative zones and the families below were written before
+# the script was run for the first time, and are not to be edited after a run.
+sensitivity:
+  setting: A
+  reference: scores_rating_lr
+  # RQ1 (a): the mean initial rating of a paper used directly as a score, nothing fitted.
+  # Only its AUC has a meaning; `scale_max` brings it into [0, 1] for the common code.
+  mean_rating: {name: mean_initial_rating, scale_max: 10}
+  # Pairs that the article mentioned without a test: [[model, setting], [control, setting]].
+  pairs:
+    - [[hgt+scores, A], [hgt, A]]
+    - [[han+scores, A], [han, A]]
+    - [[rgcn+scores, A], [rgcn, A]]
+    - [[han, B], [han, A]]
+    - [[rgcn, B], [rgcn, A]]
+    - [[hgt, A], [text_mlp, A]]
+    - [[han, A], [text_mlp, A]]
+    - [[rgcn, A], [text_mlp, A]]
+    - [[scores_rating_lr, A], [mean_initial_rating, A]]
+    - [[hgt, A], [mean_initial_rating, A]]
+    - [[han, A], [mean_initial_rating, A]]
+    - [[rgcn, A], [mean_initial_rating, A]]
+  # Models set against `reference` on the subsets below and under each alternative zone.
+  models:
+    - [text_scores_mlp, A]
+    - [gcn, A]
+    - [rgcn, A]
+    - [han, A]
+    - [hgt, A]
+    - [hgt+scores, A]
+    - [hgt, B]
+  # Test papers whose text from before the decisions is available.
+  subgroups: [with_text, borderline_with_text]
+  # Other definitions of the borderline zone, each fitted on the training papers only
+  # (same keys as `baselines.borderline`, whose values are 0.25, 20, 0.2, 0.8).
+  borderline_variants:
+    bin_width_0.5: {bin_width: 0.5, min_papers: 20, low: 0.2, high: 0.8}
+    rates_0.3_0.7: {bin_width: 0.25, min_papers: 20, low: 0.3, high: 0.7}
+    rates_0.1_0.9: {bin_width: 0.25, min_papers: 20, low: 0.1, high: 0.9}
+    min_papers_50: {bin_width: 0.25, min_papers: 50, low: 0.2, high: 0.8}
+  # Holm correction of the DeLong p-values already computed, one family per table of
+  # the article. `control`: the file has one column delong_p_vs_<control> per reference;
+  # without it, the file has one row per pair and a column delong_p. `where`: values kept.
+  holm:
+    alpha: 0.05
+    families:
+      main_vs_initial_rating: {file: main_results_tests.csv, control: scores_rating_lr}
+      hetero_vs_gcn: {file: paired_comparisons.csv, where: {split: [test], control: [gcn]}}
+      critique_counts: {file: paired_comparisons.csv, where: {split: [test], control: [scores_all_lr, scores_all_gbt, text_mlp]}}
+      ablations: {file: ablations.csv, control: full, where: {split: [test], subset: [all, borderline]}}
+      holdout_vs_initial_rating: {file: holdout_2026_tests.csv, control: scores_rating_lr}
+      holdout_paired: {file: holdout_2026_paired.csv, where: {split: [holdout]}}
+      pairs_added_afterwards: {file: sensitivity_pairs.csv}
+
+# Protocol checks (scripts/05f_inductive_graph.py, 07f_protocol_checks.py,
+# 07g_protocol_results.py), added on 2026-11-24. Three limitations that the article only
+# stated are measured: the vocabulary of concepts counted with the test year, the unequal
+# hyper-parameter searches whose chosen values lie at the edge of their grid, and the
+# validation set taken inside the training year.
+# ALL THREE ARE POST HOC: the test year and the holdout year had been read many times.
+# What makes them more than a search for a result:
+#   - this section was written and committed before the first run, and is not to be
+#     edited after a run; the commit is recorded in JOURNAL.md;
+#   - each stage is run once; the results of phases 6 to 9 and of the holdout year stay
+#     the results of the article, these are checks of its protocol;
+#   - every result is reported, whatever its sign.
+# Reading rule, fixed here. A difference is significant when its paired bootstrap interval
+# excludes zero (the rule of the article); the DeLong p-value is given with its Holm
+# correction within each family (one family = one stage, one evaluated year, one kind of
+# comparison, all papers and borderline papers together). Conclusion (a) of the article,
+# "no heterogeneous GNN is above the logistic regression on the initial rating", is
+#   confirmed      in a stage and year if the interval of every heterogeneous variant is below zero,
+#   contradicted   if the interval of at least one variant is above zero,
+#   not separated  otherwise.
+# Conclusion (b), "HAN and HGT are above the GCN", is read in the same way on these two
+# models. If (a) is contradicted in a stage, the abstract and the conclusion say so.
+protocol:
+  setting: A                       # every stage: inputs from before the author response
+  reference: scores_rating_lr
+  gpu: {min_free_gb: 12, margin_gb: 1}   # the GPU is shared: a stage does not start with less free memory
+  # Stages `search` and `rolling`: the same training length for every model trained by
+  # epochs (phase 7 gave the heterogeneous GNNs 300 epochs and a patience of 30).
+  training: {max_epochs: 500, patience: 50, heads: 4}
+  # The same number of configurations for every family trained by epochs, drawn without
+  # replacement, with `sample_seed`, from the space of the family. The logistic regressions
+  # and the gradient-boosted trees have a smaller space, searched entirely.
+  budget: 48
+  sample_seed: 0
+  # Selection: validation AUC with `seed` for every configuration drawn; the `top` best
+  # are trained again with `confirm_seeds`, and the configuration with the best mean
+  # validation AUC over these seeds is kept (one seed on 839 validation papers decided
+  # alone in phases 6 and 7). A model without random number is selected on its one value.
+  selection: {seed: 0, top: 5, confirm_seeds: [1, 2]}
+  # Each space contains the grid of phases 6 and 7 and goes beyond the values chosen then,
+  # which were at an edge: hidden 64, dropout 0.5, learning rate 0.005 and three layers for
+  # the heterogeneous GNNs (hidden 256, learning rate 0.01, three layers for the MLPs and
+  # the GCN). The weight decay of the heterogeneous GNNs, fixed in phase 7, is searched.
+  spaces:
+    logistic: {C: [0.001, 0.01, 0.1, 1, 10, 100, 1000]}
+    gbt: {learning_rate: [0.02, 0.05, 0.1], max_iter: [100, 300, 600], max_leaf_nodes: [7, 15, 31]}
+    mlp: {hidden: [128, 256, 512], dropout: [0.2, 0.5, 0.7], lr: [0.001, 0.01, 0.03], weight_decay: [0.0001, 0.01, 0.1]}
+    gcn: {layers: [2, 3, 4], hidden: [128, 256, 512], dropout: [0.2, 0.5], lr: [0.003, 0.01, 0.03], weight_decay: [0.0001, 0.01]}
+    hetero: {layers: [2, 3, 4], hidden: [32, 64, 128], dropout: [0.2, 0.5, 0.7], lr: [0.001, 0.005, 0.01], weight_decay: [0.0001, 0.01]}
+  # A stage: the graph it reads (kg.<name>.dir), the role of each year, the years of the
+  # graph a model is trained on, of the graph its validation papers are predicted on, and
+  # of the graph the papers of each role are predicted on (names of `splits`).
+  #   roles study:   training / validation papers of the study, test year, holdout year;
+  #   roles rolling: every paper of the training years is a training paper, the test year
+  #                  is the validation year, the holdout year is the test year.
+  # A variant "+scores" of each heterogeneous GNN reuses the configuration of the plain
+  # model, as in phase 7. `max_hours`: the stage stops if its projected run time exceeds it.
+  stages:
+    # 1. Vocabulary of concepts counted on the training year. Nothing else changes: the
+    #    configurations and the training settings are those of phases 6 and 7, no search.
+    #    The baselines without graph read no keyword and are not run again.
+    vocabulary:
+      graph: inductive
+      roles: study
+      search: false
+      models: [gcn, rgcn, han, hgt]
+      train_graph: [train]
+      validation_graph: [train]
+      predict: {val: [train], test: [train, test]}
+      max_hours: 1.5
+    # 2. Equal and wider search, on the graph of the study. The models kept are then
+    #    applied, frozen, to the holdout year on the graph extended with that year.
+    search:
+      graph: holdout
+      roles: study
+      search: true
+      models: [scores_rating_lr, scores_all_lr, critiques_lr, scores_critiques_lr, scores_all_gbt, scores_critiques_gbt,
+               text_mlp, text_scores_mlp, text_scores_article_mlp, gcn, rgcn, han, hgt]
+      train_graph: [train]
+      validation_graph: [train]
+      predict: {val: [train], test: [train, test], holdout: [train, test, holdout]}
+      max_hours: 3.5
+    # 3. Rolling protocol: trained on the training year, selected and stopped on the whole
+    #    following year, tested on the year after. Vocabulary of the training year, same
+    #    search as stage 2. The validation papers are predicted on a graph that holds their
+    #    year, as the test papers are: no gap of density between validation and test.
+    rolling:
+      graph: inductive
+      roles: rolling
+      search: true
+      models: [scores_rating_lr, scores_all_lr, critiques_lr, scores_critiques_lr, scores_all_gbt, scores_critiques_gbt,
+               text_mlp, text_scores_mlp, text_scores_article_mlp, gcn, rgcn, han, hgt]
+      train_graph: [train]
+      validation_graph: [train, test]
+      predict: {val: [train, test], test: [train, test, holdout]}
+      max_hours: 5
+  # The borderline zone is the zone of the study in every stage (fitted on the training
+  # papers of the study, a subset of the training papers of the rolling stage).
+  # Comparisons of scripts/07g_protocol_results.py, on all papers and borderline papers
+  # (statistics: gnn.statistics). `evaluated`: years of `splits` whose papers are compared.
+  #   vs_reference   every model against the reference: `study` = the one of phases 6 and 7
+  #                  (it reads no keyword and has one hyper-parameter), `stage` = the one
+  #                  searched and trained in the stage;
+  #   vs_study       every model of the stage against the same model of the study (on the
+  #                  holdout year: its frozen predictions of results/predictions/holdout_*);
+  #   hetero_vs_gcn  R-GCN, HAN and HGT of the stage against the GCN of the stage.
+  comparisons:
+    alpha: 0.05
+    hetero: [rgcn, han, hgt]
+    vocabulary: {evaluated: [test], vs_reference: study, vs_study: true, hetero_vs_gcn: true}
+    search: {evaluated: [test, holdout], vs_reference: stage, vs_study: true, hetero_vs_gcn: true}
+    rolling: {evaluated: [holdout], vs_reference: stage, vs_study: true, hetero_vs_gcn: true}
+
+# Follow-up of the ablations of the encoders (scripts/08_ablations.py --group followup,
+# scripts/07g_protocol_results.py). Written on 2026-11-24 AFTER the result of
+# `ablations.encoder_variants` on the test year was read: HGT without any pretrained
+# embedding is above the logistic regression on the initial rating, on all papers and on
+# borderline papers (results/tables/protocol_comparisons.csv, stage `encoders`). For this
+# one variant, conclusion (a) of the article does not hold on the test year. Two questions
+# follow. They are fixed here, and committed, before any of the runs below.
+#   1. Does it hold on the holdout year, on which this variant was never evaluated, and whose
+#      reviews are later than the weights of the LLM that types the critiques?
+#      Reading (d), "HGT without pretrained embeddings is above the logistic regression on the
+#      initial rating": on the holdout year, confirmed if the confidence interval of the
+#      difference is above zero, contradicted if it is below zero, not separated otherwise.
+#      It is read on all papers; borderline papers are read in the same way and reported apart.
+#   2. What does this variant owe to the typed critiques and to the shares_concept edges?
+#      Two more variants remove one or the other from it.
+# The variants are trained as in phase 8: configuration and training settings of HGT in phase
+# 7, five seeds, graph of the training year. Each trained model is then applied, frozen, to
+# the holdout year on the extended graph with the same elements removed. The variant without
+# embeddings is trained again (its weights were not saved): the gap with its first test
+# predictions is recorded and compared. Run once; every result is reported.
+followup:
+  setting: A
+  model: hgt
+  variants:
+    no_text_embeddings:
+      drop_nodes: [concept]
+      drop_features: {article: [specter2], review: [text], critique: [text]}
+    # scores of the reviews and shares_concept edges only
+    no_text_no_critiques:
+      drop_nodes: [concept, critique, aspect]
+      drop_features: {article: [specter2], review: [text]}
+    # scores of the reviews and typed critiques only: no link between two papers but the aspect nodes
+    no_text_no_shares_concept:
+      drop_nodes: [concept]
+      drop_edges: [shares_concept]
+      drop_features: {article: [specter2], review: [text], critique: [text]}
+  main: no_text_embeddings         # the variant of reading (d)
+  # Models of the study each variant is compared with, on the test year and on the holdout
+  # year (their stored predictions; `hgt` is the model with the embeddings).
+  against: [scores_rating_lr, scores_all_lr, scores_critiques_lr, scores_all_gbt, scores_critiques_gbt, text_scores_mlp, hgt]
+  # The main variant against each of the two others: what the removed element brings.
+  within: [no_text_no_critiques, no_text_no_shares_concept]
   gpu: {min_free_gb: 10, margin_gb: 2}
 
 # Explanations of the main model (phase 9), computed on CPU. Each explained article is
@@ -530,6 +768,10 @@ consolidate:
     - [hgt, A, Heterogeneous GNNs, "HGT"]
     - [hgt+scores, A, Heterogeneous GNNs, "HGT + score statistics"]
     - [hgt, B, Heterogeneous GNNs, "HGT, with author responses"]
+  # Models added after the first results of the test year (critique counts without the
+  # graph, and the gradient-boosted trees on the scores that serve as their control):
+  # marked in the tables and in the figure of the test year.
+  post_hoc_models: [critiques_lr, scores_critiques_lr, scores_all_gbt, scores_critiques_gbt]
   # Names of the models that are not rows of the main table.
   other_names:
     text_scores_article_mlp: "Review and article text + scores (MLP)"
@@ -551,6 +793,9 @@ release:
     tables, the typed critiques, the answers of the language model, the embeddings, the graphs (PyTorch Geometric and
     RDF), the saved models and the predictions per paper. The code and the result files are at
     https://github.com/youssefelyaakoubi01/peer-review-critique-kg.</p>
+    <p>Version 2 adds the graph whose keyword concepts are counted on the training year alone, and the models and
+    predictions of the protocol checks made after the first version (equal and wider hyper-parameter search, validation
+    on the following year, graph models without pretrained text embeddings). The other files are unchanged.</p>
     <p>The labels of the critiques were produced by a language model and have not been validated by human
     annotators. README.md describes each file, the sources and their licences, and what is left out.</p>
   creators:
@@ -560,8 +805,13 @@ release:
     - {name: "Azmani, Monir", affiliation: "Intelligent Automation and BioMedGenomics Laboratory, FST of Tangier, Abdelmalek Essaâdi University, Tetouan, Morocco"}
     - {name: "El Haji, Essaid", affiliation: "Intelligent Automation and BioMedGenomics Laboratory, FST of Tangier, Abdelmalek Essaâdi University, Tetouan, Morocco"}
   keywords: [peer review, OpenReview, ICLR, knowledge graph, graph neural networks, review critiques]
-  # Published on 2026-11-24 (Zenodo record 24485276; a published record cannot be changed, only versioned).
-  doi: "10.5281/zenodo.24485276"
+  # First version published on 2026-11-24 (Zenodo record 24485276; a published record cannot be changed, only
+  # versioned). Version 2, same day, after the protocol checks: record 24505447, its DOI reserved when its draft was
+  # opened. `concept_doi` always resolves to the latest version.
+  version: 2
+  doi: "10.5281/zenodo.24505447"
+  concept_doi: "10.5281/zenodo.24485275"
+  previous_dois: ["10.5281/zenodo.24485276"]
   licence: "CC BY 4.0"
   code_url: https://github.com/youssefelyaakoubi01/peer-review-critique-kg
   # The submission notes of these years carry no licence field on OpenReview (the reviews do: CC BY 4.0):

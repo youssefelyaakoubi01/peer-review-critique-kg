@@ -30,12 +30,19 @@ def positive_weight(labels: torch.Tensor) -> torch.Tensor:
 
 
 def fit(model: nn.Module, inputs: tuple, labels: torch.Tensor, train_rows: torch.Tensor, val_rows: torch.Tensor,
-        lr: float, weight_decay: float, max_epochs: int, patience: int) -> Fit:
-    """Train `model` in place and leave it at its best validation epoch."""
+        lr: float, weight_decay: float, max_epochs: int, patience: int,
+        validation: tuple[tuple, torch.Tensor] | None = None) -> Fit:
+    """Train `model` in place and leave it at its best validation epoch.
+
+    `validation`: (inputs, labels) the validation rows are predicted on, when they are
+    not rows of the training inputs (a validation year predicted on a larger graph);
+    `val_rows` then index the output of the model on these inputs.
+    """
     start = time.time()
     optimiser = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
     loss_function = nn.BCEWithLogitsLoss(pos_weight=positive_weight(labels[train_rows]))
-    val_labels = labels[val_rows].cpu().numpy()
+    val_inputs, val_source = (inputs, labels) if validation is None else validation
+    val_labels = val_source[val_rows].cpu().numpy()
     best_auc, best_epoch, best_state, epoch = -1.0, 0, None, 0
     for epoch in range(1, max_epochs + 1):
         model.train()
@@ -43,7 +50,7 @@ def fit(model: nn.Module, inputs: tuple, labels: torch.Tensor, train_rows: torch
         loss = loss_function(model(*inputs)[train_rows], labels[train_rows])
         loss.backward()
         optimiser.step()
-        auc = roc_auc_score(val_labels, predict(model, inputs)[val_rows.cpu().numpy()])
+        auc = roc_auc_score(val_labels, predict(model, val_inputs)[val_rows.cpu().numpy()])
         if auc > best_auc:
             best_auc, best_epoch, best_state = auc, epoch, copy.deepcopy(model.state_dict())
         elif epoch - best_epoch >= patience:

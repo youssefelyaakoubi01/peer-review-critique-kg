@@ -1,0 +1,8 @@
+stage,model,family,searched,configurations_in_space,configurations_tried,runs_failed,params,at_edge_of_space,val_auc_selection_seed,val_auc_selection_seeds_mean,val_auc_final_mean,training
+vocabulary,gcn,gcn,False,,,,"{""layers"": 3, ""hidden"": 256, ""dropout"": 0.2, ""lr"": 0.01, ""weight_decay"": 0.0001}",,,,0.8525835608128602,"{""max_epochs"": 500, ""patience"": 50, ""weight_decay"": 0.0001}"
+vocabulary,rgcn,hetero,False,,,,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",,,,0.86145101607522,"{""heads"": 4, ""weight_decay"": 0.0001, ""max_epochs"": 300, ""patience"": 30}"
+vocabulary,rgcn+scores,hetero,False,,,,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",,,,0.8755583864118895,"{""heads"": 4, ""weight_decay"": 0.0001, ""max_epochs"": 300, ""patience"": 30}"
+vocabulary,han,hetero,False,,,,"{""layers"": 2, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",,,,0.8735747649378223,"{""heads"": 4, ""weight_decay"": 0.0001, ""max_epochs"": 300, ""patience"": 30}"
+vocabulary,han+scores,hetero,False,,,,"{""layers"": 2, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",,,,0.8726660600545951,"{""heads"": 4, ""weight_decay"": 0.0001, ""max_epochs"": 300, ""patience"": 30}"
+vocabulary,hgt,hetero,False,,,,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",,,,0.8755693054291781,"{""heads"": 4, ""weight_decay"": 0.0001, ""max_epochs"": 300, ""patience"": 30}"
+vocabulary,hgt+scores,hetero,False,,,,"{""layers"": 3, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005}",,,,0.8730227479526842,"{""heads"": 4, ""weight_decay"": 0.0001, ""max_epochs"": 300, ""patience"": 30}"

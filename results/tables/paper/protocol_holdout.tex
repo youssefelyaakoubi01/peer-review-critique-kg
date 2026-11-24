@@ -1,0 +1,48 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{1.2pt}
+\caption{Protocol checks on the holdout year (2026): AUC of a model minus AUC of the logistic regression on the initial rating, mean over 5 seeds, with its 95\,\% confidence interval (paired bootstrap over the papers; the interval does not count the variability between seeds). Study: the models of Table~\ref{tab:holdout}. Search: every model searched again in a wider space, 48 configurations for each family trained by epochs, on the graph of the study; the models kept are applied, frozen, to the holdout year. Following year: trained on the training year, selected and stopped on the whole test year, on the graph of the vocabulary check, with the same search. The reference is the one of the study, except in the column groups ``Search'' and ``Following year'', where it is searched and trained again like the other models. LR: logistic regression; MLP: multilayer perceptron; GBT: gradient-boosted trees; CI: confidence interval. $^{\ddagger}$Protocol check added after the test and holdout years were read; its design was fixed before it was run (Table~\ref{tab:analysis-status}).}
+\label{tab:protocol-holdout}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{Study, frozen} & \multicolumn{2}{c}{Search} & \multicolumn{2}{c}{Following year} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+Model & $\Delta$ & 95\,\% CI & $\Delta$ & 95\,\% CI & $\Delta$ & 95\,\% CI \\
+\midrule
+\multicolumn{7}{l}{\emph{All papers ($n = 14\,169$); AUC of the reference: 0.8866 (study), 0.8866 (search), 0.8866 (following year)}} \\
+All initial scores (LR) & $-0.0002$ & $[-0.0018,\,+0.0014]$ & $-0.0002$ & $[-0.0018,\,+0.0014]$ & $+0.0020$ & $[+0.0005,\,+0.0036]$ \\
+Critique counts (LR) & $-0.1430$ & $[-0.1511,\,-0.1351]$ & $-0.1430$ & $[-0.1511,\,-0.1351]$ & $-0.1428$ & $[-0.1508,\,-0.1349]$ \\
+Scores + critique counts (LR) & $-0.0054$ & $[-0.0079,\,-0.0028]$ & $-0.0054$ & $[-0.0079,\,-0.0028]$ & $-0.0030$ & $[-0.0055,\,-0.0005]$ \\
+All initial scores (GBT) & $-0.0025$ & $[-0.0045,\,-0.0005]$ & $-0.0024$ & $[-0.0040,\,-0.0008]$ & $-0.0015$ & $[-0.0034,\,+0.0003]$ \\
+Scores + critique counts (GBT) & $-0.0055$ & $[-0.0080,\,-0.0031]$ & $-0.0055$ & $[-0.0080,\,-0.0031]$ & $-0.0041$ & $[-0.0065,\,-0.0020]$ \\
+Review text (MLP) & $-0.2915$ & $[-0.3018,\,-0.2819]$ & $-0.2913$ & $[-0.3018,\,-0.2817]$ & $-0.2884$ & $[-0.2990,\,-0.2784]$ \\
+Review text + scores (MLP) & $+0.0012$ & $[-0.0007,\,+0.0032]$ & $+0.0011$ & $[-0.0008,\,+0.0031]$ & $+0.0028$ & $[+0.0011,\,+0.0047]$ \\
+Review and article text + scores (MLP) & $+0.0010$ & $[-0.0010,\,+0.0032]$ & $-0.0006$ & $[-0.0027,\,+0.0015]$ & $+0.0026$ & $[+0.0007,\,+0.0045]$ \\
+GCN, untyped graph & $-0.0761$ & $[-0.0815,\,-0.0707]$ & $-0.0421$ & $[-0.0467,\,-0.0379]$ & $-0.0482$ & $[-0.0526,\,-0.0439]$ \\
+R-GCN & $-0.1093$ & $[-0.1157,\,-0.1029]$ & $-0.0502$ & $[-0.0548,\,-0.0457]$ & $-0.0453$ & $[-0.0497,\,-0.0412]$ \\
+R-GCN + score statistics & $-0.0264$ & $[-0.0298,\,-0.0232]$ & $-0.0342$ & $[-0.0379,\,-0.0308]$ & $-0.0292$ & $[-0.0328,\,-0.0259]$ \\
+HAN & $-0.0293$ & $[-0.0335,\,-0.0254]$ & $+0.0024$ & $[+0.0004,\,+0.0044]$ & $+0.0031$ & $[+0.0012,\,+0.0049]$ \\
+HAN + score statistics & $-0.0277$ & $[-0.0313,\,-0.0242]$ & $+0.0003$ & $[-0.0016,\,+0.0023]$ & $+0.0007$ & $[-0.0011,\,+0.0026]$ \\
+HGT & $-0.0246$ & $[-0.0288,\,-0.0207]$ & $-0.0156$ & $[-0.0189,\,-0.0127]$ & $-0.0131$ & $[-0.0163,\,-0.0104]$ \\
+HGT + score statistics & $-0.0215$ & $[-0.0250,\,-0.0182]$ & $-0.0181$ & $[-0.0212,\,-0.0154]$ & $-0.0157$ & $[-0.0186,\,-0.0131]$ \\
+\addlinespace
+\multicolumn{7}{l}{\emph{Borderline papers ($n = 7\,534$); AUC of the reference: 0.7563 (study), 0.7563 (search), 0.7563 (following year)}} \\
+All initial scores (LR) & $-0.0033$ & $[-0.0086,\,+0.0018]$ & $-0.0033$ & $[-0.0086,\,+0.0018]$ & $+0.0045$ & $[-0.0004,\,+0.0093]$ \\
+Critique counts (LR) & $-0.1498$ & $[-0.1634,\,-0.1341]$ & $-0.1498$ & $[-0.1634,\,-0.1341]$ & $-0.1492$ & $[-0.1628,\,-0.1337]$ \\
+Scores + critique counts (LR) & $-0.0168$ & $[-0.0236,\,-0.0099]$ & $-0.0168$ & $[-0.0236,\,-0.0099]$ & $-0.0092$ & $[-0.0158,\,-0.0024]$ \\
+All initial scores (GBT) & $-0.0101$ & $[-0.0161,\,-0.0046]$ & $-0.0120$ & $[-0.0170,\,-0.0065]$ & $-0.0074$ & $[-0.0129,\,-0.0021]$ \\
+Scores + critique counts (GBT) & $-0.0193$ & $[-0.0259,\,-0.0123]$ & $-0.0193$ & $[-0.0259,\,-0.0123]$ & $-0.0154$ & $[-0.0214,\,-0.0092]$ \\
+Review text (MLP) & $-0.2188$ & $[-0.2347,\,-0.2007]$ & $-0.2191$ & $[-0.2345,\,-0.2013]$ & $-0.2174$ & $[-0.2332,\,-0.1998]$ \\
+Review text + scores (MLP) & $+0.0008$ & $[-0.0047,\,+0.0063]$ & $+0.0009$ & $[-0.0046,\,+0.0065]$ & $+0.0058$ & $[+0.0007,\,+0.0110]$ \\
+Review and article text + scores (MLP) & $+0.0008$ & $[-0.0050,\,+0.0067]$ & $-0.0041$ & $[-0.0099,\,+0.0017]$ & $+0.0052$ & $[+0.0002,\,+0.0105]$ \\
+GCN, untyped graph & $-0.1074$ & $[-0.1191,\,-0.0945]$ & $-0.0689$ & $[-0.0791,\,-0.0583]$ & $-0.0797$ & $[-0.0906,\,-0.0686]$ \\
+R-GCN & $-0.1226$ & $[-0.1350,\,-0.1097]$ & $-0.0770$ & $[-0.0871,\,-0.0663]$ & $-0.0768$ & $[-0.0872,\,-0.0666]$ \\
+R-GCN + score statistics & $-0.0591$ & $[-0.0677,\,-0.0503]$ & $-0.0617$ & $[-0.0702,\,-0.0526]$ & $-0.0562$ & $[-0.0648,\,-0.0474]$ \\
+HAN & $-0.0579$ & $[-0.0684,\,-0.0477]$ & $+0.0028$ & $[-0.0029,\,+0.0088]$ & $+0.0048$ & $[-0.0007,\,+0.0106]$ \\
+HAN + score statistics & $-0.0637$ & $[-0.0737,\,-0.0540]$ & $-0.0026$ & $[-0.0083,\,+0.0031]$ & $-0.0016$ & $[-0.0070,\,+0.0040]$ \\
+HGT & $-0.0420$ & $[-0.0515,\,-0.0323]$ & $-0.0371$ & $[-0.0457,\,-0.0285]$ & $-0.0331$ & $[-0.0407,\,-0.0251]$ \\
+HGT + score statistics & $-0.0474$ & $[-0.0562,\,-0.0383]$ & $-0.0437$ & $[-0.0512,\,-0.0355]$ & $-0.0371$ & $[-0.0439,\,-0.0293]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

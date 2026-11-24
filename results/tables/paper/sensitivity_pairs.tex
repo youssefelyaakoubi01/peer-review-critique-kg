@@ -1,0 +1,40 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Pairs of models compared afterwards on the test year: AUC of a model minus AUC of its control, paired bootstrap over the papers, and $p$-value of the DeLong test after the Holm correction within this table. The mean initial rating is used as a score, without any fitting. LR: logistic regression; MLP: multilayer perceptron; CI: confidence interval. $^{\dagger}$Designed after the test and holdout years were read (Table~\ref{tab:analysis-status}).}
+\label{tab:sensitivity-pairs}
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+Model & Control & AUC & Control AUC & $\Delta$ & 95\,\% CI of $\Delta$ & Holm $p$ \\
+\midrule
+\multicolumn{7}{l}{\emph{Test year, all papers}} \\
+HGT + score statistics & HGT & $0.8583$ & $0.8581$ & $+0.0002$ & $[-0.0034,\,+0.0037]$ & $1.000$ \\
+HAN + score statistics & HAN & $0.8589$ & $0.8556$ & $+0.0033$ & $[+0.0013,\,+0.0056]$ & $0.075$ \\
+R-GCN + score statistics & R-GCN & $0.8558$ & $0.8196$ & $+0.0362$ & $[+0.0317,\,+0.0413]$ & $<0.001$ \\
+HAN, with author responses & HAN & $0.8542$ & $0.8556$ & $-0.0013$ & $[-0.0023,\,-0.0004]$ & $<0.001$ \\
+R-GCN, with author responses & R-GCN & $0.8250$ & $0.8196$ & $+0.0054$ & $[+0.0036,\,+0.0072]$ & $<0.001$ \\
+HGT & Review text (MLP) & $0.8581$ & $0.6093$ & $+0.2488$ & $[+0.2373,\,+0.2609]$ & $<0.001$ \\
+HAN & Review text (MLP) & $0.8556$ & $0.6093$ & $+0.2463$ & $[+0.2344,\,+0.2581]$ & $<0.001$ \\
+R-GCN & Review text (MLP) & $0.8196$ & $0.6093$ & $+0.2103$ & $[+0.1991,\,+0.2226]$ & $<0.001$ \\
+Initial rating (LR) & Mean initial rating, not fitted & $0.8733$ & $0.8701$ & $+0.0032$ & $[+0.0017,\,+0.0047]$ & $<0.001$ \\
+HGT & Mean initial rating, not fitted & $0.8581$ & $0.8701$ & $-0.0121$ & $[-0.0167,\,-0.0074]$ & $<0.001$ \\
+HAN & Mean initial rating, not fitted & $0.8556$ & $0.8701$ & $-0.0146$ & $[-0.0191,\,-0.0100]$ & $<0.001$ \\
+R-GCN & Mean initial rating, not fitted & $0.8196$ & $0.8701$ & $-0.0505$ & $[-0.0571,\,-0.0441]$ & $<0.001$ \\
+\addlinespace
+\multicolumn{7}{l}{\emph{Test year, borderline papers}} \\
+HGT + score statistics & HGT & $0.6892$ & $0.6947$ & $-0.0055$ & $[-0.0152,\,+0.0040]$ & $0.971$ \\
+HAN + score statistics & HAN & $0.6856$ & $0.6832$ & $+0.0024$ & $[-0.0043,\,+0.0092]$ & $1.000$ \\
+R-GCN + score statistics & R-GCN & $0.6796$ & $0.6461$ & $+0.0335$ & $[+0.0215,\,+0.0445]$ & $<0.001$ \\
+HAN, with author responses & HAN & $0.6799$ & $0.6832$ & $-0.0034$ & $[-0.0062,\,-0.0006]$ & $0.014$ \\
+R-GCN, with author responses & R-GCN & $0.6503$ & $0.6461$ & $+0.0042$ & $[-0.0003,\,+0.0083]$ & $0.022$ \\
+HGT & Review text (MLP) & $0.6947$ & $0.5345$ & $+0.1603$ & $[+0.1421,\,+0.1789]$ & $<0.001$ \\
+HAN & Review text (MLP) & $0.6832$ & $0.5345$ & $+0.1488$ & $[+0.1299,\,+0.1674]$ & $<0.001$ \\
+R-GCN & Review text (MLP) & $0.6461$ & $0.5345$ & $+0.1117$ & $[+0.0924,\,+0.1309]$ & $<0.001$ \\
+Initial rating (LR) & Mean initial rating, not fitted & $0.7216$ & $0.7073$ & $+0.0144$ & $[+0.0085,\,+0.0204]$ & $<0.001$ \\
+HGT & Mean initial rating, not fitted & $0.6947$ & $0.7073$ & $-0.0126$ & $[-0.0260,\,+0.0017]$ & $0.971$ \\
+HAN & Mean initial rating, not fitted & $0.6832$ & $0.7073$ & $-0.0241$ & $[-0.0384,\,-0.0097]$ & $0.024$ \\
+R-GCN & Mean initial rating, not fitted & $0.6461$ & $0.7073$ & $-0.0612$ & $[-0.0780,\,-0.0452]$ & $<0.001$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

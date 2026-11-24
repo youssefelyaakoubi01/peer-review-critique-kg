@@ -1,0 +1,36 @@
+stage,model,phase,params,seed,val_auc,best_epoch,epochs,seconds,status
+vocabulary,gcn,final,"{""dropout"": 0.2, ""hidden"": 256, ""layers"": 3, ""lr"": 0.01, ""weight_decay"": 0.0001}",0,0.8547164088565363,48,98,29.9,ok
+vocabulary,gcn,final,"{""dropout"": 0.2, ""hidden"": 256, ""layers"": 3, ""lr"": 0.01, ""weight_decay"": 0.0001}",1,0.8490870488322718,52,102,25.4,ok
+vocabulary,gcn,final,"{""dropout"": 0.2, ""hidden"": 256, ""layers"": 3, ""lr"": 0.01, ""weight_decay"": 0.0001}",2,0.8483348498635124,58,108,27.0,ok
+vocabulary,gcn,final,"{""dropout"": 0.2, ""hidden"": 256, ""layers"": 3, ""lr"": 0.01, ""weight_decay"": 0.0001}",3,0.8581558993023961,54,104,26.0,ok
+vocabulary,gcn,final,"{""dropout"": 0.2, ""hidden"": 256, ""layers"": 3, ""lr"": 0.01, ""weight_decay"": 0.0001}",4,0.8526235972095845,46,96,24.1,ok
+vocabulary,rgcn,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",0,0.8672368820139522,28,58,6.8,ok
+vocabulary,rgcn,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",1,0.8509372156505915,29,59,6.2,ok
+vocabulary,rgcn,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",2,0.8646830451925994,30,60,6.6,ok
+vocabulary,rgcn,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",3,0.8608492569002124,31,61,6.4,ok
+vocabulary,rgcn,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",4,0.8635486806187443,31,61,6.7,ok
+vocabulary,rgcn+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",0,0.8778283287837427,21,51,5.5,ok
+vocabulary,rgcn+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",1,0.8736305732484075,20,50,5.4,ok
+vocabulary,rgcn+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",2,0.8757355171367909,32,62,6.6,ok
+vocabulary,rgcn+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",3,0.8786290567182287,29,59,6.4,ok
+vocabulary,rgcn+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",4,0.8719684561722779,31,61,6.5,ok
+vocabulary,han,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005}",0,0.8744313011828935,29,59,7.4,ok
+vocabulary,han,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005}",1,0.8720594479830149,27,57,7.1,ok
+vocabulary,han,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005}",2,0.8751410373066423,25,55,7.0,ok
+vocabulary,han,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005}",3,0.8731816803154382,35,65,8.0,ok
+vocabulary,han,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005}",4,0.8730603579011222,34,64,8.0,ok
+vocabulary,han+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005}",0,0.872362754018805,30,60,7.5,ok
+vocabulary,han+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005}",1,0.8722960266909311,34,64,7.9,ok
+vocabulary,han+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005}",2,0.8729936305732483,33,63,7.8,ok
+vocabulary,han+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005}",3,0.8728480436760693,39,69,8.5,ok
+vocabulary,han+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005}",4,0.8728298453139218,33,63,7.9,ok
+vocabulary,hgt,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",0,0.8742068547164089,82,112,33.1,ok
+vocabulary,hgt,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",1,0.8783500151653019,86,116,32.3,ok
+vocabulary,hgt,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",2,0.877270245677889,78,108,29.2,ok
+vocabulary,hgt,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",3,0.8745040946314833,84,114,30.9,ok
+vocabulary,hgt,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",4,0.8735153169548076,87,117,31.6,ok
+vocabulary,hgt+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",0,0.874910524719442,57,87,23.8,ok
+vocabulary,hgt+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",1,0.87447983014862,65,95,26.6,ok
+vocabulary,hgt+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",2,0.8730724901425538,53,83,27.6,ok
+vocabulary,hgt+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",3,0.8697300576281468,54,84,23.7,ok
+vocabulary,hgt+scores,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 3, ""lr"": 0.005}",4,0.8729208371246587,67,97,26.9,ok

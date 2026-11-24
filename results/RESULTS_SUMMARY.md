@@ -10,7 +10,7 @@ Written by `scripts/10_consolidate.py` from the files of `results/tables/`. Do n
 - **Setting A**: what exists before the author response (initial scores, review text, critiques). **Setting B**: setting A plus the author responses.
 - **Runs**: 5 seeds per model; an AUC is the mean over the seeds.
 - **Intervals and tests**: 95 % confidence intervals by bootstrap over the papers (1,000 resamples), paired for a difference between two models; DeLong test on the probability averaged over the seeds. The intervals count the draw of the papers, not the variability between seeds.
-- **Reading rule**: a difference is called *significant* when its confidence interval excludes zero. When the DeLong test does not reject at 0.05 although the interval excludes zero, the verdict says so: the interval is on the mean of the AUCs of the seeds, the test on the AUC of the probability averaged over the seeds. No correction for multiple comparisons is applied.
+- **Reading rule**: a difference is called *significant* when its confidence interval excludes zero. When the DeLong test does not reject at 0.05 although the interval excludes zero, the verdict says so: the interval is on the mean of the AUCs of the seeds, the test on the AUC of the probability averaged over the seeds. The tests of the sections RQ1 to *Holdout year* are given without correction for multiple comparisons; the section *Sensitivity analyses* gives the Holm correction within each table.
 
 ## Status
 
@@ -18,9 +18,10 @@ Final on ICLR 2024 and 2025: collection, cleaning, critique extraction, graph, b
 
 Not available, hence no number below:
 
-- **Human validation of the LLM labels** (phase 4): 500 critiques are drawn and the annotation files are written; they are not annotated yet. Source: `results/tables/annotation_sample_strata.csv`.
-- **Split train 2024 / validation 2025 / test 2026** (models trained again): not done. On ICLR 2026, only the models frozen after the test year have been run (section *Holdout year*).
+- **Human validation of the LLM labels** (phase 4): not done; no human annotation was made for this study. A sample of 500 critiques and the annotation files exist and were not annotated. Source: `results/tables/annotation_sample_strata.csv`.
 - **Comparison of the explanations with the meta-reviews**: not done.
+
+**How to read the sections below.** RQ1 to RQ4, the holdout year and the sensitivity analyses report the study as it was designed: graph models that read the embeddings of the texts, selected on a part of the training year. The section *Protocol checks*, added afterwards, tests this design; some of its checks contradict the main negative conclusion of the study, and it must be read with the sections that precede it.
 
 ## RQ1 — Does a heterogeneous GNN predict the decision better than the baselines?
 
@@ -393,6 +394,252 @@ Source: `results/tables/holdout_2026_graph_growth.csv`.
 - Setting A only: the author responses of this year were not extracted.
 - The models are not trained again with the test year as validation; that protocol is not run yet.
 
+## Sensitivity analyses
+
+Added on 2026-11-24, after the test and holdout years had been read: every result of this section is post hoc. Nothing is trained; the pairs, subsets, zones and families of tests were written in `configs/default.yaml` (`sensitivity`) before the computation.
+
+### Scope of the concept vocabulary
+
+The vocabulary is counted on every paper of the graph. 2,754 of the 5,073 concepts (54.3 %) have fewer than 2 papers of the training year and would not be concepts with a vocabulary counted on that year alone; 1,073 have none. 1,681 `has_concept` links of papers of the training year lead to such concepts, and 28 other concepts would change whether they carry `shares_concept`. Source: `results/tables/kg_concept_scope.csv`.
+
+| Years | `shares_concept` pairs |
+|---|---|
+| 2024–2024 | 68,656 |
+| 2024–2025 | 175,575 |
+| 2025–2025 | 141,283 |
+
+Source: `results/tables/kg_shares_concept_by_year.csv`.
+
+| Papers | Year | Count | With a concept | With a neighbour | With a neighbour of the training year |
+|---|---|---|---|---|---|
+| articles of the graph | 2024 | 6,954 | 91.5 % | 84.9 % | 81.2 % |
+| articles of the graph | 2025 | 11,422 | 78.5 % | 73.9 % | 69.5 % |
+| papers with a decision | 2024 | 5,534 | 92.1 % | 85.7 % | 82.0 % |
+| papers with a decision | 2025 | 8,655 | 79.8 % | 75.3 % | 70.9 % |
+
+Source: `results/tables/kg_concept_neighbours.csv`.
+
+### Dates of the text archive against the decisions
+
+| Year | First decision note | Text archive committed | Days from first decision to commit | Submissions in the file | With a decision in the file | Author replies to a review | Created from the first decision day |
+|---|---|---|---|---|---|---|---|
+| 2024 | 2024-01-16 | 2024-02-09 | 24 | 7,304 | 0 | 50,245 | 0 |
+| 2025 | 2025-01-22 | 2024-10-16 | -98 | 10,079 | 79 | 105,493 | 0 |
+| 2026 | 2026-01-26 | 2025-10-10 | -108 | 19,793 | 120 | 136,562 | 0 |
+
+The version of the text archive used for 2024 was committed after the first decision note of that year: its date does not establish that the text precedes the decisions; the file carries no decision. Source: `results/tables/input_dates.csv`.
+
+### Mean initial rating used as a score (RQ1 a)
+
+The mean of the initial ratings of a paper, without any fitting.
+
+| Split | Papers | Subset | AUC | 95 % CI |
+|---|---|---|---|---|
+| val | 839 | all | 0.8763 | [0.8517, 0.8966] |
+| val | 382 | borderline | 0.7290 | [0.6821, 0.7761] |
+| test | 8,655 | all | 0.8701 | [0.8626, 0.8775] |
+| test | 4,049 | borderline | 0.7073 | [0.6924, 0.7230] |
+
+Source: `results/tables/sensitivity_mean_rating.csv`.
+
+### Pairs compared afterwards (test year)
+
+All papers:
+
+| Model | Control | Papers | AUC | Control AUC | Δ | 95 % CI | DeLong | Holm |
+|---|---|---|---|---|---|---|---|---|
+| HGT + score statistics | HGT | 8,655 | 0.8583 | 0.8581 | +0.0002 | [-0.0034, +0.0037] | p = 0.948 | p = 1.000 |
+| HAN + score statistics | HAN | 8,655 | 0.8589 | 0.8556 | +0.0033 | [+0.0013, +0.0056] | p = 0.015 | p = 0.075 |
+| R-GCN + score statistics | R-GCN | 8,655 | 0.8558 | 0.8196 | +0.0362 | [+0.0317, +0.0413] | p < 0.001 | p < 0.001 |
+| HAN, with author responses | HAN | 8,655 | 0.8542 | 0.8556 | -0.0013 | [-0.0023, -0.0004] | p < 0.001 | p < 0.001 |
+| R-GCN, with author responses | R-GCN | 8,655 | 0.8250 | 0.8196 | +0.0054 | [+0.0036, +0.0072] | p < 0.001 | p < 0.001 |
+| HGT | Review text (MLP) | 8,655 | 0.8581 | 0.6093 | +0.2488 | [+0.2373, +0.2609] | p < 0.001 | p < 0.001 |
+| HAN | Review text (MLP) | 8,655 | 0.8556 | 0.6093 | +0.2463 | [+0.2344, +0.2581] | p < 0.001 | p < 0.001 |
+| R-GCN | Review text (MLP) | 8,655 | 0.8196 | 0.6093 | +0.2103 | [+0.1991, +0.2226] | p < 0.001 | p < 0.001 |
+| Initial rating (LR) | Mean initial rating, not fitted | 8,655 | 0.8733 | 0.8701 | +0.0032 | [+0.0017, +0.0047] | p < 0.001 | p < 0.001 |
+| HGT | Mean initial rating, not fitted | 8,655 | 0.8581 | 0.8701 | -0.0121 | [-0.0167, -0.0074] | p < 0.001 | p < 0.001 |
+| HAN | Mean initial rating, not fitted | 8,655 | 0.8556 | 0.8701 | -0.0146 | [-0.0191, -0.0100] | p < 0.001 | p < 0.001 |
+| R-GCN | Mean initial rating, not fitted | 8,655 | 0.8196 | 0.8701 | -0.0505 | [-0.0571, -0.0441] | p < 0.001 | p < 0.001 |
+
+Borderline papers:
+
+| Model | Control | Papers | AUC | Control AUC | Δ | 95 % CI | DeLong | Holm |
+|---|---|---|---|---|---|---|---|---|
+| HGT + score statistics | HGT | 4,049 | 0.6892 | 0.6947 | -0.0055 | [-0.0152, +0.0040] | p = 0.299 | p = 0.971 |
+| HAN + score statistics | HAN | 4,049 | 0.6856 | 0.6832 | +0.0024 | [-0.0043, +0.0092] | p = 0.662 | p = 1.000 |
+| R-GCN + score statistics | R-GCN | 4,049 | 0.6796 | 0.6461 | +0.0335 | [+0.0215, +0.0445] | p < 0.001 | p < 0.001 |
+| HAN, with author responses | HAN | 4,049 | 0.6799 | 0.6832 | -0.0034 | [-0.0062, -0.0006] | p = 0.002 | p = 0.014 |
+| R-GCN, with author responses | R-GCN | 4,049 | 0.6503 | 0.6461 | +0.0042 | [-0.0003, +0.0083] | p = 0.003 | p = 0.022 |
+| HGT | Review text (MLP) | 4,049 | 0.6947 | 0.5345 | +0.1603 | [+0.1421, +0.1789] | p < 0.001 | p < 0.001 |
+| HAN | Review text (MLP) | 4,049 | 0.6832 | 0.5345 | +0.1488 | [+0.1299, +0.1674] | p < 0.001 | p < 0.001 |
+| R-GCN | Review text (MLP) | 4,049 | 0.6461 | 0.5345 | +0.1117 | [+0.0924, +0.1309] | p < 0.001 | p < 0.001 |
+| Initial rating (LR) | Mean initial rating, not fitted | 4,049 | 0.7216 | 0.7073 | +0.0144 | [+0.0085, +0.0204] | p < 0.001 | p < 0.001 |
+| HGT | Mean initial rating, not fitted | 4,049 | 0.6947 | 0.7073 | -0.0126 | [-0.0260, +0.0017] | p = 0.243 | p = 0.971 |
+| HAN | Mean initial rating, not fitted | 4,049 | 0.6832 | 0.7073 | -0.0241 | [-0.0384, -0.0097] | p = 0.004 | p = 0.024 |
+| R-GCN | Mean initial rating, not fitted | 4,049 | 0.6461 | 0.7073 | -0.0612 | [-0.0780, -0.0452] | p < 0.001 | p < 0.001 |
+
+Source: `results/tables/sensitivity_pairs.csv`, `results/tables/tests_holm.csv`.
+
+### Test papers with text; withdrawn papers counted as rejections
+
+| Analysis | Subset | Model | Control | Papers | AUC | Control AUC | Δ | 95 % CI | DeLong |
+|---|---|---|---|---|---|---|---|---|---|
+| papers_with_text | with_text | Review text + scores (MLP) | Initial rating (LR) | 7,540 | 0.8775 | 0.8741 | +0.0034 | [+0.0009, +0.0059] | p = 0.005 |
+| papers_with_text | with_text | GCN, untyped graph | Initial rating (LR) | 7,540 | 0.8326 | 0.8741 | -0.0415 | [-0.0478, -0.0352] | p < 0.001 |
+| papers_with_text | with_text | R-GCN | Initial rating (LR) | 7,540 | 0.8175 | 0.8741 | -0.0566 | [-0.0637, -0.0495] | p < 0.001 |
+| papers_with_text | with_text | HAN | Initial rating (LR) | 7,540 | 0.8575 | 0.8741 | -0.0166 | [-0.0213, -0.0117] | p < 0.001 |
+| papers_with_text | with_text | HGT | Initial rating (LR) | 7,540 | 0.8611 | 0.8741 | -0.0131 | [-0.0175, -0.0084] | p < 0.001 |
+| papers_with_text | with_text | HGT + score statistics | Initial rating (LR) | 7,540 | 0.8617 | 0.8741 | -0.0124 | [-0.0171, -0.0078] | p < 0.001 |
+| papers_with_text | with_text | HGT, with author responses | Initial rating (LR) | 7,540 | 0.8580 | 0.8741 | -0.0161 | [-0.0202, -0.0115] | p < 0.001 |
+| papers_with_text | borderline_with_text | Review text + scores (MLP) | Initial rating (LR) | 3,480 | 0.7252 | 0.7214 | +0.0038 | [-0.0049, +0.0132] | p = 0.331 |
+| papers_with_text | borderline_with_text | GCN, untyped graph | Initial rating (LR) | 3,480 | 0.6596 | 0.7214 | -0.0618 | [-0.0786, -0.0445] | p < 0.001 |
+| papers_with_text | borderline_with_text | R-GCN | Initial rating (LR) | 3,480 | 0.6425 | 0.7214 | -0.0789 | [-0.0974, -0.0593] | p < 0.001 |
+| papers_with_text | borderline_with_text | HAN | Initial rating (LR) | 3,480 | 0.6857 | 0.7214 | -0.0358 | [-0.0524, -0.0188] | p < 0.001 |
+| papers_with_text | borderline_with_text | HGT | Initial rating (LR) | 3,480 | 0.6976 | 0.7214 | -0.0238 | [-0.0389, -0.0076] | p = 0.007 |
+| papers_with_text | borderline_with_text | HGT + score statistics | Initial rating (LR) | 3,480 | 0.6939 | 0.7214 | -0.0276 | [-0.0421, -0.0136] | p < 0.001 |
+| papers_with_text | borderline_with_text | HGT, with author responses | Initial rating (LR) | 3,480 | 0.6908 | 0.7214 | -0.0306 | [-0.0450, -0.0152] | p = 0.005 |
+| withdrawn_as_reject | all | HGT | Initial rating (LR) | 11,422 | 0.8885 | 0.9029 | -0.0144 | [-0.0180, -0.0106] | p < 0.001 |
+| withdrawn_as_reject | borderline | HGT | Initial rating (LR) | 4,365 | 0.7062 | 0.7366 | -0.0304 | [-0.0429, -0.0170] | p < 0.001 |
+
+Source: `results/tables/sensitivity_subgroups.csv`.
+
+### Other definitions of the borderline zone
+
+Each zone is fitted on the training papers only; `study` is the zone of the other sections.
+
+| Definition | Bin width | Min. papers | Rates | Status | Zone | Test papers | Accepted |
+|---|---|---|---|---|---|---|---|
+| study | 0.25 | 20 | [0.2, 0.8] | ok | [5.00, 6.25) | 4,049 | 58.5 % |
+| bin_width_0.5 | 0.5 | 20 | [0.2, 0.8] | ok | [5.00, 6.00) | 3,476 | 54.2 % |
+| rates_0.3_0.7 | 0.25 | 20 | [0.3, 0.7] | ok | [5.00, 6.00) | 3,476 | 54.2 % |
+| rates_0.1_0.9 | 0.25 | 20 | [0.1, 0.9] | ok | [4.50, 6.50) | 6,010 | 51.3 % |
+| min_papers_50 | 0.25 | 50 | [0.2, 0.8] | ok | [5.00, 6.25) | 4,049 | 58.5 % |
+
+| Definition | Model | Control | Papers | AUC | Control AUC | Δ | 95 % CI | DeLong |
+|---|---|---|---|---|---|---|---|---|
+| study | Review text + scores (MLP) | Initial rating (LR) | 4,049 | 0.7244 | 0.7216 | +0.0027 | [-0.0054, +0.0112] | p = 0.419 |
+| study | GCN, untyped graph | Initial rating (LR) | 4,049 | 0.6610 | 0.7216 | -0.0606 | [-0.0753, -0.0442] | p < 0.001 |
+| study | R-GCN | Initial rating (LR) | 4,049 | 0.6461 | 0.7216 | -0.0755 | [-0.0919, -0.0596] | p < 0.001 |
+| study | HAN | Initial rating (LR) | 4,049 | 0.6832 | 0.7216 | -0.0384 | [-0.0525, -0.0244] | p < 0.001 |
+| study | HGT | Initial rating (LR) | 4,049 | 0.6947 | 0.7216 | -0.0269 | [-0.0396, -0.0132] | p < 0.001 |
+| study | HGT + score statistics | Initial rating (LR) | 4,049 | 0.6892 | 0.7216 | -0.0324 | [-0.0451, -0.0193] | p < 0.001 |
+| study | HGT, with author responses | Initial rating (LR) | 4,049 | 0.6886 | 0.7216 | -0.0331 | [-0.0462, -0.0198] | p < 0.001 |
+| bin_width_0.5 | Review text + scores (MLP) | Initial rating (LR) | 3,476 | 0.6938 | 0.6920 | +0.0018 | [-0.0084, +0.0118] | p = 0.629 |
+| bin_width_0.5 | GCN, untyped graph | Initial rating (LR) | 3,476 | 0.6398 | 0.6920 | -0.0522 | [-0.0703, -0.0341] | p < 0.001 |
+| bin_width_0.5 | R-GCN | Initial rating (LR) | 3,476 | 0.6196 | 0.6920 | -0.0724 | [-0.0917, -0.0524] | p < 0.001 |
+| bin_width_0.5 | HAN | Initial rating (LR) | 3,476 | 0.6521 | 0.6920 | -0.0399 | [-0.0574, -0.0224] | p < 0.001 |
+| bin_width_0.5 | HGT | Initial rating (LR) | 3,476 | 0.6636 | 0.6920 | -0.0285 | [-0.0430, -0.0132] | p = 0.002 |
+| bin_width_0.5 | HGT + score statistics | Initial rating (LR) | 3,476 | 0.6543 | 0.6920 | -0.0377 | [-0.0550, -0.0213] | p < 0.001 |
+| bin_width_0.5 | HGT, with author responses | Initial rating (LR) | 3,476 | 0.6587 | 0.6920 | -0.0333 | [-0.0483, -0.0174] | p = 0.002 |
+| rates_0.3_0.7 | Review text + scores (MLP) | Initial rating (LR) | 3,476 | 0.6938 | 0.6920 | +0.0018 | [-0.0084, +0.0118] | p = 0.629 |
+| rates_0.3_0.7 | GCN, untyped graph | Initial rating (LR) | 3,476 | 0.6398 | 0.6920 | -0.0522 | [-0.0703, -0.0341] | p < 0.001 |
+| rates_0.3_0.7 | R-GCN | Initial rating (LR) | 3,476 | 0.6196 | 0.6920 | -0.0724 | [-0.0917, -0.0524] | p < 0.001 |
+| rates_0.3_0.7 | HAN | Initial rating (LR) | 3,476 | 0.6521 | 0.6920 | -0.0399 | [-0.0574, -0.0224] | p < 0.001 |
+| rates_0.3_0.7 | HGT | Initial rating (LR) | 3,476 | 0.6636 | 0.6920 | -0.0285 | [-0.0430, -0.0132] | p = 0.002 |
+| rates_0.3_0.7 | HGT + score statistics | Initial rating (LR) | 3,476 | 0.6543 | 0.6920 | -0.0377 | [-0.0550, -0.0213] | p < 0.001 |
+| rates_0.3_0.7 | HGT, with author responses | Initial rating (LR) | 3,476 | 0.6587 | 0.6920 | -0.0333 | [-0.0483, -0.0174] | p = 0.002 |
+| rates_0.1_0.9 | Review text + scores (MLP) | Initial rating (LR) | 6,010 | 0.7917 | 0.7869 | +0.0048 | [+0.0001, +0.0093] | p = 0.024 |
+| rates_0.1_0.9 | GCN, untyped graph | Initial rating (LR) | 6,010 | 0.7336 | 0.7869 | -0.0534 | [-0.0637, -0.0433] | p < 0.001 |
+| rates_0.1_0.9 | R-GCN | Initial rating (LR) | 6,010 | 0.7193 | 0.7869 | -0.0677 | [-0.0786, -0.0565] | p < 0.001 |
+| rates_0.1_0.9 | HAN | Initial rating (LR) | 6,010 | 0.7586 | 0.7869 | -0.0283 | [-0.0372, -0.0195] | p < 0.001 |
+| rates_0.1_0.9 | HGT | Initial rating (LR) | 6,010 | 0.7654 | 0.7869 | -0.0215 | [-0.0299, -0.0136] | p < 0.001 |
+| rates_0.1_0.9 | HGT + score statistics | Initial rating (LR) | 6,010 | 0.7648 | 0.7869 | -0.0221 | [-0.0303, -0.0147] | p < 0.001 |
+| rates_0.1_0.9 | HGT, with author responses | Initial rating (LR) | 6,010 | 0.7610 | 0.7869 | -0.0259 | [-0.0340, -0.0178] | p < 0.001 |
+| min_papers_50 | Review text + scores (MLP) | Initial rating (LR) | 4,049 | 0.7244 | 0.7216 | +0.0027 | [-0.0054, +0.0112] | p = 0.419 |
+| min_papers_50 | GCN, untyped graph | Initial rating (LR) | 4,049 | 0.6610 | 0.7216 | -0.0606 | [-0.0753, -0.0442] | p < 0.001 |
+| min_papers_50 | R-GCN | Initial rating (LR) | 4,049 | 0.6461 | 0.7216 | -0.0755 | [-0.0919, -0.0596] | p < 0.001 |
+| min_papers_50 | HAN | Initial rating (LR) | 4,049 | 0.6832 | 0.7216 | -0.0384 | [-0.0525, -0.0244] | p < 0.001 |
+| min_papers_50 | HGT | Initial rating (LR) | 4,049 | 0.6947 | 0.7216 | -0.0269 | [-0.0396, -0.0132] | p < 0.001 |
+| min_papers_50 | HGT + score statistics | Initial rating (LR) | 4,049 | 0.6892 | 0.7216 | -0.0324 | [-0.0451, -0.0193] | p < 0.001 |
+| min_papers_50 | HGT, with author responses | Initial rating (LR) | 4,049 | 0.6886 | 0.7216 | -0.0331 | [-0.0462, -0.0198] | p < 0.001 |
+
+Source: `results/tables/sensitivity_borderline_zones.csv`, `results/tables/sensitivity_borderline.csv`.
+
+### Holm correction, one family of tests per table
+
+| Family | File | Tests | p < 0.05 | After Holm | Interval excludes zero |
+|---|---|---|---|---|---|
+| main_vs_initial_rating | `results/tables/main_results_tests.csv` | 44 | 34 | 32 | 34 |
+| hetero_vs_gcn | `results/tables/paired_comparisons.csv` | 6 | 5 | 5 | 6 |
+| critique_counts | `results/tables/paired_comparisons.csv` | 6 | 2 | 2 | 2 |
+| ablations | `results/tables/ablations.csv` | 14 | 9 | 9 | 11 |
+| holdout_vs_initial_rating | `results/tables/holdout_2026_tests.csv` | 32 | 26 | 25 | 26 |
+| holdout_paired | `results/tables/holdout_2026_paired.csv` | 12 | 12 | 12 | 12 |
+| pairs_added_afterwards | `results/tables/sensitivity_pairs.csv` | 24 | 20 | 19 | 19 |
+
+4 of the 108 tests that reject at 0.05 no longer reject after the correction:
+
+| Family | Model | Setting | Control | Subset | Δ | 95 % CI | DeLong | Holm |
+|---|---|---|---|---|---|---|---|---|
+| main_vs_initial_rating | text_scores_mlp | A | scores_rating_lr | all | +0.0026 | [+0.0002, +0.0049] | p = 0.016 | p = 0.172 |
+| main_vs_initial_rating | text_scores_article_mlp | A | scores_rating_lr | all | +0.0028 | [+0.0005, +0.0053] | p = 0.006 | p = 0.076 |
+| holdout_vs_initial_rating | scores_all_gbt | A | scores_rating_lr | all | -0.0025 | [-0.0045, -0.0005] | p = 0.013 | p = 0.091 |
+| pairs_added_afterwards | han+scores | A | han | all | +0.0033 | [+0.0013, +0.0056] | p = 0.015 | p = 0.075 |
+
+Source: `results/tables/tests_holm.csv`.
+
+## Protocol checks
+
+Added on 2026-11-24, after the test and holdout years had been read: every result of this section is post hoc. Unlike the sensitivity analyses, these checks train models. Their design (spaces searched, budget of 48 configurations per family trained by epochs, selection rule, comparisons, reading rule) is the section `protocol` of `configs/default.yaml`, committed before the first run; each stage was trained once.
+
+Reading rule. (a) *no heterogeneous GNN is above the logistic regression on the initial rating*: confirmed if the interval of the difference is below zero for every heterogeneous variant, contradicted if it is above zero for at least one, not separated otherwise. (b) *HAN and HGT are above the GCN*: read in the same way.
+
+| Check | Year | Papers | (a) | Variants below / above | Closest heterogeneous variant | (b) |
+|---|---|---|---|---|---|---|
+| Vocabulary of the training year | 2025 | All papers | confirmed | 6 / 0 of 6 | HAN + score statistics -0.0145 [-0.0188, -0.0103] | confirmed |
+| Vocabulary of the training year | 2025 | Borderline papers | confirmed | 6 / 0 of 6 | HGT -0.0267 [-0.0383, -0.0141] | confirmed |
+| Equal and wider search | 2025 | All papers | contradicted | 4 / 1 of 6 | HAN +0.0041 [+0.0017, +0.0065] | confirmed |
+| Equal and wider search | 2025 | Borderline papers | not separated | 4 / 0 of 6 | HAN +0.0066 [-0.0014, +0.0161] | confirmed |
+| Equal and wider search | 2026 | All papers | contradicted | 4 / 1 of 6 | HAN +0.0024 [+0.0004, +0.0044] | confirmed |
+| Equal and wider search | 2026 | Borderline papers | not separated | 4 / 0 of 6 | HAN +0.0028 [-0.0029, +0.0088] | confirmed |
+| Validation on the following year | 2026 | All papers | contradicted | 4 / 1 of 6 | HAN +0.0031 [+0.0012, +0.0049] | confirmed |
+| Validation on the following year | 2026 | Borderline papers | not separated | 4 / 0 of 6 | HAN +0.0048 [-0.0007, +0.0106] | confirmed |
+
+Source: `results/tables/protocol_readings.csv`, `results/tables/protocol_comparisons.csv`.
+
+### The main model without the pretrained text encoders
+
+HGT of the study, same hyper-parameters, test year.
+
+| Papers | Variant | AUC | Δ with the full graph | Δ with Initial rating (LR) |
+|---|---|---|---|---|
+| All papers | No embedding of the paper | 0.8617 | +0.0034 [+0.0023, +0.0046] | -0.0116 [-0.0159, -0.0076] |
+| All papers | No pretrained embedding at all | 0.8786 | +0.0204 [+0.0166, +0.0242] | +0.0053 [+0.0028, +0.0080] |
+| Borderline papers | No embedding of the paper | 0.6970 | +0.0019 [-0.0013, +0.0050] | -0.0247 [-0.0367, -0.0115] |
+| Borderline papers | No pretrained embedding at all | 0.7341 | +0.0390 [+0.0277, +0.0506] | +0.0124 [+0.0039, +0.0217] |
+
+Source: `results/tables/protocol_comparisons.csv`.
+
+### Follow-up: the model without embeddings on the holdout year
+
+Section `followup` of `configs/default.yaml`, written after the result above was read and before its own runs. The variants are trained again on the training year and applied, frozen, to the holdout year.
+
+| Year | Papers | Variant | AUC | AUC of Initial rating (LR) | Δ | DeLong, Holm |
+|---|---|---|---|---|---|---|
+| 2025 | All papers | no_text_embeddings | 0.8788 | 0.8733 | +0.0055 [+0.0030, +0.0082] | p < 0.001 |
+| 2025 | All papers | no_text_no_critiques | 0.8775 | 0.8733 | +0.0042 [+0.0020, +0.0065] | p < 0.001 |
+| 2025 | All papers | no_text_no_shares_concept | 0.8799 | 0.8733 | +0.0066 [+0.0043, +0.0090] | p < 0.001 |
+| 2025 | Borderline papers | no_text_embeddings | 0.7346 | 0.7216 | +0.0130 [+0.0044, +0.0221] | p = 0.001 |
+| 2025 | Borderline papers | no_text_no_critiques | 0.7303 | 0.7216 | +0.0087 [+0.0014, +0.0172] | p = 0.011 |
+| 2025 | Borderline papers | no_text_no_shares_concept | 0.7378 | 0.7216 | +0.0162 [+0.0084, +0.0247] | p < 0.001 |
+| 2026 | All papers | no_text_embeddings | 0.8917 | 0.8866 | +0.0051 [+0.0027, +0.0073] | p < 0.001 |
+| 2026 | All papers | no_text_no_critiques | 0.8907 | 0.8866 | +0.0041 [+0.0022, +0.0060] | p < 0.001 |
+| 2026 | All papers | no_text_no_shares_concept | 0.8928 | 0.8866 | +0.0062 [+0.0040, +0.0082] | p < 0.001 |
+| 2026 | Borderline papers | no_text_embeddings | 0.7672 | 0.7563 | +0.0109 [+0.0045, +0.0165] | p < 0.001 |
+| 2026 | Borderline papers | no_text_no_critiques | 0.7641 | 0.7563 | +0.0077 [+0.0019, +0.0130] | p < 0.001 |
+| 2026 | Borderline papers | no_text_no_shares_concept | 0.7696 | 0.7563 | +0.0133 [+0.0072, +0.0189] | p < 0.001 |
+
+Reading (d), *the model without pretrained embeddings is above the logistic regression on the initial rating*:
+
+| Year | Papers | (d) |
+|---|---|---|
+| 2025 | All papers | confirmed |
+| 2025 | Borderline papers | confirmed |
+| 2026 | All papers | confirmed |
+| 2026 | Borderline papers | confirmed |
+
+Source: `results/tables/protocol_comparisons.csv`, `results/tables/protocol_readings.csv`.
+
 ## Negative and unexpected results
 
 1. **The main hypothesis is not supported.** No heterogeneous GNN reaches a logistic regression on the mean, minimum, maximum and standard deviation of the initial ratings: `hgt` 0.858 against `scores_rating_lr` 0.873 on all papers, 0.695 against 0.722 on borderline papers. (`results/tables/main_results.csv`)
@@ -414,16 +661,21 @@ Source: `results/tables/holdout_2026_graph_growth.csv`.
 ## Limitations
 
 1. **One venue, one field, two years.** Every paper is a machine-learning submission to ICLR; nothing is measured on another field, another venue or another review form. The model is trained on one year and tested on the next.
-2. **The labels of the critiques are not validated by humans.** They come from one LLM (Qwen3-14B, temperature 0); the annotation of phase 4 is not done. Everything that reads the labels (critique counts, ablations of labels, importance by aspect × severity) inherits this.
+2. **The labels of the critiques are not validated by humans.** They come from one LLM (Qwen3-14B, temperature 0); no human annotation was made, so their accuracy is not measured. Everything that reads the labels (critique counts, ablations of labels, importance by aspect × severity) inherits this.
 3. **Extraction failures.** 1,157 reviews whose author responses could not be aligned, 1 review not segmented, 1 not typed, out of 73,129 (`results/tables/llm_full_v3_summary.csv`; causes in `results/tables/llm_full_v3_failures.csv`). The detailed log of these failures was deleted by mistake on 2026-11-18; only the aggregated causes remain.
 4. **Initial text of the reviews.** 21.7 % of the 2024 reviews; 27.6 % of the 2025 reviews were modified after their release (`results/tables/clean_report_by_year.csv`). Their initial scores are known from an external archive, but their text is only available in its final state: OpenReview does not expose earlier versions (answer of its support, 2026-11-19). The LLM sets aside the sentences written after the discussion; a marker of the discussion is still found in 1.8 % of the modified reviews of 2024 and 1.7 % of the modified reviews of 2025 (`results/tables/kg_post_rebuttal_markers.csv`).
 5. **Test papers without text.** 1,115 of the 8,655 test papers have no title, abstract nor concept: they are not in the archive taken before the decisions, where every paper of the training year is found (`results/tables/baselines.csv`, `results/tables/article_text_coverage.csv`). The model never sees a paper without text in training.
 6. **The test year has been looked at several times.** The critique baselines, the ablations and the explanations were designed after the first test results. ICLR 2026 is the fresh test: the models were frozen before it was looked at (section *Holdout year*).
-7. **Multiple comparisons.** 132 DeLong tests in `results/tables/main_results_tests.csv`, plus the paired comparisons and the ablations, without correction.
+7. **Multiple comparisons.** 132 DeLong tests in `results/tables/main_results_tests.csv`, plus the paired comparisons and the ablations, first read without correction. The Holm correction of the section *Sensitivity analyses* is applied within each table, not over the whole study.
 8. **Hyper-parameter search.** One seed, 839 validation papers of the training year; 8 of the 96 configurations tried for the GNNs ran out of memory (`results/tables/gnn_selection.csv`); the chosen configurations are at the edge of the grid. Full-batch training only.
 9. **Intervals.** They count the draw of the papers, not the variability between seeds nor between runs on the GPU.
 10. **Explanations.** One architecture, one seed for the means per cell, 1,200 of the 8,655 test papers; occlusion removes one critique at a time, so redundant critiques look unimportant; GNNExplainer was not used (its edge masks do not reach the HGT layers in PyTorch Geometric).
 11. **Ablations.** Hyper-parameters are not tuned again for each variant, which makes the variants without scores hard to interpret.
+12. **Concept vocabulary counted with the test year.** The keyword concepts and the `shares_concept` edges are counted on the training and test years together, without any label: the graph a model is trained on depends on the keywords of the test papers (section *Sensitivity analyses*). The graph models were trained again on a graph whose vocabulary is counted on the training year alone (section *Protocol checks*). The holdout year was appended with the vocabulary frozen.
+13. **Validation and test on different graphs.** Validation papers are predicted on the graph of the training year, test papers on the whole graph, where they are also linked to one another. The check with the following year as validation year predicts both on a graph that holds their year (section *Protocol checks*).
+14. **Pretrained models.** The LLM that types the critiques and the two text encoders were trained on data that were not audited. Their weights are dated (`results/tables/pretrained_model_dates.csv`): those of the encoders precede the first review of every year; those of the LLM are later than the decisions of the training and test years, whose public reviews and decisions it may have read, and earlier than the reviews of the holdout year. The reference baseline uses none of them.
+15. **Unequal hyper-parameter searches.** In the study, the grids do not have the same size for every family of models, and the weight decay is fixed for the heterogeneous GNNs. An equal and wider search was run afterwards (section *Protocol checks*); the variants without pretrained embeddings were not searched and use the configuration chosen for the model with embeddings.
+16. **Status of the protocol checks.** They were added after the test and holdout years had been read. Their design was committed before the runs and each stage was trained once, but they are not confirmations on unseen data, except the reading (d) of the follow-up, written down before the variant was applied to the holdout year.
 
 ## Index of tables and figures
 
@@ -440,12 +692,26 @@ Source: `results/tables/holdout_2026_graph_growth.csv`.
 | `results/tables/paper/explain_aspect_severity.tex` | RQ3: importance of a critique by aspect and severity | `scripts/10_consolidate.py` | `results/tables/explainability.csv`, `results/tables/explainability_relations.csv` |
 | `results/tables/paper/explain_relations.tex` | RQ3: importance of the relations | `scripts/10_consolidate.py` | `results/tables/explainability_relations.csv` |
 | `results/tables/paper/explain_fidelity.tex` | RQ3: fidelity of the explanations | `scripts/10_consolidate.py` | `results/tables/explainability_fidelity.csv` |
-| `results/tables/paper/robustness_withdrawn.tex` | Robustness: withdrawn papers counted as rejections | `scripts/10_consolidate.py` | `results/tables/main_results_withdrawn_as_reject.csv` |
+| `results/tables/paper/robustness_withdrawn.tex` | Robustness: withdrawn papers counted as rejections | `scripts/10_consolidate.py` | `results/tables/main_results_withdrawn_as_reject.csv`, `results/tables/sensitivity_subgroups.csv` |
 | `results/tables/paper/hyperparameters.tex` | Chosen hyper-parameters | `scripts/10_consolidate.py` | `results/tables/baselines_selection.csv`, `results/tables/main_results.csv`, `results/tables/gnn_selection.csv` |
 | `results/tables/paper/main_full.tex` | Appendix: every model, every metric | `scripts/10_consolidate.py` | `results/tables/main_results.csv` |
 | `results/tables/paper/ablations_full.tex` | Appendix: ablations, every metric | `scripts/10_consolidate.py` | `results/tables/ablations.csv` |
+| `results/tables/paper/input_audit.tex` | Inputs of the models: source, date and residual risk | `scripts/10_consolidate.py` | `results/tables/input_dates.csv`, `results/tables/kg_post_rebuttal_markers.csv`, `results/tables/baselines.csv`, `results/tables/kg_concept_scope.csv`, `results/tables/clean_report_by_year.csv`, `results/tables/kg_post_rebuttal_markers_holdout.csv`, `results/tables/pretrained_model_dates.csv` |
+| `results/tables/paper/model_inputs.tex` | Information read by each model | `scripts/10_consolidate.py` |  |
+| `results/tables/paper/sensitivity_pairs.tex` | Sensitivity: pairs of models compared afterwards | `scripts/10_consolidate.py` | `results/tables/sensitivity_pairs.csv`, `results/tables/tests_holm.csv` |
+| `results/tables/paper/sensitivity_text.tex` | Sensitivity: test papers with text | `scripts/10_consolidate.py` | `results/tables/sensitivity_subgroups.csv` |
+| `results/tables/paper/sensitivity_zones.tex` | Sensitivity: other definitions of the borderline zone | `scripts/10_consolidate.py` | `results/tables/sensitivity_borderline_zones.csv`, `results/tables/sensitivity_borderline.csv` |
+| `results/tables/paper/holm.tex` | Sensitivity: Holm correction of the tests of each table | `scripts/10_consolidate.py` | `results/tables/tests_holm.csv` |
 | `results/tables/paper/holdout.tex` | Holdout year: AUC of the frozen models | `scripts/10_consolidate.py` | `results/tables/holdout_2026.csv`, `results/tables/holdout_2026_tests.csv` |
 | `results/tables/paper/holdout_paired.tex` | Holdout year: models against their controls, next to the test year | `scripts/10_consolidate.py` | `results/tables/paired_comparisons.csv`, `results/tables/holdout_2026_paired.csv` |
+| `results/tables/paper/protocol_test.tex` | Protocol checks: every model against the initial rating, test year | `scripts/10_consolidate.py` | `results/tables/protocol_comparisons.csv`, `results/tables/main_results.csv`, `results/tables/main_results_tests.csv` |
+| `results/tables/paper/protocol_holdout.tex` | Protocol checks: every model against the initial rating, holdout year | `scripts/10_consolidate.py` | `results/tables/protocol_comparisons.csv`, `results/tables/holdout_2026.csv`, `results/tables/holdout_2026_tests.csv` |
+| `results/tables/paper/protocol_readings.tex` | Protocol checks: conclusions (a) and (b) under each check | `scripts/10_consolidate.py` | `results/tables/protocol_readings.csv` |
+| `results/tables/paper/protocol_vs_study_test.tex` | Protocol checks: each model against the same model of the study, test year | `scripts/10_consolidate.py` | `results/tables/protocol_comparisons.csv` |
+| `results/tables/paper/protocol_vs_study_holdout.tex` | Protocol checks: each model against the same model of the study, holdout year | `scripts/10_consolidate.py` | `results/tables/protocol_comparisons.csv` |
+| `results/tables/paper/protocol_configurations.tex` | Protocol checks: configurations kept by the searches | `scripts/10_consolidate.py` | `results/tables/protocol_search_chosen.csv`, `results/tables/protocol_rolling_chosen.csv` |
+| `results/tables/paper/protocol_encoders.tex` | Protocol checks: the main model without the pretrained encoders | `scripts/10_consolidate.py` | `results/tables/protocol_comparisons.csv` |
+| `results/tables/paper/followup.tex` | Follow-up: the graph model without pretrained embeddings on the test and holdout years | `scripts/10_consolidate.py` | `results/tables/protocol_comparisons.csv` |
 | `results/figures/main_results.pdf` | RQ1, RQ4: test AUC of the main models with confidence intervals | `scripts/10_consolidate.py` | `results/tables/main_results.csv`, `results/tables/main_results_tests.csv` |
 | `results/figures/borderline_zone.pdf` | Definition of the borderline zone on the training papers | `scripts/10_consolidate.py` | `results/tables/borderline_definition.csv` |
 | `results/figures/critique_labels.pdf` | Labels of the critiques | `scripts/10_consolidate.py` | `results/tables/llm_full_v3_aspect.csv`, `results/tables/llm_full_v3_severity.csv`, `results/tables/llm_full_v3_polarity.csv` |

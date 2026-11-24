@@ -1,0 +1,4 @@
+year,decision_notes,first_decision_note,last_decision_note,text_archive_committed,days_from_first_decision_to_commit,text_committed_before_decisions,archive_submissions,archive_submissions_with_a_decision,archive_decision_values,author_replies_to_a_review,author_replies_from_first_decision_day,share_author_replies_from_first_decision_day
+2024,5780,2024-01-16,2024-02-02,2024-02-09,24,False,7304,0,,50245,0,0.0
+2025,8727,2025-01-22,2025-01-22,2024-10-16,-98,True,10079,79,Desk rejected: 14; Withdrawn: 65,105493,0,0.0
+2026,14175,2026-01-26,2026-01-26,2025-10-10,-108,True,19793,120,Withdrawn: 120,136562,0,0.0

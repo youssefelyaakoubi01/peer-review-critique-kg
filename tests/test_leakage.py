@@ -1,10 +1,22 @@
 """Anti-leakage tests (CLAUDE.md, rule 2).
 
-Current coverage:
-  - the forbidden-field list in the config covers every category of rule 2;
-  - the guard rejects inputs that contain a forbidden field.
-The check on the real model inputs (data/processed) is skipped until the graph
-exists; it must be completed in the graph-construction phase.
+Coverage:
+  - the forbidden-field list in the config covers every category of rule 2, and the
+    guard rejects inputs that contain a forbidden field;
+  - the model-input views, the cleaned tables and the built graphs hold no forbidden
+    field, no final score and no column equal to the label;
+  - flipping the labels of the test papers changes no prediction, and changing the
+    features of the test-year articles, reviews and critiques changes no prediction made
+    for a training or validation paper.
+The structure of the graph of the study is NOT free of the test year: its concept
+vocabulary and its shares_concept edges are counted on the training and test years
+together (src/kg/tables.py), so the graph a model is trained on depends on the keywords
+of the test year, without any label. results/tables/kg_concept_scope.csv measures it
+(scripts/07e_sensitivity.py) and the article reports it. The last test of this file
+shows this dependence and checks that the graph of the protocol checks
+(scripts/05f_inductive_graph.py: training years first, later years appended with the
+vocabulary frozen) does not have it.
+Not covered: what the pretrained models (text encoders, LLM) may have read.
 """
 
 import pytest
@@ -425,3 +437,78 @@ def test_setting_a_models_get_no_author_response(graphs):
     assert not [e for e in graph.edge_types if "response" in e or "respon" in e[1]]
     assert int((split != "test").sum()) + int((split == "test").sum()) == graph["article"].num_nodes
     assert np.isin(split, ["train", "val", "test"]).all() and hetero.KINDS == ("rgcn", "han", "hgt")
+
+
+
+# ----------------------------------------------------------------- structure of the graph (protocol checks)
+def test_the_inductive_graph_owes_nothing_to_the_keywords_of_a_later_year():
+    import numpy as np
+
+    from src.kg import extend, tables as kg_tables
+    from tests.test_kg import SETTINGS, synthetic_inputs
+
+    papers, reviews, critiques, responses, audit = synthetic_inputs()
+    training, later = {"P1", "P2"}, {"P3", "P4"}  # 2024, then 2025
+
+    def graphs(table):
+        study = kg_tables.build_tables(table, reviews, critiques, responses, audit, training | later, SETTINGS, 36000).setting("A")
+        base = kg_tables.build_tables(table, reviews, critiques, responses, audit, training, SETTINGS, 36000).setting("A")
+        return study, extend.extend_tables(base, table, reviews, critiques, audit, later, SETTINGS, 36000)
+
+    def among_training(tables, relation):
+        """Edges of a relation whose article ends are all training articles."""
+        is_training = tables.nodes["article"]["forum_id"].isin(training).to_numpy()
+        sources, targets = tables.edges[relation]
+        keep = is_training[sources] & (is_training[targets] if relation == kg_tables.SHARES_CONCEPT else True)
+        names = tables.nodes["article"]["forum_id"].to_numpy()
+        ends = names[targets] if relation == kg_tables.SHARES_CONCEPT else tables.nodes["concept"]["concept"].to_numpy()[targets]
+        return sorted(zip(names[sources][keep], np.asarray(ends)[keep]))
+
+    changed = papers.copy()
+    changed["keywords"] = [["Rare topic", "Robotics", "GAN", "Vision"] if year == 2025 else keywords
+                           for year, keywords in zip(papers["year"], papers["keywords"])]
+    study, inductive = graphs(papers)
+    study_changed, inductive_changed = graphs(changed)
+
+    # the graph of the study: other keywords in the later year give another vocabulary, and
+    # other edges between the training articles themselves ("rare topic" becomes a concept of
+    # P2; "gan" and "vision" now have four articles and no longer carry shares_concept)
+    assert study.nodes["concept"]["concept"].tolist() == ["gan", "vision"]
+    assert study_changed.nodes["concept"]["concept"].tolist() == ["gan", "rare topic", "robotics", "vision"]
+    assert among_training(study, kg_tables.HAS_CONCEPT) != among_training(study_changed, kg_tables.HAS_CONCEPT)
+    assert among_training(study, kg_tables.SHARES_CONCEPT) == [("P1", "P2"), ("P2", "P1")]
+    assert among_training(study_changed, kg_tables.SHARES_CONCEPT) == []
+
+    # the inductive graph: same concepts, same edges among the training articles
+    assert inductive.nodes["concept"].equals(inductive_changed.nodes["concept"])
+    assert inductive.nodes["concept"]["concept"].tolist() == ["gan", "vision"]
+    assert inductive.nodes["concept"]["n_articles"].tolist() == [2, 2]  # counted on the training years
+    for relation in (kg_tables.HAS_CONCEPT, kg_tables.SHARES_CONCEPT):
+        assert among_training(inductive, relation) == among_training(inductive_changed, relation)
+    # the later articles are linked to the existing concepts only
+    assert inductive_changed.nodes["article"]["forum_id"].tolist() == ["P1", "P2", "P3", "P4"]
+    linked = dict.fromkeys(["P3", "P4"], ())
+    sources, targets = inductive_changed.edges[kg_tables.HAS_CONCEPT]
+    for article, concept in zip(sources, targets):
+        name = inductive_changed.nodes["article"]["forum_id"][article]
+        if name in linked:
+            linked[name] += (inductive_changed.nodes["concept"]["concept"][concept],)
+    assert linked == {"P3": ("gan", "vision"), "P4": ("gan", "vision")}  # "rare topic" and "robotics" are not concepts
+
+
+def test_the_protocol_scripts_read_graphs_targets_and_stored_tables_only(cfg):
+    scripts = cfg["paths"]["logs"].parent / "scripts"
+    checks = (scripts / "07f_protocol_checks.py").read_text()
+    import re
+
+    assert "interim" not in checks and '"raw"' not in checks and "outcomes" not in checks and "views" not in checks
+    read = set(re.findall(r'(?:directory|processed|tables_dir) / f?"([^"]+)"', checks))
+    assert read <= {"graph_{setting}.pt", "graph_features.json", "targets.parquet", "models", "gnn_selection.csv",
+                    "baselines_selection.csv", "protocol_{stage}_selection.csv", "protocol_{stage}_chosen.csv"}, read
+    assert set(cfg["protocol"]["stages"]) == {"vocabulary", "search", "rolling"} and cfg["protocol"]["setting"] == "A"
+    graph = (scripts / "05f_inductive_graph.py").read_text()
+    # the graph is built without any outcome: the labels give the list of the usable papers
+    # and the targets, written apart; no table of outcomes or of final reviews is opened
+    code = graph.split('"""', 2)[2]
+    assert "outcomes" not in code and "reviews_final" not in code and "read_parquet(cfg[\"paths\"][\"interim\"]" not in code
+    assert set(re.findall(r"views\.(\w+)\(", code)) == {"load_model_inputs", "load_labels"}

@@ -78,3 +78,21 @@ def test_bootstrap_metrics_average_the_seeds_and_their_interval_holds_the_estima
     low, high = stats.interval(samples[:, 0], 0.95)
     assert low < estimate < high and 0.02 < high - low < 0.15
     assert stats.interval(np.arange(101.0), 0.9) == pytest.approx((5.0, 95.0))
+
+
+def test_holm_adjusts_a_family_by_hand():
+    # sorted: 0.01, 0.02, 0.03, 0.04 -> x4, x3, x2, x1 = 0.04, 0.06, 0.06, 0.04 -> made non-decreasing: 0.04, 0.06, 0.06, 0.06
+    adjusted = stats.holm(np.array([0.03, 0.01, 0.04, 0.02]))
+    assert adjusted == pytest.approx([0.06, 0.04, 0.06, 0.06])
+    assert stats.holm(np.array([0.5, 0.9])) == pytest.approx([1.0, 1.0])  # capped at one
+    assert stats.holm(np.array([0.2])) == pytest.approx([0.2])            # a family of one test is unchanged
+
+
+def test_holm_leaves_missing_tests_out_of_the_family():
+    adjusted = stats.holm(np.array([0.01, np.nan, 0.03]))
+    assert adjusted[[0, 2]] == pytest.approx([0.02, 0.03]) and np.isnan(adjusted[1])
+    assert len(stats.holm(np.array([]))) == 0
+    # never below the raw p-value, and the order of the tests is kept
+    raw = np.random.default_rng(0).random(50)
+    adjusted = stats.holm(raw)
+    assert (adjusted >= raw).all() and (np.diff(adjusted[np.argsort(raw)]) >= 0).all()

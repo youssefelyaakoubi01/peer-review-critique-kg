@@ -69,13 +69,27 @@ def test_latex_cells():
     assert latex.bold("$-2.0$") == r"$\mathbf{-2.0}$" and latex.bold("text") == r"\textbf{text}"
 
 
+def column_count(text: str) -> int:
+    """Number of columns of the tabular of a table: l, c, r and p{...} columns, whatever their >{...} prefix."""
+    line = next(line for line in text.splitlines() if line.startswith(r"\begin{tabular}"))
+    spec = line.removeprefix(r"\begin{tabular}{").removesuffix("}").replace("@{}", "")
+    spec = re.sub(r"p\{[^{}]*\}", "P", re.sub(r">\{[^{}]*\}", "", spec))
+    assert re.fullmatch(r"[lcrP]+", spec), spec
+    return len(spec)
+
+
+def test_column_count_reads_paragraph_columns():
+    assert column_count("\\begin{tabular}{@{}llrr@{}}") == 4 and column_count("\\begin{tabular}{lccc}") == 4
+    assert column_count(r"\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.5\linewidth}rr@{}}") == 3
+
+
 def well_formed(text: str) -> None:
     for rule in (r"\toprule", r"\bottomrule", r"\begin{tabular}", r"\end{tabular}", r"\caption{", r"\label{tab:"):
         assert text.count(rule) == 1, rule
     assert text.count("{") == text.count("}")
     assert text.count("$") % 2 == 0
     assert not re.search(r"(?<!\\)[_%&#]", re.sub(r"&", "", text.split(r"\begin{tabular}")[0])), "unescaped character in the caption"
-    width = len(re.search(r"\\begin\{tabular\}\{(?:@\{\})?([lcr]+)(?:@\{\})?\}", text).group(1))
+    width = column_count(text)
     for line in text.splitlines():
         if line.endswith(r"\\") and r"\multicolumn" not in line:
             assert line.count("&") == width - 1, line
@@ -156,9 +170,14 @@ def test_reproduce_all_names_existing_scripts_in_the_order_of_the_phases():
     assert done.returncode == 0, done.stderr
     scripts = re.findall(r"scripts/[\w.]+", "\n".join(line for line in done.stdout.splitlines() if line.startswith("+ ")))
     assert all((REPO_ROOT / script).is_file() for script in scripts)
+    # the comparisons of the protocol checks only run where their predictions exist (they have their own chain)
+    protocol = "scripts/07g_protocol_results.py"
+    assert scripts.count(protocol) <= 1 and (protocol not in scripts or scripts[scripts.index(protocol) + 1] == "scripts/10_consolidate.py")
+    scripts = [script for script in scripts if script != protocol]
     phases = [int(re.match(r"scripts/(\d+)", script).group(1)) for script in scripts if re.match(r"scripts/\d", script)]
-    # the result scripts of phases 7 to 9 run again at the end, then the consolidation and the paper
-    expected = sorted(phases[:-5]) + [7, 8, 9, 10, 11]
+    # the result scripts of phases 7 to 9 run again at the end, then the consolidation and the paper; the
+    # sensitivity analyses (07e) come after the results of the ablations (08b), whose table they read
+    expected = sorted(phases[:-6]) + [7, 8, 7, 9, 10, 11]
     assert phases == expected and set(range(12)) <= set(phases)
     assert "03b_llm_report" not in done.stdout       # its failure log of the full run no longer exists
 

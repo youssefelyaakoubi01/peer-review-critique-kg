@@ -1,0 +1,255 @@
+# Comparison table of the related work (paper/generated/related_studies.tex, src/paper/related.py).
+# One entry per study read in FULL TEXT. Each cell has a short value and the passages of the paper that support
+# it, copied verbatim from the extracted text (paper/refs/fulltext/<key>.txt, not versioned) with their page.
+# The extraction glues some words and cuts two-column lines: the passages are kept as extracted, so that
+# scripts/11_paper.py and the tests can find them again. "not stated": the paper gives no such information.
+# `read_whole_section: true` marks a cell that reports an absence after reading the whole experimental section.
+# Read on 2026-11-24 (three readings by Claude subagents, passages checked by string matching).
+
+caption: "Protocol of the closest studies that predict an outcome of peer review, as stated in their full text."
+
+columns:
+  data: Reviews of
+  target: Predicted
+  inputs: Read by the model
+  review_version: Version of the reviews
+  split: Split
+  score_baseline: Baseline on the reviewers' scores
+
+widths_mm: {study: 18, data: 20, target: 23, inputs: 26, review_version: 20, split: 22, score_baseline: 18}
+
+studies:
+  kang2018peerread:
+    data:
+      value: "ICLR 2017, arXiv 2007-2017, ACL 2017"
+      quotes:
+        - {text: "ICLR2017andthearXivsections of the PeerRead", page: 6}
+        - {text: "includeaspectscores: ACL2017andICLR2017.", page: 6}
+    target:
+      value: "decision of the paper; aspect scores of a review"
+      quotes:
+        - {text: "cation task: given a paper draft, predict whether the", page: 5}
+        - {text: "to predict scores for seven review aspects: ‘im-", page: 6}
+    inputs:
+      value: "decision: features of the paper only; aspect scores: paper text, review text or both"
+      quotes:
+        - {text: "We use 22 coarse features, e.g., length of the", page: 6}
+        - {text: "text only, (ii) the review text only, or (iii) both paper", page: 6}
+    review_version: {value: "not stated"}
+    split:
+      value: "inside each venue, 0.9:0.05:0.05; method not stated"
+      quotes:
+        - {text: "standard training, development and test sets with", page: 3}
+        - {text: "0.9:0.05:0.05 ratios. In addition to the PDF ﬁle of", page: 3}
+    score_baseline:
+      value: "no (majority class; mean aspect score)"
+      read_whole_section: true
+      quotes:
+        - {text: "against a baseline which always predicts the mean", page: 6}
+
+  # Read by Claude on 2026-11-24 in a copy found on the web (ResearchGate cover page, hosted by a third party),
+  # used at the request of the author.
+  wang2018sentiment:
+    data:
+      value: "ICLR 2017 and 2018"
+      quotes:
+        - {text: "using all peer reviews of ICLR-2017 and ICLR-2018.", page: 3}
+    target:
+      value: "recommendation of a review; decision of the paper (ICLR 2017 only)"
+      quotes:
+        - {text: "defined as predicting the overall recommendation status (accept,", page: 2}
+        - {text: "be used to predict the final decision of accepting/rejecting a paper", page: 10}
+    inputs:
+      value: "review text and abstract of the paper"
+      quotes:
+        - {text: "ory network [26, 30, 35, 43], we treat the abstract information as", page: 6}
+    review_version:
+      value: "not stated; ICLR 2018 collected before its decisions were published"
+      quotes:
+        - {text: "wewrite this paper, the final results of the papers in ICLR-2018", page: 10}
+        - {text: "have not been published yet. So we only test on the ICLR-2017", page: 10}
+    split:
+      value: "10-fold cross-validation, random; also trained on one year and tested on the other"
+      quotes:
+        - {text: "model. Each dataset is randomly split into 10 parts, and at each fold", page: 6}
+        - {text: "the ICLR-2017 dataset to test on ICLR-2018 dataset, and vice versa.", page: 9}
+    score_baseline:
+      value: "no (decision by vote or average of the predicted recommendations)"
+      read_whole_section: true
+      quotes:
+        - {text: "predicted labels of review texts to determine the final decision.", page: 10}
+
+  ghosal2019deepsentipeer:
+    data:
+      value: "ICLR 2017 and 2018, ACL 2017, CoNLL 2016"
+      quotes:
+        - {text: "ICLR2017 427 7270 Y 172/255 ACL2017 137 275 Y 88/49 CoNLL2016 22 39 Y 11/11 ICLR2018 909 2741 Only Rec 336/573 Total 1495 10325 – 607/888", page: 3}
+    target:
+      value: "recommendation score of a review; decision of the paper"
+      quotes:
+        - {text: "Task1: Predicting the overall recommendation", page: 5}
+        - {text: "Task 2: Predicting the Accept/Reject Decision", page: 5}
+    inputs:
+      value: "paper text, review text, sentiment of the review sentences"
+      quotes:
+        - {text: "of three information channels: the paper full-text,", page: 9}
+        - {text: "corresponding peer review texts and the sentiment", page: 9}
+    review_version: {value: "not stated"}
+    split:
+      value: "test set of Kang et al.; ICLR 2018 added to the training set; ACL and CoNLL as cross-venue tests"
+      quotes:
+        - {text: "theexperimentalsetup(trainvstestratio)identical", page: 5}
+        - {text: "Training is done with ICLR 2017+ICLR 2018 pa- pers/reviews, † → Cross-Domain: Training on ICLR and testing upon the entire data of ACL/CoNLL, ‡Test Set is kept the same as (Kang et al., 2018)", page: 6}
+    score_baseline:
+      value: "no (majority class, mean, models of Kang et al.)"
+      read_whole_section: true
+      quotes:
+        - {text: "Baseline Majority Baseline 60.52 33.33 39.94 ∗ ComparingSystem Only Paper (Kang et al., 2018) 55.26 35.93 41.23", page: 6}
+
+  deng2020habnet:
+    data:
+      value: "ICLR 2017-2019; NIPS 2013-2017 with ICLR 2020"
+      quotes:
+        - {text: "This collection contains all reviews for ICLR conference and workshop’s papers from 2017 to 2019.", page: 6}
+        - {text: "we further collect 2211 papers from ICLR 2020 conference and corresponding reviews from the openreview website to extend the PeerRead dataset.", page: 6}
+    target:
+      value: "decision of the paper; rating of a review"
+      quotes:
+        - {text: "We treat the ﬁnal decision prediction as a binary classiﬁcation problem, where the class labels are the decisions y.", page: 3}
+    inputs:
+      value: "review text only"
+      quotes:
+        - {text: "Weuserawreviewtexts as input for all models.", page: 7}
+    review_version: {value: "not stated"}
+    split:
+      value: "random"
+      quotes:
+        - {text: "For all the experiments on these two datasets, all samples are randomly shufﬂed before splitting the dataset.", page: 6}
+    score_baseline:
+      value: "no (text models only)"
+      read_whole_section: true
+      quotes:
+        - {text: "We compare our proposed method with fourteen other state-of-the-art methods and three variations of our proposed model", page: 7}
+
+  fromm2021argument:
+    data:
+      value: "ICLR 2019-2020, MIDL 2019-2020, NeuroAI 2019, GI 2020"
+      quotes:
+        - {text: "ICLR’19 1,419 4,332 35% 403 ICLR’20 2,213 6,722 27% 409 MIDL’19 59 178 80% 362 MIDL’20 144 544 55% 255 NeuroAI’19 62 174 68% 305 GI’20 65 174 82% 507", page: 4}
+    target:
+      value: "argument labels of review sentences; decision of the paper"
+      quotes:
+        - {text: "3. Joint Detection: A multi-class classiﬁcation between the", page: 4}
+        - {text: "cision for each paper in our dataset, we train models to make", page: 7}
+    inputs:
+      value: "review text: all sentences, the most argumentative ones, or random ones"
+      quotes:
+        - {text: "Full The decision-makers are allowed to see all reviews", page: 7}
+        - {text: "Random-K Decision-makers are only allowed to see k%", page: 7}
+    review_version: {value: "not stated"}
+    split:
+      value: "argument labels: by sentence, 7:1:2; decision: not stated"
+      quotes:
+        - {text: "Wesplit our dataset sentence-wise 7:1:2 into training, vali-", page: 4}
+    score_baseline:
+      value: "no (all reviews against selected sentences)"
+      read_whole_section: true
+
+  li2026reviewgraph:
+    data:
+      value: "ICLR 2023, 2024, 2025"
+      quotes:
+        - {text: "review outcomes from ICLR 2023, 2024, and 2025 avail-", page: 5}
+    target:
+      value: "decision of the paper"
+      quotes:
+        - {text: "review outcomes: accept or reject.", page: 5}
+    inputs:
+      value: "the paper; graph of a reviewer-author debate simulated by LLM agents"
+      quotes:
+        - {text: "the full paper as input and aim to predict the final review", page: 5}
+        - {text: "debate graph from simulated reviewer-author interactions.", page: 3}
+    review_version: {value: "not stated"}
+    split:
+      value: "train, validation and test inside each year; method not stated"
+      quotes:
+        - {text: "Year Mode Accept(A-o/A-p/A-s) Reject Total", page: 5}
+        - {text: "2023 Val 75(6/49/20) 59 134", page: 5}
+    score_baseline:
+      value: "no (LLM-based reviewers)"
+      read_whole_section: true
+      quotes:
+        - {text: "that leverage LLMs for automatic paper review: (1) ICL-", page: 5}
+
+  # Found with Consensus on 2026-11-24, read by Claude in the arXiv copy (sections 3 and 4).
+  wen2026decoupling:
+    data:
+      value: "ICLR 2021-2025"
+      quotes:
+        - {text: "ning the ICLR conferences from 2021 to 2025.", page: 3}
+    target:
+      value: "decision of the paper"
+      quotes:
+        - {text: "We frame acceptance prediction as a binary", page: 5}
+    inputs:
+      value: "ratings alone, review text alone, or both"
+      quotes:
+        - {text: "conducted an ablation study across Rating-", page: 6}
+        - {text: "Only, Text-Only, and Hybrid settings.", page: 6}
+    review_version:
+      value: "not stated (ratings and reviews collected from the platform)"
+      quotes:
+        - {text: "official OpenReview platform via the Python", page: 3}
+    split:
+      value: "by year: training 2022-2024, test 2025"
+      quotes:
+        - {text: "we employ a temporal split:", page: 5}
+        - {text: "hold-out test set (N = 10,512).", page: 5}
+    score_baseline:
+      value: "yes: ratings alone do better than the text and than both together"
+      quotes:
+        - {text: "racy peaks at 86.82%, failing to surpass the", page: 6}
+        - {text: "age Rating Threshold > 5.8) alone yields an", page: 6}
+
+  gao2019rebuttal:
+    data:
+      value: "ACL 2018"
+      quotes:
+        - {text: "Table 1: Statistics of the ACL-2018 corpus.", page: 3}
+    target:
+      value: "change of a reviewer's score after the rebuttal (not the decision)"
+      quotes:
+        - {text: "the reviewer will increase (INC), decrease (DEC)", page: 5}
+        - {text: "We avoid predicting the ﬁnal accept/reject de-", page: 5}
+    inputs:
+      value: "scores before the rebuttal, features of the author response, similarity of review and response"
+      quotes:
+        - {text: "include review i’s before-rebuttal OVAL", page: 6}
+        - {text: "also include features based on the author response", page: 6}
+    review_version:
+      value: "before and after the rebuttal, kept apart"
+      quotes:
+        - {text: "The corpus has three parts: the before-rebuttal", page: 3}
+        - {text: "after-rebuttal reviews, and the author responses.", page: 3}
+    split:
+      value: "10-fold cross-validation, random"
+      quotes:
+        - {text: "All results are averaged over 5000 repeats of 10-fold cross validation.", page: 15}
+        - {text: "tries are randomly shufﬂed for each repeat.", page: 7}
+    score_baseline:
+      value: "yes: score features alone; all features significantly better"
+      quotes:
+        - {text: "We ﬁnd that score-based features are most ef-", page: 7}
+        - {text: "signiﬁcantly (p-value < 0.01) better than using", page: 7}
+
+# The present study, described from its own protocol (Sections 3 and 4 of the article).
+this_study:
+  data: "ICLR 2024, 2025, 2026"
+  target: "decision of the paper"
+  inputs: "typed critiques, review text and initial scores, title and abstract of the paper"
+  review_version: "initial scores; sentences written after the author response removed where they are identified"
+  split: "by year: training 2024, test 2025, holdout 2026"
+  score_baseline: "yes: logistic regression on the initial ratings"
+
+# Closely related studies whose full text was not openly available (ACM, Springer, Elsevier): not in the table.
+not_read: [bharti2021peerassist, pradhan2021mrgen, ribeiro2021acceptance, kumar2026reviews]

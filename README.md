@@ -10,17 +10,34 @@ the graph. Models are trained on one year, tested on the next and confirmed on a
 year that was kept apart.
 
 The results are in [`results/RESULTS_SUMMARY.md`](results/RESULTS_SUMMARY.md), which is
-generated from the tables of `results/tables/`. In short, the main hypothesis is not
-supported: the graph models did not do better than a logistic regression on the initial
-ratings of the reviewers. The summary gives the figures, their intervals and the limits
-of the study.
+generated from the tables of `results/tables/`. In short, the answer has two parts.
+As the study was first designed (text embeddings on the nodes, hyper-parameters selected
+on a part of the training year), no graph model did better than a logistic regression on
+the initial ratings of the reviewers, and this held on the third year. Checks of that
+design, added afterwards with a design committed before their runs, show that this
+negative result is not robust: with a wider hyper-parameter search, or without the text
+embeddings, one heterogeneous model passes above the initial ratings on both later years,
+by a few thousandths of AUC. The critiques themselves account for about one thousandth.
+The summary gives the figures, their intervals and the limits of the study.
 
 ## What the models may read
 
-Every model input exists before the author response. The decision, the meta-review, the
-scores after the discussion, the fields of the platform that encode the outcome, later
-versions of the paper, citations received and anything about the authors are never given
-to a model. `tests/test_leakage.py` fails if one of them reaches a model input.
+In the main setting, the model inputs are restricted to what exists before the author
+response. The decision, the meta-review, the scores after the discussion, the fields of
+the platform that encode the outcome, later versions of the paper, citations received and
+anything about the authors are never given to a model. `tests/test_leakage.py` fails if
+one of them reaches a model input.
+
+This control is not complete, and three points remain. The text of a review edited after
+the author response is only available in its final state: the sentences attributed to the
+discussion are set aside, and what an edit rewrote without saying so cannot be detected.
+The vocabulary of keyword concepts is counted on the training and test years together, so
+the graph used for training depends on the keywords of the test year, without any label
+(`results/tables/kg_concept_scope.csv`); a graph whose vocabulary is counted on the
+training year alone was built afterwards and gives the same conclusions
+(`scripts/05f_inductive_graph.py`, `results/tables/protocol_readings.csv`). And the version of the submission texts used for
+ICLR 2024 was committed after the decisions of that year, although it carries none
+(`results/tables/input_dates.csv`).
 
 ## Layout
 
@@ -37,8 +54,19 @@ to a model. `tests/test_leakage.py` fails if one of them reaches a model input.
 | `scripts/` | one entry point per phase; `scripts/reproduce_all.sh` lists the chain |
 | `results/tables/`, `results/figures/` | result files (CSV, LaTeX, Markdown) and figures |
 | `paper/` | verified references and the numbers quoted in the article, generated from the result files |
-| `data/annotation/GUIDE.md` | annotation guide for the human validation of the labels |
+| `data/annotation/GUIDE.md` | annotation guide prepared for a human validation of the labels, which was not carried out |
 | `tests/` | tests, among which the anti-leakage tests |
+
+## Protocol checks
+
+`configs/default.yaml` holds, in its sections `protocol` and `followup`, the design of the
+checks made after the test and holdout years had been read: what is searched, with which
+budget, how a model is selected, what is compared and how a conclusion is read. Each
+section was committed before its runs. `scripts/07_run_protocol.sh` runs them,
+`scripts/08_ablations.py --group followup` the follow-up, and
+`scripts/07g_protocol_results.py` writes `results/tables/protocol_*.csv`.
+`scripts/05e_model_dates.py` dates the weights of the pretrained models against the
+reviews and decisions of each year (`results/tables/pretrained_model_dates.csv`).
 
 ## Running
 
@@ -57,9 +85,9 @@ bit-for-bit reproducible.
 
 ## Data and licences
 
-The data (cleaned tables, typed critiques, answers of the language model, embeddings,
+The code is at <https://github.com/youssefelyaakoubi01/peer-review-critique-kg>, under the MIT licence (`LICENSE`). The data (cleaned tables, typed critiques, answers of the language model, embeddings,
 graphs, saved models and predictions per paper) are archived on Zenodo under CC BY 4.0:
-<https://doi.org/10.5281/zenodo.24485276>. Each archive unpacks at the root of this
+<https://doi.org/10.5281/zenodo.24505447> (version 2; the first version is 10.5281/zenodo.24485276). Each archive unpacks at the root of this
 repository; `scripts/12b_zenodo.py` is the script that built and deposited them.
 
 The reviews, scores and decisions come from the public pages of ICLR on OpenReview; the
@@ -72,5 +100,6 @@ their source. No attempt is made to identify reviewers.
 
 ## Status
 
-The human validation of the labels produced by the language model is prepared but not
-done; until then the quality of these labels is not measured against human annotators.
+The labels produced by the language model were not validated against human annotators:
+their quality is not measured. The annotation guide and the scripts of phase 4 are kept
+for whoever wants to do it.

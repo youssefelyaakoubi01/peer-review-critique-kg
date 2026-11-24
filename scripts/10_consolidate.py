@@ -58,6 +58,10 @@ def main() -> int:
         tag = summary.holdout_tag(cfg)
         OTHER_ARTEFACTS.append((f"results/tables/{tag}.tex", "Holdout year: every model, every metric", "scripts/07d_holdout_results.py",
                                 [f"results/predictions/{tag}.parquet"]))
+    if paper.has_protocol(sources, cfg):  # the protocol checks have been run and compared
+        tables.update(paper.PROTOCOL_TABLES)
+    if paper.has_followup(sources, cfg):  # the follow-up of the ablations of the encoders
+        tables.update(paper.FOLLOWUP_TABLES)
     for name, (build, description) in tables.items():
         path = out_dir / f"{name}.tex"
         path.write_text(build(sources, cfg), encoding="utf-8")

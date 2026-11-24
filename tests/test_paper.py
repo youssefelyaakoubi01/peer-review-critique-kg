@@ -6,7 +6,7 @@ import pytest
 
 from src.eval import numbers
 from src.eval.sources import Sources
-from src.paper import references
+from src.paper import references, related
 from src.utils.config import REPO_ROOT, load_config
 
 PAPER = REPO_ROOT / "paper"
@@ -174,3 +174,34 @@ def test_the_reference_list_is_the_one_the_records_give():
 
 def test_citation_order():
     assert references.cited_keys(["a \\cite{b,a} % \\cite{z}\n \\cite{c}", "\\cite{a, d}"]) == ["b", "a", "c", "d"]
+
+
+# ---------------------------------------------------------------- comparison table of the related work
+
+
+def test_the_comparison_table_is_the_one_the_file_gives():
+    """Every cell of a cited study has a supporting passage or reads "not stated"; the table is generated."""
+    spec = related.load(PAPER / "related_studies.yaml")
+    assert not related.problems(spec)
+    generated = (PAPER / "generated" / "related_studies.tex").read_text(encoding="utf-8")
+    assert generated == related.render(spec, stored_references()), "run scripts/11_paper.py"
+
+
+def test_the_supporting_passages_are_in_the_papers():
+    """Checked against the extracted full texts, which are not versioned (skipped without them)."""
+    fulltext = PAPER / "refs" / "fulltext"
+    spec = related.load(PAPER / "related_studies.yaml")
+    if not any((fulltext / f"{key}.txt").is_file() for key in spec["studies"]):
+        pytest.skip("the full texts of the compared studies are not on this machine")
+    missing, checked = related.check_quotes(spec, fulltext)
+    assert checked and not missing, missing
+
+
+def test_a_passage_that_is_not_in_the_paper_is_reported(tmp_path):
+    (tmp_path / "a.txt").write_text("=== page 01 ===\nThe data are split\n   at random.\n=== page 02 ===\nNothing else.\n", encoding="utf-8")
+    spec = {"studies": {"a": {"split": {"value": "random", "quotes": [{"text": "The data are split at random.", "page": 1}]},
+                              "data": {"value": "x", "quotes": [{"text": "split by year", "page": 1}]}}}}
+    missing, checked = related.check_quotes(spec, tmp_path)
+    assert checked == 2 and len(missing) == 1 and missing[0].startswith("a.data")
+    spec["columns"] = {"split": "Split", "target": "Target"}
+    assert related.problems(spec) == ["a.target: no value"]

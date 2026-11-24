@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\caption{Conclusions of the article under each protocol check, read with the rule fixed before the runs. (a): no heterogeneous GNN is above the logistic regression on the initial rating; confirmed if the confidence interval of the difference is below zero for every heterogeneous variant, contradicted if it is above zero for at least one, not separated otherwise. Below / above: variants whose interval is below or above zero. (b): HAN and HGT are above the GCN, read in the same way. Checks: vocabulary of concepts counted on the training year; equal and wider hyper-parameter search; validation on the following year (Section~\ref{sec:protocol}). LR: logistic regression; CI: confidence interval. $^{\ddagger}$Protocol check added after the test and holdout years were read; its design was fixed before it was run (Table~\ref{tab:analysis-status}).}
+\label{tab:protocol-readings}
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+Check & Year & Papers & (a) & Below / above & Closest heterogeneous variant & (b) \\
+\midrule
+Vocabulary & 2025 & All & confirmed & 6 / 0 of 6 & HAN + score statistics $-0.0145$ $[-0.0188,\,-0.0103]$ & confirmed \\
+Vocabulary & 2025 & Borderline & confirmed & 6 / 0 of 6 & HGT $-0.0267$ $[-0.0383,\,-0.0141]$ & confirmed \\
+Search & 2025 & All & contradicted & 4 / 1 of 6 & HAN $+0.0041$ $[+0.0017,\,+0.0065]$ & confirmed \\
+Search & 2025 & Borderline & not separated & 4 / 0 of 6 & HAN $+0.0066$ $[-0.0014,\,+0.0161]$ & confirmed \\
+Search & 2026 & All & contradicted & 4 / 1 of 6 & HAN $+0.0024$ $[+0.0004,\,+0.0044]$ & confirmed \\
+Search & 2026 & Borderline & not separated & 4 / 0 of 6 & HAN $+0.0028$ $[-0.0029,\,+0.0088]$ & confirmed \\
+Following year & 2026 & All & contradicted & 4 / 1 of 6 & HAN $+0.0031$ $[+0.0012,\,+0.0049]$ & confirmed \\
+Following year & 2026 & Borderline & not separated & 4 / 0 of 6 & HAN $+0.0048$ $[-0.0007,\,+0.0106]$ & confirmed \\
+\bottomrule
+\end{tabular}
+\end{table*}

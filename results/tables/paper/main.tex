@@ -1,8 +1,8 @@
 \begin{table*}[t]
 \centering
-\small
+\footnotesize
 \setlength{\tabcolsep}{4pt}
-\caption{Test year (2025): AUC, mean over 5 seeds. $\Delta$: AUC minus the AUC of the logistic regression on the initial rating, with its 95\,\% confidence interval (paired bootstrap over the papers, $1\,000$ resamples).}
+\caption{Test year (2025): AUC, mean over 5 seeds. $\Delta$: AUC minus the AUC of the logistic regression on the initial rating, with its 95\,\% confidence interval (paired bootstrap over the papers, $1\,000$ resamples; the interval does not count the variability between seeds). AUC: area under the ROC curve; GNN: graph neural network. LR: logistic regression; MLP: multilayer perceptron; CI: confidence interval. $^{\dagger}$Model added after the first results of the test year (Table~\ref{tab:analysis-status}).}
 \label{tab:main}
 \begin{tabular}{@{}lrrrrrr@{}}
 \toprule
@@ -11,23 +11,23 @@
 Model & AUC & $\Delta$ & 95\,\% CI of $\Delta$ & AUC & $\Delta$ & 95\,\% CI of $\Delta$ \\
 \midrule
 \multicolumn{7}{l}{\emph{Baselines}} \\
-Majority class & $0.500$ & $-0.373$ & $[-0.381,\,-0.366]$ & $0.500$ & $-0.222$ & $[-0.238,\,-0.207]$ \\
+Majority class & $0.500$ & $-0.3733$ & $[-0.3807,\,-0.3658]$ & $0.500$ & $-0.2216$ & $[-0.2378,\,-0.2066]$ \\
 Initial rating (LR) & $0.873$ & -- & -- & $0.722$ & -- & -- \\
-All initial scores (LR) & $0.874$ & $+0.001$ & $[-0.001,\,+0.003]$ & $0.719$ & $-0.003$ & $[-0.010,\,+0.005]$ \\
-Review text (MLP) & $0.609$ & $-0.264$ & $[-0.277,\,-0.252]$ & $0.534$ & $-0.187$ & $[-0.210,\,-0.166]$ \\
-Review text + scores (MLP) & $0.876$ & $+0.003$ & $[+0.000,\,+0.005]$ & $0.724$ & $+0.003$ & $[-0.005,\,+0.011]$ \\
-Critique counts (LR) & $0.760$ & $-0.113$ & $[-0.122,\,-0.104]$ & $0.617$ & $-0.105$ & $[-0.126,\,-0.084]$ \\
-Scores + critique counts (LR) & $0.873$ & $-0.001$ & $[-0.003,\,+0.002]$ & $0.715$ & $-0.007$ & $[-0.016,\,+0.003]$ \\
+All initial scores (LR) & $0.874$ & $+0.0007$ & $[-0.0013,\,+0.0026]$ & $0.719$ & $-0.0027$ & $[-0.0100,\,+0.0050]$ \\
+Review text (MLP) & $0.609$ & $-0.2640$ & $[-0.2769,\,-0.2518]$ & $0.534$ & $-0.1872$ & $[-0.2097,\,-0.1658]$ \\
+Review text + scores (MLP) & $0.876$ & $+0.0026$ & $[+0.0002,\,+0.0049]$ & $0.724$ & $+0.0027$ & $[-0.0054,\,+0.0112]$ \\
+Critique counts (LR)$^{\dagger}$ & $0.760$ & $-0.1133$ & $[-0.1222,\,-0.1043]$ & $0.617$ & $-0.1050$ & $[-0.1259,\,-0.0844]$ \\
+Scores + critique counts (LR)$^{\dagger}$ & $0.873$ & $-0.0007$ & $[-0.0032,\,+0.0019]$ & $0.715$ & $-0.0067$ & $[-0.0163,\,+0.0034]$ \\
 \addlinespace
 \multicolumn{7}{l}{\emph{Homogeneous GNN}} \\
-GCN, untyped graph & $0.831$ & $-0.042$ & $[-0.048,\,-0.037]$ & $0.661$ & $-0.061$ & $[-0.075,\,-0.044]$ \\
+GCN, untyped graph & $0.831$ & $-0.0425$ & $[-0.0481,\,-0.0366]$ & $0.661$ & $-0.0606$ & $[-0.0753,\,-0.0442]$ \\
 \addlinespace
 \multicolumn{7}{l}{\emph{Heterogeneous GNNs}} \\
-R-GCN & $0.820$ & $-0.054$ & $[-0.060,\,-0.047]$ & $0.646$ & $-0.076$ & $[-0.092,\,-0.060]$ \\
-HAN & $0.856$ & $-0.018$ & $[-0.022,\,-0.013]$ & $0.683$ & $-0.038$ & $[-0.052,\,-0.024]$ \\
-HGT & $0.858$ & $-0.015$ & $[-0.020,\,-0.011]$ & $0.695$ & $-0.027$ & $[-0.040,\,-0.013]$ \\
-HGT + score statistics & $0.858$ & $-0.015$ & $[-0.019,\,-0.011]$ & $0.689$ & $-0.032$ & $[-0.045,\,-0.019]$ \\
-HGT, with author responses & $0.855$ & $-0.018$ & $[-0.022,\,-0.014]$ & $0.689$ & $-0.033$ & $[-0.046,\,-0.020]$ \\
+R-GCN & $0.820$ & $-0.0537$ & $[-0.0602,\,-0.0474]$ & $0.646$ & $-0.0755$ & $[-0.0919,\,-0.0596]$ \\
+HAN & $0.856$ & $-0.0177$ & $[-0.0223,\,-0.0132]$ & $0.683$ & $-0.0384$ & $[-0.0525,\,-0.0244]$ \\
+HGT & $0.858$ & $-0.0152$ & $[-0.0198,\,-0.0108]$ & $0.695$ & $-0.0269$ & $[-0.0396,\,-0.0132]$ \\
+HGT + score statistics & $0.858$ & $-0.0150$ & $[-0.0193,\,-0.0107]$ & $0.689$ & $-0.0324$ & $[-0.0451,\,-0.0193]$ \\
+HGT, with author responses & $0.855$ & $-0.0179$ & $[-0.0223,\,-0.0137]$ & $0.689$ & $-0.0331$ & $[-0.0462,\,-0.0198]$ \\
 \bottomrule
 \end{tabular}
 \end{table*}

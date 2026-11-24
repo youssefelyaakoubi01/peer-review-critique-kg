@@ -539,3 +539,25 @@ def test_latest_manifest_can_be_restricted_to_the_runs_that_cover_given_years(tm
     assert store.latest_manifest(tmp_path, "full", [2026]).name == "full_20261118_230000.json"
     with pytest.raises(FileNotFoundError, match="covering"):
         store.latest_manifest(tmp_path, "full", [2025, 2026])
+
+
+def test_input_dates_compare_the_text_archive_with_the_first_decision_note():
+    import importlib.util
+    from datetime import date
+
+    from src.utils.config import REPO_ROOT
+
+    spec = importlib.util.spec_from_file_location("input_dates", REPO_ROOT / "scripts" / "05d_input_dates.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    info = {"review_name": "Official_Review", "meta_review_name": "Meta_Review", "decision_name": "Decision"}
+    replies = [{"invitations": ["V/Submission1/-/Official_Review"], "tcdate": 1_700_000_000_000},
+               {"invitations": ["V/Submission1/-/Decision"], "tcdate": 1_705_400_000_000}]   # 2024-01-16 UTC
+    days = module.decision_days(replies, info)
+    assert days == [date(2024, 1, 16)]                       # the review is not a decision note
+    late = module.row(2024, [date(2024, 1, 16), date(2024, 2, 2)], date(2024, 2, 9))
+    assert late["first_decision_note"] == "2024-01-16" and late["last_decision_note"] == "2024-02-02"
+    assert late["days_from_first_decision_to_commit"] == 24 and not late["text_committed_before_decisions"]
+    early = module.row(2025, [date(2025, 1, 22)], date(2024, 10, 16))
+    assert early["days_from_first_decision_to_commit"] == -98 and early["text_committed_before_decisions"]
+    assert not module.row(2025, [date(2025, 1, 22)], date(2025, 1, 22))["text_committed_before_decisions"]   # the same day is not before
