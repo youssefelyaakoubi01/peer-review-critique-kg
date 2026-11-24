@@ -795,7 +795,7 @@ release:
     https://github.com/youssefelyaakoubi01/peer-review-critique-kg.</p>
     <p>Version 2 adds the graph whose keyword concepts are counted on the training year alone, and the models and
     predictions of the protocol checks made after the first version (equal and wider hyper-parameter search, validation
-    on the following year, graph models without pretrained text embeddings). The other files are unchanged.</p>
+    on the following year, graph models without pretrained text embeddings). The content of the other files is unchanged.</p>
     <p>The labels of the critiques were produced by a language model and have not been validated by human
     annotators. README.md describes each file, the sources and their licences, and what is left out.</p>
   creators:

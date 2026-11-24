@@ -83,7 +83,9 @@ Each `.tar` file unpacks at the root of that repository, at the paths the code e
 
 Version {version} ({doi}). Since the first version (10.5281/zenodo.24485276): one more graph,
 `graph_training_year_vocabulary.tar`, and the models and predictions of the protocol
-checks made afterwards, in `models.tar` and `predictions.tar`. The other files are unchanged.
+checks made afterwards, in `models.tar` and `predictions.tar`. `peer_review_kg.ttl.gz` holds
+the same RDF graph, compressed again without a time stamp: its checksum differs from the
+one of the first version, its content does not. The other files are identical.
 
 ## Sources and licences
 
