@@ -1,0 +1,16 @@
+stage,model,phase,params,seed,val_auc,best_epoch,epochs,seconds,status
+depth,han_shallow_decay,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005, ""weight_decay"": 0.01}",0,0.8861692447679709,80,130,20.0,ok
+depth,han_shallow_decay,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005, ""weight_decay"": 0.01}",1,0.8860297239915074,134,184,20.6,ok
+depth,han_shallow_decay,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005, ""weight_decay"": 0.01}",2,0.8861571125265393,145,195,21.8,ok
+depth,han_shallow_decay,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005, ""weight_decay"": 0.01}",3,0.8860297239915075,90,140,16.3,ok
+depth,han_shallow_decay,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005, ""weight_decay"": 0.01}",4,0.8867333939945405,126,176,20.1,ok
+depth,han_deep_study,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 4, ""lr"": 0.005, ""weight_decay"": 0.0001}",0,0.87221110100091,25,75,19.4,ok
+depth,han_deep_study,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 4, ""lr"": 0.005, ""weight_decay"": 0.0001}",1,0.8663694267515925,18,68,17.6,ok
+depth,han_deep_study,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 4, ""lr"": 0.005, ""weight_decay"": 0.0001}",2,0.8707249014255383,25,75,19.3,ok
+depth,han_deep_study,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 4, ""lr"": 0.005, ""weight_decay"": 0.0001}",3,0.8702881407340006,26,76,19.7,ok
+depth,han_deep_study,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 4, ""lr"": 0.005, ""weight_decay"": 0.0001}",4,0.8733212010919017,28,78,20.1,ok
+depth,han_shallow_study,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005, ""weight_decay"": 0.0001}",0,0.8745586897179253,28,78,9.8,ok
+depth,han_shallow_study,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005, ""weight_decay"": 0.0001}",1,0.871841067637246,27,77,9.7,ok
+depth,han_shallow_study,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005, ""weight_decay"": 0.0001}",2,0.8753715498938427,27,77,9.7,ok
+depth,han_shallow_study,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005, ""weight_decay"": 0.0001}",3,0.8732241431604488,35,85,10.5,ok
+depth,han_shallow_study,final,"{""dropout"": 0.5, ""hidden"": 64, ""layers"": 2, ""lr"": 0.005, ""weight_decay"": 0.0001}",4,0.873096754625417,34,84,10.4,ok

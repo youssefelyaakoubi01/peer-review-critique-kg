@@ -5,14 +5,15 @@
 #   setsid nohup scripts/07_run_protocol.sh > logs/07_run_protocol.out 2>&1 < /dev/null &
 #   scripts/07_run_protocol.sh graph vocabulary      # only the named steps, in this order
 #
-# Steps: graph, vocabulary, encoders, search, rolling. Every training script records its
+# Steps: graph, vocabulary, encoders, search, rolling, depth (the follow-up of `search` on HAN, which reads
+# the configuration that step kept). Every training script records its
 # finished runs and does not run them again: a step that was interrupted is simply started
 # again. A step that stops (GPU busy, projected run time over its limit) does not stop the
 # following ones, except `graph`, which `vocabulary` and `rolling` read.
 # The GPU is shared: each step stops if too little memory is free.
 set -uo pipefail
 cd "$(dirname "$0")/.."
-if [ "$#" -eq 0 ]; then set -- graph vocabulary encoders search rolling; fi
+if [ "$#" -eq 0 ]; then set -- graph vocabulary encoders search rolling depth; fi
 
 need_gpu() {
     local free
@@ -39,7 +40,7 @@ failed=()
 for name in "$@"; do
     case "$name" in
         graph)      step graph bash -c 'uv run python scripts/05f_inductive_graph.py' || { echo "the graph was not built: nothing else is run" >&2; exit 1; } ;;
-        vocabulary|search|rolling)
+        vocabulary|search|rolling|depth)
                     { need_gpu 12 && step "$name" uv run python scripts/07f_protocol_checks.py --stage "$name"; } || failed+=("$name") ;;
         encoders)   { need_gpu 10 && step encoders uv run python scripts/08_ablations.py --group encoder_variants; } || failed+=("$name") ;;
         *)          echo "unknown step: $name" >&2; exit 2 ;;

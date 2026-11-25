@@ -19,3 +19,11 @@ followup,test,all,d,hgt without pretrained embeddings is above scores_rating_lr,
 followup,test,borderline,d,hgt without pretrained embeddings is above scores_rating_lr,confirmed,1,0,1,1,no_text_embeddings,0.012989849795060904,0.004443293096145433,0.022085702777650307
 followup,holdout,all,d,hgt without pretrained embeddings is above scores_rating_lr,confirmed,1,0,1,1,no_text_embeddings,0.005080842451579137,0.0026562902188911673,0.007279868012799808
 followup,holdout,borderline,d,hgt without pretrained embeddings is above scores_rating_lr,confirmed,1,0,1,1,no_text_embeddings,0.010865181279461233,0.004530704998106382,0.016542215930997042
+depth,test,all,e,han with the depth of phase 7 and the weight decay kept is above scores_rating_lr,confirmed,1,0,1,1,han_shallow_decay,0.004169708117918947,0.0016371758568379385,0.006516259188911974
+depth,test,borderline,e,han with the depth of phase 7 and the weight decay kept is above scores_rating_lr,not separated,1,0,0,0,han_shallow_decay,0.006739721001299381,-0.0014408535108938352,0.01583450993838115
+depth,holdout,all,e,han with the depth of phase 7 and the weight decay kept is above scores_rating_lr,confirmed,1,0,1,0,han_shallow_decay,0.002087362963617001,6.02766279843681e-05,0.004059005659806636
+depth,holdout,borderline,e,han with the depth of phase 7 and the weight decay kept is above scores_rating_lr,not separated,1,0,0,0,han_shallow_decay,0.0018257181712998394,-0.0039484756984647755,0.007813037290892475
+depth,test,all,f,han with the depth kept and the weight decay of phase 7 is above scores_rating_lr,contradicted,1,1,0,1,han_deep_study,-0.019627983121488723,-0.024276380808166624,-0.014930025120844528
+depth,test,borderline,f,han with the depth kept and the weight decay of phase 7 is above scores_rating_lr,contradicted,1,1,0,1,han_deep_study,-0.0422942378299318,-0.05674749949066892,-0.027681869828039555
+depth,holdout,all,f,han with the depth kept and the weight decay of phase 7 is above scores_rating_lr,contradicted,1,1,0,1,han_deep_study,-0.030782450428185615,-0.034985356823572004,-0.026964396241640126
+depth,holdout,borderline,f,han with the depth kept and the weight decay of phase 7 is above scores_rating_lr,contradicted,1,1,0,1,han_deep_study,-0.05912010569163706,-0.0692853809171705,-0.04872928486960918

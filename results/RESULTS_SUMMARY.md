@@ -640,6 +640,40 @@ Reading (d), *the model without pretrained embeddings is above the logistic regr
 
 Source: `results/tables/protocol_comparisons.csv`, `results/tables/protocol_readings.csv`.
 
+### Follow-up: depth and weight decay of the model kept by the wider search
+
+Section `depth_followup` of `configs/default.yaml`, written after the results of the search were read and before its own runs. The configuration kept for HAN with the depth, the weight decay or both of the study; the reference is the one of the search. The configuration kept itself is read from the search.
+
+| Year | Papers | Configuration | AUC | Δ with Initial rating (LR) | DeLong, Holm |
+|---|---|---|---|---|---|
+| 2025 | All papers | 4 layers, weight decay 0.01 | 0.8775 | +0.0041 [+0.0017, +0.0065] | p = 0.009 |
+| 2025 | All papers | 2 layers, weight decay 0.01 | 0.8775 | +0.0042 [+0.0016, +0.0065] | p = 0.001 |
+| 2025 | All papers | 4 layers, weight decay 0.0001 | 0.8537 | -0.0196 [-0.0243, -0.0149] | p < 0.001 |
+| 2025 | All papers | 2 layers, weight decay 0.0001 | 0.8556 | -0.0177 [-0.0223, -0.0132] | p < 0.001 |
+| 2025 | Borderline papers | 4 layers, weight decay 0.01 | 0.7282 | +0.0066 [-0.0014, +0.0161] | p = 1.000 |
+| 2025 | Borderline papers | 2 layers, weight decay 0.01 | 0.7284 | +0.0067 [-0.0014, +0.0158] | p = 0.108 |
+| 2025 | Borderline papers | 4 layers, weight decay 0.0001 | 0.6793 | -0.0423 [-0.0567, -0.0277] | p < 0.001 |
+| 2025 | Borderline papers | 2 layers, weight decay 0.0001 | 0.6831 | -0.0385 [-0.0526, -0.0244] | p < 0.001 |
+| 2026 | All papers | 4 layers, weight decay 0.01 | 0.8890 | +0.0024 [+0.0004, +0.0044] | p = 0.169 |
+| 2026 | All papers | 2 layers, weight decay 0.01 | 0.8887 | +0.0021 [+0.0001, +0.0041] | p = 0.075 |
+| 2026 | All papers | 4 layers, weight decay 0.0001 | 0.8558 | -0.0308 [-0.0350, -0.0270] | p < 0.001 |
+| 2026 | All papers | 2 layers, weight decay 0.0001 | 0.8574 | -0.0292 [-0.0333, -0.0254] | p < 0.001 |
+| 2026 | Borderline papers | 4 layers, weight decay 0.01 | 0.7592 | +0.0028 [-0.0029, +0.0088] | p = 1.000 |
+| 2026 | Borderline papers | 2 layers, weight decay 0.01 | 0.7581 | +0.0018 [-0.0039, +0.0078] | p = 0.489 |
+| 2026 | Borderline papers | 4 layers, weight decay 0.0001 | 0.6972 | -0.0591 [-0.0693, -0.0487] | p < 0.001 |
+| 2026 | Borderline papers | 2 layers, weight decay 0.0001 | 0.6984 | -0.0579 [-0.0683, -0.0477] | p < 0.001 |
+
+Readings, *HAN is above the logistic regression on the initial rating* with the depth of the study and the weight decay kept (e) and with the depth kept and the weight decay of the study (f):
+
+| Year | Papers | (e) | (f) |
+|---|---|---|---|
+| 2025 | All papers | confirmed | contradicted |
+| 2025 | Borderline papers | not separated | contradicted |
+| 2026 | All papers | confirmed | contradicted |
+| 2026 | Borderline papers | not separated | contradicted |
+
+Source: `results/tables/protocol_comparisons.csv`, `results/tables/protocol_readings.csv`.
+
 ## Negative and unexpected results
 
 1. **The main hypothesis is not supported.** No heterogeneous GNN reaches a logistic regression on the mean, minimum, maximum and standard deviation of the initial ratings: `hgt` 0.858 against `scores_rating_lr` 0.873 on all papers, 0.695 against 0.722 on borderline papers. (`results/tables/main_results.csv`)
@@ -712,6 +746,7 @@ Source: `results/tables/protocol_comparisons.csv`, `results/tables/protocol_read
 | `results/tables/paper/protocol_configurations.tex` | Protocol checks: configurations kept by the searches | `scripts/10_consolidate.py` | `results/tables/protocol_search_chosen.csv`, `results/tables/protocol_rolling_chosen.csv` |
 | `results/tables/paper/protocol_encoders.tex` | Protocol checks: the main model without the pretrained encoders | `scripts/10_consolidate.py` | `results/tables/protocol_comparisons.csv` |
 | `results/tables/paper/followup.tex` | Follow-up: the graph model without pretrained embeddings on the test and holdout years | `scripts/10_consolidate.py` | `results/tables/protocol_comparisons.csv` |
+| `results/tables/paper/depth.tex` | Follow-up: depth and weight decay of the model kept by the wider search | `scripts/10_consolidate.py` | `results/tables/protocol_comparisons.csv` |
 | `results/figures/main_results.pdf` | RQ1, RQ4: test AUC of the main models with confidence intervals | `scripts/10_consolidate.py` | `results/tables/main_results.csv`, `results/tables/main_results_tests.csv` |
 | `results/figures/borderline_zone.pdf` | Definition of the borderline zone on the training papers | `scripts/10_consolidate.py` | `results/tables/borderline_definition.csv` |
 | `results/figures/critique_labels.pdf` | Labels of the critiques | `scripts/10_consolidate.py` | `results/tables/llm_full_v3_aspect.csv`, `results/tables/llm_full_v3_severity.csv`, `results/tables/llm_full_v3_polarity.csv` |

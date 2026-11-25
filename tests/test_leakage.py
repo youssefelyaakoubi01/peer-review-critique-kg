@@ -504,8 +504,14 @@ def test_the_protocol_scripts_read_graphs_targets_and_stored_tables_only(cfg):
     assert "interim" not in checks and '"raw"' not in checks and "outcomes" not in checks and "views" not in checks
     read = set(re.findall(r'(?:directory|processed|tables_dir) / f?"([^"]+)"', checks))
     assert read <= {"graph_{setting}.pt", "graph_features.json", "targets.parquet", "models", "gnn_selection.csv",
-                    "baselines_selection.csv", "protocol_{stage}_selection.csv", "protocol_{stage}_chosen.csv"}, read
+                    "baselines_selection.csv", "protocol_{stage}_selection.csv", "protocol_{stage}_chosen.csv",
+                    # stage `depth`: the configuration kept by the stage it follows, a table of hyper-parameters
+                    "protocol_{origin}_chosen.csv"}, read
     assert set(cfg["protocol"]["stages"]) == {"vocabulary", "search", "rolling"} and cfg["protocol"]["setting"] == "A"
+    # the stage of the follow-up on the depth reads the same graph, with the same roles, as a stage of the protocol
+    follow = cfg["depth_followup"]
+    assert follow["reference_stage"] in cfg["protocol"]["stages"]
+    assert follow["stage"]["graph"] == cfg["protocol"]["stages"][follow["reference_stage"]]["graph"]
     graph = (scripts / "05f_inductive_graph.py").read_text()
     # the graph is built without any outcome: the labels give the list of the usable papers
     # and the targets, written apart; no table of outcomes or of final reviews is opened

@@ -59,11 +59,13 @@ ICLR 2024 was committed after the decisions of that year, although it carries no
 
 ## Protocol checks
 
-`configs/default.yaml` holds, in its sections `protocol` and `followup`, the design of the
-checks made after the test and holdout years had been read: what is searched, with which
-budget, how a model is selected, what is compared and how a conclusion is read. Each
-section was committed before its runs. `scripts/07_run_protocol.sh` runs them,
-`scripts/08_ablations.py --group followup` the follow-up, and
+`configs/default.yaml` holds, in its sections `protocol`, `followup` and `depth_followup`,
+the design of the checks made after the test and holdout years had been read: what is
+searched, with which budget, how a model is selected, what is compared and how a
+conclusion is read. Each section was committed before its runs.
+`scripts/07_run_protocol.sh` runs them (its step `depth` is the follow-up of the wider
+search on HAN: depth and weight decay), `scripts/08_ablations.py --group followup` the
+follow-up of the encoders, and
 `scripts/07g_protocol_results.py` writes `results/tables/protocol_*.csv`.
 `scripts/05e_model_dates.py` dates the weights of the pretrained models against the
 reviews and decisions of each year (`results/tables/pretrained_model_dates.csv`).
@@ -87,7 +89,8 @@ bit-for-bit reproducible.
 
 The code is at <https://github.com/youssefelyaakoubi01/peer-review-critique-kg>, under the MIT licence (`LICENSE`). The data (cleaned tables, typed critiques, answers of the language model, embeddings,
 graphs, saved models and predictions per paper) are archived on Zenodo under CC BY 4.0:
-<https://doi.org/10.5281/zenodo.24505447> (version 2; the first version is 10.5281/zenodo.24485276). Each archive unpacks at the root of this
+<https://doi.org/10.5281/zenodo.24544681> (version 3; the earlier versions are 10.5281/zenodo.24485276 and
+10.5281/zenodo.24505447). Each archive unpacks at the root of this
 repository; `scripts/12b_zenodo.py` is the script that built and deposited them.
 
 The reviews, scores and decisions come from the public pages of ICLR on OpenReview; the

@@ -251,3 +251,42 @@ def test_a_conclusion_is_confirmed_contradicted_or_not_separated():
     assert reading([-0.03, 0.02], [-0.01, 0.04], +1) == "contradicted"
     with pytest.raises(ValueError):
         reading([], [], -1)
+
+
+def test_the_cells_of_a_design_are_named_configurations():
+    base, cells = {"hidden": 64, "lr": 0.005}, {"deep": {"layers": 4, "weight_decay": 0.01, "stored": True},
+                                                 "shallow": {"layers": 2, "weight_decay": 0.01}}
+    assert search.named_configurations("han", base, cells) == {"han_shallow": {"layers": 2, "hidden": 64, "lr": 0.005, "weight_decay": 0.01}}
+    assert search.named_configurations("han", base, cells, stored=True) == {"han_deep": {"layers": 4, "hidden": 64, "lr": 0.005, "weight_decay": 0.01}}
+    with pytest.raises(ValueError, match="changes a value of the base"):
+        search.named_configurations("han", base, {"other": {"layers": 2, "hidden": 32}})
+    with pytest.raises(ValueError, match="same configuration"):
+        search.named_configurations("han", base, {"one": {"layers": 2}, "two": {"layers": 2, "stored": True}})
+
+
+def test_the_follow_up_on_the_depth_changes_one_thing_at_a_time(cfg):
+    """A 2 x 2 around the configuration kept for HAN by the wider search: the depth and the
+    weight decay each take the value kept and the value of phase 7; everything else is that stage."""
+    follow, protocol = cfg["depth_followup"], cfg["protocol"]
+    reference_stage = protocol["stages"][follow["reference_stage"]]
+    stage = dict(follow["stage"])
+    assert stage.pop("training") == "protocol" and stage.pop("search") is False and stage.pop("models") == [follow["model"]]
+    assert stage.pop("max_hours") <= 0.5
+    assert stage == {key: reference_stage[key] for key in stage}  # graph, roles, graphs of training, validation and predictions
+    stored = search.named_configurations(follow["model"], follow["base"], follow["cells"], stored=True)
+    trained = search.named_configurations(follow["model"], follow["base"], follow["cells"])
+    assert len(stored) == 1 and len(trained) == 3
+    kept, = stored.values()
+    study_decay = cfg["gnn"]["training"]["weight_decay"]
+    depths, decays = {c["layers"] for c in follow["cells"].values()}, {c["weight_decay"] for c in follow["cells"].values()}
+    assert depths == {kept["layers"], 2} and decays == {kept["weight_decay"], study_decay} and len(follow["cells"]) == 4
+    space = protocol["spaces"]["hetero"]
+    for params in [*trained.values(), kept]:  # every cell is a configuration of the space of the search
+        assert set(params) == set(space) and all(params[name] in space[name] for name in space)
+    cells = set(follow["cells"])
+    assert set(follow["readings"].values()) <= cells and all(set(pair) <= cells and len(set(pair)) == 2 for pair in follow["within"])
+    # each reading changes one hyper-parameter of the configuration kept; each pair of `within` differs by one
+    differ = lambda a, b: [k for k in ("layers", "weight_decay") if follow["cells"][a][k] != follow["cells"][b][k]]  # noqa: E731
+    kept_cell, = (name for name, values in follow["cells"].items() if values.get("stored"))
+    assert differ(follow["readings"]["e"], kept_cell) == ["layers"] and differ(follow["readings"]["f"], kept_cell) == ["weight_decay"]
+    assert all(len(differ(*pair)) == 1 for pair in follow["within"])

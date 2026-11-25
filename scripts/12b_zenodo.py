@@ -81,11 +81,17 @@ Each `.tar` file unpacks at the root of that repository, at the paths the code e
 
 `SHA256SUMS` gives the checksum of every file of this deposit.
 
-Version {version} ({doi}). Since the first version (10.5281/zenodo.24485276): one more graph,
+Version {version} ({doi}). Since the second version (10.5281/zenodo.24505447): `models.tar` and
+`predictions.tar` also hold the models and predictions of a follow-up of the wider
+hyper-parameter search (stage `depth`: the configuration kept for HAN with the depth, the
+weight decay or both of the first search). What they held before is unchanged, and the
+other files are identical to those of the second version.
+
+Since the first version (10.5281/zenodo.24485276): one more graph,
 `graph_training_year_vocabulary.tar`, and the models and predictions of the protocol
 checks made afterwards, in `models.tar` and `predictions.tar`. `peer_review_kg.ttl.gz` holds
 the same RDF graph, compressed again without a time stamp: its checksum differs from the
-one of the first version, its content does not. The other files are identical.
+one of the first version, its content does not.
 
 ## Sources and licences
 

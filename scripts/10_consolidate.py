@@ -62,6 +62,8 @@ def main() -> int:
         tables.update(paper.PROTOCOL_TABLES)
     if paper.has_followup(sources, cfg):  # the follow-up of the ablations of the encoders
         tables.update(paper.FOLLOWUP_TABLES)
+    if paper.has_depth_followup(sources, cfg):  # the follow-up of the wider search on the depth and the weight decay
+        tables.update(paper.DEPTH_TABLES)
     for name, (build, description) in tables.items():
         path = out_dir / f"{name}.tex"
         path.write_text(build(sources, cfg), encoding="utf-8")

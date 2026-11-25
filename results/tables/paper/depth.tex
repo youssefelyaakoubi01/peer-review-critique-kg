@@ -1,0 +1,34 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{1.5pt}
+\caption{HAN in the equal and wider search: depth and weight decay. A configuration is named by its number of layers and its weight decay; the first is the one kept by the search, the others give to the depth, to the weight decay or to both the value of the HAN of the study. Everything else is that of the search (hidden 64, dropout 0.5, learning rate 0.005; training settings, graph and validation papers). AUC of the configuration, and AUC of the configuration minus AUC of its control, the logistic regression on the initial rating of the same check or another configuration: paired bootstrap over the papers. Test year, and the same models, frozen, on the holdout year. 5 seeds. LR: logistic regression; CI: confidence interval. $^{\ddagger}$Designed after the results of the search were read and before its own runs (Table~\ref{tab:analysis-status}).}
+\label{tab:depth}
+\begin{tabular}{@{}llrrrrrr@{}}
+\toprule
+ & & \multicolumn{3}{c}{ICLR 2025} & \multicolumn{3}{c}{ICLR 2026, frozen} \\
+\cmidrule(lr){3-5} \cmidrule(lr){6-8}
+Configuration & Control & AUC & $\Delta$ & 95\,\% CI & AUC & $\Delta$ & 95\,\% CI \\
+\midrule
+\multicolumn{8}{l}{\emph{All papers}} \\
+4 layers, 0.01 (kept) & Initial rating (LR) & $0.8775$ & $+0.0041$ & $[+0.0017,\,+0.0065]$ & $0.8890$ & $+0.0024$ & $[+0.0004,\,+0.0044]$ \\
+2 layers, 0.01 & Initial rating (LR) & $0.8775$ & $+0.0042$ & $[+0.0016,\,+0.0065]$ & $0.8887$ & $+0.0021$ & $[+0.0001,\,+0.0041]$ \\
+4 layers, 0.0001 & Initial rating (LR) & $0.8537$ & $-0.0196$ & $[-0.0243,\,-0.0149]$ & $0.8558$ & $-0.0308$ & $[-0.0350,\,-0.0270]$ \\
+2 layers, 0.0001 & Initial rating (LR) & $0.8556$ & $-0.0177$ & $[-0.0223,\,-0.0132]$ & $0.8574$ & $-0.0292$ & $[-0.0333,\,-0.0254]$ \\
+2 layers, 0.01 & 4 layers, 0.01 (kept) & $0.8775$ & $0.0000$ & $[-0.0002,\,+0.0003]$ & $0.8887$ & $-0.0003$ & $[-0.0006,\,-0.0001]$ \\
+4 layers, 0.0001 & 4 layers, 0.01 (kept) & $0.8537$ & $-0.0238$ & $[-0.0269,\,-0.0207]$ & $0.8558$ & $-0.0332$ & $[-0.0360,\,-0.0306]$ \\
+2 layers, 0.0001 & 2 layers, 0.01 & $0.8556$ & $-0.0219$ & $[-0.0254,\,-0.0185]$ & $0.8574$ & $-0.0313$ & $[-0.0340,\,-0.0286]$ \\
+2 layers, 0.0001 & 4 layers, 0.0001 & $0.8556$ & $+0.0019$ & $[+0.0008,\,+0.0031]$ & $0.8574$ & $+0.0016$ & $[+0.0007,\,+0.0025]$ \\
+\addlinespace
+\multicolumn{8}{l}{\emph{Borderline papers}} \\
+4 layers, 0.01 (kept) & Initial rating (LR) & $0.7282$ & $+0.0066$ & $[-0.0014,\,+0.0161]$ & $0.7592$ & $+0.0028$ & $[-0.0029,\,+0.0088]$ \\
+2 layers, 0.01 & Initial rating (LR) & $0.7284$ & $+0.0067$ & $[-0.0014,\,+0.0158]$ & $0.7581$ & $+0.0018$ & $[-0.0039,\,+0.0078]$ \\
+4 layers, 0.0001 & Initial rating (LR) & $0.6793$ & $-0.0423$ & $[-0.0567,\,-0.0277]$ & $0.6972$ & $-0.0591$ & $[-0.0693,\,-0.0487]$ \\
+2 layers, 0.0001 & Initial rating (LR) & $0.6831$ & $-0.0385$ & $[-0.0526,\,-0.0244]$ & $0.6984$ & $-0.0579$ & $[-0.0683,\,-0.0477]$ \\
+2 layers, 0.01 & 4 layers, 0.01 (kept) & $0.7284$ & $+0.0002$ & $[-0.0008,\,+0.0011]$ & $0.7581$ & $-0.0010$ & $[-0.0017,\,-0.0003]$ \\
+4 layers, 0.0001 & 4 layers, 0.01 (kept) & $0.6793$ & $-0.0489$ & $[-0.0579,\,-0.0402]$ & $0.6972$ & $-0.0620$ & $[-0.0685,\,-0.0554]$ \\
+2 layers, 0.0001 & 2 layers, 0.01 & $0.6831$ & $-0.0452$ & $[-0.0547,\,-0.0358]$ & $0.6984$ & $-0.0597$ & $[-0.0665,\,-0.0529]$ \\
+2 layers, 0.0001 & 4 layers, 0.0001 & $0.6831$ & $+0.0038$ & $[+0.0006,\,+0.0070]$ & $0.6984$ & $+0.0012$ & $[-0.0011,\,+0.0036]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -39,9 +39,9 @@
 \newcommand{\IncidentAnnouncementAuthor}{ICLR 2026 Program Chairs}% configs/default.yaml
 \newcommand{\IncidentAnnouncementDate}{3 December 2025}% configs/default.yaml
 \newcommand{\IncidentAnnouncementUrl}{\url{https://blog.iclr.cc/2025/12/03/iclr-2026-response-to-security-incident/}}% configs/default.yaml
-\newcommand{\DataDoi}{\href{https://doi.org/10.5281/zenodo.24505447}{\nolinkurl{10.5281/zenodo.24505447}}}% configs/default.yaml
+\newcommand{\DataDoi}{\href{https://doi.org/10.5281/zenodo.24544681}{\nolinkurl{10.5281/zenodo.24544681}}}% configs/default.yaml
 \newcommand{\DataLicence}{CC BY 4.0}% configs/default.yaml
-\newcommand{\DataVersion}{2}% configs/default.yaml
+\newcommand{\DataVersion}{3}% configs/default.yaml
 \newcommand{\CodeUrl}{\url{https://github.com/youssefelyaakoubi01/peer-review-critique-kg}}% configs/default.yaml
 \newcommand{\GridLr}{C \{0.1, 1, 10\}}% configs/default.yaml
 \newcommand{\GridMlp}{hidden \{128, 256\}; dropout \{0.2, 0.5\}; lr \{0.001, 0.01\}; weight decay \{0.0001, 0.01\}}% configs/default.yaml
@@ -1244,12 +1244,26 @@
 \newcommand{\ProtoVocabularyTestHgtScoresRefAll}{\ensuremath{-}0.0219 [\ensuremath{-}0.0265, \ensuremath{-}0.0170]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoHolmVocabularyTestHgtScoresRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestGcnStudyAll}{\ensuremath{-}0.0024 [\ensuremath{-}0.0060, \ensuremath{+}0.0013]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongVocabularyTestGcnStudyAll}{\ensuremath{p = 0.546}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestGcnStudyAll}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestRgcnStudyAll}{\ensuremath{-}0.0096 [\ensuremath{-}0.0130, \ensuremath{-}0.0061]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongVocabularyTestRgcnStudyAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestRgcnStudyAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestRgcnScoresStudyAll}{\ensuremath{-}0.0030 [\ensuremath{-}0.0047, \ensuremath{-}0.0014]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongVocabularyTestRgcnScoresStudyAll}{\ensuremath{p = 0.015}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestRgcnScoresStudyAll}{\ensuremath{p = 0.168}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestHanStudyAll}{0.0000 [\ensuremath{-}0.0001, \ensuremath{+}0.0001]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongVocabularyTestHanStudyAll}{\ensuremath{p = 0.972}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHanStudyAll}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestHanScoresStudyAll}{\ensuremath{-}0.0001 [\ensuremath{-}0.0002, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongVocabularyTestHanScoresStudyAll}{\ensuremath{p = 0.160}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHanScoresStudyAll}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestHgtStudyAll}{\ensuremath{-}0.0018 [\ensuremath{-}0.0034, \ensuremath{-}0.0004]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongVocabularyTestHgtStudyAll}{\ensuremath{p = 0.944}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHgtStudyAll}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestHgtScoresStudyAll}{\ensuremath{-}0.0069 [\ensuremath{-}0.0089, \ensuremath{-}0.0047]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongVocabularyTestHgtScoresStudyAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHgtScoresStudyAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestRgcnGcnAll}{\ensuremath{-}0.0184 [\ensuremath{-}0.0239, \ensuremath{-}0.0128]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestHanGcnAll}{\ensuremath{+}0.0271 [\ensuremath{+}0.0226, \ensuremath{+}0.0317]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestHgtGcnAll}{\ensuremath{+}0.0278 [\ensuremath{+}0.0238, \ensuremath{+}0.0321]}% results/tables/protocol_comparisons.csv
@@ -1333,7 +1347,11 @@
 \newcommand{\ProtoFollowupTestNoTextNoSharesConceptTextScoresMlpAll}{\ensuremath{+}0.0040 [\ensuremath{+}0.0019, \ensuremath{+}0.0061]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoFollowupTestNoTextNoSharesConceptHgtAll}{\ensuremath{+}0.0218 [\ensuremath{+}0.0179, \ensuremath{+}0.0258]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoFollowupTestNoTextEmbeddingsNoTextNoCritiquesAll}{\ensuremath{+}0.0013 [\ensuremath{-}0.0001, \ensuremath{+}0.0028]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongFollowupTestNoTextEmbeddingsNoTextNoCritiquesAll}{\ensuremath{p = 0.012}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupTestNoTextEmbeddingsNoTextNoCritiquesAll}{\ensuremath{p = 0.049}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoFollowupTestNoTextEmbeddingsNoTextNoSharesConceptAll}{\ensuremath{-}0.0011 [\ensuremath{-}0.0018, \ensuremath{-}0.0003]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongFollowupTestNoTextEmbeddingsNoTextNoSharesConceptAll}{\ensuremath{p = 0.065}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupTestNoTextEmbeddingsNoTextNoSharesConceptAll}{\ensuremath{p = 0.129}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoFollowupTestNoTextEmbeddingsFirstRunAll}{\ensuremath{+}0.0002 [\ensuremath{+}0.0001, \ensuremath{+}0.0003]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestGcnRefBorder}{\ensuremath{-}0.0603 [\ensuremath{-}0.0753, \ensuremath{-}0.0448]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoHolmVocabularyTestGcnRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
@@ -1350,12 +1368,26 @@
 \newcommand{\ProtoVocabularyTestHgtScoresRefBorder}{\ensuremath{-}0.0427 [\ensuremath{-}0.0552, \ensuremath{-}0.0298]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoHolmVocabularyTestHgtScoresRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestGcnStudyBorder}{\ensuremath{+}0.0003 [\ensuremath{-}0.0082, \ensuremath{+}0.0096]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongVocabularyTestGcnStudyBorder}{\ensuremath{p = 0.805}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestGcnStudyBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestRgcnStudyBorder}{\ensuremath{-}0.0065 [\ensuremath{-}0.0137, \ensuremath{+}0.0014]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongVocabularyTestRgcnStudyBorder}{\ensuremath{p = 0.092}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestRgcnStudyBorder}{\ensuremath{p = 0.832}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestRgcnScoresStudyBorder}{\ensuremath{-}0.0045 [\ensuremath{-}0.0092, \ensuremath{-}0.0001]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongVocabularyTestRgcnScoresStudyBorder}{\ensuremath{p = 0.173}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestRgcnScoresStudyBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestHanStudyBorder}{\ensuremath{-}0.0001 [\ensuremath{-}0.0003, \ensuremath{+}0.0002]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongVocabularyTestHanStudyBorder}{\ensuremath{p = 0.761}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHanStudyBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestHanScoresStudyBorder}{\ensuremath{-}0.0002 [\ensuremath{-}0.0005, 0.0000]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongVocabularyTestHanScoresStudyBorder}{\ensuremath{p = 0.180}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHanScoresStudyBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestHgtStudyBorder}{\ensuremath{+}0.0002 [\ensuremath{-}0.0034, \ensuremath{+}0.0038]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongVocabularyTestHgtStudyBorder}{\ensuremath{p = 0.033}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHgtStudyBorder}{\ensuremath{p = 0.327}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestHgtScoresStudyBorder}{\ensuremath{-}0.0103 [\ensuremath{-}0.0155, \ensuremath{-}0.0048]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongVocabularyTestHgtScoresStudyBorder}{\ensuremath{p = 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmVocabularyTestHgtScoresStudyBorder}{\ensuremath{p = 0.015}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestRgcnGcnBorder}{\ensuremath{-}0.0216 [\ensuremath{-}0.0342, \ensuremath{-}0.0076]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestHanGcnBorder}{\ensuremath{+}0.0219 [\ensuremath{+}0.0106, \ensuremath{+}0.0331]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyTestHgtGcnBorder}{\ensuremath{+}0.0337 [\ensuremath{+}0.0225, \ensuremath{+}0.0446]}% results/tables/protocol_comparisons.csv
@@ -1439,7 +1471,11 @@
 \newcommand{\ProtoFollowupTestNoTextNoSharesConceptTextScoresMlpBorder}{\ensuremath{+}0.0134 [\ensuremath{+}0.0059, \ensuremath{+}0.0209]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoFollowupTestNoTextNoSharesConceptHgtBorder}{\ensuremath{+}0.0431 [\ensuremath{+}0.0317, \ensuremath{+}0.0543]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoFollowupTestNoTextEmbeddingsNoTextNoCritiquesBorder}{\ensuremath{+}0.0043 [\ensuremath{-}0.0002, \ensuremath{+}0.0089]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongFollowupTestNoTextEmbeddingsNoTextNoCritiquesBorder}{\ensuremath{p = 0.026}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupTestNoTextEmbeddingsNoTextNoCritiquesBorder}{\ensuremath{p = 0.078}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoFollowupTestNoTextEmbeddingsNoTextNoSharesConceptBorder}{\ensuremath{-}0.0032 [\ensuremath{-}0.0061, \ensuremath{-}0.0003]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongFollowupTestNoTextEmbeddingsNoTextNoSharesConceptBorder}{\ensuremath{p = 0.093}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupTestNoTextEmbeddingsNoTextNoSharesConceptBorder}{\ensuremath{p = 0.129}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoFollowupTestNoTextEmbeddingsFirstRunBorder}{\ensuremath{+}0.0006 [\ensuremath{+}0.0001, \ensuremath{+}0.0009]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoSearchHoldScoresAllLrRefAll}{\ensuremath{-}0.0002 [\ensuremath{-}0.0018, \ensuremath{+}0.0014]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoHolmSearchHoldScoresAllLrRefAll}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
@@ -1564,7 +1600,11 @@
 \newcommand{\ProtoFollowupHoldNoTextNoSharesConceptTextScoresMlpAll}{\ensuremath{+}0.0051 [\ensuremath{+}0.0032, \ensuremath{+}0.0069]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoFollowupHoldNoTextNoSharesConceptHgtAll}{\ensuremath{+}0.0308 [\ensuremath{+}0.0275, \ensuremath{+}0.0345]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoFollowupHoldNoTextEmbeddingsNoTextNoCritiquesAll}{\ensuremath{+}0.0010 [\ensuremath{-}0.0002, \ensuremath{+}0.0020]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongFollowupHoldNoTextEmbeddingsNoTextNoCritiquesAll}{\ensuremath{p = 0.007}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupHoldNoTextEmbeddingsNoTextNoCritiquesAll}{\ensuremath{p = 0.026}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoFollowupHoldNoTextEmbeddingsNoTextNoSharesConceptAll}{\ensuremath{-}0.0011 [\ensuremath{-}0.0018, \ensuremath{-}0.0004]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongFollowupHoldNoTextEmbeddingsNoTextNoSharesConceptAll}{\ensuremath{p = 0.060}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupHoldNoTextEmbeddingsNoTextNoSharesConceptAll}{\ensuremath{p = 0.121}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoSearchHoldScoresAllLrRefBorder}{\ensuremath{-}0.0033 [\ensuremath{-}0.0086, \ensuremath{+}0.0018]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoHolmSearchHoldScoresAllLrRefBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoSearchHoldCritiquesLrRefBorder}{\ensuremath{-}0.1498 [\ensuremath{-}0.1634, \ensuremath{-}0.1341]}% results/tables/protocol_comparisons.csv
@@ -1688,7 +1728,83 @@
 \newcommand{\ProtoFollowupHoldNoTextNoSharesConceptTextScoresMlpBorder}{\ensuremath{+}0.0125 [\ensuremath{+}0.0072, \ensuremath{+}0.0177]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoFollowupHoldNoTextNoSharesConceptHgtBorder}{\ensuremath{+}0.0553 [\ensuremath{+}0.0466, \ensuremath{+}0.0638]}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoFollowupHoldNoTextEmbeddingsNoTextNoCritiquesBorder}{\ensuremath{+}0.0031 [\ensuremath{+}0.0002, \ensuremath{+}0.0059]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongFollowupHoldNoTextEmbeddingsNoTextNoCritiquesBorder}{\ensuremath{p = 0.008}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupHoldNoTextEmbeddingsNoTextNoCritiquesBorder}{\ensuremath{p = 0.026}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoFollowupHoldNoTextEmbeddingsNoTextNoSharesConceptBorder}{\ensuremath{-}0.0024 [\ensuremath{-}0.0043, \ensuremath{-}0.0005]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongFollowupHoldNoTextEmbeddingsNoTextNoSharesConceptBorder}{\ensuremath{p = 0.137}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmFollowupHoldNoTextEmbeddingsNoTextNoSharesConceptBorder}{\ensuremath{p = 0.137}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthTestHanShallowDecayRefAll}{\ensuremath{+}0.0042 [\ensuremath{+}0.0016, \ensuremath{+}0.0065]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthTestHanShallowDecayRefAll}{\ensuremath{p = 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthTestHanDeepStudyRefAll}{\ensuremath{-}0.0196 [\ensuremath{-}0.0243, \ensuremath{-}0.0149]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthTestHanDeepStudyRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthTestHanShallowStudyRefAll}{\ensuremath{-}0.0177 [\ensuremath{-}0.0223, \ensuremath{-}0.0132]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthTestHanShallowStudyRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthTestHanShallowDecayHanAll}{0.0000 [\ensuremath{-}0.0002, \ensuremath{+}0.0003]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthTestHanShallowDecayHanAll}{\ensuremath{p = 0.778}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthTestHanShallowDecayHanAll}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthTestHanDeepStudyHanAll}{\ensuremath{-}0.0238 [\ensuremath{-}0.0269, \ensuremath{-}0.0207]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthTestHanDeepStudyHanAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthTestHanDeepStudyHanAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthTestHanShallowStudyHanShallowDecayAll}{\ensuremath{-}0.0219 [\ensuremath{-}0.0254, \ensuremath{-}0.0185]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthTestHanShallowStudyHanShallowDecayAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthTestHanShallowStudyHanShallowDecayAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthTestHanShallowStudyHanDeepStudyAll}{\ensuremath{+}0.0019 [\ensuremath{+}0.0008, \ensuremath{+}0.0031]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthTestHanShallowStudyHanDeepStudyAll}{\ensuremath{p = 0.067}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthTestHanShallowStudyHanDeepStudyAll}{\ensuremath{p = 0.268}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthTestHanShallowDecayRefBorder}{\ensuremath{+}0.0067 [\ensuremath{-}0.0014, \ensuremath{+}0.0158]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthTestHanShallowDecayRefBorder}{\ensuremath{p = 0.108}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthTestHanDeepStudyRefBorder}{\ensuremath{-}0.0423 [\ensuremath{-}0.0567, \ensuremath{-}0.0277]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthTestHanDeepStudyRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthTestHanShallowStudyRefBorder}{\ensuremath{-}0.0385 [\ensuremath{-}0.0526, \ensuremath{-}0.0244]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthTestHanShallowStudyRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthTestHanShallowDecayHanBorder}{\ensuremath{+}0.0002 [\ensuremath{-}0.0008, \ensuremath{+}0.0011]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthTestHanShallowDecayHanBorder}{\ensuremath{p = 0.958}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthTestHanShallowDecayHanBorder}{\ensuremath{p = 1.000}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthTestHanDeepStudyHanBorder}{\ensuremath{-}0.0489 [\ensuremath{-}0.0579, \ensuremath{-}0.0402]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthTestHanDeepStudyHanBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthTestHanDeepStudyHanBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthTestHanShallowStudyHanShallowDecayBorder}{\ensuremath{-}0.0452 [\ensuremath{-}0.0547, \ensuremath{-}0.0358]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthTestHanShallowStudyHanShallowDecayBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthTestHanShallowStudyHanShallowDecayBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthTestHanShallowStudyHanDeepStudyBorder}{\ensuremath{+}0.0038 [\ensuremath{+}0.0006, \ensuremath{+}0.0070]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthTestHanShallowStudyHanDeepStudyBorder}{\ensuremath{p = 0.097}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthTestHanShallowStudyHanDeepStudyBorder}{\ensuremath{p = 0.290}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthHoldHanShallowDecayRefAll}{\ensuremath{+}0.0021 [\ensuremath{+}0.0001, \ensuremath{+}0.0041]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthHoldHanShallowDecayRefAll}{\ensuremath{p = 0.075}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthHoldHanDeepStudyRefAll}{\ensuremath{-}0.0308 [\ensuremath{-}0.0350, \ensuremath{-}0.0270]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthHoldHanDeepStudyRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthHoldHanShallowStudyRefAll}{\ensuremath{-}0.0292 [\ensuremath{-}0.0333, \ensuremath{-}0.0254]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthHoldHanShallowStudyRefAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthHoldHanShallowDecayHanAll}{\ensuremath{-}0.0003 [\ensuremath{-}0.0006, \ensuremath{-}0.0001]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthHoldHanShallowDecayHanAll}{\ensuremath{p = 0.006}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthHoldHanShallowDecayHanAll}{\ensuremath{p = 0.018}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthHoldHanDeepStudyHanAll}{\ensuremath{-}0.0332 [\ensuremath{-}0.0360, \ensuremath{-}0.0306]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthHoldHanDeepStudyHanAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthHoldHanDeepStudyHanAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthHoldHanShallowStudyHanShallowDecayAll}{\ensuremath{-}0.0313 [\ensuremath{-}0.0340, \ensuremath{-}0.0286]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthHoldHanShallowStudyHanShallowDecayAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthHoldHanShallowStudyHanShallowDecayAll}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthHoldHanShallowStudyHanDeepStudyAll}{\ensuremath{+}0.0016 [\ensuremath{+}0.0007, \ensuremath{+}0.0025]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthHoldHanShallowStudyHanDeepStudyAll}{\ensuremath{p = 0.226}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthHoldHanShallowStudyHanDeepStudyAll}{\ensuremath{p = 0.452}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthHoldHanShallowDecayRefBorder}{\ensuremath{+}0.0018 [\ensuremath{-}0.0039, \ensuremath{+}0.0078]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthHoldHanShallowDecayRefBorder}{\ensuremath{p = 0.489}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthHoldHanDeepStudyRefBorder}{\ensuremath{-}0.0591 [\ensuremath{-}0.0693, \ensuremath{-}0.0487]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthHoldHanDeepStudyRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthHoldHanShallowStudyRefBorder}{\ensuremath{-}0.0579 [\ensuremath{-}0.0683, \ensuremath{-}0.0477]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthHoldHanShallowStudyRefBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthHoldHanShallowDecayHanBorder}{\ensuremath{-}0.0010 [\ensuremath{-}0.0017, \ensuremath{-}0.0003]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthHoldHanShallowDecayHanBorder}{\ensuremath{p = 0.003}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthHoldHanShallowDecayHanBorder}{\ensuremath{p = 0.012}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthHoldHanDeepStudyHanBorder}{\ensuremath{-}0.0620 [\ensuremath{-}0.0685, \ensuremath{-}0.0554]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthHoldHanDeepStudyHanBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthHoldHanDeepStudyHanBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthHoldHanShallowStudyHanShallowDecayBorder}{\ensuremath{-}0.0597 [\ensuremath{-}0.0665, \ensuremath{-}0.0529]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthHoldHanShallowStudyHanShallowDecayBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthHoldHanShallowStudyHanShallowDecayBorder}{\ensuremath{p < 0.001}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDepthHoldHanShallowStudyHanDeepStudyBorder}{\ensuremath{+}0.0012 [\ensuremath{-}0.0011, \ensuremath{+}0.0036]}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoDelongDepthHoldHanShallowStudyHanDeepStudyBorder}{\ensuremath{p = 0.942}}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoHolmDepthHoldHanShallowStudyHanDeepStudyBorder}{\ensuremath{p = 0.942}}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoAucEncodersTestFullAll}{0.8582}% results/tables/protocol_metrics.csv
 \newcommand{\ProtoStdEncodersTestFullAll}{0.0006}% results/tables/protocol_metrics.csv
 \newcommand{\ProtoAucEncodersTestFullBorder}{0.6951}% results/tables/protocol_metrics.csv
@@ -1945,6 +2061,30 @@
 \newcommand{\ProtoStdFollowupHoldNoTextNoSharesConceptAll}{0.0011}% results/tables/protocol_metrics.csv
 \newcommand{\ProtoAucFollowupHoldNoTextNoSharesConceptBorder}{0.7696}% results/tables/protocol_metrics.csv
 \newcommand{\ProtoStdFollowupHoldNoTextNoSharesConceptBorder}{0.0028}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucDepthTestHanShallowDecayAll}{0.8775}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdDepthTestHanShallowDecayAll}{0.0002}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucDepthTestHanShallowDecayBorder}{0.7284}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdDepthTestHanShallowDecayBorder}{0.0009}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucDepthTestHanDeepStudyAll}{0.8537}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdDepthTestHanDeepStudyAll}{0.0013}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucDepthTestHanDeepStudyBorder}{0.6793}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdDepthTestHanDeepStudyBorder}{0.0026}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucDepthTestHanShallowStudyAll}{0.8556}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdDepthTestHanShallowStudyAll}{0.0009}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucDepthTestHanShallowStudyBorder}{0.6831}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdDepthTestHanShallowStudyBorder}{0.0026}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucDepthHoldHanShallowDecayAll}{0.8887}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdDepthHoldHanShallowDecayAll}{0.0004}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucDepthHoldHanShallowDecayBorder}{0.7581}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdDepthHoldHanShallowDecayBorder}{0.0010}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucDepthHoldHanDeepStudyAll}{0.8558}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdDepthHoldHanDeepStudyAll}{0.0026}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucDepthHoldHanDeepStudyBorder}{0.6972}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdDepthHoldHanDeepStudyBorder}{0.0040}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucDepthHoldHanShallowStudyAll}{0.8574}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdDepthHoldHanShallowStudyAll}{0.0007}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoAucDepthHoldHanShallowStudyBorder}{0.6984}% results/tables/protocol_metrics.csv
+\newcommand{\ProtoStdDepthHoldHanShallowStudyBorder}{0.0007}% results/tables/protocol_metrics.csv
 \newcommand{\ProtoAucReferenceSearchTestAll}{0.8733}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoAucReferenceSearchHoldAll}{0.8866}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoAucReferenceRollingHoldAll}{0.8866}% results/tables/protocol_comparisons.csv
@@ -1954,9 +2094,11 @@
 \newcommand{\ProtoVocabularyStudyModelsAll}{7}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyStudyAboveAll}{none}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyStudyBelowAll}{5}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyStudyBelowDelongAll}{3}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyStudyModelsBorder}{7}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyStudyAboveBorder}{none}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoVocabularyStudyBelowBorder}{2}% results/tables/protocol_comparisons.csv
+\newcommand{\ProtoVocabularyStudyBelowDelongBorder}{1}% results/tables/protocol_comparisons.csv
 \newcommand{\ProtoReadingAVocabularyTestAll}{confirmed}% results/tables/protocol_readings.csv
 \newcommand{\ProtoBelowAVocabularyTestAll}{6}% results/tables/protocol_readings.csv
 \newcommand{\ProtoAboveAVocabularyTestAll}{0}% results/tables/protocol_readings.csv
@@ -2017,6 +2159,30 @@
 \newcommand{\ProtoReadingDFollowupHoldBorder}{confirmed}% results/tables/protocol_readings.csv
 \newcommand{\ProtoBelowDFollowupHoldBorder}{0}% results/tables/protocol_readings.csv
 \newcommand{\ProtoAboveDFollowupHoldBorder}{1}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingEDepthTestAll}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowEDepthTestAll}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveEDepthTestAll}{1}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingEDepthTestBorder}{not separated}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowEDepthTestBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveEDepthTestBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingEDepthHoldAll}{confirmed}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowEDepthHoldAll}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveEDepthHoldAll}{1}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingEDepthHoldBorder}{not separated}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowEDepthHoldBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveEDepthHoldBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingFDepthTestAll}{contradicted}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowFDepthTestAll}{1}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveFDepthTestAll}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingFDepthTestBorder}{contradicted}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowFDepthTestBorder}{1}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveFDepthTestBorder}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingFDepthHoldAll}{contradicted}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowFDepthHoldAll}{1}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveFDepthHoldAll}{0}% results/tables/protocol_readings.csv
+\newcommand{\ProtoReadingFDepthHoldBorder}{contradicted}% results/tables/protocol_readings.csv
+\newcommand{\ProtoBelowFDepthHoldBorder}{1}% results/tables/protocol_readings.csv
+\newcommand{\ProtoAboveFDepthHoldBorder}{0}% results/tables/protocol_readings.csv
 \newcommand{\ProtoChecksA}{8}% results/tables/protocol_readings.csv
 \newcommand{\ProtoChecksAConfirmed}{2}% results/tables/protocol_readings.csv
 \newcommand{\ProtoChecksAContradicted}{3}% results/tables/protocol_readings.csv
@@ -2103,6 +2269,17 @@
 \newcommand{\ProtoValRollingHan}{0.878}% results/tables/protocol_rolling_chosen.csv
 \newcommand{\ProtoKeptRollingHgt}{layers 4, hidden 64, dropout 0.2, lr 0.01, weight decay 0.0001}% results/tables/protocol_rolling_chosen.csv
 \newcommand{\ProtoValRollingHgt}{0.867}% results/tables/protocol_rolling_chosen.csv
+\newcommand{\StudyHanLayers}{2}% results/tables/gnn_selection.csv
+\newcommand{\ProtoSearchHanConfigsStudyDecay}{24}% results/tables/protocol_search_selection.csv, configs/default.yaml
+\newcommand{\ProtoSearchHanValStudyDecay}{0.8778}% results/tables/protocol_search_selection.csv, configs/default.yaml
+\newcommand{\ProtoSearchHanOtherDecay}{0.01}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoSearchHanValShallowOtherDecay}{0.8865}% results/tables/protocol_search_selection.csv, results/tables/protocol_search_chosen.csv, results/tables/gnn_selection.csv
+\newcommand{\ProtoSearchHanValKept}{0.8867}% results/tables/protocol_search_chosen.csv
+\newcommand{\ProtoSearchReferenceVal}{0.8795}% results/tables/protocol_search_chosen.csv
+\newcommand{\EncodersValNoTextEmbeddings}{0.8941}% results/tables/ablations_encoder_selection.csv
+\newcommand{\EncodersValFull}{0.8763}% results/tables/ablations.csv
+\newcommand{\EncodersValNoTextEmbeddingsFull}{\ensuremath{+}0.0178}% results/tables/ablations_encoder_selection.csv, results/tables/ablations.csv
+\newcommand{\ValToTestNoTextEmbeddings}{\ensuremath{-}0.0155}% results/tables/protocol_metrics.csv, results/tables/ablations_encoder_selection.csv
 \newcommand{\SeedsHeteroStudyTestAll}{30}% results/tables/protocol_seed_signs.csv
 \newcommand{\SeedsHeteroBelowStudyTestAll}{30}% results/tables/protocol_seed_signs.csv
 \newcommand{\SeedsHeteroClosestStudyTestAll}{\ensuremath{-}0.0119}% results/tables/protocol_seed_signs.csv
@@ -2168,3 +2345,7 @@
 \newcommand{\FollowupSeedMinHoldAll}{\ensuremath{+}0.0029}% results/tables/protocol_seed_signs.csv
 \newcommand{\FollowupSeedsAboveHoldBorder}{5}% results/tables/protocol_seed_signs.csv
 \newcommand{\FollowupSeedMinHoldBorder}{\ensuremath{+}0.0061}% results/tables/protocol_seed_signs.csv
+\newcommand{\FollowupCritiqueShareTestAll}{24\,\%}% results/tables/protocol_comparisons.csv
+\newcommand{\FollowupCritiqueShareTestBorder}{33\,\%}% results/tables/protocol_comparisons.csv
+\newcommand{\FollowupCritiqueShareHoldAll}{19\,\%}% results/tables/protocol_comparisons.csv
+\newcommand{\FollowupCritiqueShareHoldBorder}{29\,\%}% results/tables/protocol_comparisons.csv

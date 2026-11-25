@@ -683,6 +683,12 @@ def protocol(n: Numbers, cfg: dict) -> None:
         n.add(name, difference(row["difference"], row["ci_low"], row["ci_high"]), comparisons)
         if row["comparison"] == "vs_reference" and not (row["delong_p_holm"] != row["delong_p_holm"]):  # DeLong after Holm, within the family
             n.add(name.replace("Proto", "ProtoHolm", 1), p_value(row["delong_p_holm"]), comparisons)
+        # DeLong test of the comparisons whose interval the text confronts with it: a variant against another
+        # variant of the follow-up, and a model of the vocabulary check against the same model of the study
+        confronted = row["comparison"] == "within" or (row["stage"] == "vocabulary" and row["comparison"] == "vs_study")
+        if confronted and row["delong_p"] == row["delong_p"]:
+            n.add(name.replace("Proto", "ProtoDelong", 1), p_value(row["delong_p"]), comparisons)
+            n.add(name.replace("Proto", "ProtoHolm", 1), p_value(row["delong_p_holm"]), comparisons)
     # AUC of the models trained by the checks (their setting is the name of the check) and of the variants without encoders
     variants = {*cfg["ablations"]["encoder_variants"], "full"}
     for _, row in n.table(measures).iterrows():
@@ -707,6 +713,8 @@ def protocol(n: Numbers, cfg: dict) -> None:
         n.add(f"ProtoVocabularyStudyModels{tag}", str(len(rows)), comparisons)
         n.add(f"ProtoVocabularyStudyAbove{tag}", {0: "none"}.get(int((rows["ci_low"] > 0).sum()), str(int((rows["ci_low"] > 0).sum()))), comparisons)
         n.add(f"ProtoVocabularyStudyBelow{tag}", str(int((rows["ci_high"] < 0).sum())), comparisons)
+        # among the models whose interval is below zero, those for which the DeLong test rejects as well
+        n.add(f"ProtoVocabularyStudyBelowDelong{tag}", str(int(((rows["ci_high"] < 0) & rows["rejects"].astype(bool)).sum())), comparisons)
 
     # ---- readings (a), (b) and (d)
     read = n.table(readings)
@@ -756,6 +764,53 @@ def protocol(n: Numbers, cfg: dict) -> None:
             n.add(f"ProtoKept{camel(stage)}{camel(row['model'])}", escape(", ".join(f"{key.replace('_', ' ')} {value:g}" for key, value in values.items())), name)
             n.add(f"ProtoVal{camel(stage)}{camel(row['model'])}", plain(row["val_auc_final_mean"]), name)
 
+    # ---- what moved HAN in the wider search: validation AUC of the configurations drawn, by depth and weight decay
+    # (selection seed; the configurations that were not kept have no test result)
+    if settings["stages"].get("search", {}).get("search"):
+        kept_file, runs_file, study_file = "protocol_search_chosen.csv", "protocol_search_selection.csv", "gnn_selection.csv"
+        runs = s.table(runs_file)
+        drawn = runs[(runs["model"] == "han") & (runs["phase"] == "selection") & (runs["seed"] == settings["selection"]["seed"])
+                     & (runs["status"] == "ok")]
+        params = drawn["params"].map(json.loads)
+        depth, decay = params.map(lambda values: values["layers"]), params.map(lambda values: values["weight_decay"])
+        study = s.rows(study_file, model="han", setting=settings["setting"], stage="final", labels="label")["params"].map(json.loads)
+        study_depths = {values["layers"] for values in study}
+        if len(study_depths) != 1:
+            raise ValueError(f"the HAN of the study has several numbers of layers: {study_depths}")
+        study_depth, study_decay = study_depths.pop(), cfg["gnn"]["training"]["weight_decay"]
+        kept = s.row(kept_file, model="han")
+        other_decay = json.loads(kept["params"])["weight_decay"]
+        reference_val = s.value(kept_file, "val_auc_selection_seed", model=cfg["consolidate"]["reference"])
+        with_study_decay = drawn.loc[decay == study_decay, "val_auc"]
+        shallow = drawn.loc[(decay == other_decay) & (depth == study_depth), "val_auc"]
+        if other_decay == study_decay or with_study_decay.empty or shallow.empty:
+            raise ValueError("the wider search of HAN no longer separates the weight decay of the study from the one kept")
+        if not with_study_decay.max() < reference_val < shallow.max():
+            raise ValueError("the sentence 'with the weight decay of the study no HAN configuration reaches the reference on "
+                             "validation, with the other one a HAN of the depth of the study does' no longer holds")
+        n.take()
+        n.add("StudyHanLayers", str(int(study_depth)), study_file)
+        n.add("ProtoSearchHanConfigsStudyDecay", str(len(with_study_decay)), runs_file, CONFIG)
+        n.add("ProtoSearchHanValStudyDecay", plain(with_study_decay.max(), 4), runs_file, CONFIG)
+        n.add("ProtoSearchHanOtherDecay", f"{other_decay:g}", kept_file)
+        n.add("ProtoSearchHanValShallowOtherDecay", plain(shallow.max(), 4), runs_file, kept_file, study_file)
+        n.add("ProtoSearchHanValKept", plain(kept["val_auc_selection_seed"], 4), kept_file)
+        n.add("ProtoSearchReferenceVal", plain(reference_val, 4), kept_file)
+
+    # ---- the variant without pretrained embeddings on the validation papers, which belong to the training year
+    variant = cfg["followup"]["main"]
+    if variant in cfg["ablations"]["encoder_variants"] and (table["stage"] == "encoders").any():
+        runs_file, ablated = "ablations_encoder_selection.csv", "ablations.csv"
+        runs = s.table(runs_file)
+        validation = runs.loc[(runs["variant"] == variant) & (runs["status"] == "ok"), "val_auc"].mean()
+        full = s.value(ablated, "auc_mean", model="full", split="val", subset="all")
+        test = s.value(measures, "auc_mean", model=variant, setting=settings["setting"], evaluated="test", subset="all")
+        n.take()
+        n.add("EncodersValNoTextEmbeddings", plain(validation, 4), runs_file)
+        n.add("EncodersValFull", plain(full, 4), ablated)
+        n.add("EncodersValNoTextEmbeddingsFull", signed(validation - full), runs_file, ablated)
+        n.add("ValToTestNoTextEmbeddings", signed(test - validation), measures, runs_file)
+
     # ---- seeds: AUC of each seed of a heterogeneous variant against the reference
     by_seed = n.table(signs)
     suffix = cfg["gnn"]["score_variant"]["suffix"]
@@ -794,6 +849,17 @@ def protocol(n: Numbers, cfg: dict) -> None:
             name = EVALUATED[row["evaluated"]] + SUBSETS[row["subset"]]
             n.add(f"FollowupSeedsAbove{name}", str(int(row["seeds_above_reference"])), signs)
             n.add(f"FollowupSeedMin{name}", signed(row["difference_min"]), signs)
+        # share of the gain of the main variant over the reference that disappears with the critique nodes
+        follow = cfg["followup"]
+        without_critiques = [name for name in follow["within"] if "critique" in follow["variants"][name].get("drop_nodes", [])]
+        if len(without_critiques) != 1:
+            raise ValueError(f"expected one variant of the follow-up without the critique nodes, found {without_critiques}")
+        for evaluated, year in EVALUATED.items():
+            for subset, tag in SUBSETS.items():
+                where = {"stage": "followup", "evaluated": evaluated, "model": follow["main"], "subset": subset}
+                gain = s.value(comparisons, "difference", comparison="vs_reference", **where)
+                part = s.value(comparisons, "difference", comparison="within", control=without_critiques[0], **where)
+                n.add(f"FollowupCritiqueShare{year}{tag}", percent(part / gain, 0), comparisons)
 
 
 def build(s: Sources, cfg: dict) -> dict[str, tuple[str, list[str]]]:

@@ -1,0 +1,4 @@
+stage,model,family,searched,configurations_in_space,configurations_tried,runs_failed,params,at_edge_of_space,val_auc_selection_seed,val_auc_selection_seeds_mean,val_auc_final_mean,training
+depth,han_shallow_decay,hetero,False,,,,"{""layers"": 2, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005, ""weight_decay"": 0.01}",,,,0.8862238398544131,"{""max_epochs"": 500, ""patience"": 50, ""heads"": 4, ""weight_decay"": 0.01}"
+depth,han_deep_study,hetero,False,,,,"{""layers"": 4, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005, ""weight_decay"": 0.0001}",,,,0.8705829542007887,"{""max_epochs"": 500, ""patience"": 50, ""heads"": 4, ""weight_decay"": 0.0001}"
+depth,han_shallow_study,hetero,False,,,,"{""layers"": 2, ""hidden"": 64, ""dropout"": 0.5, ""lr"": 0.005, ""weight_decay"": 0.0001}",,,,0.8736184410069759,"{""max_epochs"": 500, ""patience"": 50, ""heads"": 4, ""weight_decay"": 0.0001}"

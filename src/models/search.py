@@ -40,6 +40,26 @@ def at_edge(params: dict[str, Any], space: dict[str, list]) -> list[str]:
     return [name for name, values in space.items() if len(values) > 1 and params[name] in (min(values), max(values))]
 
 
+def named_configurations(model: str, base: dict[str, Any], cells: dict[str, dict[str, Any]],
+                         stored: bool = False) -> dict[str, dict[str, Any]]:
+    """Configurations fixed in advance, one per cell of a design: {"<model>_<cell>": the
+    values of the cell, then those of `base`}. A cell marked `stored` was trained by
+    another stage: it is left out, or it is the only kind returned when `stored` is set.
+    A cell may not change a value of `base`, and two cells may not be the same configuration."""
+    named = {}
+    for cell, values in cells.items():
+        own = {key: value for key, value in values.items() if key != "stored"}
+        if set(own) & set(base):
+            raise ValueError(f"cell {cell} changes a value of the base: {sorted(set(own) & set(base))}")
+        if bool(values.get("stored", False)) == stored:
+            named[f"{model}_{cell}"] = {**{key: own[key] for key in own if key != "weight_decay"}, **base,
+                                        **({"weight_decay": own["weight_decay"]} if "weight_decay" in own else {})}
+    every = [json.dumps({key: value for key, value in values.items() if key != "stored"}, sort_keys=True) for values in cells.values()]
+    if len(set(every)) != len(every):
+        raise ValueError("two cells of the design are the same configuration")
+    return named
+
+
 class Records:
     """Training runs already made, one row each, written to a CSV file after every run.
     A run is identified by the columns `key`; the hyper-parameters are stored as JSON."""

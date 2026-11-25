@@ -7,7 +7,7 @@ summary is not written and the sentence must be revised.
 """
 
 from src.eval.paper import (ENCODER_LABELS, GROUPS, PROTOCOL_STAGES, SEVERITIES, SUBSETS, VARIANT_LABELS, ablation_variants, comparison_pairs,
-                            full_name, has_followup, has_protocol)
+                            full_name, has_depth_followup, has_followup, has_protocol)
 from src.eval.sources import Sources, excludes_zero, verdict
 
 MAIN, TESTS, PAIRED = "main_results.csv", "main_results_tests.csv", "paired_comparisons.csv"
@@ -759,6 +759,32 @@ def protocol_checks(s: Sources, cfg: dict) -> list[str]:
                 rows.append([", ".join(map(str, cfg["splits"][evaluated])), title, row["outcome"]])
         lines += ["Reading (d), *the model without pretrained embeddings is above the logistic regression on the initial rating*:", "",
                   *table(["Year", "Papers", "(d)"], rows), source(s, comparisons, readings), ""]
+
+    if has_depth_followup(s, cfg):
+        depth = cfg["depth_followup"]
+        origin, model = depth["reference_stage"], depth["model"]
+        lines += ["### Follow-up: depth and weight decay of the model kept by the wider search", "",
+                  f"Section `depth_followup` of {code('configs/default.yaml')}, written after the results of the search were read and "
+                  f"before its own runs. The configuration kept for {model.upper()} with the depth, the weight decay or both of the "
+                  "study; the reference is the one of the search. The configuration kept itself is read from the search.", ""]
+        rows = []
+        for evaluated in depth["evaluated"]:
+            for subset, title in SUBSETS.items():
+                for name, values in depth["cells"].items():
+                    where = {"stage": origin, "model": model} if values.get("stored") else {"stage": "depth", "model": f"{model}_{name}"}
+                    row = s.row(comparisons, evaluated=evaluated, comparison="vs_reference", subset=subset, **where)
+                    rows.append([", ".join(map(str, cfg["splits"][evaluated])), title, f"{values['layers']} layers, weight decay {values['weight_decay']:g}",
+                                 f(row["auc_model"], 4), f"{d(row['difference'])} {ci(row['ci_low'], row['ci_high'])}", p(row["delong_p_holm"])])
+        lines += table(["Year", "Papers", "Configuration", "AUC", f"Δ with {full_name(reference, setting, cfg)}", "DeLong, Holm"], rows)
+        statements = {"e": "with the depth of the study and the weight decay kept", "f": "with the depth kept and the weight decay of the study"}
+        rows = []
+        for evaluated in depth["evaluated"]:
+            for subset, title in SUBSETS.items():
+                rows.append([", ".join(map(str, cfg["splits"][evaluated])), title,
+                             *[s.row(readings, stage="depth", evaluated=evaluated, subset=subset, reading=letter)["outcome"] for letter in statements]])
+        lines += [f"Readings, *{model.upper()} is above the logistic regression on the initial rating* " +
+                  " and ".join(f"{text} ({letter})" for letter, text in statements.items()) + ":", "",
+                  *table(["Year", "Papers", *[f"({letter})" for letter in statements]], rows), source(s, comparisons, readings), ""]
     return lines
 
 

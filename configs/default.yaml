@@ -656,6 +656,65 @@ followup:
   within: [no_text_no_critiques, no_text_no_shares_concept]
   gpu: {min_free_gb: 10, margin_gb: 2}
 
+# Follow-up of the equal and wider search on HAN (scripts/07f_protocol_checks.py --stage depth,
+# scripts/07g_protocol_results.py). Written on 2026-11-25 AFTER the results of stage `search`
+# were read on the test and holdout years, and after its validation results were read by depth
+# and weight decay (results/tables/protocol_search_selection.csv, selection seed): with the
+# weight decay of phase 7 (0.0001) no HAN configuration drawn reaches the reference on
+# validation, whatever its depth (best 0.8778 against 0.8795); with 0.01 a configuration of
+# two layers reaches 0.8865, against 0.8867 for the configuration kept (four layers). The
+# article therefore no longer says that one more layer reversed the result for HAN, and says
+# that the part of the weight decay on the test year was not measured. This section measures it.
+# POST HOC: both years had been read, the holdout year for HAN twice already. The question
+# is which hyper-parameter carries the result of stage `search` for HAN, not whether HAN is
+# above the reference. As for the other checks: this section is written and committed before
+# the first run and is not edited after it; each configuration is trained once; every result
+# is reported, whatever its sign.
+# Design: a 2 x 2 around the configuration kept for HAN by stage `search`, in which the depth
+# and the weight decay each take the value kept and the value of the HAN of phase 7. Everything
+# else is the stage `search`: graph of the study, roles, validation papers, training settings
+# of the protocol, the five seeds, frozen application to the holdout year.
+#   deep_decay     4 layers, 0.01    the HAN kept by stage `search`: its stored predictions are read, nothing is trained
+#   shallow_decay  2 layers, 0.01    the depth alone goes back to the one of phase 7
+#   deep_study     4 layers, 0.0001  the weight decay alone goes back to the one of phase 7
+#   shallow_study  2 layers, 0.0001  the configuration of the HAN of phase 7, with the training length of the protocol
+# None of the three configurations to train was drawn by stage `search`: no result of theirs is known.
+# Readings, with the rule of the article (confirmed if the confidence interval of the
+# difference with the reference of stage `search` is above zero, contradicted if it is below
+# zero, not separated otherwise), on each evaluated year, on all papers and on borderline papers:
+#   (e) "HAN with the depth of phase 7 and the weight decay kept is above the reference":
+#       confirmed, the depth is not needed for the result of stage `search`;
+#   (f) "HAN with the depth kept and the weight decay of phase 7 is above the reference":
+#       confirmed, the weight decay is not needed for it.
+# Both confirmed: either change is enough. Neither: the result needs both. The paired
+# differences of `within` give the size of each effect, with their interval and the DeLong
+# test, both reported (Holm within stage, year and kind of comparison, as in `protocol`).
+depth_followup:
+  model: han
+  reference_stage: search          # the reference and the kept HAN are those of this stage
+  base: {hidden: 64, dropout: 0.5, lr: 0.005}   # kept for HAN by stage `search` (protocol_search_chosen.csv); checked before the runs
+  cells:
+    deep_decay: {layers: 4, weight_decay: 0.01, stored: true}
+    shallow_decay: {layers: 2, weight_decay: 0.01}
+    deep_study: {layers: 4, weight_decay: 0.0001}
+    shallow_study: {layers: 2, weight_decay: 0.0001}
+  readings: {e: shallow_decay, f: deep_study}
+  within: [[shallow_decay, deep_decay], [deep_study, deep_decay], [shallow_study, shallow_decay], [shallow_study, deep_study]]
+  evaluated: [test, holdout]
+  # The stage, read by scripts/07f_protocol_checks.py like a stage of `protocol`: the one of
+  # stage `search` without a search. `training: protocol`: the training settings of
+  # `protocol.training`, with the weight decay of each configuration.
+  stage:
+    graph: holdout
+    roles: study
+    search: false
+    training: protocol
+    models: [han]
+    train_graph: [train]
+    validation_graph: [train]
+    predict: {val: [train], test: [train, test], holdout: [train, test, holdout]}
+    max_hours: 0.5
+
 # Explanations of the main model (phase 9), computed on CPU. Each explained article is
 # predicted again on its own computation graph (src/explain/subgraph.py), then elements
 # are removed from it (occlusion) or attributed by gradients (captum).
@@ -795,7 +854,9 @@ release:
     https://github.com/youssefelyaakoubi01/peer-review-critique-kg.</p>
     <p>Version 2 adds the graph whose keyword concepts are counted on the training year alone, and the models and
     predictions of the protocol checks made after the first version (equal and wider hyper-parameter search, validation
-    on the following year, graph models without pretrained text embeddings). The content of the other files is unchanged.</p>
+    on the following year, graph models without pretrained text embeddings). Version 3 adds, in the same two files, the
+    models and predictions of a follow-up of the wider search: the configuration kept for HAN with the depth, the weight
+    decay or both of the first search. The content of the other files is unchanged since version 2.</p>
     <p>The labels of the critiques were produced by a language model and have not been validated by human
     annotators. README.md describes each file, the sources and their licences, and what is left out.</p>
   creators:
@@ -807,11 +868,12 @@ release:
   keywords: [peer review, OpenReview, ICLR, knowledge graph, graph neural networks, review critiques]
   # First version published on 2026-11-24 (Zenodo record 24485276; a published record cannot be changed, only
   # versioned). Version 2, same day, after the protocol checks: record 24505447, its DOI reserved when its draft was
-  # opened. `concept_doi` always resolves to the latest version.
-  version: 2
-  doi: "10.5281/zenodo.24505447"
+  # opened. Version 3, 2026-11-25, after the follow-up of the wider search on HAN: draft 24544681, DOI reserved
+  # in the same way. `concept_doi` always resolves to the latest version.
+  version: 3
+  doi: "10.5281/zenodo.24544681"
   concept_doi: "10.5281/zenodo.24485275"
-  previous_dois: ["10.5281/zenodo.24485276"]
+  previous_dois: ["10.5281/zenodo.24485276", "10.5281/zenodo.24505447"]
   licence: "CC BY 4.0"
   code_url: https://github.com/youssefelyaakoubi01/peer-review-critique-kg
   # The submission notes of these years carry no licence field on OpenReview (the reviews do: CC BY 4.0):

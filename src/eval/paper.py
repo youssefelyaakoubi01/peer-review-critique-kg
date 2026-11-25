@@ -792,8 +792,9 @@ def protocol_table(s: Sources, cfg: dict, evaluated: str) -> str:
     explained = {
         "vocabulary": "Vocabulary: the graph models with the configurations of the study, on the graph whose concepts are counted on "
                       "the training year; the baselines read no keyword and are not run again (--).",
-        "search": f"Search: every model searched again in a wider space, {protocol['budget']} configurations for each family trained by "
-                  "epochs, on the graph of the study" + ("; the models kept are applied, frozen, to the holdout year." if evaluated == "holdout" else "."),
+        "search": f"Search: the models searched again in a wider space, {protocol['budget']} configurations for each family trained by "
+                  "epochs, on the graph of the study; a variant with score statistics reuses the configuration kept for its plain model"
+                  + ("; the models kept are applied, frozen, to the holdout year." if evaluated == "holdout" else "."),
         "rolling": "Following year: trained on the training year, selected and stopped on the whole test year, on the graph of the "
                    "vocabulary check, with the same search.",
     }
@@ -969,6 +970,58 @@ def followup_table(s: Sources, cfg: dict) -> str:
 
 
 FOLLOWUP_TABLES = {"followup": (followup_table, "Follow-up: the graph model without pretrained embeddings on the test and holdout years")}
+
+
+def has_depth_followup(s: Sources, cfg: dict) -> bool:
+    """The follow-up of the wider search on the depth and the weight decay has been run and compared."""
+    if not (s.tables_dir / PROTOCOL_COMPARISONS).is_file():
+        return False
+    done = (s.table(PROTOCOL_COMPARISONS)["stage"] == "depth").any()
+    s.take_used()
+    return bool(done)
+
+
+def depth_table(s: Sources, cfg: dict) -> str:
+    """The configuration kept for one architecture by the wider search, with the depth and the weight decay of the study."""
+    settings, reference = cfg["depth_followup"], cfg["protocol"]["reference"]
+    origin, model = settings["reference_stage"], settings["model"]
+    years = {"test": joined(cfg["splits"]["test"]), "holdout": joined(cfg["splits"]["holdout"])}
+    stored = {name: bool(values.get("stored")) for name, values in settings["cells"].items()}
+    label = {name: f"{values['layers']} layers, {values['weight_decay']:g}" + (" (kept)" if stored[name] else "")
+             for name, values in settings["cells"].items()}
+    key = {name: model if stored[name] else f"{model}_{name}" for name in settings["cells"]}
+
+    def cells(stage: str, kind: str, name: str, control: str, subset: str) -> list[str]:
+        out = []
+        for evaluated in years:
+            row = s.row(PROTOCOL_COMPARISONS, stage=stage, evaluated=evaluated, comparison=kind, model=key[name], control=control, subset=subset)
+            out += [L.number(row["auc_model"], 4), L.signed(row["difference"], 4), L.interval(row["ci_low"], row["ci_high"], 4, sign=True)]
+        return out
+
+    rows = []
+    for subset, title in SUBSETS.items():
+        rows.append(title)
+        for name in settings["cells"]:
+            rows.append([label[name], FOLLOWUP_CONTROLS[reference], *cells(origin if stored[name] else "depth", "vs_reference", name, reference, subset)])
+        for first, second in settings["within"]:
+            rows.append([label[first], label[second], *cells("depth", "within", first, key[second], subset)])
+    header = [" & & " + " & ".join(rf"\multicolumn{{3}}{{c}}{{ICLR {year}{', frozen' if evaluated == 'holdout' else ''}}}"
+                                   for evaluated, year in years.items()) + r" \\", r"\cmidrule(lr){3-5} \cmidrule(lr){6-8}"]
+    base = ", ".join(f"{name.replace('lr', 'learning rate')} {value:g}" for name, value in settings["base"].items())
+    return L.table(["Configuration", "Control", *["AUC", r"$\Delta$", r"95\,\% CI"] * 2], rows, wide=True, header=header,
+                   label="tab:depth", size="footnotesize", gap=1.5, align="llrrrrrr",
+                   caption=f"{model.upper()} in the equal and wider search: depth and weight decay. A configuration "
+                   "is named by its number of layers and its weight decay; the first is the one kept by the search, the others give to "
+                   f"the depth, to the weight decay or to both the value of the {model.upper()} of the study. "
+                   f"Everything else is that of the search ({base}; training settings, graph and validation papers). AUC of the "
+                   "configuration, and AUC of the configuration minus AUC of its control, the logistic regression on the initial rating "
+                   "of the same check or another configuration: paired bootstrap over the papers. Test year, and the same models, "
+                   f"frozen, on the holdout year. {len(cfg['seeds'])} seeds."
+                   + abbreviations("LR", "CI")
+                   + rf" {PROTOCOL}Designed after the results of the search were read and before its own runs {STATUS}.")
+
+
+DEPTH_TABLES = {"depth": (depth_table, "Follow-up: depth and weight decay of the model kept by the wider search")}
 
 PROTOCOL_TABLES = {
     "protocol_test": (protocol_test_table, "Protocol checks: every model against the initial rating, test year"),

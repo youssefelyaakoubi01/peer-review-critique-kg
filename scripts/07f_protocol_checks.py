@@ -4,6 +4,7 @@
     uv run python scripts/07f_protocol_checks.py --stage vocabulary  # 1. vocabulary of concepts counted on the training years
     uv run python scripts/07f_protocol_checks.py --stage search      # 2. equal and wider hyper-parameter search
     uv run python scripts/07f_protocol_checks.py --stage rolling     # 3. validation on the following year, test on the year after
+    uv run python scripts/07f_protocol_checks.py --stage depth       # follow-up of 2 on HAN: depth and weight decay
     uv run python scripts/07g_protocol_results.py                    # tables, intervals, tests
 
 All three are post hoc: the test and holdout years had been read. Their design is the
@@ -18,6 +19,12 @@ only. A stage reads one graph and the targets, never an outcome as an input.
   rolling     Trained on the training years, selected and stopped on the test year, tested
               on the holdout year, on the graph of stage `vocabulary`, with the search of
               stage `search`.
+
+  depth       Follow-up of stage `search` (section `depth_followup` of the config, written
+              after its results were read): HAN with the configuration kept by that
+              stage, in which the depth and the weight decay each take the value kept
+              and the value of phase 7. Nothing is searched; the configuration kept
+              itself is not trained again.
 
 The script can be interrupted: every finished training is recorded and is not run again.
 
@@ -48,6 +55,7 @@ GIB = 2**30
 TRAIN, VAL, TEST, HOLDOUT = "train", "val", "test", "holdout"
 KEY = ["stage", "model", "phase", "params", "seed"]
 DETERMINISTIC_KINDS = {"logistic", "gbt"}  # no random number: every seed gives the same model
+DEPTH = "depth"  # the follow-up of stage `search` on HAN: its stage is in the section `depth_followup`
 
 
 def stored_configuration(table: pd.DataFrame, what: str) -> dict:
@@ -61,9 +69,11 @@ def main() -> int:
     cfg = load_config()
     protocol = cfg["protocol"]
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    parser.add_argument("--stage", required=True, choices=list(protocol["stages"]))
+    follow = cfg["depth_followup"]
+    stage_specs = {**protocol["stages"], DEPTH: follow["stage"]}
+    parser.add_argument("--stage", required=True, choices=list(stage_specs))
     args = parser.parse_args()
-    stage, spec, setting = args.stage, protocol["stages"][args.stage], protocol["setting"]
+    stage, spec, setting = args.stage, stage_specs[args.stage], protocol["setting"]
     log = setup_run_logging(f"07f_protocol_{stage}", cfg["paths"]["logs"])
     tables_dir, processed, predictions_dir = cfg["paths"]["tables"], cfg["paths"]["processed"], cfg["paths"]["predictions"]
     runs_dir, models_dir = predictions_dir / "protocol" / stage, processed / "models" / "protocol"
@@ -124,6 +134,18 @@ def main() -> int:
         log.info("the training and test years of the extended graph are the graph of the study, node by node and edge by edge")
         del study, part
 
+    # ---- stage `depth`: configurations fixed in advance around the one kept by another stage, which must be the one written
+    named: dict[str, dict] = {}
+    if stage == DEPTH:
+        origin = follow["reference_stage"]  # the stage whose kept configuration is the stored cell: its table of configurations is read
+        kept = pd.read_csv(tables_dir / f"protocol_{origin}_chosen.csv")
+        kept = json.loads(kept.loc[kept["model"] == follow["model"], "params"].iloc[0])
+        stored = search.named_configurations(follow["model"], follow["base"], follow["cells"], stored=True)
+        if list(stored.values()) != [kept]:  # one stored cell, with the values kept (the order of the keys does not count)
+            raise SystemExit(f"the stored cell {stored} is not the configuration kept by stage {follow['reference_stage']}: {kept}")
+        named = search.named_configurations(follow["model"], follow["base"], follow["cells"])
+        log.info("configurations fixed in advance: %s (stored, not trained: %s)", named, list(stored))
+
     records = search.Records(tables_dir / f"protocol_{stage}_selection.csv", KEY)
     seeds, selection = cfg["seeds"], protocol["selection"]
     kinds = {name: cfg["baselines"]["models"][name]["kind"] if name in cfg["baselines"]["models"] else "hetero" for name in spec["models"]}
@@ -139,8 +161,9 @@ def main() -> int:
         return search.sample_configurations(protocol["spaces"][kinds[name]], protocol["budget"], protocol["sample_seed"])
 
     def training_of(name: str, params: dict) -> dict:
-        """Training settings: those of phases 6 and 7 without a search, those of the protocol with one."""
-        if not spec["search"]:
+        """Training settings: those of phases 6 and 7 without a search, those of the protocol with one
+        or when the stage asks for them."""
+        if not spec["search"] and spec.get("training") != "protocol":
             if kinds[name] == "hetero":
                 return dict(cfg["gnn"]["training"])
             return {**cfg["baselines"]["training"], "weight_decay": params.get("weight_decay")}
@@ -151,13 +174,15 @@ def main() -> int:
         n = len(candidates(name))
         confirm = 0 if n == 1 or kinds[name] in DETERMINISTIC_KINDS else min(selection["top"], n) * len(selection["confirm_seeds"])
         planned[name] = (n if n > 1 else 0) + confirm + len(seeds) * (2 if kinds[name] == "hetero" else 1)
+        if named:
+            planned[name] = len(named) * len(seeds)
 
     def check_budget(name: str) -> None:
         """Stops the stage when the time already spent plus what the current model still needs, at the mean time of its
         own runs, exceeds the limit. (The first version projected every remaining run of the stage at the mean time of the
         current model, and stopped the search stage on its first GCN run; the models still to come have no measured time.)"""
         spent = records.seconds(stage=stage)
-        own = [float(r["seconds"]) for r in records.rows if r["model"] in (name, name + suffix)]
+        own = [float(r["seconds"]) for r in records.rows if r["model"] in (name, name + suffix, *named)]
         projected = sum(spent) + max(planned[name] - len(own), 0) * float(np.mean(own or spent))
         if projected > spec["max_hours"] * 3600:
             raise SystemExit(f"stopped: {sum(spent) / 3600:.1f} h spent, {projected / 3600:.1f} h with the remaining runs of {name}: "
@@ -261,6 +286,17 @@ def main() -> int:
         elif kind == "gcn":
             release(("hetero", False))
             release(("hetero", True))
+        if named:  # every configuration fixed in advance is trained with every seed: nothing is selected
+            for label, params in named.items():
+                finals = [train_once(name, label, params, seed, "final") for seed in seeds]
+                chosen_rows.append({
+                    "stage": stage, "model": label, "family": kind, "searched": False, "configurations_in_space": None,
+                    "configurations_tried": None, "runs_failed": None, "params": json.dumps(params), "at_edge_of_space": None,
+                    "val_auc_selection_seed": float("nan"), "val_auc_selection_seeds_mean": float("nan"),
+                    "val_auc_final_mean": float(np.nanmean(finals)), "training": json.dumps(training_of(name, params))})
+                log.info("%s: validation AUC %.4f over %d seeds; %.0f min of training so far", label, chosen_rows[-1]["val_auc_final_mean"],
+                         len(finals), sum(records.seconds(stage=stage)) / 60)
+            continue
         chosen, first, confirmed = options[0], float("nan"), float("nan")
         if len(options) > 1:
             scores = [train_once(name, name, params, selection["seed"], "selection") for params in options]
